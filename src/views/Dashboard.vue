@@ -11,8 +11,15 @@
         </v-row>
 
         <v-row justify="center" v-if="$vuetify.breakpoint.mdAndUp">
-          <v-col cols="12" md="3" sm="6" xs="12" v-for="(panel, index) in panelData" :key="index">
-            <plan-panel
+          <v-col
+            cols="12"
+            md="3"
+            sm="6"
+            xs="12"
+            v-for="(panel, index) in categoryPanelData"
+            :key="index"
+          >
+            <category-panel
               :id="panel.id"
               :panelBackground="panel.panelBackground"
               :panelTitle="panel.panelTitle"
@@ -20,56 +27,37 @@
               :panelFeature="panel.panelFeature"
               :checked="panel.checked"
               :checkPanel="selectPanels"
-            ></plan-panel>
+            ></category-panel>
           </v-col>
         </v-row>
         <v-row justify="center">
           <v-col cols="12" md="3" sm="6" xs="12">
-            <plan-panel
-              :id="panelData[0].id"
-              :panelBackground="panelData[0].panelBackground"
-              :panelTitle="panelData[0].panelTitle"
-              :panelDescription="panelData[0].panelDescription"
-              :panelFeature="panelData[0].panelFeature"
-              :checked="panelData[0].checked"
+            <category-panel
+              :id="categoryPanelData[0].id"
+              :panelBackground="categoryPanelData[0].panelBackground"
+              :panelTitle="categoryPanelData[0].panelTitle"
+              :panelDescription="categoryPanelData[0].panelDescription"
+              :panelFeature="categoryPanelData[0].panelFeature"
+              :checked="categoryPanelData[0].checked"
               :checkPanel="selectPanels"
               v-if="$vuetify.breakpoint.smAndDown"
               class="mb-12"
-            ></plan-panel>
+            ></category-panel>
             <rate-selection-panel
-              :id="0"
-              panelBackground="white"
-              panelTitle="S1 - 1-Bett-Zimmer"
-              :haveRadioOption="true"
-              :checked="true"
-              :checkRate="selectPanels"
-              panelRate="17,96"
-              :isTop="true"
-            ></rate-selection-panel>
-            <rate-selection-panel
-              :id="0"
-              panelBackground="white"
-              panelTitle="S1 - 1-Bett-Zimmer"
-              :haveRadioOption="true"
-              :checked="false"
-              :checkRate="selectPanels"
-              panelRate="14,96"
-              :isTop="false"
-              class="mt-4"
-            ></rate-selection-panel>
-            <rate-selection-panel
-              :id="0"
-              panelBackground="white"
-              panelTitle="S1 - 1-Bett-Zimmer"
-              :haveRadioOption="true"
-              :checked="false"
-              :checkRate="selectPanels"
-              panelRate="21,96"
-              :isTop="false"
-              class="mt-4 pb-4"
+              v-for="(ratePanel, index) in stationaryPanelData"
+              :key="index"
+              :id="ratePanel.id"
+              :panelBackground="ratePanel.panelBackground"
+              :panelTitle="ratePanel.panelTitle"
+              :haveRadioOption="ratePanel.haveRadioOption"
+              :checked="ratePanel.checked"
+              :checkRate="selectStationaryRatePanel"
+              :panelRate="ratePanel.panelRate"
+              :isTop="ratePanel.isTop"
+              :class="{'mt-4': ratePanel.id !== 0 }"
             >
-              <template v-slot>
-                <p class="pb-2 text-left pl-4 ml-1">
+              <template v-slot v-if="ratePanel.id == 2">
+                <p class="pb-2 text-left pl-4 ml-1 mb-0">
                   <v-icon color="primary">mdi-check</v-icon>
                   <span class="grey--text">stabile Beiträge</span>
                   <v-tooltip
@@ -103,117 +91,126 @@
             </rate-selection-panel>
             <v-layout justify-start>
               <router-link to="/testLink" tag="span">
-                <v-btn text class="px-3 primary--text body-1 btn-link" large :ripple="false"><v-icon color="primary">mdi-arrow-right</v-icon>TARIFE VERGLEICHEN</v-btn>
+                <v-btn text class="px-3 primary--text body-1 btn-link" large :ripple="false">
+                  <v-icon color="primary">mdi-arrow-right</v-icon>TARIFE VERGLEICHEN
+                </v-btn>
               </router-link>
             </v-layout>
-            
           </v-col>
           <v-col cols="12" md="3" sm="6" xs="12">
-            <plan-panel
-              :id="panelData[1].id"
-              :panelBackground="panelData[1].panelBackground"
-              :panelTitle="panelData[1].panelTitle"
-              :panelDescription="panelData[1].panelDescription"
-              :panelFeature="panelData[1].panelFeature"
-              :checked="panelData[1].checked"
+            <category-panel
+              :id="categoryPanelData[1].id"
+              :panelBackground="categoryPanelData[1].panelBackground"
+              :panelTitle="categoryPanelData[1].panelTitle"
+              :panelDescription="categoryPanelData[1].panelDescription"
+              :panelFeature="categoryPanelData[1].panelFeature"
+              :checked="categoryPanelData[1].checked"
               :checkPanel="selectPanels"
               v-if="$vuetify.breakpoint.smAndDown"
               class="mb-12"
-            ></plan-panel>
+            ></category-panel>
             <rate-selection-panel
-              :id="0"
-              panelBackground="white"
-              panelTitle="Z Duo"
-              :haveRadioOption="false"
-              :checked="true"
-              :checkRate="selectPanels"
-              :panelRate="0"
-              :isTop="false"
+              v-for="(ratePanel, index) in toothPanelData"
+              :key="index"
+              :id="ratePanel.id"
+              :panelBackground="ratePanel.panelBackground"
+              :panelTitle="ratePanel.panelTitle"
+              :haveRadioOption="ratePanel.haveRadioOption"
+              :checked="ratePanel.checked"
+              :checkRate="selectToothRatePanel"
+              :panelRate="ratePanel.panelRate"
+              :isTop="ratePanel.isTop"
+              :class="{'mt-4': ratePanel.id !== 0 }"
             ></rate-selection-panel>
           </v-col>
           <v-col cols="12" md="3" sm="6" xs="12">
-            <plan-panel
-              :id="panelData[2].id"
-              :panelBackground="panelData[2].panelBackground"
-              :panelTitle="panelData[2].panelTitle"
-              :panelDescription="panelData[2].panelDescription"
-              :panelFeature="panelData[2].panelFeature"
-              :checked="panelData[2].checked"
+            <category-panel
+              :id="categoryPanelData[2].id"
+              :panelBackground="categoryPanelData[2].panelBackground"
+              :panelTitle="categoryPanelData[2].panelTitle"
+              :panelDescription="categoryPanelData[2].panelDescription"
+              :panelFeature="categoryPanelData[2].panelFeature"
+              :checked="categoryPanelData[2].checked"
               :checkPanel="selectPanels"
               v-if="$vuetify.breakpoint.smAndDown"
               class="mb-12"
-            ></plan-panel>
+            ></category-panel>
             <rate-selection-panel
-              :id="0"
-              panelBackground="white"
-              panelTitle="A"
-              :haveRadioOption="false"
-              :checked="true"
-              :checkRate="selectPanels"
-              :panelRate="0"
-              :isTop="false"
+              v-for="(ratePanel, index) in outpatientPanelData"
+              :key="index"
+              :id="ratePanel.id"
+              :panelBackground="ratePanel.panelBackground"
+              :panelTitle="ratePanel.panelTitle"
+              :haveRadioOption="ratePanel.haveRadioOption"
+              :checked="ratePanel.checked"
+              :checkRate="selectOutpatientRatePanel"
+              :panelRate="ratePanel.panelRate"
+              :isTop="ratePanel.isTop"
+              :class="{'mt-4': ratePanel.id !== 0 }"
             ></rate-selection-panel>
           </v-col>
           <v-col cols="12" md="3" sm="6" xs="12">
-            <plan-panel
-              :id="panelData[3].id"
-              :panelBackground="panelData[3].panelBackground"
-              :panelTitle="panelData[3].panelTitle"
-              :panelDescription="panelData[3].panelDescription"
-              :panelFeature="panelData[3].panelFeature"
-              :checked="panelData[3].checked"
+            <category-panel
+              :id="categoryPanelData[3].id"
+              :panelBackground="categoryPanelData[3].panelBackground"
+              :panelTitle="categoryPanelData[3].panelTitle"
+              :panelDescription="categoryPanelData[3].panelDescription"
+              :panelFeature="categoryPanelData[3].panelFeature"
+              :checked="categoryPanelData[3].checked"
               :checkPanel="selectPanels"
               v-if="$vuetify.breakpoint.smAndDown"
               class="mb-12"
-            ></plan-panel>
+            ></category-panel>
             <rate-selection-panel
-              :id="0"
-              panelBackground="white"
-              panelTitle="Basis"
-              :haveRadioOption="true"
-              :checked="true"
-              :checkRate="selectPanels"
-              :panelRate="0"
-              :isTop="false"
-            ></rate-selection-panel>
-            <rate-selection-panel
-              :id="0"
-              panelBackground="white"
-              panelTitle="Premium"
-              :haveRadioOption="true"
-              :checked="true"
-              :checkRate="selectPanels"
-              :panelRate="0"
-              :isTop="false"
-              class="mt-4"
+              v-for="(ratePanel, index) in preventionPanelData"
+              :key="index"
+              :id="ratePanel.id"
+              :panelBackground="ratePanel.panelBackground"
+              :panelTitle="ratePanel.panelTitle"
+              :haveRadioOption="ratePanel.haveRadioOption"
+              :checked="ratePanel.checked"
+              :checkRate="selectPreventionRatePanel"
+              :panelRate="ratePanel.panelRate"
+              :isTop="ratePanel.isTop"
+              :class="{'mt-4': ratePanel.id !== 0 }"
             ></rate-selection-panel>
             <v-layout justify-start class="mt-4">
               <router-link to="/testLink" tag="span">
-                <v-btn text class="px-3 primary--text body-1 btn-link" large :ripple="false"><v-icon color="primary">mdi-arrow-right</v-icon>TARIFE VERGLEICHEN</v-btn>
+                <v-btn text class="px-3 primary--text body-1 btn-link" large :ripple="false">
+                  <v-icon color="primary">mdi-arrow-right</v-icon>TARIFE VERGLEICHEN
+                </v-btn>
               </router-link>
             </v-layout>
           </v-col>
         </v-row>
+        <v-row class="white mx-0">
+          <v-col cols="2" class="fill-height">
+            <span class="subtitle-1 grey--text text--darken-3">mtl. Gesamt-Beitrag</span>
+          </v-col>
+          <v-col cols="8" class="fill-height">
+            <span class="subtitle-1 grey--text text--darken-3">17,96 €</span>
+          </v-col>
+        </v-row>
       </v-layout>
-      <v-btn large block primary>hello</v-btn>
+      <v-layout></v-layout>
     </v-col>
   </v-layout>
 </template>
 
 <script>
-import PlanPanel from "@/components/PlanPanel.vue";
+import CategoryPanel from "@/components/CategoryPanel.vue";
 import RateSelectionPanel from "@/components/RateSelectionPanel.vue";
 export default {
   name: "Dashboard",
   components: {
-    PlanPanel,
+    CategoryPanel,
     RateSelectionPanel
   },
   props: {},
   data() {
     return {
       days: ["01.12.2019"],
-      panelData: [
+      categoryPanelData: [
         {
           id: 0,
           panelTitle: "Stationär",
@@ -266,16 +263,109 @@ export default {
           panelBackground: "senary",
           checked: false
         }
+      ],
+      stationaryPanelData: [
+        {
+          id: 0,
+          panelTitle: "S1 - 1-Bett-Zimmer",
+          haveRadioOption: true,
+          panelBackground: "white",
+          panelRate: "17,96",
+          checked: true,
+          isTop: true
+        },
+        {
+          id: 1,
+          panelTitle: "S2 - 2-Bett-Zimmer",
+          haveRadioOption: true,
+          panelBackground: "white",
+          panelRate: "14,96",
+          checked: false,
+          isTop: false
+        },
+        {
+          id: 2,
+          panelTitle: "Clinic Plus - 2-Bett-Zimmer",
+          haveRadioOption: true,
+          panelBackground: "white",
+          panelRate: "21,96",
+          checked: false,
+          isTop: false
+        }
+      ],
+
+      toothPanelData: [
+        {
+          id: 0,
+          panelTitle: "Z Duo",
+          haveRadioOption: false,
+          panelBackground: "white",
+          panelRate: "0",
+          checked: false,
+          isTop: false
+        }
+      ],
+      outpatientPanelData: [
+        {
+          id: 0,
+          panelTitle: "A",
+          haveRadioOption: false,
+          panelBackground: "white",
+          panelRate: "0",
+          checked: false,
+          isTop: false
+        }
+      ],
+
+      preventionPanelData: [
+        {
+          id: 0,
+          panelTitle: "Basis",
+          haveRadioOption: true,
+          panelBackground: "white",
+          panelRate: "0",
+          checked: true,
+          isTop: false
+        },
+        {
+          id: 1,
+          panelTitle: "Premium",
+          haveRadioOption: true,
+          panelBackground: "white",
+          panelRate: "0",
+          checked: false,
+          isTop: false
+        }
       ]
     };
   },
   methods: {
     selectPanels(id) {
-      this.panelData[id].checked = !this.panelData[id].checked;
-      console.log("panelData", this.panelData);
+      this.categoryPanelData[id].checked = !this.categoryPanelData[id].checked;
     },
-    selectRatePanel(id) {
-      console.log("panelData", id);
+
+    selectStationaryRatePanel(id) {
+      this.stationaryPanelData.map(
+        item => (item.checked = item.id === id ? true : false)
+      );
+    },
+
+    selectToothRatePanel(id) {
+      this.toothPanelData.map(
+        item => (item.checked = item.id === id ? true : false)
+      );
+    },
+
+    selectOutpatientRatePanel(id) {
+      this.outpatientPanelData.map(
+        item => (item.checked = item.id === id ? true : false)
+      );
+    },
+
+    selectPreventionRatePanel(id) {
+      this.preventionPanelData.map(
+        item => (item.checked = item.id === id ? true : false)
+      );
     }
   },
   mounted() {}
