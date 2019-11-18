@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22.578" height="25.935" viewBox="0 0 22.578 25.935">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #00718f;
+        stroke-linecap: round;
+      }
+    </style>
+  </defs>
+  <g id="_I_download" data-name="(I) download" transform="translate(0.5 0.5)">
+    <line id="Linie_309" data-name="Linie 309" class="cls-1" x2="21.578" transform="translate(0 24.935)"/>
+    <g id="_I_link-arrow-left" data-name=" I link-arrow-left" transform="translate(4.372)">
+      <line id="Linie_309-2" data-name="Linie 309" class="cls-1" y2="21.578" transform="translate(6.417)"/>
+      <line id="Linie_310" data-name="Linie 310" class="cls-1" x1="6.417" y2="6.417" transform="translate(6.417 15.163)"/>
+      <line id="Linie_311" data-name="Linie 311" class="cls-1" x2="6.417" y2="6.417" transform="translate(0 15.163)"/>
+    </g>
+  </g>
+</svg>

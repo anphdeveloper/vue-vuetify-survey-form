@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22.893" height="22.894" viewBox="0 0 22.893 22.894">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #00718f;
+        stroke-linecap: round;
+      }
+    </style>
+  </defs>
+  <g id="_I_cross" data-name="(I) cross" transform="translate(0.707 0.707)">
+    <g id="Gruppe_266" data-name="Gruppe 266">
+      <line id="Linie_147" data-name="Linie 147" class="cls-1" y2="30.376" transform="translate(0 0) rotate(-45)"/>
+      <line id="Linie_148" data-name="Linie 148" class="cls-1" y2="30.376" transform="translate(21.479 0) rotate(45)"/>
+    </g>
+  </g>
+</svg>

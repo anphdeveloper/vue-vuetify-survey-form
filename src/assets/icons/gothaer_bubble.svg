@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="44" height="45" viewBox="0 0 44 45">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e1100a;
+      }
+    </style>
+  </defs>
+  <path id="Rechteck_1470" data-name="Rechteck 1470" class="cls-1" d="M22,0h1A22,22,0,0,1,45,22V44a0,0,0,0,1,0,0H22A22,22,0,0,1,0,22v0A22,22,0,0,1,22,0Z" transform="translate(0 45) rotate(-90)"/>
+</svg>

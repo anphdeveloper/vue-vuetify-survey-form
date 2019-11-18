@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26.434" height="10.47" viewBox="0 0 26.434 10.47">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #00718f;
+        stroke-linecap: round;
+      }
+    </style>
+  </defs>
+  <g id="_I_Linkpfeil" data-name="(I) Linkpfeil" transform="translate(25.934 9.763) rotate(180)">
+    <line id="Linie_309" data-name="Linie 309" class="cls-1" x2="25.227" transform="translate(0 4.528)"/>
+    <line id="Linie_310" data-name="Linie 310" class="cls-1" x2="4.528" y2="4.528" transform="translate(20.699)"/>
+    <line id="Linie_311" data-name="Linie 311" class="cls-1" y1="4.528" x2="4.528" transform="translate(20.699 4.528)"/>
+  </g>
+</svg>
