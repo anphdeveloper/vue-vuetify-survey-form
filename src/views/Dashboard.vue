@@ -1,6 +1,6 @@
 <template>
   <v-layout row wrap justify-center>
-    <v-col cols="12" sm="9" xs="12" class="mt-10 pt-10">
+    <v-col cols="12" sm="9" xs="12" class="mt-10">
       <v-layout column wrap>
         <v-row justify="center">
           <v-col cols="12" sm="6">
@@ -89,7 +89,7 @@
                 </p>
               </template>
             </rate-selection-panel>
-            <v-layout justify-start>
+            <v-layout justify-start class="mt-2">
               <router-link to="/testLink" tag="span">
                 <v-btn text class="px-3 primary--text body-1 btn-link" large :ripple="false">
                   <v-icon color="primary">mdi-arrow-right</v-icon>TARIFE VERGLEICHEN
@@ -174,7 +174,7 @@
               :isTop="ratePanel.isTop"
               :class="{'mt-4': ratePanel.id !== 0 }"
             ></rate-selection-panel>
-            <v-layout justify-start class="mt-4">
+            <v-layout justify-start class="mt-2">
               <router-link to="/testLink" tag="span">
                 <v-btn text class="px-3 primary--text body-1 btn-link" large :ripple="false">
                   <v-icon color="primary">mdi-arrow-right</v-icon>TARIFE VERGLEICHEN
@@ -183,16 +183,26 @@
             </v-layout>
           </v-col>
         </v-row>
-        <v-row class="white mx-0">
-          <v-col cols="2" class="fill-height">
-            <span class="subtitle-1 grey--text text--darken-3">mtl. Gesamt-Beitrag</span>
+      </v-layout>
+      <v-layout wrap column>
+        <v-row class="white mx-0" justify="center" align="center">
+          <v-col cols="12" sm="6" xs="2">
+            <span class="subtitle-1 font-weight-bold grey--text text--darken-3">mtl. Gesamt-Beitrag</span>
           </v-col>
-          <v-col cols="8" class="fill-height">
-            <span class="subtitle-1 grey--text text--darken-3">17,96 €</span>
+          <v-col cols="12" sm="6" xs="8">
+            <span class="subtitle-1 font-weight-bold grey--text text--darken-3">17,96 €</span>
           </v-col>
         </v-row>
+        <v-row justify="center">
+          <v-btn
+            depressed
+            large
+            color="danger"
+            class="mt-4 white--text"
+            @click="onClickStartCalc"
+          >MIT AUSWAHL FORTFAHREN</v-btn>
+        </v-row>
       </v-layout>
-      <v-layout></v-layout>
     </v-col>
   </v-layout>
 </template>
