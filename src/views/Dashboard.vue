@@ -137,43 +137,43 @@
                           <tr>
                             <td class="py-0">Alterungsrückstellung</td>
                             <td class="py-0" justify="center" align="center">
-                              <v-icon color="red" large>mdi-close</v-icon>
+                              <v-icon color="#E1100A" large>mdi-close</v-icon>
                             </td>
                             <td class="py-0" justify="center" align="center">
-                              <v-icon color="red" large>mdi-close</v-icon>
+                              <v-icon color="#E1100A" large>mdi-close</v-icon>
                             </td>
                             <td class="py-0" justify="center" align="center">
-                              <v-icon color="green" large>mdi-checkbox-marked-circle-outline</v-icon>
+                              <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
                             </td>
                           </tr>
                           <tr>
                             <td class="py-0">100% privatärztliche Behandlung (Chefarzt)</td>
                             <td class="py-0" justify="center" align="center" colspan="3">
-                              <v-icon color="green" large>mdi-checkbox-marked-circle-outline</v-icon>
+                              <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
                             </td>
                           </tr>
                           <tr>
                             <td class="py-0">100% Zuzahlung für stationären Aufenthalt</td>
                             <td class="py-0" justify="center" align="center" colspan="3">
-                              <v-icon color="green" large>mdi-checkbox-marked-circle-outline</v-icon>
+                              <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
                             </td>
                           </tr>
                           <tr>
                             <td class="py-0">100% ambulante Operationen</td>
                             <td class="py-0" justify="center" align="center" colspan="3">
-                              <v-icon color="green" large>mdi-checkbox-marked-circle-outline</v-icon>
+                              <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
                             </td>
                           </tr>
                           <tr>
                             <td class="py-0">100% Rooming-in</td>
                             <td class="py-0" justify="center" align="center" colspan="3">
-                              <v-icon color="green" large>mdi-checkbox-marked-circle-outline</v-icon>
+                              <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
                             </td>
                           </tr>
                           <tr>
                             <td class="py-0">Freie Krankenhausauswahl</td>
                             <td class="py-0" justify="center" align="center" colspan="3">
-                              <v-icon color="green" large>mdi-checkbox-marked-circle-outline</v-icon>
+                              <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
                             </td>
                           </tr>
                         </tbody>
@@ -526,12 +526,18 @@ export default {
 .plan-compare-table{
   th{
     background: #00718F;
+    border: 0.5px solid #CED4DA;
     &:first-child{
       background: white;
+      border: unset;
+    }
+    &:not(first-child){
+      width: 15%;
     }
   }
   tr{
     td{
+      border: 0.5px solid #CED4DA;
       &:first-child{
         background:  #ccc;
       }
