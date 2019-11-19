@@ -33,6 +33,10 @@ export default {
     onClickStart(){
       this.$router.push({ name: "InputDayOfBirthday" });
     }
+  },
+
+  mounted(){
+    this.$store.dispatch('setPagesProgress', 10);
   }
 };
 </script>

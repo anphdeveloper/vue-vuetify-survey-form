@@ -1,17 +1,17 @@
 <template>
-  <div :class="panelBackground + ' pa-4'">
+  <div :class="categoryPanelData.panelBackground + ' pa-4'">
     <v-layout>
       <v-row class="px-2">
-        <p class="mb-1 subtitle text-left pl-2 pt-1 white--text">{{ panelTitle }}</p>
+        <p class="mb-1 subtitle text-left pl-2 pt-1 white--text">{{ categoryPanelData.panelTitle }}</p>
         <v-spacer></v-spacer>
         <v-btn class="mr-1 white close-icon elevation-0 px-0" @click="onClickCheckPanel">
-          <v-icon large :color="panelBackground" v-if="panelChecked">mdi-close</v-icon>
+          <v-icon large :color="categoryPanelData.panelBackground" v-if="categoryPanelData.checked">mdi-close</v-icon>
         </v-btn>
       </v-row>
     </v-layout>
 
     <p :class="{ 'mb-0 ' : !descriptionCollapsed,  'caption text-left white--text': true}"
-    v-html="panelDescription"
+    v-html="categoryPanelData.panelDescription"
     >
 
     </p>
@@ -30,10 +30,10 @@
     </div>
 
     <v-btn icon class="plus-icon" @click="descriptionCollapsed = !descriptionCollapsed">
-      <v-icon large :class="`${panelBackground}`+ '--text'" v-if="!descriptionCollapsed">
+      <v-icon large :class="`${categoryPanelData.panelBackground}`+ '--text'" v-if="!descriptionCollapsed">
         mdi-plus-circle-outline
       </v-icon>
-      <v-icon large :class="`${panelBackground}`+ '--text'" v-if="descriptionCollapsed">
+      <v-icon large :class="`${categoryPanelData.panelBackground}`+ '--text'" v-if="descriptionCollapsed">
         mdi-minus-circle-outline
       </v-icon>
     </v-btn>
@@ -42,14 +42,15 @@
 
 <script>
 export default {
-  name: "PlanPanel",
+  name: "CategoryPanel",
   props: {
-    id: Number,
-    panelTitle: String,
-    panelDescription: String,
-    panelBackground: String,
-    panelFeature: Array,
-    checked: Boolean,
+    // id: Number,
+    // panelTitle: String,
+    // panelDescription: String,
+    // panelBackground: String,
+    // panelFeature: Array,
+    // checked: Boolean,
+    categoryPanelData: Object,
     checkPanel: Function
   },
   data() {
@@ -60,16 +61,18 @@ export default {
   },
   methods: {
     onClickCheckPanel(){
-      this.checkPanel(this.id);
+      console.log('props', this.$props);
+      
+      this.checkPanel(this.$props.categoryPanelData.id);
     }
   },
   watch: {
-    checked: function(newVal){
-      this.panelChecked = newVal;
+    categoryPanelData: function(){
+
     }
   },
   created(){
-    this.panelChecked = this.$props.checked;
+    this.panelChecked = this.$props.categoryPanelData.checked;
   }
 };
 </script>

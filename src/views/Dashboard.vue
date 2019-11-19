@@ -6,7 +6,14 @@
           <v-col cols="12" sm="6">
             <h2>Ihre betriebliche Gesundheitsförderung</h2>
             <p class="pb-0 mb-0 mt-4 text-start caption">Geburtsdatum</p>
-            <v-select class="mt-0 pt-0" :items="days" v-model="days[0]" :rules="[v => !!v || '']"></v-select>
+            <v-select
+              class="mt-0 pt-0 meta-pro-text primary--text"
+              :items="days"
+              v-model="days[0]"
+              append-icon="mdi-chevron-down"
+              color="primary"
+              :rules="[v => !!v || '']"
+            ></v-select>
           </v-col>
         </v-row>
 
@@ -20,19 +27,16 @@
             :key="index"
           >
             <category-panel
-              :id="panel.id"
-              :panelBackground="panel.panelBackground"
-              :panelTitle="panel.panelTitle"
-              :panelDescription="panel.panelDescription"
-              :panelFeature="panel.panelFeature"
-              :checked="panel.checked"
-              :checkPanel="selectPanels"
+              :categoryPanelData = "panel"
+              :checkPanel = "selectPanels"
+              :expandPanel = "expandCategoryPanel"
+              
             ></category-panel>
           </v-col>
         </v-row>
         <v-row justify="center">
           <v-col cols="12" md="3" sm="6" xs="12">
-            <category-panel
+            <!-- <category-panel
               :id="categoryPanelData[0].id"
               :panelBackground="categoryPanelData[0].panelBackground"
               :panelTitle="categoryPanelData[0].panelTitle"
@@ -42,7 +46,7 @@
               :checkPanel="selectPanels"
               v-if="$vuetify.breakpoint.smAndDown"
               class="mb-12"
-            ></category-panel>
+            ></category-panel> -->
             <rate-selection-panel
               v-for="(ratePanel, index) in stationaryPanelData"
               :key="index"
@@ -90,7 +94,7 @@
               </template>
             </rate-selection-panel>
             <v-layout justify-start class="pt-2">
-              <v-dialog v-model="dialog" width="900">
+              <v-dialog v-model="dialogStationary" width="900">
                 <template v-slot:activator="{ on }">
                   <v-btn
                     text
@@ -105,7 +109,7 @@
 
                 <v-card>
                   <div class="px-2 pt-2">
-                    <v-btn absolute icon right small @click="dialog = false">
+                    <v-btn absolute icon right small @click="dialogStationary = false">
                       <v-icon color="primary">mdi-close</v-icon>
                     </v-btn>
                   </div>
@@ -187,7 +191,7 @@
             </v-layout>
           </v-col>
           <v-col cols="12" md="3" sm="6" xs="12">
-            <category-panel
+            <!-- <category-panel
               :id="categoryPanelData[1].id"
               :panelBackground="categoryPanelData[1].panelBackground"
               :panelTitle="categoryPanelData[1].panelTitle"
@@ -197,7 +201,7 @@
               :checkPanel="selectPanels"
               v-if="$vuetify.breakpoint.smAndDown"
               class="mb-12"
-            ></category-panel>
+            ></category-panel> -->
             <rate-selection-panel
               v-for="(ratePanel, index) in toothPanelData"
               :key="index"
@@ -213,7 +217,7 @@
             ></rate-selection-panel>
           </v-col>
           <v-col cols="12" md="3" sm="6" xs="12">
-            <category-panel
+            <!-- <category-panel
               :id="categoryPanelData[2].id"
               :panelBackground="categoryPanelData[2].panelBackground"
               :panelTitle="categoryPanelData[2].panelTitle"
@@ -223,7 +227,7 @@
               :checkPanel="selectPanels"
               v-if="$vuetify.breakpoint.smAndDown"
               class="mb-12"
-            ></category-panel>
+            ></category-panel> -->
             <rate-selection-panel
               v-for="(ratePanel, index) in outpatientPanelData"
               :key="index"
@@ -239,7 +243,7 @@
             ></rate-selection-panel>
           </v-col>
           <v-col cols="12" md="3" sm="6" xs="12">
-            <category-panel
+            <!-- <category-panel
               :id="categoryPanelData[3].id"
               :panelBackground="categoryPanelData[3].panelBackground"
               :panelTitle="categoryPanelData[3].panelTitle"
@@ -249,7 +253,7 @@
               :checkPanel="selectPanels"
               v-if="$vuetify.breakpoint.smAndDown"
               class="mb-12"
-            ></category-panel>
+            ></category-panel> -->
             <rate-selection-panel
               v-for="(ratePanel, index) in preventionPanelData"
               :key="index"
@@ -264,11 +268,82 @@
               :class="{'mt-4': ratePanel.id !== 0 }"
             ></rate-selection-panel>
             <v-layout justify-start class="pt-2">
-              <router-link to="/testLink" tag="span">
-                <v-btn text class="px-3 primary--text body-1 btn-link" large :ripple="false">
-                  <v-icon color="primary">mdi-arrow-right</v-icon>TARIFE VERGLEICHEN
-                </v-btn>
-              </router-link>
+              <v-dialog v-model="dialogMembership" width="900">
+                <template v-slot:activator="{ on }">
+                  <v-btn
+                    text
+                    class="px-3 primary--text body-1 btn-link"
+                    large
+                    :ripple="false"
+                    v-on="on"
+                  >
+                    <v-icon color="primary">mdi-arrow-right</v-icon>TARIFE VERGLEICHEN
+                  </v-btn>
+                </template>
+
+                <v-card>
+                  <div class="px-2 pt-2">
+                    <v-btn absolute icon right small @click="dialogMembership = false">
+                      <v-icon color="primary">mdi-close</v-icon>
+                    </v-btn>
+                  </div>
+                  <v-card-text class="pt-10">
+                    <v-simple-table class="plan-compare-table">
+                      <template v-slot:default>
+                        <thead>
+                          <tr>
+                            <th class="text-left"></th>
+                            <th class="text-center">Medigroup Basis</th>
+                            <th class="text-center">Medigroup Premium</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="py-0">Medigroup Premium</td>
+                            <td class="py-0" justify="center" align="center">100%</td>
+                            <td class="py-0" justify="center" align="center">100%</td>
+                          </tr>
+                          <tr>
+                            <td class="py-0">Schutzimpfungen</td>
+                            <td class="py-0" justify="center" align="center">100%</td>
+                            <td class="py-0" justify="center" align="center">100%</td>
+                          </tr>
+                          <tr>
+                            <td class="py-0">Prävention</td>
+                            <td
+                              class="py-0"
+                              justify="center"
+                              align="center"
+                            >bis zu 50 €/Jahr für eine Mitgliedschaft im Fitnessstudio</td>
+                            <td
+                              class="py-0"
+                              justify="center"
+                              align="center"
+                            >bis zu insgesamt 100 €/Jahr für eine Mitgliedschaft im Fitnessstudio (max. 50€/Jahr) und/oder die regelmäßige Teilnahme an Präventionskursen</td>
+                          </tr>
+                          <tr>
+                            <td class="py-0">Arzneimittel (nicht verschreibungspflichtig)</td>
+                            <td class="py-0" justify="center" align="center">
+                              <v-icon color="#E1100A" large>mdi-close</v-icon>
+                            </td>
+                            <td
+                              class="py-0"
+                              justify="center"
+                              align="center"
+                            >Arzneimittel (nicht verschreibungspflichtig)</td>
+                          </tr>
+                          <tr>
+                            <td class="py-0">Maximal</td>
+                            <td class="py-0" justify="center" align="center">200 €/Jahr</td>
+                            <td class="py-0" justify="center" align="center">500 €/Jahr</td>
+                          </tr>
+                        </tbody>
+                      </template>
+                    </v-simple-table>
+                  </v-card-text>
+                  <v-divider></v-divider>
+                </v-card>
+              </v-dialog>
             </v-layout>
           </v-col>
         </v-row>
@@ -317,7 +392,7 @@
 import CategoryPanel from "@/components/CategoryPanel.vue";
 import RateSelectionPanel from "@/components/RateSelectionPanel.vue";
 import MiddleTitlePanel from "@/components/MiddleTitlePanel";
-import SickBedIcon from '@/components/Icons/SickBedIcon';
+import SickBedIcon from "@/components/Icons/SickBedIcon";
 export default {
   name: "Dashboard",
   components: {
@@ -330,7 +405,8 @@ export default {
   data() {
     return {
       days: ["01.12.2019"],
-      dialog: false,
+      dialogStationary: false,
+      dialogMembership: false,
       categoryPanelData: [
         {
           id: 0,
@@ -343,7 +419,8 @@ export default {
             "Freie Krankenhausauswahl"
           ],
           panelBackground: "tertiary",
-          checked: true
+          checked: true,
+          expanded: false 
         },
         {
           id: 1,
@@ -356,7 +433,8 @@ export default {
             "Prof. Zahnreinigung 150€/Jahr"
           ],
           panelBackground: "quinary",
-          checked: false
+          checked: false,
+          expanded: false 
         },
         {
           id: 2,
@@ -369,7 +447,8 @@ export default {
             "Sehhilfen 120€/Jahr"
           ],
           panelBackground: "primary",
-          checked: false
+          checked: false,
+          expanded: false 
         },
         {
           id: 3,
@@ -382,7 +461,8 @@ export default {
             "Erstattung für Präventionen"
           ],
           panelBackground: "senary",
-          checked: false
+          checked: false,
+          expanded: false 
         }
       ],
       stationaryPanelData: [
@@ -414,7 +494,6 @@ export default {
           isTop: false
         }
       ],
-
       toothPanelData: [
         {
           id: 0,
@@ -437,7 +516,6 @@ export default {
           isTop: false
         }
       ],
-
       preventionPanelData: [
         {
           id: 0,
@@ -458,34 +536,6 @@ export default {
           isTop: false
         }
       ]
-
-      // desserts: [
-      //   {
-      //     name: "Ein- oder Zweibettzimmer",
-      //     group1:
-      //   },
-      //   {
-      //     name: "Ice cream sandwich",
-      //     calories: 237
-      //   },
-      //   {
-      //     name: "Eclair",
-      //     calories: 262
-      //   },
-      //   {
-      //     name: "Cupcake",
-      //     calories: 305
-      //   },
-      //   {
-      //     name: "Gingerbread",
-      //     calories: 356
-      //   },
-      //   {
-      //     name: "Jelly bean",
-      //     calories: 375
-      //   },
-
-      // ]
     };
   },
   methods: {
@@ -517,29 +567,37 @@ export default {
       );
     },
 
+    expandCategoryPanel(id, expanded){
+      this.expandCategoryPanel.map(
+        category => ( category.expanded = category.id === id ? expanded : category.expanded)
+      )
+    },
+
     onClickContinueWithSelection() {}
   },
   mounted() {}
 };
 </script>
 <style scoped lang="scss">
-.plan-compare-table{
-  th{
-    background: #00718F;
-    border: 0.5px solid #CED4DA;
-    &:first-child{
+.plan-compare-table {
+  th {
+    background: #00718f;
+    border: 0.5px solid #ced4da;
+    color: white !important;
+    font-size: 1em;
+    &:first-child {
       background: white;
       border: unset;
     }
-    &:not(first-child){
+    &:not(first-child) {
       width: 15%;
     }
   }
-  tr{
-    td{
-      border: 0.5px solid #CED4DA;
-      &:first-child{
-        background:  #ccc;
+  tr {
+    td {
+      border: 0.5px solid #ced4da;
+      &:first-child {
+        background: #ccc;
       }
     }
   }

@@ -22,8 +22,9 @@ export default {
 };
 </script>
 <style lang="scss">
+@import "./assets/scss/main.scss";
 #app {
-  font-family: "MetaPro-Normal", Medium, Arial, sans-serif!important;
+  font-family: "MetaPro-Normal", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -47,13 +48,26 @@ export default {
   }
 }
 
-.btn-link{
+.btn-link {
   margin-left: -15px;
-  &:hover::before{
-    background: transparent!important;
+  &:hover::before {
+    background: transparent !important;
   }
-  &::before{
-    background: transparent!important;
+  &::before {
+    background: transparent !important;
   }
+}
+
+.meta-pro-text {
+  font-family: "MetaPro-Normal" !important;
+  &.primary--text{
+    .v-select__selections {
+    .v-select__selection {
+      font-family: "MetaPro-Normal" !important;
+      color: #00718F;
+    }
+  }
+  }
+  
 }
 </style>

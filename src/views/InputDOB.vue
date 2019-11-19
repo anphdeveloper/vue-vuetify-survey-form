@@ -44,7 +44,7 @@
                 </p>
                 <p class="pb-0 mb-0 mt-4 text-start body-2">Geburtsdatum</p>
                 <v-form ref="dobForm">
-                  <v-layout row class="dob-form">
+                  <v-layout row class="dob-form meta-pro-text">
                     <v-col cols="12" sm="4" xs="12">
                       <v-text-field label="TT" :rules="[v => ( !!v && v.length < 3) || '']"></v-text-field>
                     </v-col>
@@ -159,16 +159,18 @@ export default {
         this.$router.push({ name: "Dashboard" });
       }
     }
+  },
+  mounted(){
+    this.$store.dispatch('setPagesProgress', 20);
   }
 };
 </script>
 
 <style lang="scss">
-@import "~@/assets/scss/main.scss";
+// @import "~@/assets/scss/main.scss";
 .dob-form {
   & /deep/ .v-text-field__slot {
     input {
-      font-family: "MetaPro-Normal";
       color: #00718f !important;
       font-size: 1.2em;
     }

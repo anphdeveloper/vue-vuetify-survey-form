@@ -8,10 +8,9 @@
       <v-btn icon class="pr-12 py-1">
         <div class="right-watermark"></div>
       </v-btn>
-
       </v-app-bar>
       <template>
-        <v-progress-linear value="15" color="quaternary"></v-progress-linear>
+        <v-progress-linear :value="progress" color="quaternary"></v-progress-linear>
       </template>
   </div>
 </template>
@@ -20,8 +19,23 @@
 export default {
   name: "Header",
   data() {
-    return {};
+    return {
+      progress: 0,
+    };
+  },
+  computed: {
+    
+  },
+  watch: {
+
+  },
+
+  mounted(){
+    this.$store.watch( (state, getters) => getters.getPagesProgress, n => {
+      this.progress = n;
+    })
   }
+
 };
 </script>
 <style scoped>
