@@ -2,7 +2,7 @@
   <div :class="panelBackground">
     <v-container class="pa-0">
       <v-row class="px-1 title-row">
-        <p class="mb-1 subtitle text-left pl-4 pt-2 ml-2 grey--text">{{ panelTitle }}</p>
+        <p :class="{'subtitle': $vuetify.breakpoint.lgAndUp, 'caption': $vuetify.breakpoint.md , 'subtitle': $vuetify.breakpoint.smAndDown, 'mb-1 text-left pl-4 pt-2 ml-2 grey--text mr-4':true}">{{ panelTitle }}</p>
         <v-spacer></v-spacer>
         <div
           class="mr-1 white top-label-icon elevation-0 px-0 text-center d-flex align-center justify-center"
@@ -34,8 +34,11 @@
 </template>
 
 <script>
+
 export default {
   name: "RateSelectionPanel",
+  components: {
+  },
   props: {
     id: Number,
     panelTitle: String,
@@ -75,6 +78,12 @@ export default {
   width: 48px;
   height: 48px;
   background-repeat: no-repeat;
+  @media only screen and (max-width: 1200px){
+    width: 32px;
+    height: 34px;
+    margin-right: 10px!important;
+    background-size: cover;
+  }
 }
 
 .rd-rate {
