@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import VuexPersistence from "vuex-persist";
-
+import Product from "./modules/products"
 Vue.use(Vuex);
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage
@@ -9,7 +9,7 @@ const vuexLocal = new VuexPersistence({
 export default new Vuex.Store({
   plugins: [vuexLocal.plugin],
   state: {
-    pagesProgress: 0
+    pagesProgress: 0,
   },
   mutations: {
     setPagesProgress(state, percentage){
@@ -24,5 +24,7 @@ export default new Vuex.Store({
   getters: {
     getPagesProgress : state => state.pagesProgress
   },
-  modules: {}
+  modules: {
+    products: Product
+  }
 });

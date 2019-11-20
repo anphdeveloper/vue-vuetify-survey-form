@@ -46,15 +46,15 @@
                 <v-form ref="dobForm">
                   <v-layout row class="dob-form meta-pro-text">
                     <v-col cols="12" sm="4" xs="12">
-                      <v-text-field label="TT" :rules="[v => ( !!v && v.length < 3) || '']"></v-text-field>
+                      <v-text-field v-model="day" label="TT" :rules="[v => ( !!v && v.length < 3) || '']"></v-text-field>
                     </v-col>
 
                     <v-col cols="12" sm="4" xs="12">
-                      <v-text-field label="MM" :rules="[v => ( !!v && v.length < 3) || '']"></v-text-field>
+                      <v-text-field v-model="month" label="MM" :rules="[v => ( !!v && v.length < 3) || '']"></v-text-field>
                     </v-col>
 
                     <v-col cols="12" sm="4" xs="12">
-                      <v-text-field label="JJJJ" :rules="[v => ( !!v && v.length < 5) || '']"></v-text-field>
+                      <v-text-field v-model="year" label="JJJJ" :rules="[v => ( !!v && v.length < 5) || '']"></v-text-field>
                     </v-col>
                   </v-layout>
                 </v-form>
@@ -167,7 +167,7 @@ export default {
 </script>
 
 <style lang="scss">
-// @import "~@/assets/scss/main.scss";
+
 .dob-form {
   & /deep/ .v-text-field__slot {
     input {

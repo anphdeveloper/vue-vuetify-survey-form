@@ -102,134 +102,7 @@
                       VERGLEICHEN
                     </v-btn>
                   </template>
-
-                  <v-card>
-                    <div class="px-2 pt-2">
-                      <v-btn
-                        absolute
-                        icon
-                        right
-                        small
-                        @click="dialogStationary = false"
-                      >
-                        <v-icon color="primary">mdi-close</v-icon>
-                      </v-btn>
-                    </div>
-                    <v-card-text class="pt-10">
-                      <v-simple-table class="plan-compare-table">
-                        <template v-slot:default>
-                          <thead>
-                            <tr>
-                              <th class="text-left"></th>
-                              <th class="text-center">Medigroup S1</th>
-                              <th class="text-center">Medigroup S1</th>
-                              <th class="text-center">Medi Clinic Plus</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td class="py-0">Ein- oder Zweibettzimmer</td>
-                              <td class="py-0" justify="center" align="center">
-                                <sick-bed-icon></sick-bed-icon>
-                              </td>
-                              <td class="py-0" justify="center" align="center">
-                                <sick-bed-icon></sick-bed-icon>
-                                <sick-bed-icon></sick-bed-icon>
-                              </td>
-                              <td class="py-0" justify="center" align="center">
-                                <sick-bed-icon></sick-bed-icon>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td class="py-0">Alterungsrückstellung</td>
-                              <td class="py-0" justify="center" align="center">
-                                <v-icon color="#E1100A" large>mdi-close</v-icon>
-                              </td>
-                              <td class="py-0" justify="center" align="center">
-                                <v-icon color="#E1100A" large>mdi-close</v-icon>
-                              </td>
-                              <td class="py-0" justify="center" align="center">
-                                <v-icon color="#8AB304" large
-                                  >mdi-checkbox-marked-circle-outline</v-icon
-                                >
-                              </td>
-                            </tr>
-                            <tr>
-                              <td class="py-0">
-                                100% privatärztliche Behandlung (Chefarzt)
-                              </td>
-                              <td
-                                class="py-0"
-                                justify="center"
-                                align="center"
-                                colspan="3"
-                              >
-                                <v-icon color="#8AB304" large
-                                  >mdi-checkbox-marked-circle-outline</v-icon
-                                >
-                              </td>
-                            </tr>
-                            <tr>
-                              <td class="py-0">
-                                100% Zuzahlung für stationären Aufenthalt
-                              </td>
-                              <td
-                                class="py-0"
-                                justify="center"
-                                align="center"
-                                colspan="3"
-                              >
-                                <v-icon color="#8AB304" large
-                                  >mdi-checkbox-marked-circle-outline</v-icon
-                                >
-                              </td>
-                            </tr>
-                            <tr>
-                              <td class="py-0">100% ambulante Operationen</td>
-                              <td
-                                class="py-0"
-                                justify="center"
-                                align="center"
-                                colspan="3"
-                              >
-                                <v-icon color="#8AB304" large
-                                  >mdi-checkbox-marked-circle-outline</v-icon
-                                >
-                              </td>
-                            </tr>
-                            <tr>
-                              <td class="py-0">100% Rooming-in</td>
-                              <td
-                                class="py-0"
-                                justify="center"
-                                align="center"
-                                colspan="3"
-                              >
-                                <v-icon color="#8AB304" large
-                                  >mdi-checkbox-marked-circle-outline</v-icon
-                                >
-                              </td>
-                            </tr>
-                            <tr>
-                              <td class="py-0">Freie Krankenhausauswahl</td>
-                              <td
-                                class="py-0"
-                                justify="center"
-                                align="center"
-                                colspan="3"
-                              >
-                                <v-icon color="#8AB304" large
-                                  >mdi-checkbox-marked-circle-outline</v-icon
-                                >
-                              </td>
-                            </tr>
-                          </tbody>
-                        </template>
-                      </v-simple-table>
-                    </v-card-text>
-
-                    <v-divider></v-divider>
-                  </v-card>
+                  <comparison-table-for-group></comparison-table-for-group>
                 </v-dialog>
               </v-layout>
             </div>
@@ -428,14 +301,14 @@
 import CategoryPanel from "@/components/CategoryPanel.vue";
 import RateSelectionPanel from "@/components/RateSelectionPanel.vue";
 import MiddleTitlePanel from "@/components/MiddleTitlePanel";
-import SickBedIcon from "@/components/Icons/SickBedIcon";
+import ComparisonTableForGroup from "@/components/Modals/ComparisonTableForGroup";
 export default {
   name: "Dashboard",
   components: {
     CategoryPanel,
     RateSelectionPanel,
     MiddleTitlePanel,
-    SickBedIcon
+    ComparisonTableForGroup
   },
   props: {},
   data() {
@@ -615,6 +488,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("setPagesProgress", 25);
+    console.log('test vuex module', this.$store.state.products);
   }
 };
 </script>
