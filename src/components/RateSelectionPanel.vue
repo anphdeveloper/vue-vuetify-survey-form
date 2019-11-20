@@ -1,12 +1,12 @@
 <template>
-  <div :class="panelBackground">
+  <div :class="ratePanelData.panelBackground">
     <v-container class="pa-0">
       <v-row class="px-1 title-row">
-        <p :class="{'subtitle': $vuetify.breakpoint.lgAndUp, 'caption': $vuetify.breakpoint.md , 'subtitle': $vuetify.breakpoint.smAndDown, 'mb-1 text-left pl-4 pt-2 ml-2 grey--text mr-4':true}">{{ panelTitle }}</p>
+        <p :class="{'subtitle': $vuetify.breakpoint.lgAndUp, 'caption': $vuetify.breakpoint.md , 'subtitle': $vuetify.breakpoint.smAndDown, 'mb-1 text-left pl-4 pt-2 ml-2 grey--text mr-4':true}">{{ ratePanelData.panelTitle }}</p>
         <v-spacer></v-spacer>
         <div
           class="mr-1 white top-label-icon elevation-0 px-0 text-center d-flex align-center justify-center"
-          v-if="isTop"
+          v-if="ratePanelData.isTop"
         >
           <span class="white--text">TOP</span>
         </div>
@@ -14,18 +14,18 @@
       <v-row>
         <v-col cols="2">
           <v-radio-group
-            v-model="panelSelected"
+            v-model="panelSelected "
             :mandatory="false"
             class="mt-0 pl-4"
             color="primary"
             hide-details
-            v-if="haveRadioOption"
+            v-if="ratePanelData.haveRadioOption"
           >
             <v-radio value="radio-1" class="rd-rate" hide-details></v-radio>
           </v-radio-group>
         </v-col>
         <v-col cols="8" class="pt-4">
-          <span class="subtitle-1 grey--text text--darken-3">{{ panelRate }}€ mtl.</span>
+          <span class="subtitle-1 grey--text text--darken-3">{{ ratePanelData.panelRate }}€ mtl.</span>
         </v-col>
       </v-row>
     </v-container>
@@ -39,16 +39,10 @@ export default {
   name: "RateSelectionPanel",
   components: {
   },
-  props: {
-    id: Number,
-    panelTitle: String,
-    haveRadioOption: Boolean,
-    panelBackground: String,
-    panelRate: String,
-    checked: Boolean,
-    checkRate: Function,
-    isTop: Boolean
-  },
+  props: [
+    'ratePanelData',
+    'checkRate'
+  ],
   data() {
     return {
       panelSelected: null
@@ -57,14 +51,14 @@ export default {
   methods: {},
   watch: {
     panelSelected: function(newVal) {
-      if (newVal == "radio-1") this.checkRate(this.$props.id);
+      if (newVal == "radio-1") this.checkRate(this.$props.ratePanelData.id);
     },
-    checked: function(newVal) {
-      this.panelSelected = newVal == true ? "radio-1" : null;
+    'ratePanelData.checked': function(newVal){
+      this.panelSelected = newVal? 'radio-1' : null;
     }
   },
   created() {
-    this.panelSelected = this.$props.checked ? "radio-1" : null;
+    this.panelSelected = this.$props.ratePanelData.checked ? "radio-1" : null;
   }
 };
 </script>

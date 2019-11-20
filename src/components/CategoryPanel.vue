@@ -10,13 +10,13 @@
       </v-row>
     </v-layout>
 
-    <p :class="{ 'mb-0 ' : !descriptionCollapsed,  'caption text-left white--text': true}"
+    <p :class="{ 'mb-0 ' : !categoryPanelData.expanded,  'caption text-left white--text': true}"
     v-html="categoryPanelData.panelDescription"
     >
 
     </p>
-    <div class="white--text caption text-left" v-if="descriptionCollapsed">
-      <p class="mb-1" v-for="(feature, index) in panelFeature" :key="index">
+    <div class="white--text caption text-left" v-if="categoryPanelData.expanded">
+      <p class="mb-1" v-for="(feature, index) in categoryPanelData.panelFeature" :key="index">
         <v-icon color="white">mdi-check</v-icon><span class="ml-1">{{feature}}</span>
       </p>
       <v-btn
@@ -29,11 +29,11 @@
       </v-btn>
     </div>
 
-    <v-btn icon class="plus-icon" @click="descriptionCollapsed = !descriptionCollapsed">
-      <v-icon large :class="`${categoryPanelData.panelBackground}`+ '--text'" v-if="!descriptionCollapsed">
+    <v-btn icon class="plus-icon" @click="onClickExpandPanel">
+      <v-icon large :class="`${categoryPanelData.panelBackground}`+ '--text'" v-if="!categoryPanelData.expanded">
         mdi-plus-circle-outline
       </v-icon>
-      <v-icon large :class="`${categoryPanelData.panelBackground}`+ '--text'" v-if="descriptionCollapsed">
+      <v-icon large :class="`${categoryPanelData.panelBackground}`+ '--text'" v-if="categoryPanelData.expanded">
         mdi-minus-circle-outline
       </v-icon>
     </v-btn>
@@ -51,7 +51,8 @@ export default {
     // panelFeature: Array,
     // checked: Boolean,
     categoryPanelData: Object,
-    checkPanel: Function
+    checkPanel: Function,
+    expandPanel: Function
   },
   data() {
     return {
@@ -60,16 +61,15 @@ export default {
     };
   },
   methods: {
-    onClickCheckPanel(){
-      console.log('props', this.$props);
-      
+    onClickCheckPanel(){     
       this.checkPanel(this.$props.categoryPanelData.id);
+    },
+    onClickExpandPanel(){
+      this.expandPanel(this.$props.categoryPanelData.id, !this.$props.categoryPanelData.expanded);
+      console.log('props', this.$props.categoryPanelData);
     }
   },
   watch: {
-    categoryPanelData: function(){
-
-    }
   },
   created(){
     this.panelChecked = this.$props.categoryPanelData.checked;
