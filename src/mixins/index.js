@@ -7,7 +7,16 @@ export const productMixin = {
 
     },
     methods:{
-        getRateForStationary: function(milesec){
+        getRateForStationary: function(age, productNumber){
+            
+        },
+        getRateForTooth: function(age, productNumber){
+            
+        },
+        getRateForOutpatient: function(age, productNumber){
+            
+        },
+        getRateForPrevention: function(age, productNumber){
             
         }
     }
