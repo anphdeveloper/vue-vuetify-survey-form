@@ -4,7 +4,6 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 const routes = [
-
   {
     path: "/",
     name: "Start",
@@ -26,6 +25,20 @@ const routes = [
       return import("../views/Dashboard.vue");
     }
   },
+  {
+    path: "/myHealth",
+    name: "MyHealth",
+    component: function() {
+      return import("../views/MyHealth.vue");
+    }
+  },
+  {
+    path: "/myDentalHealth",
+    name: "MyDentalHealth",
+    component: function() {
+      return import("../views/MyDentalHealth.vue");
+    }
+  }
 ];
 
 const router = new VueRouter({
