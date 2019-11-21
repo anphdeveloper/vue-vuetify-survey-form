@@ -62,18 +62,4 @@ export default {
 
 <style lang="scss">
 
-.dob-form {
-  & /deep/ .v-text-field__slot {
-    input {
-      color: #00718f !important;
-      font-size: 1.2em;
-    }
-  }
-}
-
-.v-label {
-  &.v-label--active {
-    display: none;
-  }
-}
 </style>

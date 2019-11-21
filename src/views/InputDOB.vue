@@ -46,15 +46,23 @@
                 <v-form ref="dobForm">
                   <v-layout row class="dob-form meta-pro-text">
                     <v-col cols="12" sm="4" xs="12">
-                      <v-text-field v-model="day" label="TT" :rules="[v => ( !!v && v.length < 3) || '']"></v-text-field>
+                      <v-text-field v-model="day" label="TT" 
+                      :rules="[v => ( !!v && v.length < 3) && (Number(v) != NaN && Number(v) > 0 && Number(v) < 32) || '']">
+                      </v-text-field>
                     </v-col>
 
                     <v-col cols="12" sm="4" xs="12">
-                      <v-text-field v-model="month" label="MM" :rules="[v => ( !!v && v.length < 3) || '']"></v-text-field>
+                      <v-text-field v-model="month" label="MM" 
+                      :rules="[v => ( !!v && v.length < 3) && (Number(v) != NaN && Number(v) > 0 && Number(v) < 13) || '']">
+                      </v-text-field>
                     </v-col>
 
                     <v-col cols="12" sm="4" xs="12">
-                      <v-text-field v-model="year" label="JJJJ" :rules="[v => ( !!v && v.length < 5) || '']"></v-text-field>
+                      <v-text-field v-model="year" label="JJJJ" 
+                      :rules="[v => ( !!v && v.length == 4) 
+                      && (Number(v) != NaN && Number(v) > Number(new Date().getFullYear()) - 100 
+                      && Number(v) < Number(new Date().getFullYear()) + 100  ) || '']">
+                      </v-text-field>
                     </v-col>
                   </v-layout>
                 </v-form>
@@ -95,7 +103,7 @@ export default {
   methods: {
     onClickStartCalc() {
       if (this.$refs.dobForm.validate()) {
-        this.$store.dispatch('profile/setDayOfBirth', new Date(this.year, Number(this.month) - 1, this.day).getMilliseconds());
+        this.$store.dispatch('profile/setDayOfBirth', new Date(this.year, Number(this.month) - 1, this.day));
         this.$router.push({ name: "Dashboard" });
       }
     }
@@ -117,9 +125,9 @@ export default {
   }
 }
 
-.v-label {
-  &.v-label--active {
-    display: none;
-  }
-}
+// .v-label {
+//   &.v-label--active {
+//     display: none;
+//   }
+// }
 </style>

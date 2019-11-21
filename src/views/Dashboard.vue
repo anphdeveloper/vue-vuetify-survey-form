@@ -161,7 +161,7 @@
           <middle-title-panel
             panelBackground="white"
             leftTitle="mtl. Gesamt-Beitrag"
-            middleTitle="17,96 €"
+            :middleTitle="totalRate + '€'"
             leftTitleClass="subtitle-1 font-weight-bold grey--text text--darken-3 pl-4"
             middleTitleClass="subtitle-1 font-weight-bold grey--text text--darken-3"
           ></middle-title-panel>
@@ -206,8 +206,7 @@ export default {
     return {
       days: null,
       targetDay: null,
-      dialogStationary: false,
-      dialogMembership: false,
+      totalRate: 0,
       categoryPanelData: [
         {
           id: 0,
@@ -354,6 +353,31 @@ export default {
     /*eslint-disable*/
     age: function(newVal) {
       this.setRateForPanels(newVal);
+    },
+    
+    stationaryPanelData: {
+      handler(newVal){
+        this.setTotalRate();
+      },
+      deep: true
+    },
+    toothPanelData: {
+      handler(newVal){
+        this.setTotalRate();
+      },
+      deep: true
+    },
+    outpatientPanelData: {
+      handler(newVal){
+        this.setTotalRate();
+      },
+      deep: true
+    },
+    preventionPanelData: {
+      handler(newVal){
+        this.setTotalRate();
+      },
+      deep: true
     }
     /*eslint-enable*/
   },
@@ -407,6 +431,7 @@ export default {
             break;
           }
         }
+      
     },
 
     selectStationaryRatePanel(id) {
@@ -446,14 +471,16 @@ export default {
     },
 
     onClickContinueWithSelection() {
-      console.log('category', this.categoryPanelData);
+      if (!this.categoryPanelData.find(
+        data => data.checked
+      )){
+        ;
+      }
       if (
         this.categoryPanelData.find(
           data =>
             data.checked &&
-            (data.panelTitle === "Stationär" ||
-              data.panelTitle === "Ambulant" ||
-              data.panelTitle === "Vorsorge")
+            (data.panelTitle === "Stationär" || data.panelTitle === "Ambulant")
         )
       ) {
         this.$router.push({ name: "MyHealth" });
@@ -463,8 +490,13 @@ export default {
         )
       ) {
         this.$router.push({ name: "MyDentalHealth" });
-      } else {
-        this.$router.push({ name: "MyHealth" });
+      } else if (
+        this.categoryPanelData.find(
+          data => data.checked && data.panelTitle === "Vorsorge"
+        )
+      ) {
+        console.log('vorsorge');
+        //this.$router.push({ name: "MyDentalHealth" });
       }
     },
 
@@ -502,6 +534,16 @@ export default {
           )
         };
       });
+    },
+    setTotalRate(){
+      this.totalRate = this.stationaryPanelData.reduce(
+        (totalRate, panel) => totalRate + (panel.checked ? panel.panelRate : 0), 0)
+        + this.toothPanelData.reduce(
+        (totalRate, panel) => totalRate + panel.checked ? panel.panelRate : 0, 0)
+        + this.outpatientPanelData.reduce(
+        (totalRate, panel) => totalRate + panel.checked ? panel.panelRate : 0, 0)
+        + this.preventionPanelData.reduce(
+        (totalRate, panel) => totalRate + panel.checked ? panel.panelRate : 0, 0)
     }
   },
 
