@@ -66,7 +66,6 @@ export default {
     },
     onClickExpandPanel(){
       this.expandPanel(this.$props.categoryPanelData.id, !this.$props.categoryPanelData.expanded);
-      console.log('props', this.$props.categoryPanelData);
     }
   },
   watch: {

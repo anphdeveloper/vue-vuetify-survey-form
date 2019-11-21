@@ -192,7 +192,7 @@ import CategoryPanel from "@/components/CategoryPanel.vue";
 import RateSelectionPanel from "@/components/RateSelectionPanel.vue";
 import MiddleTitlePanel from "@/components/MiddleTitlePanel";
 import ComparisonTableModal from "@/components/Modals/ComparisonTableModal";
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 export default {
   name: "Dashboard",
   components: {
@@ -220,7 +220,7 @@ export default {
             "Freie Krankenhausauswahl"
           ],
           panelBackground: "tertiary",
-          checked: true,
+          checked: false,
           expanded: false
         },
         {
@@ -273,7 +273,7 @@ export default {
           haveRadioOption: true,
           panelBackground: "white",
           panelRate: "17,96",
-          checked: true,
+          checked: false,
           isTop: true
         },
         {
@@ -324,7 +324,7 @@ export default {
           haveRadioOption: true,
           panelBackground: "white",
           panelRate: "0",
-          checked: true,
+          checked: false,
           isTop: false
         },
         {
@@ -361,30 +361,80 @@ export default {
   methods: {
     selectPanels(id) {
       this.categoryPanelData[id].checked = !this.categoryPanelData[id].checked;
+      if (!this.categoryPanelData[id].checked)
+        switch (id) {
+          case 0: {
+            this.stationaryPanelData = this.stationaryPanelData.map(panel => {
+              return { ...panel, checked: false };
+            });
+            break;
+          }
+          case 1: {
+            this.toothPanelData = this.toothPanelData.map(panel => {
+              return { ...panel, checked: false };
+            });
+            break;
+          }
+          case 2: {
+            this.outpatientPanelData = this.outpatientPanelData.map(panel => {
+              return { ...panel, checked: false };
+            });
+            break;
+          }
+          case 3: {
+            this.preventionPanelData = this.preventionPanelData.map(panel => {
+              return { ...panel, checked: false };
+            });
+            break;
+          }
+        }
+      if (this.categoryPanelData[id].checked)
+        switch (id) {
+          case 0: {
+            this.stationaryPanelData[0].checked = true;
+            break;
+          }
+          case 1: {
+            this.toothPanelData[0].checked = true;
+            break;
+          }
+          case 2: {
+            this.outpatientPanelData[0].checked = true;
+            break;
+          }
+          case 3: {
+            this.preventionPanelData[0].checked = true;
+            break;
+          }
+        }
     },
 
     selectStationaryRatePanel(id) {
       this.stationaryPanelData.map(
         item => (item.checked = item.id === id ? true : false)
       );
+      this.categoryPanelData[0].checked = true;
     },
 
     selectToothRatePanel(id) {
       this.toothPanelData.map(
         item => (item.checked = item.id === id ? true : false)
       );
+      this.categoryPanelData[1].checked = true;
     },
 
     selectOutpatientRatePanel(id) {
       this.outpatientPanelData.map(
         item => (item.checked = item.id === id ? true : false)
       );
+      this.categoryPanelData[2].checked = true;
     },
 
     selectPreventionRatePanel(id) {
       this.preventionPanelData.map(
         item => (item.checked = item.id === id ? true : false)
       );
+      this.categoryPanelData[3].checked = true;
     },
 
     expandCategoryPanel(id, expanded) {
@@ -396,6 +446,7 @@ export default {
     },
 
     onClickContinueWithSelection() {
+      console.log('category', this.categoryPanelData);
       if (
         this.categoryPanelData.find(
           data =>
@@ -466,8 +517,6 @@ export default {
     }
     //set rate
     this.setRateForPanels(this.age);
-
-    console.log("profile", this.$store.state.profile);
   }
 };
 </script>
