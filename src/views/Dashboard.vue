@@ -42,7 +42,9 @@
               v-if="$vuetify.breakpoint.smAndDown"
               class="mb-12"
             ></category-panel>
-            <div v-if="(categoryPanelData[0].expanded && $vuetify.breakpoint.smAndDown)|| $vuetify.breakpoint.mdAndUp">
+            <div
+              v-if="(categoryPanelData[0].expanded && $vuetify.breakpoint.smAndDown)|| $vuetify.breakpoint.mdAndUp"
+            >
               <rate-selection-panel
                 v-for="(ratePanel, index) in stationaryPanelData"
                 :key="index"
@@ -61,16 +63,12 @@
                       content-class="primary tooltip-with-top-arrow"
                     >
                       <template v-slot:activator="{ on }">
-                        <v-icon color="primary" v-on="on"
-                          >mdi-information-outline</v-icon
-                        >
+                        <v-icon color="primary" v-on="on">mdi-information-outline</v-icon>
                       </template>
                       <v-card class="elevation-0 primary">
                         <v-layout d-flex row wrap>
                           <v-col cols="12" sm="2">
-                            <v-icon color="white"
-                              >mdi-information-outline</v-icon
-                            >
+                            <v-icon color="white">mdi-information-outline</v-icon>
                           </v-col>
                           <v-col cols="12" sm="10" class="ml-0 pl-0">
                             <p class="text-left white--text mb-0">
@@ -115,7 +113,9 @@
               v-if="$vuetify.breakpoint.smAndDown"
               class="mb-12"
             ></category-panel>
-            <div v-if="(categoryPanelData[1].expanded && $vuetify.breakpoint.smAndDown)|| $vuetify.breakpoint.mdAndUp">
+            <div
+              v-if="(categoryPanelData[1].expanded && $vuetify.breakpoint.smAndDown)|| $vuetify.breakpoint.mdAndUp"
+            >
               <rate-selection-panel
                 v-for="(ratePanel, index) in toothPanelData"
                 :key="index"
@@ -133,7 +133,9 @@
               v-if="$vuetify.breakpoint.smAndDown"
               class="mb-12"
             ></category-panel>
-            <div v-if="(categoryPanelData[2].expanded && $vuetify.breakpoint.smAndDown)|| $vuetify.breakpoint.mdAndUp">
+            <div
+              v-if="(categoryPanelData[2].expanded && $vuetify.breakpoint.smAndDown)|| $vuetify.breakpoint.mdAndUp"
+            >
               <rate-selection-panel
                 v-for="(ratePanel, index) in outpatientPanelData"
                 :key="index"
@@ -151,7 +153,9 @@
               v-if="$vuetify.breakpoint.smAndDown"
               class="mb-12"
             ></category-panel>
-            <div v-if="(categoryPanelData[3].expanded && $vuetify.breakpoint.smAndDown)|| $vuetify.breakpoint.mdAndUp">
+            <div
+              v-if="(categoryPanelData[3].expanded && $vuetify.breakpoint.smAndDown)|| $vuetify.breakpoint.mdAndUp"
+            >
               <rate-selection-panel
                 v-for="(ratePanel, index) in preventionPanelData"
                 :key="index"
@@ -176,13 +180,7 @@
 
                   <v-card>
                     <div class="px-2 pt-2">
-                      <v-btn
-                        absolute
-                        icon
-                        right
-                        small
-                        @click="dialogMembership = false"
-                      >
+                      <v-btn absolute icon right small @click="dialogMembership = false">
                         <v-icon color="primary">mdi-close</v-icon>
                       </v-btn>
                     </div>
@@ -199,21 +197,13 @@
                           <tbody>
                             <tr>
                               <td class="py-0">Medigroup Premium</td>
-                              <td class="py-0" justify="center" align="center">
-                                100%
-                              </td>
-                              <td class="py-0" justify="center" align="center">
-                                100%
-                              </td>
+                              <td class="py-0" justify="center" align="center">100%</td>
+                              <td class="py-0" justify="center" align="center">100%</td>
                             </tr>
                             <tr>
                               <td class="py-0">Schutzimpfungen</td>
-                              <td class="py-0" justify="center" align="center">
-                                100%
-                              </td>
-                              <td class="py-0" justify="center" align="center">
-                                100%
-                              </td>
+                              <td class="py-0" justify="center" align="center">100%</td>
+                              <td class="py-0" justify="center" align="center">100%</td>
                             </tr>
                             <tr>
                               <td class="py-0">Prävention</td>
@@ -229,24 +219,20 @@
                               </td>
                             </tr>
                             <tr>
-                              <td class="py-0">
-                                Arzneimittel (nicht verschreibungspflichtig)
-                              </td>
+                              <td class="py-0">Arzneimittel (nicht verschreibungspflichtig)</td>
                               <td class="py-0" justify="center" align="center">
                                 <v-icon color="#E1100A" large>mdi-close</v-icon>
                               </td>
-                              <td class="py-0" justify="center" align="center">
-                                Arzneimittel (nicht verschreibungspflichtig)
-                              </td>
+                              <td
+                                class="py-0"
+                                justify="center"
+                                align="center"
+                              >Arzneimittel (nicht verschreibungspflichtig)</td>
                             </tr>
                             <tr>
                               <td class="py-0">Maximal</td>
-                              <td class="py-0" justify="center" align="center">
-                                200 €/Jahr
-                              </td>
-                              <td class="py-0" justify="center" align="center">
-                                500 €/Jahr
-                              </td>
+                              <td class="py-0" justify="center" align="center">200 €/Jahr</td>
+                              <td class="py-0" justify="center" align="center">500 €/Jahr</td>
                             </tr>
                           </tbody>
                         </template>
@@ -277,17 +263,11 @@
             color="danger"
             class="mt-4 white--text"
             @click="onClickContinueWithSelection"
-            >MIT AUSWAHL FORTFAHREN</v-btn
-          >
+          >MIT AUSWAHL FORTFAHREN</v-btn>
         </v-row>
         <v-row justify="start" class="px-3">
           <router-link to="/inputDOB" tag="span">
-            <v-btn
-              text
-              class="px-3 primary--text body-1 btn-link"
-              large
-              :ripple="false"
-            >
+            <v-btn text class="px-3 primary--text body-1 btn-link" large :ripple="false">
               <v-icon color="primary">mdi-arrow-left</v-icon>ZURÜCK
             </v-btn>
           </router-link>
@@ -302,7 +282,7 @@ import CategoryPanel from "@/components/CategoryPanel.vue";
 import RateSelectionPanel from "@/components/RateSelectionPanel.vue";
 import MiddleTitlePanel from "@/components/MiddleTitlePanel";
 import ComparisonTableForGroup from "@/components/Modals/ComparisonTableForGroup";
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 export default {
   name: "Dashboard",
   components: {
@@ -450,18 +430,21 @@ export default {
     };
   },
   computed: {
-     ...mapState({
-       age : state => state.profile.age,
-     }),
+    ...mapState({
+      age: state => state.profile.age
+    })
   },
   watch: {
-    targetDay: function(newVal){
-      this.$store.dispatch('profile/setTargetDay', this.$helper.commonHelper.getDateFromGermanDate(newVal));
+    targetDay: function(newVal) {
+      this.$store.dispatch(
+        "profile/setTargetDay",
+        this.$helper.commonHelper.getDateFromGermanDate(newVal)
+      );
     },
     /*eslint-disable*/
-    age: function(newVal){
-      this.setRateForPanels(newVal)
-    } 
+    age: function(newVal) {
+      this.setRateForPanels(newVal);
+    }
     /*eslint-enable*/
   },
 
@@ -503,27 +486,61 @@ export default {
     },
 
     onClickContinueWithSelection() {
-
+      if (
+        this.categoryPanelData.find(
+          data =>
+            data.checked &&
+            (data.panelTitle === "Stationär" ||
+              data.panelTitle === "Ambulant" ||
+              data.panelTitle === "Vorsorge")
+        )
+      ) {
+        this.$router.push({ name: "MyHealth" });
+      } else if (
+        this.categoryPanelData.find(
+          data => data.checked && data.panelTitle === "Zahn"
+        )
+      ) {
+        this.$router.push({ name: "MyDentalHealth" });
+      } else {
+        this.$router.push({ name: "MyHealth" });
+      }
     },
 
-    setRateForPanels(age){
-      this.stationaryPanelData = this.stationaryPanelData.map(
-        panel => {
-          return {...panel, panelRate : this.$helper.productHelper.getRateForStationary(age, panel.id)}
+    setRateForPanels(age) {
+      this.stationaryPanelData = this.stationaryPanelData.map(panel => {
+        return {
+          ...panel,
+          panelRate: this.$helper.productHelper.getRateForStationary(
+            age,
+            panel.id
+          )
+        };
       });
-      this.toothPanelData = this.toothPanelData.map(
-        panel => {
-          return {...panel, panelRate : this.$helper.productHelper.getRateForTooth(age, panel.id)}
+      this.toothPanelData = this.toothPanelData.map(panel => {
+        return {
+          ...panel,
+          panelRate: this.$helper.productHelper.getRateForTooth(age, panel.id)
+        };
       });
-      this.outpatientPanelData = this.outpatientPanelData.map(
-        panel => {
-          return {...panel, panelRate : this.$helper.productHelper.getRateForOutpatient(age, panel.id)}
+      this.outpatientPanelData = this.outpatientPanelData.map(panel => {
+        return {
+          ...panel,
+          panelRate: this.$helper.productHelper.getRateForOutpatient(
+            age,
+            panel.id
+          )
+        };
       });
-      this.preventionPanelData = this.preventionPanelData.map(
-        panel => {
-          return {...panel, panelRate : this.$helper.productHelper.getRateForPrevention(age, panel.id)}
+      this.preventionPanelData = this.preventionPanelData.map(panel => {
+        return {
+          ...panel,
+          panelRate: this.$helper.productHelper.getRateForPrevention(
+            age,
+            panel.id
+          )
+        };
       });
-
     }
   },
 
@@ -531,14 +548,16 @@ export default {
     //set progress
     this.$store.dispatch("setPagesProgress", 25);
     //set first days of next months
-    this.days = this.$helper.commonHelper.getFirstDayOfMonth().map(date => this.$helper.commonHelper.getGermanFormatDate(date));
-    if (this.days && this.days.length != 0){
+    this.days = this.$helper.commonHelper
+      .getFirstDayOfMonth()
+      .map(date => this.$helper.commonHelper.getGermanFormatDate(date));
+    if (this.days && this.days.length != 0) {
       this.targetDay = this.days[0];
     }
     //set rate
     this.setRateForPanels(this.age);
 
-    console.log('profile', this.$store.state.profile)
+    console.log("profile", this.$store.state.profile);
   }
 };
 </script>
