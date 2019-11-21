@@ -87,21 +87,7 @@
                 </template>
               </rate-selection-panel>
               <v-layout justify-start class="pt-2">
-                <v-dialog v-model="dialogStationary" width="900">
-                  <template v-slot:activator="{ on }">
-                    <v-btn
-                      text
-                      class="px-3 primary--text body-1 btn-link"
-                      large
-                      :ripple="false"
-                      v-on="on"
-                    >
-                      <v-icon color="primary">mdi-arrow-right</v-icon>TARIFE
-                      VERGLEICHEN
-                    </v-btn>
-                  </template>
-                  <comparison-table-for-group></comparison-table-for-group>
-                </v-dialog>
+                <comparison-table-modal :isComparisonForStationary="true"></comparison-table-modal>
               </v-layout>
             </div>
           </v-col>
@@ -164,83 +150,7 @@
                 :class="{ 'mt-4': ratePanel.id !== 0 }"
               ></rate-selection-panel>
               <v-layout justify-start class="pt-2">
-                <v-dialog v-model="dialogMembership" width="900">
-                  <template v-slot:activator="{ on }">
-                    <v-btn
-                      text
-                      class="px-3 primary--text body-1 btn-link"
-                      large
-                      :ripple="false"
-                      v-on="on"
-                    >
-                      <v-icon color="primary">mdi-arrow-right</v-icon>TARIFE
-                      VERGLEICHEN
-                    </v-btn>
-                  </template>
-
-                  <v-card>
-                    <div class="px-2 pt-2">
-                      <v-btn absolute icon right small @click="dialogMembership = false">
-                        <v-icon color="primary">mdi-close</v-icon>
-                      </v-btn>
-                    </div>
-                    <v-card-text class="pt-10">
-                      <v-simple-table class="plan-compare-table">
-                        <template v-slot:default>
-                          <thead>
-                            <tr>
-                              <th class="text-left"></th>
-                              <th class="text-center">Medigroup Basis</th>
-                              <th class="text-center">Medigroup Premium</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td class="py-0">Medigroup Premium</td>
-                              <td class="py-0" justify="center" align="center">100%</td>
-                              <td class="py-0" justify="center" align="center">100%</td>
-                            </tr>
-                            <tr>
-                              <td class="py-0">Schutzimpfungen</td>
-                              <td class="py-0" justify="center" align="center">100%</td>
-                              <td class="py-0" justify="center" align="center">100%</td>
-                            </tr>
-                            <tr>
-                              <td class="py-0">Prävention</td>
-                              <td class="py-0" justify="center" align="center">
-                                bis zu 50 €/Jahr für eine Mitgliedschaft im
-                                Fitnessstudio
-                              </td>
-                              <td class="py-0" justify="center" align="center">
-                                bis zu insgesamt 100 €/Jahr für eine
-                                Mitgliedschaft im Fitnessstudio (max. 50€/Jahr)
-                                und/oder die regelmäßige Teilnahme an
-                                Präventionskursen
-                              </td>
-                            </tr>
-                            <tr>
-                              <td class="py-0">Arzneimittel (nicht verschreibungspflichtig)</td>
-                              <td class="py-0" justify="center" align="center">
-                                <v-icon color="#E1100A" large>mdi-close</v-icon>
-                              </td>
-                              <td
-                                class="py-0"
-                                justify="center"
-                                align="center"
-                              >Arzneimittel (nicht verschreibungspflichtig)</td>
-                            </tr>
-                            <tr>
-                              <td class="py-0">Maximal</td>
-                              <td class="py-0" justify="center" align="center">200 €/Jahr</td>
-                              <td class="py-0" justify="center" align="center">500 €/Jahr</td>
-                            </tr>
-                          </tbody>
-                        </template>
-                      </v-simple-table>
-                    </v-card-text>
-                    <v-divider></v-divider>
-                  </v-card>
-                </v-dialog>
+                <comparison-table-modal :isComparisonForStationary="false"></comparison-table-modal>
               </v-layout>
             </div>
           </v-col>
@@ -281,15 +191,15 @@
 import CategoryPanel from "@/components/CategoryPanel.vue";
 import RateSelectionPanel from "@/components/RateSelectionPanel.vue";
 import MiddleTitlePanel from "@/components/MiddleTitlePanel";
-import ComparisonTableForGroup from "@/components/Modals/ComparisonTableForGroup";
-import { mapState } from "vuex";
+import ComparisonTableModal from "@/components/Modals/ComparisonTableModal";
+import { mapState } from 'vuex';
 export default {
   name: "Dashboard",
   components: {
     CategoryPanel,
     RateSelectionPanel,
     MiddleTitlePanel,
-    ComparisonTableForGroup
+    ComparisonTableModal
   },
   props: {},
   data() {

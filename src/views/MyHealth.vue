@@ -21,7 +21,7 @@
                     >nicht länger als 20 Tage arbeitsunfähig</span> krank war.
                   </p>
                 </v-form>
-                <div v-if="showWarning">
+                <div v-if="showWarning && !checkbox">
                   <v-container class="px-0 text-with-inputcontrol-icon">
                     <v-icon color="red" v-on="on" class="mr-2">mdi-information-outline</v-icon>
                     <p
@@ -66,7 +66,8 @@ export default {
   data() {
     return {
       panelTitle: "Mein Gesundheitszustand",
-      showWarning: false
+      showWarning: false,
+      checkbox: false
     };
   },
   methods: {
@@ -97,22 +98,6 @@ export default {
   }
   p {
     display: inline-block;
-  }
-}
-</style>
-<style lang="scss">
-.dob-form {
-  & /deep/ .v-text-field__slot {
-    input {
-      color: #4c8ea0 !important;
-      font-size: 1.2em;
-    }
-  }
-}
-
-.v-label {
-  &.v-label--active {
-    display: none;
   }
 }
 </style>
