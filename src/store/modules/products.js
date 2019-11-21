@@ -1,3 +1,4 @@
+import * as productHelper from "../../plugins/helpers/productHelper.js"
 const state = {
   isCheckedStationary: false,
   isCheckedTooth: false,
@@ -10,7 +11,18 @@ const state = {
 }
 
 const getters = {
-  
+  getStationaryRate : () => {
+    return productHelper.getRateForStationary(8, 0) 
+  }, 
+  getToothRate : () => {
+    return productHelper.getRateForTooth(8, 0) 
+  }, 
+  getOutpatientRate : () => {
+    return productHelper.getRateForOutpatient(8, 0) 
+  }, 
+  getPreventionRate : () => {
+    return productHelper.getRateForPrevention(8, 0) 
+  }, 
 }
 
 const actions = {

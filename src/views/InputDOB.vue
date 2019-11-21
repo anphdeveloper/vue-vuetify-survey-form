@@ -86,7 +86,10 @@ export default {
   },
   data() {
     return {
-      panelTitle: "Mein Geburtsdatum"
+      panelTitle: "Mein Geburtsdatum",
+      day: null,
+      month: null,
+      year: null
       // days: [
       //   "01",
       //   "02",

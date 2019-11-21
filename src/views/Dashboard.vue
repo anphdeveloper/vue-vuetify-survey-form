@@ -313,7 +313,7 @@ export default {
   props: {},
   data() {
     return {
-      days: ["01.12.2019"],
+      days: null,
       dialogStationary: false,
       dialogMembership: false,
       categoryPanelData: [
@@ -488,7 +488,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("setPagesProgress", 25);
-    console.log('test vuex module', this.$store.state.products);
+    this.days = this.$helper.commonHelper.getFirstDayOfMonth().map(date => this.$helper.commonHelper.getGermanFormatDate(date))
   }
 };
 </script>

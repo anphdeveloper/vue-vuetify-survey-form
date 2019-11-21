@@ -31,9 +31,11 @@ export default {
   },
 
   mounted(){
+    this.progress = this.$store.state.pagesProgress;
     this.$store.watch( (state, getters) => getters.getPagesProgress, n => {
       this.progress = n;
-    })
+    });
+    
   }
 
 };

@@ -6,17 +6,17 @@ import vuetify from './plugins/vuetify';
 import '@babel/polyfill'
 
 Vue.config.productionTip = false;
+//import helper functions
+import Helper from "./plugins/helpers";
+Vue.prototype.$helper = Helper;
+Vue.use(Helper);
 
 new Vue({
   router,
   store,
   vuetify,
   created(){
-    // this.$vuetify.theme.primary = "#00718F";
-    // this.$vuetify.theme.secondary = "#035370";
-    // this.$vuetify.theme.accent = "#49d586";
-    // this.$vuetify.theme.error = "#ED706C";
-    // this.$vuetify.theme.tertiary = "#035370";
+
   },
   render: h => h(App)
 }).$mount("#app");
