@@ -30,7 +30,7 @@ export const OUTPATIENT_A_PRODUCT_RATE = [
     { min: 66, max: 67, rate: 21.84 },
 
 ]
-export const TOOTH__PRODUCT_RATE = [
+export const TOOTH_PRODUCT_RATE = [
     { min: 0, max: 15, rate: 6.27 },
     { min: 16, max: 20, rate: 7.24 },
     { min: 21, max: 30, rate: 17.76 },
@@ -60,7 +60,7 @@ export const PRENENTION_BASIS_PRODUCT_RATE = [
     { min: 61, max: 65, rate: 14.27 },
     { min: 66, max: 67, rate: 14.27 },
 ]
-export const CLINIC__PRODUCT_RATE = [
+export const CLINIC_PRODUCT_RATE = [
     { min: 0, max: 15, rate: 6.18 },
     { min: 16, max: 20, rate: 12.63 },
     { min: 21, max: 21, rate: 21.96 },

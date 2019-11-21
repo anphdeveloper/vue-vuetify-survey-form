@@ -9,7 +9,7 @@
             <v-select
               class="mt-0 pt-0 meta-pro-text primary--text"
               :items="days"
-              v-model="days[0]"
+              v-model="targetDay"
               append-icon="mdi-chevron-down"
               color="primary"
               :rules="[v => !!v || '']"
@@ -302,6 +302,7 @@ import CategoryPanel from "@/components/CategoryPanel.vue";
 import RateSelectionPanel from "@/components/RateSelectionPanel.vue";
 import MiddleTitlePanel from "@/components/MiddleTitlePanel";
 import ComparisonTableForGroup from "@/components/Modals/ComparisonTableForGroup";
+import { mapState } from 'vuex';
 export default {
   name: "Dashboard",
   components: {
@@ -314,6 +315,7 @@ export default {
   data() {
     return {
       days: null,
+      targetDay: null,
       dialogStationary: false,
       dialogMembership: false,
       categoryPanelData: [
@@ -447,6 +449,22 @@ export default {
       ]
     };
   },
+  computed: {
+     ...mapState({
+       age : state => state.profile.age,
+     }),
+  },
+  watch: {
+    targetDay: function(newVal){
+      this.$store.dispatch('profile/setTargetDay', this.$helper.commonHelper.getDateFromGermanDate(newVal));
+    },
+    /*eslint-disable*/
+    age: function(newVal){
+      this.setRateForPanels(newVal)
+    } 
+    /*eslint-enable*/
+  },
+
   methods: {
     selectPanels(id) {
       this.categoryPanelData[id].checked = !this.categoryPanelData[id].checked;
@@ -484,11 +502,43 @@ export default {
       );
     },
 
-    onClickContinueWithSelection() {}
+    onClickContinueWithSelection() {
+
+    },
+
+    setRateForPanels(age){
+      this.stationaryPanelData = this.stationaryPanelData.map(
+        panel => {
+          return {...panel, panelRate : this.$helper.productHelper.getRateForStationary(age, panel.id)}
+      });
+      this.toothPanelData = this.toothPanelData.map(
+        panel => {
+          return {...panel, panelRate : this.$helper.productHelper.getRateForTooth(age, panel.id)}
+      });
+      this.outpatientPanelData = this.outpatientPanelData.map(
+        panel => {
+          return {...panel, panelRate : this.$helper.productHelper.getRateForOutpatient(age, panel.id)}
+      });
+      this.preventionPanelData = this.preventionPanelData.map(
+        panel => {
+          return {...panel, panelRate : this.$helper.productHelper.getRateForPrevention(age, panel.id)}
+      });
+
+    }
   },
+
   mounted() {
+    //set progress
     this.$store.dispatch("setPagesProgress", 25);
-    this.days = this.$helper.commonHelper.getFirstDayOfMonth().map(date => this.$helper.commonHelper.getGermanFormatDate(date))
+    //set first days of next months
+    this.days = this.$helper.commonHelper.getFirstDayOfMonth().map(date => this.$helper.commonHelper.getGermanFormatDate(date));
+    if (this.days && this.days.length != 0){
+      this.targetDay = this.days[0];
+    }
+    //set rate
+    this.setRateForPanels(this.age);
+
+    console.log('profile', this.$store.state.profile)
   }
 };
 </script>

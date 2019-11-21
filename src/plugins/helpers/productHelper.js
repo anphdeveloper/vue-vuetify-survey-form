@@ -1,8 +1,8 @@
 import {
     S1_PRODUCT_RATE,
     S2_PRODUCT_RATE,
-    CLINIC_BASIS__PRODUCT_RATE,
-    TOOTH__PRODUCT_RATE,
+    CLINIC_PRODUCT_RATE,
+    TOOTH_PRODUCT_RATE,
     OUTPATIENT_A_PRODUCT_RATE,
     PRENENTION_BASIS_PRODUCT_RATE,
     PRENENTION_PREMIUM_PRODUCT_RATE
@@ -15,7 +15,7 @@ export function getRateForStationary(age, productNumber) {
         case 1:
             return getRateFromProduct(S2_PRODUCT_RATE, age);
         case 2:
-            return getRateFromProduct(CLINIC_BASIS__PRODUCT_RATE, age);
+            return getRateFromProduct(CLINIC_PRODUCT_RATE, age);
         default:
             console.log('station product id error');
             break;
@@ -24,7 +24,7 @@ export function getRateForStationary(age, productNumber) {
 export function getRateForTooth(age, productNumber) {
     switch (productNumber) {
         case 0:
-            return this.getRateFromProduct(TOOTH__PRODUCT_RATE, age);
+            return this.getRateFromProduct(TOOTH_PRODUCT_RATE, age);
         default:
             console.log('tooth product id error');
             break;
