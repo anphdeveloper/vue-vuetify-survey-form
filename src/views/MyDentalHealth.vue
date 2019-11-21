@@ -12,51 +12,10 @@
                       ' text-start mb-8'
                   "
                 >
-                  Bitte beantworten Sie die Frage wahrheitsgemäß, da ansonsten Ihr Versicherungsschutz gefährdet sein kann.
-                  <v-tooltip
-                    bottom
-                    max-width="300"
-                    nudge-top="-5"
-                    content-class="primary tooltip-with-top-arrow"
-                  >
-                    <template v-slot:activator="{ on }">
-                      <v-icon color="primary" v-on="on">mdi-information-outline</v-icon>
-                    </template>
-                    <v-card class="elevation-0 primary">
-                      <v-layout d-flex row wrap>
-                        <v-col cols="12" sm="2">
-                          <v-icon color="white">mdi-information-outline</v-icon>
-                        </v-col>
-                        <v-col cols="12" sm="10" class="ml-0 pl-0">
-                          <p class="text-left white--text mb-0">
-                            <b>Tarife ohne Alterungsrückstellung:</b> Sie zahlen
-                            zu Beginn niedrige Beiträge, die mit dem Alter
-                            steigen.
-                          </p>
-                          <p class="text-left white--text mb-1">
-                            <b>MEHR ></b>
-                          </p>
-                        </v-col>
-                      </v-layout>
-                    </v-card>
-                  </v-tooltip>
+                  Wie viele fehlende, noch nicht ersetzte Zähne haben Sie?
                 </p>
-                <p class="pb-0 mb-0 mt-4 text-start body-2">Geburtsdatum</p>
-                <v-form ref="dobForm">
-                  <v-layout row class="dob-form meta-pro-text">
-                    <v-col cols="12" sm="4" xs="12">
-                      <v-text-field v-model="day" label="TT" :rules="[v => ( !!v && v.length < 3) || '']"></v-text-field>
-                    </v-col>
-
-                    <v-col cols="12" sm="4" xs="12">
-                      <v-text-field v-model="month" label="MM" :rules="[v => ( !!v && v.length < 3) || '']"></v-text-field>
-                    </v-col>
-
-                    <v-col cols="12" sm="4" xs="12">
-                      <v-text-field v-model="year" label="JJJJ" :rules="[v => ( !!v && v.length < 5) || '']"></v-text-field>
-                    </v-col>
-                  </v-layout>
-                </v-form>
+                <p class="text-start body-2 mb-1">Ausgenommen Weisheitszähne, Lückenschlüsse bzw. Milchzähne, die aufgrund des natürlichen Zahnwechsels fehlen.</p>
+                
 
                 <v-btn
                   depressed
