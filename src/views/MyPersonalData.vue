@@ -67,7 +67,12 @@
                 </v-row>
                 <v-row justify="center">
                   <v-col cols="12" sm="12">
-                    <v-text-field v-model="phoneNo" label="Telefon- oder Mobilnummer" hint></v-text-field>
+                    <v-text-field 
+                    v-model="phoneNo"
+                    prefix="+49" 
+                    label="Telefon- oder Mobilnummer" 
+                    ref="telephone"
+                    hint></v-text-field>
                   </v-col>
                 </v-row>
                 <v-row justify="center">
@@ -86,12 +91,7 @@
                 </v-row>
                 <v-row justify="center">
                   <v-col cols="12" sm="12">
-                    <v-text-field
-                      v-model="settingDate"
-                      label="Einstellungsdatum"
-                      hint
-                      placeholder="TT.MM.JJJJ"
-                    ></v-text-field>
+                    <calendar></calendar>
                   </v-col>
                 </v-row>
                 <v-radio-group v-model="insuredOption" row class="mt-1">
@@ -149,10 +149,12 @@
 // @ is an alias to /src
 
 import MainPanel from "@/components/MainPanel.vue";
+import Calendar from "@/components/Calendar"
 export default {
   name: "MyDentalHealth",
   components: {
-    MainPanel
+    MainPanel,
+    Calendar
   },
   data() {
     return {
@@ -194,6 +196,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("setPagesProgress", 40);
+    this.$refs.telephone.focus();
   }
 };
 </script>
