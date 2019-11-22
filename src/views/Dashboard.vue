@@ -14,7 +14,6 @@
               color="primary"
               :rules="[v => !!v || '']"
             ></v-select>
-            <calendar></calendar>
           </v-col>
         </v-row>
 
@@ -201,17 +200,20 @@
             >MIT AUSWAHL FORTFAHREN</v-btn
           >
         </v-row>
-        <v-row justify="start" class="px-3">
-          <router-link to="/inputDOB" tag="span">
-            <v-btn
-              text
-              class="px-3 primary--text body-1 btn-link"
-              large
-              :ripple="false"
-            >
-              <v-icon color="primary">mdi-arrow-left</v-icon>ZURÜCK
-            </v-btn>
-          </router-link>
+        <v-row justify="start" class="px-3" wrap>
+          <v-col>
+            <router-link to="/inputDOB" tag="span">
+              <v-btn
+                text
+                class="px-3 primary--text body-1 btn-link"
+                large
+                :block="$vuetify.breakpoint.smAndDown"
+                :ripple="false"
+              >
+                <v-icon color="primary">mdi-arrow-left</v-icon>ZURÜCK
+              </v-btn>
+            </router-link>
+          </v-col>
         </v-row>
       </v-layout>
     </v-col>
@@ -223,7 +225,6 @@ import CategoryPanel from "@/components/CategoryPanel.vue";
 import RateSelectionPanel from "@/components/RateSelectionPanel.vue";
 import MiddleTitlePanel from "@/components/MiddleTitlePanel";
 import ComparisonTableModal from "@/components/Modals/ComparisonTableModal";
-import Calendar from "@/components/Calendar";
 import { mapState } from "vuex";
 export default {
   name: "Dashboard",
@@ -232,7 +233,6 @@ export default {
     RateSelectionPanel,
     MiddleTitlePanel,
     ComparisonTableModal,
-    Calendar
   },
   props: {},
   data() {
@@ -550,8 +550,7 @@ export default {
             data => data.checked && data.panelTitle === "Vorsorge"
           )
         ) {
-          console.log("vorsorge");
-          //this.$router.push({ name: "MyDentalHealth" });
+          this.$router.push({ name: "MyPersonalData" });
         }
       }
     },
@@ -628,6 +627,9 @@ export default {
     }
     //set rate
     this.setRateForPanels(this.age);
+    this.$store.dispatch("callBackendService", {
+      hello: "test"
+    });
   }
 };
 </script>

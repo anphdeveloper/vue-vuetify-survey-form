@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import VuexPersistence from "vuex-persist";
 import Product from "./modules/products";
 import Profile from "./modules/profile";
+import AjaxApiService from "../services/AjaxApiService";
 Vue.use(Vuex);
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage,
@@ -26,6 +27,14 @@ export default new Vuex.Store({
   actions: {
     setPagesProgress({ commit }, progress) {
       commit("setPagesProgress", progress);
+    },
+    /*eslint-disable*/
+    callBackendService({ commit }, payload){
+      return AjaxApiService.post("/backendCall", 
+         payload 
+      ).then(res => {
+        return res;
+      });
     }
   },
   getters: {

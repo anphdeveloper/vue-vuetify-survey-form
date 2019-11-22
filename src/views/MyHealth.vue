@@ -37,7 +37,7 @@
                 </v-form>
                 <div v-if="showWarning && !checkbox">
                   <v-container class="px-0 pb-2 text-with-inputcontrol-icon">
-                    <v-icon color="red" v-on="on" class="mr-2">mdi-information-outline</v-icon>
+                    <v-icon color="red" class="mr-2">mdi-information-outline</v-icon>
                     <p
                       :class="
                     [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +

@@ -37,10 +37,10 @@ export default {
 };
 </script>
 <style scoped>
-.higher {
+/* .higher {
   margin-top: -10px;
 }
 .higher.with-title {
   margin-top: -20px;
-}
+} */
 </style>

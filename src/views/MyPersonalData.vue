@@ -67,12 +67,13 @@
                 </v-row>
                 <v-row justify="center">
                   <v-col cols="12" sm="12">
-                    <v-text-field 
-                    v-model="phoneNo"
-                    prefix="+49" 
-                    label="Telefon- oder Mobilnummer" 
-                    ref="telephone"
-                    hint></v-text-field>
+                    <v-text-field
+                      v-model="phoneNo"
+                      prefix="+49"
+                      label="Telefon- oder Mobilnummer"
+                      ref="telephone"
+                      hint
+                    ></v-text-field>
                   </v-col>
                 </v-row>
                 <v-row justify="center">
@@ -98,9 +99,20 @@
                   <v-radio label="gesetzlich versichert" value="0"></v-radio>
                   <v-radio label="privat versichert" value="1"></v-radio>
                 </v-radio-group>
+                <div v-if="showInsureWarningForPrivate">
+                  <v-container class="px-0 pb-2 text-with-inputcontrol-icon pt-0">
+                    <v-icon color="red" class="mr-2">mdi-information-outline</v-icon>
+                    <p
+                      :class="
+                    [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
+                      ' text-start font-weight-bold mb-0'
+                  "
+                    >Abschluss des Tarifs „Stationär - Clinic Plus“ nicht möglich</p>
+                  </v-container>
+                </div>
                 <p
                   :class="
-                    [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
+                    [$vuetify.breakpoint.smAndUp ? 'title' : 'title'] +
                       ' text-start font-weight-bold mb-0 mt-6'
                   "
                 >Kontaktaufnahme, Produktinformationen und Datenschutz</p>
@@ -121,7 +133,9 @@
                     >mehr…</span>
                     <span v-if="!showReadMore">
                       Finanzdienstleistungsprodukte sowie zur Vereinbarung persönlicher Beratungstermine per Telefon und E-Mail kontaktieren können. Ich kann meine Einwilligung jederzeit formfrei widerrufen. Dies z.B. per E-Mail an
-                      <span class="primary--text">servicevereinbarung@gothaer.de</span> oder per Telefon unter 0221 - 308 91730.
+                      <span
+                        class="primary--text"
+                      >servicevereinbarung@gothaer.de</span> oder per Telefon unter 0221 - 308 91730.
                       <span
                         class="text-start body-2 mb-1 primary--text cursor-pointer"
                         @click="onClickHideMore"
@@ -149,7 +163,7 @@
 // @ is an alias to /src
 
 import MainPanel from "@/components/MainPanel.vue";
-import Calendar from "@/components/Calendar"
+import Calendar from "@/components/Calendar";
 export default {
   name: "MyDentalHealth",
   components: {
@@ -179,8 +193,14 @@ export default {
       dentalInsuranceAvailable: "1",
       number: "0",
       numbers: ["0", "1", "2", "3", "4", "mehr"],
-      showReadMore: true
+      showReadMore: true,
+      showInsureWarningForPrivate: false
     };
+  },
+  watch: {
+    insuredOption: function(option){
+      this.showInsureWarningForPrivate = option === "1" ? true : false;
+    }
   },
   methods: {
     onClickNext() {

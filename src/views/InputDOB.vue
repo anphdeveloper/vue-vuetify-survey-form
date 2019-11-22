@@ -106,6 +106,7 @@
                   depressed
                   large
                   color="danger"
+                  :block="$vuetify.breakpoint.smAndDown"
                   class="mt-4 white--text"
                   @click="onClickStartCalc"
                   >Preise Berechnen</v-btn
