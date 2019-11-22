@@ -25,7 +25,7 @@
                 large
                 color="danger white--text"
                 class="mt-4"
-                :block="$vuetify.breakpoint.smAndDown"
+                :block="$vuetify.breakpoint.xs"
                 @click="onClickStart"
                 >Jetzt Starten</v-btn
               >

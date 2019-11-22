@@ -189,19 +189,21 @@
               large
               color="danger"
               class="mt-4 white--text"
-              :block="$vuetify.breakpoint.smAndDown"
+              :block="$vuetify.breakpoint.xs"
               @click="onClickContinueWithSelection"
             >MIT AUSWAHL FORTFAHREN</v-btn>
           </v-col>
         </v-row>
-        <v-row class="px-3 justify-start" wrap>
+        <v-row class="px-3 justify-start mt-2" wrap>
             <router-link to="/inputDOB" tag="span">
               <v-btn
                 text
                 class="px-3 primary--text body-1 btn-link"
                 :ripple="false"
               >
-                <v-icon color="primary">mdi-arrow-left</v-icon>ZURÜCK
+                <v-icon color="primary" v-if="$vuetify.breakpoint.mdAndUp">mdi-arrow-left</v-icon>
+                <go-back-circle-icon v-if="$vuetify.breakpoint.smAndDown"></go-back-circle-icon>
+                <span v-if="$vuetify.breakpoint.mdAndUp">ZURÜCK</span>
               </v-btn>
             </router-link>
         </v-row>
@@ -215,6 +217,7 @@ import CategoryPanel from "@/components/CategoryPanel.vue";
 import RateSelectionPanel from "@/components/RateSelectionPanel.vue";
 import MiddleTitlePanel from "@/components/MiddleTitlePanel";
 import ComparisonTableModal from "@/components/Modals/ComparisonTableModal";
+import GoBackCircleIcon from "@/components/Icons/GoBackCircleIcon"
 import { mapState } from "vuex";
 export default {
   name: "Dashboard",
@@ -222,7 +225,8 @@ export default {
     CategoryPanel,
     RateSelectionPanel,
     MiddleTitlePanel,
-    ComparisonTableModal
+    ComparisonTableModal,
+    GoBackCircleIcon
   },
   props: {},
   data() {

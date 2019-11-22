@@ -15,17 +15,22 @@
         @click="onClickGoBack"
       >
         <v-icon color="primary" v-if="$vuetify.breakpoint.mdAndUp">mdi-arrow-left</v-icon>
-        <v-icon color="primary" large v-if="$vuetify.breakpoint.smAndDown">mdi-arrow-left-circle-outline</v-icon>
+        <go-back-circle-icon v-if="$vuetify.breakpoint.smAndDown"></go-back-circle-icon>
         <span v-if="$vuetify.breakpoint.mdAndUp">ZURÜCK</span>
       </v-btn>
+      
     </v-row>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex"
+import  GoBackCircleIcon  from "@/components/Icons/GoBackCircleIcon.vue"
 export default {
   name: "MainPanel",
+  components: {
+    GoBackCircleIcon
+  },
   props: {
     panelTitle: String,
 

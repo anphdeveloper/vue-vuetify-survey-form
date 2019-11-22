@@ -17,18 +17,17 @@ export default {
 <style lang="scss">
 .back {
   margin-bottom: 4px;
-  background: url("../../assets/icons/calendar.svg");
+  background: url("../../assets/icons/arrow_back.svg");
   background-color: transparent !important;
-  width: 42px;
+  width: 36px;
   height: 36px;
-  background-size: cover;
+  background-size: 80%;
+  background-position-y: 10px;
+  background-position-x: 3px;
   background-repeat: no-repeat;
+  border-radius: 50%;
+  border: 1.5px solid #00718F;
   display: inline-block;
-  @media only screen and (max-width: 1200px) {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px !important;
-    background-size: cover;
-  }
+
 }
 </style>

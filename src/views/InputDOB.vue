@@ -8,7 +8,7 @@
               <div :class="{ 'px-10': $vuetify.breakpoint.smAndUp }">
                 <p
                   :class="
-                    [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
+                    [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'body-1'] +
                       ' text-start mb-8'
                   "
                 >
@@ -27,10 +27,10 @@
                     </template>
                     <v-card class="elevation-0 primary">
                       <v-layout d-flex row wrap>
-                        <v-col cols="12" sm="2">
+                        <v-col cols="2" sm="2">
                           <v-icon color="white">mdi-information-outline</v-icon>
                         </v-col>
-                        <v-col cols="12" sm="10" class="ml-0 pl-0">
+                        <v-col cols="10" sm="10" class="ml-0 pl-0">
                           <p class="text-left white--text mb-0">
                             <b>Tarife ohne Alterungsrückstellung:</b> Sie zahlen
                             zu Beginn niedrige Beiträge, die mit dem Alter
@@ -46,59 +46,61 @@
                 </p>
                 <p class="pb-0 mb-0 mt-4 text-start body-2">Geburtsdatum</p>
                 <v-form ref="dobForm">
-                  <v-layout row class="dob-form meta-pro-text">
-                    <v-col cols="12" sm="4" xs="12">
-                      <v-text-field
-                        v-model="day"
-                        label="TT"
-                        :rules="[
-                          v =>
-                            (!!v &&
-                              v.length < 3 &&
-                              Number(v) != NaN &&
-                              Number(v) > 0 &&
-                              Number(v) < 32) ||
-                            ''
-                        ]"
-                      >
-                      </v-text-field>
-                    </v-col>
+                  <v-layout class="dob-form meta-pro-text">
+                    <v-row column>
+                      <v-col cols="3" sm="4">
+                        <v-text-field
+                          v-model="day"
+                          label="TT"
+                          :rules="[
+                            v =>
+                              (!!v &&
+                                v.length < 3 &&
+                                Number(v) != NaN &&
+                                Number(v) > 0 &&
+                                Number(v) < 32) ||
+                              ''
+                          ]"
+                        >
+                        </v-text-field>
+                      </v-col>
 
-                    <v-col cols="12" sm="4" xs="12">
-                      <v-text-field
-                        v-model="month"
-                        label="MM"
-                        :rules="[
-                          v =>
-                            (!!v &&
-                              v.length < 3 &&
-                              Number(v) != NaN &&
-                              Number(v) > 0 &&
-                              Number(v) < 13) ||
-                            ''
-                        ]"
-                      >
-                      </v-text-field>
-                    </v-col>
+                      <v-col cols="3" sm="4">
+                        <v-text-field
+                          v-model="month"
+                          label="MM"
+                          :rules="[
+                            v =>
+                              (!!v &&
+                                v.length < 3 &&
+                                Number(v) != NaN &&
+                                Number(v) > 0 &&
+                                Number(v) < 13) ||
+                              ''
+                          ]"
+                        >
+                        </v-text-field>
+                      </v-col>
 
-                    <v-col cols="12" sm="4" xs="12">
-                      <v-text-field
-                        v-model="year"
-                        label="JJJJ"
-                        :rules="[
-                          v =>
-                            (!!v &&
-                              v.length == 4 &&
-                              Number(v) != NaN &&
-                              Number(v) >
-                                Number(new Date().getFullYear()) - 100 &&
-                              Number(v) <
-                                Number(new Date().getFullYear()) + 100) ||
-                            ''
-                        ]"
-                      >
-                      </v-text-field>
-                    </v-col>
+                      <v-col cols="6" sm="4">
+                        <v-text-field
+                          v-model="year"
+                          label="JJJJ"
+                          :rules="[
+                            v =>
+                              (!!v &&
+                                v.length == 4 &&
+                                Number(v) != NaN &&
+                                Number(v) >
+                                  Number(new Date().getFullYear()) - 100 &&
+                                Number(v) <
+                                  Number(new Date().getFullYear()) + 100) ||
+                              ''
+                          ]"
+                        >
+                        </v-text-field>
+                      </v-col>
+                    </v-row>
                   </v-layout>
                 </v-form>
 
@@ -106,7 +108,7 @@
                   depressed
                   large
                   color="danger"
-                  :block="$vuetify.breakpoint.smAndDown"
+                  :block="$vuetify.breakpoint.xs"
                   class="mt-4 white--text"
                   @click="onClickStartCalc"
                   >Preise Berechnen</v-btn
