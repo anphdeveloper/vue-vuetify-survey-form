@@ -6,7 +6,7 @@
     <v-card :class="{'pa-10':$vuetify.breakpoint.mdAndUp, 'pa-6':$vuetify.breakpoint.smAndDown, 'mx-auto':true}" outlined>
       <slot>No slot content defined</slot>
     </v-card>
-    <v-row justify="start" class="px-3 mt-2" v-if="showGoBackButton">
+    <v-row justify="start" :class="{'mt-4': $vuetify.breakpoint.xs, 'px-3': true}" v-if="showGoBackButton">
       <v-btn
         text
         class="px-3 primary--text body-1 btn-link"
@@ -56,7 +56,6 @@ export default {
     }
   },
   mounted(){
-    console.log('pageprogress', this.$store.state.pagesProgress);
     this.showGoBackButton = this.$store.state.pagesProgress == 10 ? false : true;
   }
 

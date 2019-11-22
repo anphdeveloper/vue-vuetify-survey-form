@@ -5,9 +5,9 @@
         <v-row justify="center">
           <v-col cols="12" sm="6">
             <h2>Ihre betriebliche Gesundheitsförderung</h2>
-            <p class="pb-0 mb-0 mt-4 text-start caption">Geburtsdatum</p>
+            <p class="pb-0 mb-0 mt-4 text-start body-1 font-meta-pro">Versicherungsbeginn</p>
             <v-select
-              class="mt-0 pt-0 meta-pro-text primary--text"
+              class="mt-0 pt-0 meta-pro-text primary--text title"
               :items="days"
               v-model="targetDay"
               append-icon="mdi-chevron-down"
@@ -194,7 +194,7 @@
             >MIT AUSWAHL FORTFAHREN</v-btn>
           </v-col>
         </v-row>
-        <v-row class="px-3 justify-start mt-2" wrap>
+        <v-row :class="{'mt-4': $vuetify.breakpoint.xs, 'px-3 justify-start': true}" wrap>
             <router-link to="/inputDOB" tag="span">
               <v-btn
                 text

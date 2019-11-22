@@ -17,7 +17,7 @@
           </v-btn>
         </div>
         <v-card-text class="pt-10">
-          <v-simple-table
+          <!-- <v-simple-table
             class="plan-compare-table"
             v-if="isComparisonForStationary"
           >
@@ -166,7 +166,23 @@
                 </tr>
               </tbody>
             </template>
-          </v-simple-table>
+          </v-simple-table>-->
+
+          <v-tabs v-model="tab" 
+          background-color="transparent" 
+          color="basil" 
+          show-arrows
+          class="group-table-mobile">
+            <v-tab v-for="item in items" :key="item" v-html="item"></v-tab>
+          </v-tabs>
+
+          <v-tabs-items v-model="tab">
+            <v-tab-item v-for="item in items" :key="item">
+              <v-card flat color="basil">
+                <v-card-text>{{ text }}</v-card-text>
+              </v-card>
+            </v-tab-item>
+          </v-tabs-items>
         </v-card-text>
         <v-divider></v-divider>
       </v-card>
@@ -175,16 +191,21 @@
 </template>
 
 <script>
-import SickBedIcon from "@/components/Icons/SickBedIcon";
+//import SickBedIcon from "@/components/Icons/SickBedIcon";
 export default {
   name: "ComparisonTableModal",
   components: {
-    SickBedIcon
+    //SickBedIcon
   },
   props: ["isComparisonForStationary"],
   data() {
     return {
-      show: false
+      show: false,
+      tab: null,
+        items: [
+          'MediGroup<br />S1', 'MediGroup<br />S2', 'Medi<br/>Clinic Plus'
+        ],
+        text: 'Lorem ipsum dolor sit amet, consectetur adipisci'
     };
   },
   computed: {},
@@ -216,4 +237,30 @@ export default {
     }
   }
 }
+
+.group-table-mobile{
+  .v-tab {
+    width: 33.3%;
+    max-width: 33.33%;
+    padding-left: 0;
+    padding-right: 0;
+    color: #fff!important;
+    background: #035370;
+  }
+  .v-tab:first-child{
+    opacity: 1;
+  }
+
+  .v-tab:last-child{
+    opacity: 0.4;
+  }
+  .v-slide-group__prev{
+    display: none;
+  }
+
+  .v-slide-group__next{
+    display: none!important;
+  }
+}
+
 </style>

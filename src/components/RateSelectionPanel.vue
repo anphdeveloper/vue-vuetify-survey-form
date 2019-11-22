@@ -79,8 +79,8 @@ export default {
   height: 48px;
   background-repeat: no-repeat;
   @media only screen and (max-width: 1200px) {
-    width: 32px;
-    height: 34px;
+    width: 40px;
+    height: 44px;
     margin-right: 10px !important;
     background-size: cover;
   }

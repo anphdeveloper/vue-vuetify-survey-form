@@ -2,7 +2,7 @@
   <div :class="categoryPanelData.panelBackground + ' pa-4'">
     <v-layout>
       <v-row class="px-2">
-        <p class="mb-1 subtitle text-left pl-2 pt-1 white--text">
+        <p class="mb-1 title text-left pl-2 pt-1 white--text">
           {{ categoryPanelData.panelTitle }}
         </p>
         <v-spacer></v-spacer>
@@ -23,7 +23,7 @@
     <p
       :class="{
         'mb-0 ': !categoryPanelData.expanded,
-        'caption text-left white--text': true
+        'body-1 text-left white--text': true
       }"
       v-html="categoryPanelData.panelDescription"
     ></p>
@@ -37,7 +37,7 @@
         :key="index"
       >
         <v-icon color="white">mdi-check</v-icon
-        ><span class="ml-1">{{ feature }}</span>
+        ><span class="ml-1 body-1">{{ feature }}</span>
       </p>
       <v-btn block class="white mt-4 btn-info white--text elevation-0 py-2"
         >INFOBROSCHÜRE

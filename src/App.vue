@@ -61,6 +61,10 @@ export default {
 .meta-pro-text {
   font-family: "MetaPro-Normal" !important;
   &.primary--text {
+    .v-icon {
+      font-family: "MetaPro-Normal" !important;
+      color: #00718f;
+    }
     .v-select__selections {
       .v-select__selection {
         font-family: "MetaPro-Normal" !important;
