@@ -9,7 +9,7 @@
                 <p
                   :class="
                     [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
-                      ' text-start mb-8'
+                      ' text-start font-weight-bold mb-4'
                   "
                 >Bitte beantworten Sie die Frage wahrheitsgemäß, da ansonsten Ihr Versicherungsschutz gefährdet sein kann.</p>
                 <v-form class="text-with-inputcontrol-icon" ref="form" lazy-validation>
@@ -22,12 +22,12 @@
                   </p>
                 </v-form>
                 <div v-if="showWarning && !checkbox">
-                  <v-container class="px-0 text-with-inputcontrol-icon">
+                  <v-container class="px-0 pb-2 text-with-inputcontrol-icon">
                     <v-icon color="red" v-on="on" class="mr-2">mdi-information-outline</v-icon>
                     <p
                       :class="
                     [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
-                      ' text-start mb-0'
+                      ' text-start font-weight-bold mb-0'
                   "
                     >Mehr als 20 Tage arbeitsunfähig</p>
                   </v-container>
@@ -73,7 +73,7 @@ export default {
   methods: {
     onClickNext() {
       if (this.$refs.form.validate()) {
-        // this.$router.push({ name: "Dashboard" });
+        this.$router.push({ name: "MyPersonalData" });
       } else {
         this.showWarning = true;
       }

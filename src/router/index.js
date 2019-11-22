@@ -38,6 +38,13 @@ const routes = [
     component: function() {
       return import("../views/MyDentalHealth.vue");
     }
+  },
+  {
+    path: "/myPersonalData",
+    name: "MyPersonalData",
+    component: function() {
+      return import("../views/MyPersonalData.vue");
+    }
   }
 ];
 
