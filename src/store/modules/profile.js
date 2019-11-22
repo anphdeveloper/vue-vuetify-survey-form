@@ -15,7 +15,6 @@ const actions = {
   },
 
   setTargetDay( {commit, state}, targetDay){
-    console.log('state', state);
     commit("setTargetDay", targetDay);
     commit("setAge", targetDay.getFullYear() - new Date(state.dayOfBirth).getFullYear());
   },
@@ -24,7 +23,6 @@ const actions = {
 const mutations = {
   setDayOfBirth( state, dayOfBirth){
     state.dayOfBirth = dayOfBirth;
-    console.log('dayofbirth', state.dayOfBirth);
   },
   setTargetDay( state, targetDay){
     state.targetDay = targetDay;

@@ -117,8 +117,8 @@ export default {
   },
   methods: {
     onClickNext() {
-        // Proceed to next page
-        this.$router.push({ name: "MyPersonalData" });
+      // Proceed to next page
+      this.$router.push({ name: "MyPersonalData" });
     },
     onClickShowMore() {
       this.showReadMore = false;

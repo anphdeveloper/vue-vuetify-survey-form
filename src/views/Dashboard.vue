@@ -161,7 +161,7 @@
           <middle-title-panel
             panelBackground="white"
             leftTitle="mtl. Gesamt-Beitrag"
-            middleTitle="17,96 €"
+            :middleTitle="totalRate + '€'"
             leftTitleClass="subtitle-1 font-weight-bold grey--text text--darken-3 pl-4"
             middleTitleClass="subtitle-1 font-weight-bold grey--text text--darken-3"
           ></middle-title-panel>
@@ -192,7 +192,7 @@ import CategoryPanel from "@/components/CategoryPanel.vue";
 import RateSelectionPanel from "@/components/RateSelectionPanel.vue";
 import MiddleTitlePanel from "@/components/MiddleTitlePanel";
 import ComparisonTableModal from "@/components/Modals/ComparisonTableModal";
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 export default {
   name: "Dashboard",
   components: {
@@ -206,8 +206,7 @@ export default {
     return {
       days: null,
       targetDay: null,
-      dialogStationary: false,
-      dialogMembership: false,
+      totalRate: 0,
       categoryPanelData: [
         {
           id: 0,
@@ -220,7 +219,7 @@ export default {
             "Freie Krankenhausauswahl"
           ],
           panelBackground: "tertiary",
-          checked: true,
+          checked: false,
           expanded: false
         },
         {
@@ -273,7 +272,7 @@ export default {
           haveRadioOption: true,
           panelBackground: "white",
           panelRate: "17,96",
-          checked: true,
+          checked: false,
           isTop: true
         },
         {
@@ -324,7 +323,7 @@ export default {
           haveRadioOption: true,
           panelBackground: "white",
           panelRate: "0",
-          checked: true,
+          checked: false,
           isTop: false
         },
         {
@@ -354,6 +353,31 @@ export default {
     /*eslint-disable*/
     age: function(newVal) {
       this.setRateForPanels(newVal);
+    },
+    
+    stationaryPanelData: {
+      handler(newVal){
+        this.setTotalRate();
+      },
+      deep: true
+    },
+    toothPanelData: {
+      handler(newVal){
+        this.setTotalRate();
+      },
+      deep: true
+    },
+    outpatientPanelData: {
+      handler(newVal){
+        this.setTotalRate();
+      },
+      deep: true
+    },
+    preventionPanelData: {
+      handler(newVal){
+        this.setTotalRate();
+      },
+      deep: true
     }
     /*eslint-enable*/
   },
@@ -361,30 +385,81 @@ export default {
   methods: {
     selectPanels(id) {
       this.categoryPanelData[id].checked = !this.categoryPanelData[id].checked;
+      if (!this.categoryPanelData[id].checked)
+        switch (id) {
+          case 0: {
+            this.stationaryPanelData = this.stationaryPanelData.map(panel => {
+              return { ...panel, checked: false };
+            });
+            break;
+          }
+          case 1: {
+            this.toothPanelData = this.toothPanelData.map(panel => {
+              return { ...panel, checked: false };
+            });
+            break;
+          }
+          case 2: {
+            this.outpatientPanelData = this.outpatientPanelData.map(panel => {
+              return { ...panel, checked: false };
+            });
+            break;
+          }
+          case 3: {
+            this.preventionPanelData = this.preventionPanelData.map(panel => {
+              return { ...panel, checked: false };
+            });
+            break;
+          }
+        }
+      if (this.categoryPanelData[id].checked)
+        switch (id) {
+          case 0: {
+            this.stationaryPanelData[0].checked = true;
+            break;
+          }
+          case 1: {
+            this.toothPanelData[0].checked = true;
+            break;
+          }
+          case 2: {
+            this.outpatientPanelData[0].checked = true;
+            break;
+          }
+          case 3: {
+            this.preventionPanelData[0].checked = true;
+            break;
+          }
+        }
+      
     },
 
     selectStationaryRatePanel(id) {
       this.stationaryPanelData.map(
         item => (item.checked = item.id === id ? true : false)
       );
+      this.categoryPanelData[0].checked = true;
     },
 
     selectToothRatePanel(id) {
       this.toothPanelData.map(
         item => (item.checked = item.id === id ? true : false)
       );
+      this.categoryPanelData[1].checked = true;
     },
 
     selectOutpatientRatePanel(id) {
       this.outpatientPanelData.map(
         item => (item.checked = item.id === id ? true : false)
       );
+      this.categoryPanelData[2].checked = true;
     },
 
     selectPreventionRatePanel(id) {
       this.preventionPanelData.map(
         item => (item.checked = item.id === id ? true : false)
       );
+      this.categoryPanelData[3].checked = true;
     },
 
     expandCategoryPanel(id, expanded) {
@@ -396,13 +471,16 @@ export default {
     },
 
     onClickContinueWithSelection() {
+      if (!this.categoryPanelData.find(
+        data => data.checked
+      )){
+        ;
+      }
       if (
         this.categoryPanelData.find(
           data =>
             data.checked &&
-            (data.panelTitle === "Stationär" ||
-              data.panelTitle === "Ambulant" ||
-              data.panelTitle === "Vorsorge")
+            (data.panelTitle === "Stationär" || data.panelTitle === "Ambulant")
         )
       ) {
         this.$router.push({ name: "MyHealth" });
@@ -412,8 +490,13 @@ export default {
         )
       ) {
         this.$router.push({ name: "MyDentalHealth" });
-      } else {
-        this.$router.push({ name: "MyHealth" });
+      } else if (
+        this.categoryPanelData.find(
+          data => data.checked && data.panelTitle === "Vorsorge"
+        )
+      ) {
+        console.log('vorsorge');
+        //this.$router.push({ name: "MyDentalHealth" });
       }
     },
 
@@ -451,6 +534,16 @@ export default {
           )
         };
       });
+    },
+    setTotalRate(){
+      this.totalRate = this.stationaryPanelData.reduce(
+        (totalRate, panel) => totalRate + (panel.checked ? panel.panelRate : 0), 0)
+        + this.toothPanelData.reduce(
+        (totalRate, panel) => totalRate + panel.checked ? panel.panelRate : 0, 0)
+        + this.outpatientPanelData.reduce(
+        (totalRate, panel) => totalRate + panel.checked ? panel.panelRate : 0, 0)
+        + this.preventionPanelData.reduce(
+        (totalRate, panel) => totalRate + panel.checked ? panel.panelRate : 0, 0)
     }
   },
 
@@ -466,8 +559,6 @@ export default {
     }
     //set rate
     this.setRateForPanels(this.age);
-
-    console.log("profile", this.$store.state.profile);
   }
 };
 </script>
