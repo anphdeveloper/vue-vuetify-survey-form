@@ -1,20 +1,18 @@
 <template>
-    <v-content class="content">
-        <v-container fluid fill-height>
-            <router-view />
-        </v-container>
-    </v-content>
+  <v-content class="content">
+    <v-container fluid fill-height>
+      <router-view />
+    </v-container>
+  </v-content>
 </template>
 
 <script>
 export default {
-    name: "Content",
-    data(){
-        return {
-
-        }
-    }
-}
+  name: "Content",
+  data() {
+    return {};
+  }
+};
 </script>
 <style lang="scss">
 // @import "~@/assets/scss/main.scss";

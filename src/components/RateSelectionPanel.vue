@@ -2,7 +2,16 @@
   <div :class="ratePanelData.panelBackground">
     <v-container class="pa-0">
       <v-row class="px-1 title-row">
-        <p :class="{'subtitle': $vuetify.breakpoint.lgAndUp, 'caption': $vuetify.breakpoint.md , 'subtitle': $vuetify.breakpoint.smAndDown, 'mb-1 text-left pl-4 pt-2 ml-2 grey--text mr-4':true}">{{ ratePanelData.panelTitle }}</p>
+        <p
+          :class="{
+            subtitle: $vuetify.breakpoint.lgAndUp,
+            caption: $vuetify.breakpoint.md,
+            subtitle: $vuetify.breakpoint.smAndDown,
+            'mb-1 text-left pl-4 pt-2 ml-2 grey--text mr-4': true
+          }"
+        >
+          {{ ratePanelData.panelTitle }}
+        </p>
         <v-spacer></v-spacer>
         <div
           class="mr-1 white top-label-icon elevation-0 px-0 text-center d-flex align-center justify-center"
@@ -14,7 +23,7 @@
       <v-row>
         <v-col cols="2">
           <v-radio-group
-            v-model="panelSelected "
+            v-model="panelSelected"
             :mandatory="false"
             class="mt-0 pl-4"
             color="primary"
@@ -25,7 +34,9 @@
           </v-radio-group>
         </v-col>
         <v-col cols="8" class="pt-4">
-          <span class="subtitle-1 grey--text text--darken-3">{{ ratePanelData.panelRate }}€ mtl.</span>
+          <span class="subtitle-1 grey--text text--darken-3"
+            >{{ ratePanelData.panelRate }}€ mtl.</span
+          >
         </v-col>
       </v-row>
     </v-container>
@@ -34,15 +45,10 @@
 </template>
 
 <script>
-
 export default {
   name: "RateSelectionPanel",
-  components: {
-  },
-  props: [
-    'ratePanelData',
-    'checkRate'
-  ],
+  components: {},
+  props: ["ratePanelData", "checkRate"],
   data() {
     return {
       panelSelected: null
@@ -53,8 +59,8 @@ export default {
     panelSelected: function(newVal) {
       if (newVal == "radio-1") this.checkRate(this.$props.ratePanelData.id);
     },
-    'ratePanelData.checked': function(newVal){
-      this.panelSelected = newVal? 'radio-1' : null;
+    "ratePanelData.checked": function(newVal) {
+      this.panelSelected = newVal ? "radio-1" : null;
     }
   },
   created() {
@@ -72,10 +78,10 @@ export default {
   width: 48px;
   height: 48px;
   background-repeat: no-repeat;
-  @media only screen and (max-width: 1200px){
+  @media only screen and (max-width: 1200px) {
     width: 32px;
     height: 34px;
-    margin-right: 10px!important;
+    margin-right: 10px !important;
     background-size: cover;
   }
 }

@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import VuexPersistence from "vuex-persist";
-import Product from "./modules/products"
-import Profile from "./modules/profile"
+import Product from "./modules/products";
+import Profile from "./modules/profile";
 Vue.use(Vuex);
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage,
@@ -11,25 +11,25 @@ const vuexLocal = new VuexPersistence({
     if (data) {
       return JSON.parse(data);
     }
-  },
-})
+  }
+});
 export default new Vuex.Store({
   plugins: [vuexLocal.plugin],
   state: {
-    pagesProgress: 0,
+    pagesProgress: 0
   },
   mutations: {
-    setPagesProgress(state, percentage){
+    setPagesProgress(state, percentage) {
       state.pagesProgress = percentage;
     }
   },
   actions: {
-    setPagesProgress({commit}, progress){
-      commit("setPagesProgress", progress)
+    setPagesProgress({ commit }, progress) {
+      commit("setPagesProgress", progress);
     }
   },
   getters: {
-    getPagesProgress : state => state.pagesProgress
+    getPagesProgress: state => state.pagesProgress
   },
   modules: {
     products: Product,

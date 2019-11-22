@@ -21,7 +21,9 @@
                     content-class="primary tooltip-with-top-arrow"
                   >
                     <template v-slot:activator="{ on }">
-                      <v-icon color="primary" v-on="on">mdi-information-outline</v-icon>
+                      <v-icon color="primary" v-on="on"
+                        >mdi-information-outline</v-icon
+                      >
                     </template>
                     <v-card class="elevation-0 primary">
                       <v-layout d-flex row wrap>
@@ -46,22 +48,55 @@
                 <v-form ref="dobForm">
                   <v-layout row class="dob-form meta-pro-text">
                     <v-col cols="12" sm="4" xs="12">
-                      <v-text-field v-model="day" label="TT" 
-                      :rules="[v => ( !!v && v.length < 3) && (Number(v) != NaN && Number(v) > 0 && Number(v) < 32) || '']">
+                      <v-text-field
+                        v-model="day"
+                        label="TT"
+                        :rules="[
+                          v =>
+                            (!!v &&
+                              v.length < 3 &&
+                              Number(v) != NaN &&
+                              Number(v) > 0 &&
+                              Number(v) < 32) ||
+                            ''
+                        ]"
+                      >
                       </v-text-field>
                     </v-col>
 
                     <v-col cols="12" sm="4" xs="12">
-                      <v-text-field v-model="month" label="MM" 
-                      :rules="[v => ( !!v && v.length < 3) && (Number(v) != NaN && Number(v) > 0 && Number(v) < 13) || '']">
+                      <v-text-field
+                        v-model="month"
+                        label="MM"
+                        :rules="[
+                          v =>
+                            (!!v &&
+                              v.length < 3 &&
+                              Number(v) != NaN &&
+                              Number(v) > 0 &&
+                              Number(v) < 13) ||
+                            ''
+                        ]"
+                      >
                       </v-text-field>
                     </v-col>
 
                     <v-col cols="12" sm="4" xs="12">
-                      <v-text-field v-model="year" label="JJJJ" 
-                      :rules="[v => ( !!v && v.length == 4) 
-                      && (Number(v) != NaN && Number(v) > Number(new Date().getFullYear()) - 100 
-                      && Number(v) < Number(new Date().getFullYear()) + 100  ) || '']">
+                      <v-text-field
+                        v-model="year"
+                        label="JJJJ"
+                        :rules="[
+                          v =>
+                            (!!v &&
+                              v.length == 4 &&
+                              Number(v) != NaN &&
+                              Number(v) >
+                                Number(new Date().getFullYear()) - 100 &&
+                              Number(v) <
+                                Number(new Date().getFullYear()) + 100) ||
+                            ''
+                        ]"
+                      >
                       </v-text-field>
                     </v-col>
                   </v-layout>
@@ -73,7 +108,8 @@
                   color="danger"
                   class="mt-4 white--text"
                   @click="onClickStartCalc"
-                >Preise Berechnen</v-btn>
+                  >Preise Berechnen</v-btn
+                >
               </div>
             </template>
           </main-panel>
@@ -103,19 +139,21 @@ export default {
   methods: {
     onClickStartCalc() {
       if (this.$refs.dobForm.validate()) {
-        this.$store.dispatch('profile/setDayOfBirth', new Date(this.year, Number(this.month) - 1, this.day));
+        this.$store.dispatch(
+          "profile/setDayOfBirth",
+          new Date(this.year, Number(this.month) - 1, this.day)
+        );
         this.$router.push({ name: "Dashboard" });
       }
     }
   },
-  mounted(){
-    this.$store.dispatch('setPagesProgress', 20);
+  mounted() {
+    this.$store.dispatch("setPagesProgress", 20);
   }
 };
 </script>
 
 <style lang="scss">
-
 .dob-form {
   & /deep/ .v-text-field__slot {
     input {

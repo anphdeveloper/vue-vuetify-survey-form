@@ -1,5 +1,7 @@
 <template>
-  <div :class="{'with-title' : panelTitle, 'higher': $vuetify.breakpoint.mdAndUp}">
+  <div
+    :class="{ 'with-title': panelTitle, higher: $vuetify.breakpoint.mdAndUp }"
+  >
     <h2 class="mb-2">{{ panelTitle }}</h2>
     <v-card class="mx-auto pa-10" outlined>
       <slot>No slot content defined</slot>

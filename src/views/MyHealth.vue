@@ -11,17 +11,32 @@
                     [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
                       ' text-start font-weight-bold mb-4'
                   "
-                >Bitte beantworten Sie die Frage wahrheitsgemäß, da ansonsten Ihr Versicherungsschutz gefährdet sein kann.</p>
-                <v-form class="text-with-inputcontrol-icon" ref="form" lazy-validation>
-                  <v-checkbox large v-model="checkbox" :rules="[v => !!v || '']" class="mt-0 pt-0" />
+                >
+                  Bitte beantworten Sie die Frage wahrheitsgemäß, da ansonsten
+                  Ihr Versicherungsschutz gefährdet sein kann.
+                </p>
+                <v-form
+                  class="text-with-inputcontrol-icon"
+                  ref="form"
+                  lazy-validation
+                >
+                  <v-checkbox
+                    large
+                    v-model="checkbox"
+                    :rules="[v => !!v || '']"
+                    class="mt-0 pt-0"
+                  />
                   <p class="text-start body-2 mb-1">
-                    Ich bestätige, dass ich in den letzten 12 Monaten vor Anmeldung
-                    <span
-                      class="font-weight-black"
-                    >nicht länger als 20 Tage arbeitsunfähig</span> krank war.
+                    Ich bestätige, dass ich in den letzten 12 Monaten vor
+                    Anmeldung
+                    <span class="font-weight-black"
+                      >nicht länger als 20 Tage arbeitsunfähig</span
+                    >
+                    krank war.
                   </p>
                 </v-form>
                 <div v-if="showWarning && !checkbox">
+<<<<<<< Updated upstream
                   <v-container class="px-0 pb-2 text-with-inputcontrol-icon">
                     <v-icon color="red" v-on="on" class="mr-2">mdi-information-outline</v-icon>
                     <p
@@ -30,12 +45,27 @@
                       ' text-start font-weight-bold mb-0'
                   "
                     >Mehr als 20 Tage arbeitsunfähig</p>
+=======
+                  <v-container class="px-0 text-with-inputcontrol-icon">
+                    <v-icon color="red" v-on="on" class="mr-2"
+                      >mdi-information-outline</v-icon
+                    >
+                    <p
+                      :class="
+                        [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
+                          ' text-start mb-0'
+                      "
+                    >
+                      Mehr als 20 Tage arbeitsunfähig
+                    </p>
+>>>>>>> Stashed changes
                   </v-container>
                   <p class="text-start body-2 mb-1">
-                    Falls Sie die Angaben zum Gesundheitszustand nicht bestätigen können, nutzen Sie bitte den
-                    <span
-                      class="font-weight-black primary--text"
-                    >Antrag mit Gesundheitsfragen</span>.
+                    Falls Sie die Angaben zum Gesundheitszustand nicht
+                    bestätigen können, nutzen Sie bitte den
+                    <span class="font-weight-black primary--text"
+                      >Antrag mit Gesundheitsfragen</span
+                    >.
                   </p>
                 </div>
                 <v-btn
@@ -44,7 +74,8 @@
                   color="danger"
                   class="mt-6 white--text"
                   @click="onClickNext"
-                >Weiter</v-btn>
+                  >Weiter</v-btn
+                >
               </div>
             </template>
           </main-panel>
@@ -84,7 +115,6 @@ export default {
   }
 };
 </script>
-
 
 <style lang="scss" scoped>
 .text-with-inputcontrol-icon {

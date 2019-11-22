@@ -14,6 +14,7 @@
               color="primary"
               :rules="[v => !!v || '']"
             ></v-select>
+            <calendar></calendar>
           </v-col>
         </v-row>
 
@@ -43,7 +44,11 @@
               class="mb-12"
             ></category-panel>
             <div
-              v-if="(categoryPanelData[0].expanded && $vuetify.breakpoint.smAndDown)|| $vuetify.breakpoint.mdAndUp"
+              v-if="
+                (categoryPanelData[0].expanded &&
+                  $vuetify.breakpoint.smAndDown) ||
+                  $vuetify.breakpoint.mdAndUp
+              "
             >
               <rate-selection-panel
                 v-for="(ratePanel, index) in stationaryPanelData"
@@ -63,12 +68,16 @@
                       content-class="primary tooltip-with-top-arrow"
                     >
                       <template v-slot:activator="{ on }">
-                        <v-icon color="primary" v-on="on">mdi-information-outline</v-icon>
+                        <v-icon color="primary" v-on="on"
+                          >mdi-information-outline</v-icon
+                        >
                       </template>
                       <v-card class="elevation-0 primary">
                         <v-layout d-flex row wrap>
                           <v-col cols="12" sm="2">
-                            <v-icon color="white">mdi-information-outline</v-icon>
+                            <v-icon color="white"
+                              >mdi-information-outline</v-icon
+                            >
                           </v-col>
                           <v-col cols="12" sm="10" class="ml-0 pl-0">
                             <p class="text-left white--text mb-0">
@@ -87,7 +96,9 @@
                 </template>
               </rate-selection-panel>
               <v-layout justify-start class="pt-2">
-                <comparison-table-modal :isComparisonForStationary="true"></comparison-table-modal>
+                <comparison-table-modal
+                  :isComparisonForStationary="true"
+                ></comparison-table-modal>
               </v-layout>
             </div>
           </v-col>
@@ -100,7 +111,11 @@
               class="mb-12"
             ></category-panel>
             <div
-              v-if="(categoryPanelData[1].expanded && $vuetify.breakpoint.smAndDown)|| $vuetify.breakpoint.mdAndUp"
+              v-if="
+                (categoryPanelData[1].expanded &&
+                  $vuetify.breakpoint.smAndDown) ||
+                  $vuetify.breakpoint.mdAndUp
+              "
             >
               <rate-selection-panel
                 v-for="(ratePanel, index) in toothPanelData"
@@ -120,7 +135,11 @@
               class="mb-12"
             ></category-panel>
             <div
-              v-if="(categoryPanelData[2].expanded && $vuetify.breakpoint.smAndDown)|| $vuetify.breakpoint.mdAndUp"
+              v-if="
+                (categoryPanelData[2].expanded &&
+                  $vuetify.breakpoint.smAndDown) ||
+                  $vuetify.breakpoint.mdAndUp
+              "
             >
               <rate-selection-panel
                 v-for="(ratePanel, index) in outpatientPanelData"
@@ -140,7 +159,11 @@
               class="mb-12"
             ></category-panel>
             <div
-              v-if="(categoryPanelData[3].expanded && $vuetify.breakpoint.smAndDown)|| $vuetify.breakpoint.mdAndUp"
+              v-if="
+                (categoryPanelData[3].expanded &&
+                  $vuetify.breakpoint.smAndDown) ||
+                  $vuetify.breakpoint.mdAndUp
+              "
             >
               <rate-selection-panel
                 v-for="(ratePanel, index) in preventionPanelData"
@@ -150,7 +173,9 @@
                 :class="{ 'mt-4': ratePanel.id !== 0 }"
               ></rate-selection-panel>
               <v-layout justify-start class="pt-2">
-                <comparison-table-modal :isComparisonForStationary="false"></comparison-table-modal>
+                <comparison-table-modal
+                  :isComparisonForStationary="false"
+                ></comparison-table-modal>
               </v-layout>
             </div>
           </v-col>
@@ -173,11 +198,17 @@
             color="danger"
             class="mt-4 white--text"
             @click="onClickContinueWithSelection"
-          >MIT AUSWAHL FORTFAHREN</v-btn>
+            >MIT AUSWAHL FORTFAHREN</v-btn
+          >
         </v-row>
         <v-row justify="start" class="px-3">
           <router-link to="/inputDOB" tag="span">
-            <v-btn text class="px-3 primary--text body-1 btn-link" large :ripple="false">
+            <v-btn
+              text
+              class="px-3 primary--text body-1 btn-link"
+              large
+              :ripple="false"
+            >
               <v-icon color="primary">mdi-arrow-left</v-icon>ZURÜCK
             </v-btn>
           </router-link>
@@ -192,6 +223,7 @@ import CategoryPanel from "@/components/CategoryPanel.vue";
 import RateSelectionPanel from "@/components/RateSelectionPanel.vue";
 import MiddleTitlePanel from "@/components/MiddleTitlePanel";
 import ComparisonTableModal from "@/components/Modals/ComparisonTableModal";
+import Calendar from "@/components/Calendar";
 import { mapState } from "vuex";
 export default {
   name: "Dashboard",
@@ -199,7 +231,8 @@ export default {
     CategoryPanel,
     RateSelectionPanel,
     MiddleTitlePanel,
-    ComparisonTableModal
+    ComparisonTableModal,
+    Calendar
   },
   props: {},
   data() {
@@ -220,7 +253,10 @@ export default {
           ],
           panelBackground: "tertiary",
           checked: false,
-          expanded: false
+          expanded: false,
+          selectedId: 0,
+          selectedProductName: 0,
+          selectedRate: 0
         },
         {
           id: 1,
@@ -234,7 +270,10 @@ export default {
           ],
           panelBackground: "quinary",
           checked: false,
-          expanded: false
+          expanded: false,
+          selectedId: 0,
+          selectedProductName: 0,
+          selectedRate: 0
         },
         {
           id: 2,
@@ -248,7 +287,10 @@ export default {
           ],
           panelBackground: "primary",
           checked: false,
-          expanded: false
+          expanded: false,
+          selectedId: 0,
+          selectedProductName: 0,
+          selectedRate: 0
         },
         {
           id: 3,
@@ -262,7 +304,10 @@ export default {
           ],
           panelBackground: "senary",
           checked: false,
-          expanded: false
+          expanded: false,
+          selectedId: 0,
+          selectedProductName: 0,
+          selectedRate: 0
         }
       ],
       stationaryPanelData: [
@@ -350,36 +395,35 @@ export default {
         this.$helper.commonHelper.getDateFromGermanDate(newVal)
       );
     },
-    /*eslint-disable*/
     age: function(newVal) {
       this.setRateForPanels(newVal);
     },
-    
+
     stationaryPanelData: {
-      handler(newVal){
+      handler() {
         this.setTotalRate();
       },
       deep: true
     },
     toothPanelData: {
-      handler(newVal){
+      handler() {
         this.setTotalRate();
       },
       deep: true
     },
     outpatientPanelData: {
-      handler(newVal){
+      handler() {
         this.setTotalRate();
       },
       deep: true
     },
     preventionPanelData: {
-      handler(newVal){
+      handler() {
         this.setTotalRate();
       },
       deep: true
     }
-    /*eslint-enable*/
+   
   },
 
   methods: {
@@ -431,7 +475,6 @@ export default {
             break;
           }
         }
-      
     },
 
     selectStationaryRatePanel(id) {
@@ -439,6 +482,9 @@ export default {
         item => (item.checked = item.id === id ? true : false)
       );
       this.categoryPanelData[0].checked = true;
+      this.categoryPanelData[0].selectedId = id;
+      this.categoryPanelData[0].selectedProductName = this.stationaryPanelData[id].panelTitle;
+      this.categoryPanelData[0].selectedRate = this.stationaryPanelData[id].panelRate;
     },
 
     selectToothRatePanel(id) {
@@ -446,6 +492,9 @@ export default {
         item => (item.checked = item.id === id ? true : false)
       );
       this.categoryPanelData[1].checked = true;
+      this.categoryPanelData[1].selectedId = id;
+      this.categoryPanelData[1].selectedProductName = this.toothPanelData[id].panelTitle;
+      this.categoryPanelData[1].selectedRate = this.toothPanelData[id].panelRate;
     },
 
     selectOutpatientRatePanel(id) {
@@ -453,6 +502,9 @@ export default {
         item => (item.checked = item.id === id ? true : false)
       );
       this.categoryPanelData[2].checked = true;
+      this.categoryPanelData[2].selectedId = id;
+      this.categoryPanelData[2].selectedProductName = this.outpatientPanelData[id].panelTitle;
+      this.categoryPanelData[2].selectedRate = this.outpatientPanelData[id].panelRate;
     },
 
     selectPreventionRatePanel(id) {
@@ -460,6 +512,9 @@ export default {
         item => (item.checked = item.id === id ? true : false)
       );
       this.categoryPanelData[3].checked = true;
+      this.categoryPanelData[3].selectedId = id;
+      this.categoryPanelData[3].selectedProductName = this.preventionPanelData[id].panelTitle;
+      this.categoryPanelData[3].selectedRate = this.preventionPanelData[id].panelRate;
     },
 
     expandCategoryPanel(id, expanded) {
@@ -471,32 +526,33 @@ export default {
     },
 
     onClickContinueWithSelection() {
-      if (!this.categoryPanelData.find(
-        data => data.checked
-      )){
-        ;
-      }
-      if (
-        this.categoryPanelData.find(
-          data =>
-            data.checked &&
-            (data.panelTitle === "Stationär" || data.panelTitle === "Ambulant")
-        )
-      ) {
-        this.$router.push({ name: "MyHealth" });
-      } else if (
-        this.categoryPanelData.find(
-          data => data.checked && data.panelTitle === "Zahn"
-        )
-      ) {
-        this.$router.push({ name: "MyDentalHealth" });
-      } else if (
-        this.categoryPanelData.find(
-          data => data.checked && data.panelTitle === "Vorsorge"
-        )
-      ) {
-        console.log('vorsorge');
-        //this.$router.push({ name: "MyDentalHealth" });
+      if (!this.categoryPanelData.find(data => data.checked)) {
+        return;
+      } else {
+        this.$store.dispatch("products/setCategories", this.categoryPanelData);
+        if (
+          this.categoryPanelData.find(
+            data =>
+              data.checked &&
+              (data.panelTitle === "Stationär" ||
+                data.panelTitle === "Ambulant")
+          )
+        ) {
+          this.$router.push({ name: "MyHealth" });
+        } else if (
+          this.categoryPanelData.find(
+            data => data.checked && data.panelTitle === "Zahn"
+          )
+        ) {
+          this.$router.push({ name: "MyDentalHealth" });
+        } else if (
+          this.categoryPanelData.find(
+            data => data.checked && data.panelTitle === "Vorsorge"
+          )
+        ) {
+          console.log("vorsorge");
+          //this.$router.push({ name: "MyDentalHealth" });
+        }
       }
     },
 
@@ -535,15 +591,28 @@ export default {
         };
       });
     },
-    setTotalRate(){
-      this.totalRate = this.stationaryPanelData.reduce(
-        (totalRate, panel) => totalRate + (panel.checked ? panel.panelRate : 0), 0)
-        + this.toothPanelData.reduce(
-        (totalRate, panel) => totalRate + panel.checked ? panel.panelRate : 0, 0)
-        + this.outpatientPanelData.reduce(
-        (totalRate, panel) => totalRate + panel.checked ? panel.panelRate : 0, 0)
-        + this.preventionPanelData.reduce(
-        (totalRate, panel) => totalRate + panel.checked ? panel.panelRate : 0, 0)
+    setTotalRate() {
+      this.totalRate =
+        this.stationaryPanelData.reduce(
+          (totalRate, panel) =>
+            totalRate + (panel.checked ? panel.panelRate : 0),
+          0
+        ) +
+        this.toothPanelData.reduce(
+          (totalRate, panel) =>
+            totalRate + panel.checked ? panel.panelRate : 0,
+          0
+        ) +
+        this.outpatientPanelData.reduce(
+          (totalRate, panel) =>
+            totalRate + panel.checked ? panel.panelRate : 0,
+          0
+        ) +
+        this.preventionPanelData.reduce(
+          (totalRate, panel) =>
+            totalRate + panel.checked ? panel.panelRate : 0,
+          0
+        );
     }
   },
 

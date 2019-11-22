@@ -3,19 +3,13 @@ const state = {
   isCheckedTooth: false,
   isCheckedOutpatient: false,
   isCheckedPrevention: false
-}
+};
 
-const getters = {
-  
-}
+const getters = {};
 
-const actions = {
+const actions = {};
 
-}
-
-const mutations = {
-
-}
+const mutations = {};
 
 export default {
   namespaced: true,
@@ -23,4 +17,4 @@ export default {
   getters,
   actions,
   mutations
-}
+};

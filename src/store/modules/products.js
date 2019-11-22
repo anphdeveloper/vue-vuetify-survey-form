@@ -1,37 +1,20 @@
-import * as productHelper from "../../plugins/helpers/productHelper.js"
 const state = {
-  isCheckedStationary: false,
-  isCheckedTooth: false,
-  isCheckedOutpatient: false,
-  isCheckedPrevention: false,
-  productIdCheckedInStationary: 0,
-  productIdCheckedInTooth: 0,
-  productIdCheckedInOutpatient: 0,
-  productIdCheckedInPrevention: 0  
-}
+  categories: null
+};
 
-const getters = {
-  getStationaryRate : () => {
-    return productHelper.getRateForStationary(8, 0) 
-  }, 
-  getToothRate : () => {
-    return productHelper.getRateForTooth(8, 0) 
-  }, 
-  getOutpatientRate : () => {
-    return productHelper.getRateForOutpatient(8, 0) 
-  }, 
-  getPreventionRate : () => {
-    return productHelper.getRateForPrevention(8, 0) 
-  }, 
-}
+const getters = {};
 
 const actions = {
-
-}
+  setCategories( { commit }, categories){
+    commit("setCategories", categories);
+  }
+};
 
 const mutations = {
-
-}
+  setCategories( state, categories ){
+    state.categories = categories
+  }
+};
 
 export default {
   namespaced: true,
@@ -39,4 +22,4 @@ export default {
   getters,
   actions,
   mutations
-}
+};

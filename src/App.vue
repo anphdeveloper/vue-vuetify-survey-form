@@ -60,14 +60,24 @@ export default {
 
 .meta-pro-text {
   font-family: "MetaPro-Normal" !important;
-  &.primary--text{
+  &.primary--text {
     .v-select__selections {
-    .v-select__selection {
-      font-family: "MetaPro-Normal" !important;
-      color: #00718F;
+      .v-select__selection {
+        font-family: "MetaPro-Normal" !important;
+        color: #00718f;
+      }
+    }
+    .v-input__control {
+      .v-text-field__slot {
+        input {
+          font-family: "MetaPro-Normal" !important;
+          color: #00718f;
+        }
+        label {
+          font-family: "MetaPro-Normal" !important;
+        }
+      }
     }
   }
-  }
-  
 }
 </style>

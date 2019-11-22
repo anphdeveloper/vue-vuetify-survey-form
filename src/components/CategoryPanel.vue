@@ -2,26 +2,44 @@
   <div :class="categoryPanelData.panelBackground + ' pa-4'">
     <v-layout>
       <v-row class="px-2">
-        <p class="mb-1 subtitle text-left pl-2 pt-1 white--text">{{ categoryPanelData.panelTitle }}</p>
+        <p class="mb-1 subtitle text-left pl-2 pt-1 white--text">
+          {{ categoryPanelData.panelTitle }}
+        </p>
         <v-spacer></v-spacer>
-        <v-btn class="mr-1 white close-icon elevation-0 px-0" @click="onClickCheckPanel">
-          <v-icon large :color="categoryPanelData.panelBackground" v-if="categoryPanelData.checked">mdi-close</v-icon>
+        <v-btn
+          class="mr-1 white close-icon elevation-0 px-0"
+          @click="onClickCheckPanel"
+        >
+          <v-icon
+            large
+            :color="categoryPanelData.panelBackground"
+            v-if="categoryPanelData.checked"
+            >mdi-close</v-icon
+          >
         </v-btn>
       </v-row>
     </v-layout>
 
-    <p :class="{ 'mb-0 ' : !categoryPanelData.expanded,  'caption text-left white--text': true}"
-    v-html="categoryPanelData.panelDescription"
+    <p
+      :class="{
+        'mb-0 ': !categoryPanelData.expanded,
+        'caption text-left white--text': true
+      }"
+      v-html="categoryPanelData.panelDescription"
+    ></p>
+    <div
+      class="white--text caption text-left"
+      v-if="categoryPanelData.expanded"
     >
-
-    </p>
-    <div class="white--text caption text-left" v-if="categoryPanelData.expanded">
-      <p class="mb-1" v-for="(feature, index) in categoryPanelData.panelFeature" :key="index">
-        <v-icon color="white">mdi-check</v-icon><span class="ml-1">{{feature}}</span>
+      <p
+        class="mb-1"
+        v-for="(feature, index) in categoryPanelData.panelFeature"
+        :key="index"
+      >
+        <v-icon color="white">mdi-check</v-icon
+        ><span class="ml-1">{{ feature }}</span>
       </p>
-      <v-btn
-        block
-        class="white mt-4 btn-info white--text elevation-0 py-2"
+      <v-btn block class="white mt-4 btn-info white--text elevation-0 py-2"
         >INFOBROSCHÜRE
         <v-icon class="white--text ml-4">
           mdi-arrow-collapse-down
@@ -30,10 +48,18 @@
     </div>
 
     <v-btn icon class="plus-icon" @click="onClickExpandPanel">
-      <v-icon large :class="`${categoryPanelData.panelBackground}`+ '--text'" v-if="!categoryPanelData.expanded">
+      <v-icon
+        large
+        :class="`${categoryPanelData.panelBackground}` + '--text'"
+        v-if="!categoryPanelData.expanded"
+      >
         mdi-plus-circle-outline
       </v-icon>
-      <v-icon large :class="`${categoryPanelData.panelBackground}`+ '--text'" v-if="categoryPanelData.expanded">
+      <v-icon
+        large
+        :class="`${categoryPanelData.panelBackground}` + '--text'"
+        v-if="categoryPanelData.expanded"
+      >
         mdi-minus-circle-outline
       </v-icon>
     </v-btn>
@@ -61,22 +87,23 @@ export default {
     };
   },
   methods: {
-    onClickCheckPanel(){     
+    onClickCheckPanel() {
       this.checkPanel(this.$props.categoryPanelData.id);
     },
-    onClickExpandPanel(){
-      this.expandPanel(this.$props.categoryPanelData.id, !this.$props.categoryPanelData.expanded);
+    onClickExpandPanel() {
+      this.expandPanel(
+        this.$props.categoryPanelData.id,
+        !this.$props.categoryPanelData.expanded
+      );
     }
   },
-  watch: {
-  },
-  created(){
+  watch: {},
+  created() {
     this.panelChecked = this.$props.categoryPanelData.checked;
   }
 };
 </script>
 <style scoped lang="scss">
-
 .close-icon {
   height: 30px !important;
   min-height: 30px !important;

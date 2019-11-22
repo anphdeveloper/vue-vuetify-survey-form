@@ -29,7 +29,7 @@ export default {
   width: 100%;
 }
 .left-title {
-  @media only screen and (max-width: 900px){
+  @media only screen and (max-width: 900px) {
     width: 100%;
   }
 }
@@ -38,7 +38,7 @@ export default {
   left: 0;
   right: 0;
   margin: auto;
-  @media only screen and (max-width: 900px){
+  @media only screen and (max-width: 900px) {
     position: relative;
     left: unset;
     right: unset;

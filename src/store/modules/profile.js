@@ -1,33 +1,36 @@
 const state = {
   dayOfBirth: null,
   targetDay: null,
-  age: 0,
+  age: 0
 };
 
 const getters = {
-  getDayOfBirty : state => state.dayOfBirth,
+  getDayOfBirty: state => state.dayOfBirth,
   getAge: state => state.age
 };
 
 const actions = {
-  setDayOfBirth( {commit}, dayOfBirth){
-    commit("setDayOfBirth", dayOfBirth)
+  setDayOfBirth({ commit }, dayOfBirth) {
+    commit("setDayOfBirth", dayOfBirth);
   },
 
-  setTargetDay( {commit, state}, targetDay){
+  setTargetDay({ commit, state }, targetDay) {
     commit("setTargetDay", targetDay);
-    commit("setAge", targetDay.getFullYear() - new Date(state.dayOfBirth).getFullYear());
-  },
+    commit(
+      "setAge",
+      targetDay.getFullYear() - new Date(state.dayOfBirth).getFullYear()
+    );
+  }
 };
 
 const mutations = {
-  setDayOfBirth( state, dayOfBirth){
+  setDayOfBirth(state, dayOfBirth) {
     state.dayOfBirth = dayOfBirth;
   },
-  setTargetDay( state, targetDay){
+  setTargetDay(state, targetDay) {
     state.targetDay = targetDay;
   },
-  setAge( state, age){
+  setAge(state, age) {
     state.age = age;
   }
 };
@@ -38,4 +41,4 @@ export default {
   getters,
   actions,
   mutations
-}
+};

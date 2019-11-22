@@ -1,7 +1,7 @@
-import * as commonHelper from './commonHelper'
-import * as productHelper from './productHelper'
+import * as commonHelper from "./commonHelper";
+import * as productHelper from "./productHelper";
 
-export default{
+export default {
   commonHelper,
   productHelper
-}
+};

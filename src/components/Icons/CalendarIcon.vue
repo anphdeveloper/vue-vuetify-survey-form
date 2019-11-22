@@ -1,10 +1,10 @@
 <template>
-  <div class="sick-bed"></div>
+  <div class="calendar"></div>
 </template>
 
 <script>
 export default {
-  name: "SickBedIcon",
+  name: "CalendarIcon",
   components: {},
   props: {},
   data() {
@@ -15,17 +15,18 @@ export default {
 };
 </script>
 <style lang="scss">
-.sick-bed {
-  margin-top: 8px;
-  background: url("../../assets/icons/krankenbett.svg");
+.calendar {
+  margin-bottom: 4px;
+  background: url("../../assets/icons/calendar.svg");
   background-color: transparent !important;
   width: 42px;
-  height: 48px;
+  height: 36px;
+  background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;
   @media only screen and (max-width: 1200px) {
-    width: 32px;
-    height: 34px;
+    width: 24px;
+    height: 24px;
     margin-right: 10px !important;
     background-size: cover;
   }
