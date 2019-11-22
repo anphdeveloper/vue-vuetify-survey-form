@@ -67,16 +67,12 @@
                       content-class="primary tooltip-with-top-arrow"
                     >
                       <template v-slot:activator="{ on }">
-                        <v-icon color="primary" v-on="on"
-                          >mdi-information-outline</v-icon
-                        >
+                        <v-icon color="primary" v-on="on">mdi-information-outline</v-icon>
                       </template>
                       <v-card class="elevation-0 primary">
                         <v-layout d-flex row wrap>
                           <v-col cols="12" sm="2">
-                            <v-icon color="white"
-                              >mdi-information-outline</v-icon
-                            >
+                            <v-icon color="white">mdi-information-outline</v-icon>
                           </v-col>
                           <v-col cols="12" sm="10" class="ml-0 pl-0">
                             <p class="text-left white--text mb-0">
@@ -95,9 +91,7 @@
                 </template>
               </rate-selection-panel>
               <v-layout justify-start class="pt-2">
-                <comparison-table-modal
-                  :isComparisonForStationary="true"
-                ></comparison-table-modal>
+                <comparison-table-modal :isComparisonForStationary="true"></comparison-table-modal>
               </v-layout>
             </div>
           </v-col>
@@ -172,9 +166,7 @@
                 :class="{ 'mt-4': ratePanel.id !== 0 }"
               ></rate-selection-panel>
               <v-layout justify-start class="pt-2">
-                <comparison-table-modal
-                  :isComparisonForStationary="false"
-                ></comparison-table-modal>
+                <comparison-table-modal :isComparisonForStationary="false"></comparison-table-modal>
               </v-layout>
             </div>
           </v-col>
@@ -191,29 +183,27 @@
           ></middle-title-panel>
         </v-row>
         <v-row justify="center">
-          <v-btn
-            depressed
-            large
-            color="danger"
-            class="mt-4 white--text"
-            @click="onClickContinueWithSelection"
-            >MIT AUSWAHL FORTFAHREN</v-btn
-          >
+          <v-col class="justify-center align-center">
+            <v-btn
+              depressed
+              large
+              color="danger"
+              class="mt-4 white--text"
+              :block="$vuetify.breakpoint.smAndDown"
+              @click="onClickContinueWithSelection"
+            >MIT AUSWAHL FORTFAHREN</v-btn>
+          </v-col>
         </v-row>
-        <v-row justify="start" class="px-3" wrap>
-          <v-col>
+        <v-row class="px-3 justify-start" wrap>
             <router-link to="/inputDOB" tag="span">
               <v-btn
                 text
                 class="px-3 primary--text body-1 btn-link"
-                large
-                :block="$vuetify.breakpoint.smAndDown"
                 :ripple="false"
               >
                 <v-icon color="primary">mdi-arrow-left</v-icon>ZURÜCK
               </v-btn>
             </router-link>
-          </v-col>
         </v-row>
       </v-layout>
     </v-col>
@@ -232,7 +222,7 @@ export default {
     CategoryPanel,
     RateSelectionPanel,
     MiddleTitlePanel,
-    ComparisonTableModal,
+    ComparisonTableModal
   },
   props: {},
   data() {
@@ -423,7 +413,6 @@ export default {
       },
       deep: true
     }
-   
   },
 
   methods: {
@@ -483,8 +472,12 @@ export default {
       );
       this.categoryPanelData[0].checked = true;
       this.categoryPanelData[0].selectedId = id;
-      this.categoryPanelData[0].selectedProductName = this.stationaryPanelData[id].panelTitle;
-      this.categoryPanelData[0].selectedRate = this.stationaryPanelData[id].panelRate;
+      this.categoryPanelData[0].selectedProductName = this.stationaryPanelData[
+        id
+      ].panelTitle;
+      this.categoryPanelData[0].selectedRate = this.stationaryPanelData[
+        id
+      ].panelRate;
     },
 
     selectToothRatePanel(id) {
@@ -493,8 +486,12 @@ export default {
       );
       this.categoryPanelData[1].checked = true;
       this.categoryPanelData[1].selectedId = id;
-      this.categoryPanelData[1].selectedProductName = this.toothPanelData[id].panelTitle;
-      this.categoryPanelData[1].selectedRate = this.toothPanelData[id].panelRate;
+      this.categoryPanelData[1].selectedProductName = this.toothPanelData[
+        id
+      ].panelTitle;
+      this.categoryPanelData[1].selectedRate = this.toothPanelData[
+        id
+      ].panelRate;
     },
 
     selectOutpatientRatePanel(id) {
@@ -503,8 +500,12 @@ export default {
       );
       this.categoryPanelData[2].checked = true;
       this.categoryPanelData[2].selectedId = id;
-      this.categoryPanelData[2].selectedProductName = this.outpatientPanelData[id].panelTitle;
-      this.categoryPanelData[2].selectedRate = this.outpatientPanelData[id].panelRate;
+      this.categoryPanelData[2].selectedProductName = this.outpatientPanelData[
+        id
+      ].panelTitle;
+      this.categoryPanelData[2].selectedRate = this.outpatientPanelData[
+        id
+      ].panelRate;
     },
 
     selectPreventionRatePanel(id) {
@@ -513,8 +514,12 @@ export default {
       );
       this.categoryPanelData[3].checked = true;
       this.categoryPanelData[3].selectedId = id;
-      this.categoryPanelData[3].selectedProductName = this.preventionPanelData[id].panelTitle;
-      this.categoryPanelData[3].selectedRate = this.preventionPanelData[id].panelRate;
+      this.categoryPanelData[3].selectedProductName = this.preventionPanelData[
+        id
+      ].panelTitle;
+      this.categoryPanelData[3].selectedRate = this.preventionPanelData[
+        id
+      ].panelRate;
     },
 
     expandCategoryPanel(id, expanded) {

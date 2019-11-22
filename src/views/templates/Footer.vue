@@ -1,7 +1,7 @@
 <template>
   <v-footer
     height="auto"
-    class="footer justify-sm-start justify-xs-center pb-4 caption content"
+    class="footer justify-start pb-4 caption content"
   >
     <span class="px-3 primary--text"
       >© Gothaer AG, Köln. Alle Rechte vorbehalten.</span

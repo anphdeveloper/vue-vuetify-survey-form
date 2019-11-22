@@ -1,7 +1,26 @@
 const state = {
   dayOfBirth: null,
   targetDay: null,
-  age: 0
+  age: 0,
+  missedTeeth: 0,
+  previousInsuranceCompany: "",
+  personalData: {
+    salutation: "Frau",
+    title: "Dr.",
+    firstGivenName: "",
+    surname: "",
+    street: "",
+    streetNo: "",
+    country: "Deutschland",
+    postCode: "",
+    place: "",
+    phoneNo: "",
+    emailAddress: "",
+    professionalActivities: "",
+    settingDate: "",
+    paymentOption: "",
+    ibanNumber: "",
+  },
 };
 
 const getters = {
@@ -20,7 +39,19 @@ const actions = {
       "setAge",
       targetDay.getFullYear() - new Date(state.dayOfBirth).getFullYear()
     );
-  }
+  },
+
+  setMissedTeeth({ commit }, misssedTeeth) {
+    commit("setMissedTeeth", misssedTeeth);
+  },
+
+  setPreviousInsuranceCompany({ commit }, company) {
+    commit("setPrevInsComp", company);
+  },
+
+  setPersonalData({ commit }, personalData) {
+    commit("setPersonalData", personalData);
+  },
 };
 
 const mutations = {
@@ -32,6 +63,17 @@ const mutations = {
   },
   setAge(state, age) {
     state.age = age;
+  },
+  setMissedTeeth(state, numberOfMissedTeeth) {
+    state.missedTeeth = numberOfMissedTeeth;
+  },
+  setPrevInsComp(state, prevInsCompany) {
+    state.previousInsuranceCompany = prevInsCompany;
+  },
+  setPersonalData(state, personalData) {
+    Object.keys(personalData).forEach(
+      key => state.personalData[key] = personalData[key]
+    );
   }
 };
 

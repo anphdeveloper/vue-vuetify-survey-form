@@ -17,16 +17,25 @@
                 >Ausgenommen Weisheitszähne, Lückenschlüsse bzw. Milchzähne, die aufgrund des natürlichen Zahnwechsels fehlen.</p>
 
                 <v-row justify="center">
-                  <v-col cols="12">
-                    <p class="pb-0 mb-0 mt-4 text-start caption">Anzahl ?</p>
-                    <v-select
-                      class="mt-0 pt-0 meta-pro-text primary--text"
-                      :items="numbers"
-                      v-model="number"
-                      append-icon="mdi-chevron-down"
-                      color="primary"
-                      :rules="[v => !!v || '']"
-                    ></v-select>
+                  <v-col cols="12" class="pb-0">
+                    <v-row>
+                      <v-col cols="12" class="pr-0">
+                        <p class="pb-0 text-start body-1 font-weight-bold mb-0 mt-2">Anzahl?</p>
+                        <v-select
+                          class="mt-2 pt-0 meta-pro-text primary--text"
+                          :items="numbers"
+                          v-model="number"
+                          
+                          append-icon="mdi-chevron-down"
+                          color="primary"
+                          :rules="[v => !!v || '']"
+                        ></v-select>
+                        <v-spacer></v-spacer>
+                      </v-col>
+
+                    </v-row>
+                    
+                    
                   </v-col>
                 </v-row>
                 <p class="text-start font-weight-bold body-2 mb-1">Hinweis</p>

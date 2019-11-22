@@ -191,8 +191,6 @@ export default {
       insuredOption: "0",
       agreeCheckBox: false,
       dentalInsuranceAvailable: "1",
-      number: "0",
-      numbers: ["0", "1", "2", "3", "4", "mehr"],
       showReadMore: true,
       showInsureWarningForPrivate: false
     };
