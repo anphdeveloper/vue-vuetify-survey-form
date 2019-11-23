@@ -172,15 +172,73 @@
           background-color="transparent" 
           color="basil" 
           show-arrows
+          hide-slider
+          height="96"
           class="group-table-mobile">
             <v-tab v-for="item in items" :key="item" v-html="item"></v-tab>
           </v-tabs>
 
           <v-tabs-items v-model="tab">
             <v-tab-item v-for="item in items" :key="item">
-              <v-card flat color="basil">
-                <v-card-text>{{ text }}</v-card-text>
-              </v-card>
+              <div class="comp-mobile-table">
+                <v-container class="body-1 font-weight-bold">
+                  <v-row class="justify-space-between px-2">
+                    <span>
+                      Einbettzimmer
+                    </span>
+                    <sick-bed-icon></sick-bed-icon>
+                  </v-row>
+                  <v-row class="justify-space-between px-2">
+                    <span>
+                      Alterungsrückstellung
+                    </span>
+                    <v-icon color="#8AB304" large
+                      >mdi-checkbox-marked-circle-outline</v-icon
+                    >
+                  </v-row>
+                  <v-row class="justify-space-between px-2">
+                    <span>
+                      100% privatärztliche Behandlung (Chefarzt)
+                    </span>
+                    <v-icon color="#8AB304" large
+                      >mdi-checkbox-marked-circle-outline</v-icon
+                    >
+                  </v-row>
+                  <v-row class="justify-space-between px-2">
+                    <span>
+                      100% Zuzahlung für stationären Aufenthalt
+                    </span>
+                    <v-icon color="#8AB304" large
+                      >mdi-checkbox-marked-circle-outline</v-icon
+                    >
+                  </v-row>
+                  <v-row class="justify-space-between px-2">
+                    <span>
+                      100% ambulante Operationen
+                    </span>
+                    <v-icon color="#8AB304" large
+                      >mdi-checkbox-marked-circle-outline</v-icon
+                    >
+                  </v-row>
+                  <v-row class="justify-space-between px-2">
+                    <span>
+                      100% Rooming-in
+                    </span>
+                    <v-icon color="#8AB304" large
+                      >mdi-checkbox-marked-circle-outline</v-icon
+                    >
+                  </v-row>
+                  <v-row class="justify-space-between px-2">
+                    <span>
+                      Alterungsrückstellung
+                    </span>
+                    <v-icon color="#8AB304" large
+                      >mdi-checkbox-marked-circle-outline</v-icon
+                    >
+                  </v-row>
+                  
+                </v-container>
+              </div>
             </v-tab-item>
           </v-tabs-items>
         </v-card-text>
@@ -191,11 +249,11 @@
 </template>
 
 <script>
-//import SickBedIcon from "@/components/Icons/SickBedIcon";
+import SickBedIcon from "@/components/Icons/SickBedIcon";
 export default {
   name: "ComparisonTableModal",
   components: {
-    //SickBedIcon
+    SickBedIcon
   },
   props: ["isComparisonForStationary"],
   data() {
@@ -239,6 +297,7 @@ export default {
 }
 
 .group-table-mobile{
+
   .v-tab {
     width: 33.3%;
     max-width: 33.33%;
@@ -246,13 +305,69 @@ export default {
     padding-right: 0;
     color: #fff!important;
     background: #035370;
-  }
-  .v-tab:first-child{
     opacity: 1;
+    margin-bottom: 25px;
+    &:before{
+      transition: unset;
+    }
+    &.v-tab--active{
+      margin-bottom: 15px;
+      &::before{
+        opacity: 0;
+      }
+      &::after{
+        z-index: 10000;
+        content: '';
+        position: absolute;
+        display: block;    
+        width: 0px;        
+        left: 50%;
+        bottom: 0;
+        border: 15px solid transparent;
+        border-bottom: 0;
+        border-top: 15px solid #035370;
+        transform: translate(-50%, calc(100% - 1px));
+      }
+    }
+  }
+  .v-tab:nth-child(2){
+    opacity: 0.7;
+    &.v-tab--active{
+      margin-bottom: 15px;
+      &::after{
+        content: '';
+        position: absolute;
+        display: block;    
+        width: 0px;        
+        left: 50%;
+        bottom: 0;
+        border: 15px solid transparent;
+        border-bottom: 0;
+        border-top: 15px solid #035370;
+        opacity: 1;
+        transform: translate(-50%, calc(100% - 1px));
+      }
+    }
   }
 
   .v-tab:last-child{
     opacity: 0.4;
+    &.v-tab--active{
+      margin-bottom: 15px;
+      &::after{
+        content: '';
+        position: absolute;
+        display: block;    
+        width: 0px;        
+        left: 50%;
+        bottom: 0;
+        border: 15px solid transparent;
+        border-bottom: 0;
+        border-top: 15px solid #035370;
+        opacity: 1;
+        transform: translate(-50%, calc(100% - 1px));
+      }
+    }
   }
   .v-slide-group__prev{
     display: none;
@@ -262,5 +377,10 @@ export default {
     display: none!important;
   }
 }
+.comp-mobile-table{
 
+    /deep/ .row {
+      height: 40px;
+    }
+  }
 </style>
