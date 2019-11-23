@@ -111,8 +111,7 @@
                       <span>Einbettzimmer</span>
                     </v-col>
                     <v-col cols="3" align="end" align-self="center" justify-self="center" class="py-1">
-                      <sick-bed-icon class="mr-1"></sick-bed-icon>
-                      <send-icon></send-icon>
+                      <sick-bed-icon></sick-bed-icon>
                     </v-col>
                   </v-row>
                   <v-row class="px-2">
