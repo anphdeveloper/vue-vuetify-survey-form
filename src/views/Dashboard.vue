@@ -273,7 +273,7 @@ export default {
           id: 2,
           panelTitle: "Ambulant",
           panelDescription:
-            "Maximales Wohlbefinden, <br />sowie beste Leistungen.",
+            "Keine Extrakosten bei ärztlichen<br/> Leistungen für bessere Gesundheit.",
           panelFeature: [
             "Erstattung für Arzneimittel 100%",
             "Heilpraktiker 80%",

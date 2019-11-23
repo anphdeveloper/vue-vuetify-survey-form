@@ -23,7 +23,7 @@
     <p
       :class="{
         'mb-0 ': !categoryPanelData.expanded,
-        'body-1 text-left white--text': true
+        'body-2 text-left white--text': true
       }"
       v-html="categoryPanelData.panelDescription"
     ></p>

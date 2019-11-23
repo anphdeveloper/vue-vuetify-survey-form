@@ -17,9 +17,9 @@
           </v-btn>
         </div>
         <v-card-text class="pt-10">
-          <!-- <v-simple-table
+          <v-simple-table
             class="plan-compare-table"
-            v-if="isComparisonForStationary"
+            v-if="isComparisonForStationary && $vuetify.breakpoint.smAndUp"
           >
             <template v-slot:default>
               <thead>
@@ -105,7 +105,92 @@
               </tbody>
             </template>
           </v-simple-table>
-          <v-simple-table class="plan-compare-table" v-else>
+          <v-tabs
+            v-model="tab"
+            background-color="transparent"
+            color="basil"
+            show-arrows
+            hide-slider
+            height="96"
+            class="group-table-mobile"
+            v-if="isComparisonForStationary && $vuetify.breakpoint.xs"
+          >
+            <v-tab v-for="item in items" :key="item" v-html="item"></v-tab>
+          </v-tabs>
+
+          <v-tabs-items v-model="tab">
+            <v-tab-item v-for="item in items" :key="item">
+              <div class="comp-mobile-table">
+                <v-container class="body-1 font-weight-bold">
+                  <v-row class="px-2">
+                    <v-col cols="10" align="start" align-self="center">
+                      <span>Einbettzimmer</span>
+                    </v-col>
+                    <v-col cols="2" align="end" align-self="center">
+                      <sick-bed-icon></sick-bed-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="10" align-self="center" align="start">
+                      <span>Alterungsrückstellung</span>
+                    </v-col>
+                    <v-col cols="2" align-self="center" align="end">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="10" align-self="center" align="start">
+                      <span>100% privatärztliche Behandlung (Chefarzt)</span>
+                    </v-col>
+                    <v-col cols="2" align-self="center" align="end">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="10" align-self="center" align="start">
+                      <span>100% Zuzahlung für stationären Aufenthalt</span>
+                    </v-col>
+                    <v-col cols="2" align-self="center" align="end">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                    
+                    
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="10" align-self="center" align="start">
+                      <span>100% ambulante Operationen</span>
+                    </v-col>
+                    <v-col cols="2" align-self="center" align="end">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                    
+                    
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="10" align-self="center" align="start">
+                      <span>100% Rooming-in</span>
+                    </v-col>
+                    <v-col cols="2" align-self="center" align="end">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                    
+                    
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="10" align-self="center" align="start">
+                      <span>Alterungsrückstellung</span>
+                    </v-col>
+                    <v-col cols="2" align-self="center" align="end">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                    
+                    
+                  </v-row>
+                </v-container>
+              </div>
+            </v-tab-item>
+          </v-tabs-items>
+          <v-simple-table class="plan-compare-table" v-if="!isComparisonForStationary && $vuetify.breakpoint.smAndUp">
             <template v-slot:default>
               <thead>
                 <tr>
@@ -166,81 +251,9 @@
                 </tr>
               </tbody>
             </template>
-          </v-simple-table>-->
+          </v-simple-table>
 
-          <v-tabs v-model="tab" 
-          background-color="transparent" 
-          color="basil" 
-          show-arrows
-          hide-slider
-          height="96"
-          class="group-table-mobile">
-            <v-tab v-for="item in items" :key="item" v-html="item"></v-tab>
-          </v-tabs>
-
-          <v-tabs-items v-model="tab">
-            <v-tab-item v-for="item in items" :key="item">
-              <div class="comp-mobile-table">
-                <v-container class="body-1 font-weight-bold">
-                  <v-row class="justify-space-between px-2">
-                    <span>
-                      Einbettzimmer
-                    </span>
-                    <sick-bed-icon></sick-bed-icon>
-                  </v-row>
-                  <v-row class="justify-space-between px-2">
-                    <span>
-                      Alterungsrückstellung
-                    </span>
-                    <v-icon color="#8AB304" large
-                      >mdi-checkbox-marked-circle-outline</v-icon
-                    >
-                  </v-row>
-                  <v-row class="justify-space-between px-2">
-                    <span>
-                      100% privatärztliche Behandlung (Chefarzt)
-                    </span>
-                    <v-icon color="#8AB304" large
-                      >mdi-checkbox-marked-circle-outline</v-icon
-                    >
-                  </v-row>
-                  <v-row class="justify-space-between px-2">
-                    <span>
-                      100% Zuzahlung für stationären Aufenthalt
-                    </span>
-                    <v-icon color="#8AB304" large
-                      >mdi-checkbox-marked-circle-outline</v-icon
-                    >
-                  </v-row>
-                  <v-row class="justify-space-between px-2">
-                    <span>
-                      100% ambulante Operationen
-                    </span>
-                    <v-icon color="#8AB304" large
-                      >mdi-checkbox-marked-circle-outline</v-icon
-                    >
-                  </v-row>
-                  <v-row class="justify-space-between px-2">
-                    <span>
-                      100% Rooming-in
-                    </span>
-                    <v-icon color="#8AB304" large
-                      >mdi-checkbox-marked-circle-outline</v-icon
-                    >
-                  </v-row>
-                  <v-row class="justify-space-between px-2">
-                    <span>
-                      Alterungsrückstellung
-                    </span>
-                    <v-icon color="#8AB304" large
-                      >mdi-checkbox-marked-circle-outline</v-icon
-                    >
-                  </v-row>
-                  
-                </v-container>
-              </div>
-            </v-tab-item>
-          </v-tabs-items>
+          
         </v-card-text>
         <v-divider></v-divider>
       </v-card>
@@ -260,10 +273,8 @@ export default {
     return {
       show: false,
       tab: null,
-        items: [
-          'MediGroup<br />S1', 'MediGroup<br />S2', 'Medi<br/>Clinic Plus'
-        ],
-        text: 'Lorem ipsum dolor sit amet, consectetur adipisci'
+      items: ["MediGroup<br />S1", "MediGroup<br />S2", "Medi<br/>Clinic Plus"],
+      text: "Lorem ipsum dolor sit amet, consectetur adipisci"
     };
   },
   computed: {},
@@ -296,31 +307,31 @@ export default {
   }
 }
 
-.group-table-mobile{
-
+.group-table-mobile {
   .v-tab {
     width: 33.3%;
     max-width: 33.33%;
     padding-left: 0;
     padding-right: 0;
-    color: #fff!important;
+    color: #fff !important;
     background: #035370;
     opacity: 1;
     margin-bottom: 25px;
-    &:before{
+    text-transform: capitalize;
+    &:before {
       transition: unset;
     }
-    &.v-tab--active{
+    &.v-tab--active {
       margin-bottom: 15px;
-      &::before{
+      &::before {
         opacity: 0;
       }
-      &::after{
+      &::after {
         z-index: 10000;
-        content: '';
+        content: "";
         position: absolute;
-        display: block;    
-        width: 0px;        
+        display: block;
+        width: 0px;
         left: 50%;
         bottom: 0;
         border: 15px solid transparent;
@@ -330,15 +341,15 @@ export default {
       }
     }
   }
-  .v-tab:nth-child(2){
+  .v-tab:nth-child(2) {
     opacity: 0.7;
-    &.v-tab--active{
+    &.v-tab--active {
       margin-bottom: 15px;
-      &::after{
-        content: '';
+      &::after {
+        content: "";
         position: absolute;
-        display: block;    
-        width: 0px;        
+        display: block;
+        width: 0px;
         left: 50%;
         bottom: 0;
         border: 15px solid transparent;
@@ -350,15 +361,15 @@ export default {
     }
   }
 
-  .v-tab:last-child{
+  .v-tab:last-child {
     opacity: 0.4;
-    &.v-tab--active{
+    &.v-tab--active {
       margin-bottom: 15px;
-      &::after{
-        content: '';
+      &::after {
+        content: "";
         position: absolute;
-        display: block;    
-        width: 0px;        
+        display: block;
+        width: 0px;
         left: 50%;
         bottom: 0;
         border: 15px solid transparent;
@@ -369,18 +380,25 @@ export default {
       }
     }
   }
-  .v-slide-group__prev{
+  .v-slide-group__prev {
     display: none;
   }
 
-  .v-slide-group__next{
-    display: none!important;
+  .v-slide-group__next {
+    display: none !important;
   }
 }
-.comp-mobile-table{
-
-    /deep/ .row {
-      height: 40px;
+.comp-mobile-table {
+  /deep/ .row {
+    border-left: 1px solid #CED4DA;
+    border-right: 1px solid #CED4DA;
+    border-bottom: 1px solid #CED4DA;
+    &:first-child{
+      border-top: 1px solid #CED4DA;
+    }
+    &:nth-child(odd){
+      background: #E6E9EC;
     }
   }
+}
 </style>
