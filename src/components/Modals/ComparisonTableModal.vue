@@ -53,53 +53,37 @@
                     <v-icon color="#E1100A" large>mdi-close</v-icon>
                   </td>
                   <td class="py-0" justify="center" align="center">
-                    <v-icon color="#8AB304" large
-                      >mdi-checkbox-marked-circle-outline</v-icon
-                    >
+                    <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
                   </td>
                 </tr>
                 <tr>
-                  <td class="py-0">
-                    100% privatärztliche Behandlung (Chefarzt)
-                  </td>
+                  <td class="py-0">100% privatärztliche Behandlung (Chefarzt)</td>
                   <td class="py-0" justify="center" align="center" colspan="3">
-                    <v-icon color="#8AB304" large
-                      >mdi-checkbox-marked-circle-outline</v-icon
-                    >
+                    <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
                   </td>
                 </tr>
                 <tr>
-                  <td class="py-0">
-                    100% Zuzahlung für stationären Aufenthalt
-                  </td>
+                  <td class="py-0">100% Zuzahlung für stationären Aufenthalt</td>
                   <td class="py-0" justify="center" align="center" colspan="3">
-                    <v-icon color="#8AB304" large
-                      >mdi-checkbox-marked-circle-outline</v-icon
-                    >
+                    <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
                   </td>
                 </tr>
                 <tr>
                   <td class="py-0">100% ambulante Operationen</td>
                   <td class="py-0" justify="center" align="center" colspan="3">
-                    <v-icon color="#8AB304" large
-                      >mdi-checkbox-marked-circle-outline</v-icon
-                    >
+                    <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
                   </td>
                 </tr>
                 <tr>
                   <td class="py-0">100% Rooming-in</td>
                   <td class="py-0" justify="center" align="center" colspan="3">
-                    <v-icon color="#8AB304" large
-                      >mdi-checkbox-marked-circle-outline</v-icon
-                    >
+                    <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
                   </td>
                 </tr>
                 <tr>
                   <td class="py-0">Freie Krankenhausauswahl</td>
                   <td class="py-0" justify="center" align="center" colspan="3">
-                    <v-icon color="#8AB304" large
-                      >mdi-checkbox-marked-circle-outline</v-icon
-                    >
+                    <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
                   </td>
                 </tr>
               </tbody>
@@ -115,82 +99,203 @@
             class="group-table-mobile"
             v-if="isComparisonForStationary && $vuetify.breakpoint.xs"
           >
-            <v-tab v-for="item in items" :key="item" v-html="item"></v-tab>
+            <v-tab v-for="item in groupItems" :key="item" v-html="item"></v-tab>
           </v-tabs>
 
-          <v-tabs-items v-model="tab">
-            <v-tab-item v-for="item in items" :key="item">
+          <v-tabs-items v-model="tab" v-if="isComparisonForStationary && $vuetify.breakpoint.xs">
+            <v-tab-item>
+              <div class="comp-mobile-table">
+                <v-container class="body-1 font-weight-bold">
+                  <v-row class="px-2 py-0">
+                    <v-col cols="9" align="start" align-self="center" class="px-0 py-1">
+                      <span>Einbettzimmer</span>
+                    </v-col>
+                    <v-col cols="3" align="end" align-self="center" justify-self="center" class="py-1">
+                      <sick-bed-icon class="mr-1"></sick-bed-icon>
+                      <send-icon></send-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>Alterungsrückstellung</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#E1100A" large class="font-weight-thin">mdi-close</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>100% privatärztliche Behandlung (Chefarzt)</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>100% Zuzahlung für stationären Aufenthalt</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>100% ambulante Operationen</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>100% Rooming-in</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>Freie Krankenhausauswahl</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </div>
+            </v-tab-item>
+            <v-tab-item>
               <div class="comp-mobile-table">
                 <v-container class="body-1 font-weight-bold">
                   <v-row class="px-2">
-                    <v-col cols="10" align="start" align-self="center">
-                      <span>Einbettzimmer</span>
+                    <v-col cols="7" align="start" align-self="center" class="px-0 py-1">
+                      <span>Zweibettzimmer</span>
                     </v-col>
-                    <v-col cols="2" align="end" align-self="center">
-                      <sick-bed-icon></sick-bed-icon>
+                    <v-col cols="5" align="end" align-self="center" justify-self="center" class="py-1">
+                      <sick-bed-icon class="mr-1"></sick-bed-icon>
+                      <sick-bed-icon class="mr-1"></sick-bed-icon>
                     </v-col>
                   </v-row>
                   <v-row class="px-2">
-                    <v-col cols="10" align-self="center" align="start">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
                       <span>Alterungsrückstellung</span>
                     </v-col>
-                    <v-col cols="2" align-self="center" align="end">
-                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#E1100A" large>mdi-close</v-icon>
                     </v-col>
                   </v-row>
                   <v-row class="px-2">
-                    <v-col cols="10" align-self="center" align="start">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
                       <span>100% privatärztliche Behandlung (Chefarzt)</span>
                     </v-col>
-                    <v-col cols="2" align-self="center" align="end">
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
                       <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
                     </v-col>
                   </v-row>
                   <v-row class="px-2">
-                    <v-col cols="10" align-self="center" align="start">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
                       <span>100% Zuzahlung für stationären Aufenthalt</span>
                     </v-col>
-                    <v-col cols="2" align-self="center" align="end">
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
                       <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
                     </v-col>
-                    
-                    
                   </v-row>
                   <v-row class="px-2">
-                    <v-col cols="10" align-self="center" align="start">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
                       <span>100% ambulante Operationen</span>
                     </v-col>
-                    <v-col cols="2" align-self="center" align="end">
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
                       <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
                     </v-col>
-                    
-                    
                   </v-row>
                   <v-row class="px-2">
-                    <v-col cols="10" align-self="center" align="start">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
                       <span>100% Rooming-in</span>
                     </v-col>
-                    <v-col cols="2" align-self="center" align="end">
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
                       <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
                     </v-col>
-                    
-                    
                   </v-row>
                   <v-row class="px-2">
-                    <v-col cols="10" align-self="center" align="start">
-                      <span>Alterungsrückstellung</span>
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>Freie Krankenhausauswahl</span>
                     </v-col>
-                    <v-col cols="2" align-self="center" align="end">
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
                       <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
                     </v-col>
-                    
-                    
+                  </v-row>
+                </v-container>
+              </div>
+            </v-tab-item>
+            <v-tab-item>
+              <div class="comp-mobile-table">
+                <v-container class="body-1 font-weight-bold">
+                  <v-row class="px-2">
+                    <v-col cols="9" align="start" align-self="center" class="px-0 py-1">
+                      <span>Zweibettzimmer</span>
+                    </v-col>
+                    <v-col cols="3" align="end" class="py-1" align-self="center" justify-self="center">
+                      <sick-bed-icon class="mr-1"></sick-bed-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>Alterungsrückstellung</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>100% privatärztliche Behandlung (Chefarzt)</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>100% Zuzahlung für stationären Aufenthalt</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>100% ambulante Operationen</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>100% Rooming-in</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>Freie Krankenhausauswahl</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
                   </v-row>
                 </v-container>
               </div>
             </v-tab-item>
           </v-tabs-items>
-          <v-simple-table class="plan-compare-table" v-if="!isComparisonForStationary && $vuetify.breakpoint.smAndUp">
+          <v-simple-table
+            class="plan-compare-table"
+            v-if="!isComparisonForStationary && $vuetify.breakpoint.smAndUp"
+          >
             <template v-slot:default>
               <thead>
                 <tr>
@@ -202,27 +307,21 @@
               <tbody>
                 <tr>
                   <td class="py-0">Medigroup Premium</td>
-                  <td class="py-0" justify="center" align="center">
-                    100%
-                  </td>
-                  <td class="py-0" justify="center" align="center">
-                    100%
-                  </td>
+                  <td class="py-0" justify="center" align="center">100%</td>
+                  <td class="py-0" justify="center" align="center">100%</td>
                 </tr>
                 <tr>
                   <td class="py-0">Schutzimpfungen</td>
-                  <td class="py-0" justify="center" align="center">
-                    100%
-                  </td>
-                  <td class="py-0" justify="center" align="center">
-                    100%
-                  </td>
+                  <td class="py-0" justify="center" align="center">100%</td>
+                  <td class="py-0" justify="center" align="center">100%</td>
                 </tr>
                 <tr>
                   <td class="py-0">Prävention</td>
-                  <td class="py-0" justify="center" align="center">
-                    bis zu 50 €/Jahr für eine Mitgliedschaft im Fitnessstudio
-                  </td>
+                  <td
+                    class="py-0"
+                    justify="center"
+                    align="center"
+                  >bis zu 50 €/Jahr für eine Mitgliedschaft im Fitnessstudio</td>
                   <td class="py-0" justify="center" align="center">
                     bis zu insgesamt 100 €/Jahr für eine Mitgliedschaft im
                     Fitnessstudio (max. 50€/Jahr) und/oder die regelmäßige
@@ -230,30 +329,164 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="py-0">
-                    Arzneimittel (nicht verschreibungspflichtig)
-                  </td>
+                  <td class="py-0">Arzneimittel (nicht verschreibungspflichtig)</td>
                   <td class="py-0" justify="center" align="center">
                     <v-icon color="#E1100A" large>mdi-close</v-icon>
                   </td>
-                  <td class="py-0" justify="center" align="center">
-                    Arzneimittel (nicht verschreibungspflichtig)
-                  </td>
+                  <td
+                    class="py-0"
+                    justify="center"
+                    align="center"
+                  >Arzneimittel (nicht verschreibungspflichtig)</td>
                 </tr>
                 <tr>
                   <td class="py-0">Maximal</td>
-                  <td class="py-0" justify="center" align="center">
-                    200 €/Jahr
-                  </td>
-                  <td class="py-0" justify="center" align="center">
-                    500 €/Jahr
-                  </td>
+                  <td class="py-0" justify="center" align="center">200 €/Jahr</td>
+                  <td class="py-0" justify="center" align="center">500 €/Jahr</td>
                 </tr>
               </tbody>
             </template>
           </v-simple-table>
+          <v-tabs
+            v-model="tab"
+            background-color="transparent"
+            color="basil"
+            show-arrows
+            hide-slider
+            height="96"
+            class="membership-table-mobile"
+            v-if="!isComparisonForStationary && $vuetify.breakpoint.xs"
+          >
+            <v-tab v-for="item in membershipItems" :key="item" v-html="item"></v-tab>
+          </v-tabs>
 
-          
+          <v-tabs-items v-model="tab" v-if="!isComparisonForStationary && $vuetify.breakpoint.xs">
+            <v-tab-item>
+              <div class="comp-mobile-table">
+                <v-container class="body-1 font-weight-bold">
+                  <v-row class="px-2 py-0">
+                    <v-col cols="9" align="start" align-self="center" class="px-0 py-1">
+                      <span>Einbettzimmer</span>
+                    </v-col>
+                    <v-col cols="3" align="end" align-self="center" justify-self="center" class="py-1">
+                      <sick-bed-icon class="mr-1"></sick-bed-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>Alterungsrückstellung</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#E1100A" large>mdi-close</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>100% privatärztliche Behandlung (Chefarzt)</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>100% Zuzahlung für stationären Aufenthalt</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>100% ambulante Operationen</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>100% Rooming-in</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>Freie Krankenhausauswahl</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </div>
+            </v-tab-item>
+            <v-tab-item>
+              <div class="comp-mobile-table">
+                <v-container class="body-1 font-weight-bold">
+                  <v-row class="px-2">
+                    <v-col cols="7" align="start" align-self="center" class="px-0 py-1">
+                      <span>Zweibettzimmer</span>
+                    </v-col>
+                    <v-col cols="5" align="end" align-self="center" justify-self="center" class="py-1">
+                      <sick-bed-icon class="mr-1"></sick-bed-icon>
+                      <sick-bed-icon class="mr-1"></sick-bed-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>Alterungsrückstellung</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#E1100A" large>mdi-close</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>100% privatärztliche Behandlung (Chefarzt)</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>100% Zuzahlung für stationären Aufenthalt</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>100% ambulante Operationen</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>100% Rooming-in</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                  <v-row class="px-2">
+                    <v-col cols="9" align-self="center" align="start" class="px-0 py-1">
+                      <span>Freie Krankenhausauswahl</span>
+                    </v-col>
+                    <v-col cols="3" align-self="center" align="end" class="py-1">
+                      <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </div>
+            </v-tab-item>
+          </v-tabs-items>
         </v-card-text>
         <v-divider></v-divider>
       </v-card>
@@ -266,15 +499,16 @@ import SickBedIcon from "@/components/Icons/SickBedIcon";
 export default {
   name: "ComparisonTableModal",
   components: {
-    SickBedIcon
+    SickBedIcon,
   },
   props: ["isComparisonForStationary"],
   data() {
     return {
       show: false,
       tab: null,
-      items: ["MediGroup<br />S1", "MediGroup<br />S2", "Medi<br/>Clinic Plus"],
-      text: "Lorem ipsum dolor sit amet, consectetur adipisci"
+      groupItems: ["MediGroup<br />S1", "MediGroup<br />S2", "Medi<br/>Clinic Plus"],
+      membershipItems: ["MediGroup<br />Basis", "MediGroup<br />Premium",],
+
     };
   },
   computed: {},
@@ -388,16 +622,80 @@ export default {
     display: none !important;
   }
 }
+
+.membership-table-mobile {
+  .v-tab {
+    width: 50%;
+    max-width: 50%;
+    padding-left: 0;
+    padding-right: 0;
+    color: #fff !important;
+    background: #3C8085 ;
+    opacity: 1;
+    margin-bottom: 25px;
+    text-transform: capitalize;
+    &:before {
+      transition: unset;
+    }
+    &.v-tab--active {
+      margin-bottom: 15px;
+      &::before {
+        opacity: 0;
+      }
+      &::after {
+        z-index: 10000;
+        content: "";
+        position: absolute;
+        display: block;
+        width: 0px;
+        left: 50%;
+        bottom: 0;
+        border: 15px solid transparent;
+        border-bottom: 0;
+        border-top: 15px solid #3C8085;
+        transform: translate(-50%, calc(100% - 1px));
+      }
+    }
+  }
+  .v-tab:nth-child(2) {
+    opacity: 0.7;
+    &.v-tab--active {
+      margin-bottom: 15px;
+      &::after {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 0px;
+        left: 50%;
+        bottom: 0;
+        border: 15px solid transparent;
+        border-bottom: 0;
+        border-top: 15px solid #3C8085;
+        opacity: 1;
+        transform: translate(-50%, calc(100% - 1px));
+      }
+    }
+  }
+
+  .v-slide-group__prev {
+    display: none;
+  }
+
+  .v-slide-group__next {
+    display: none !important;
+  }
+}
+
 .comp-mobile-table {
   /deep/ .row {
-    border-left: 1px solid #CED4DA;
-    border-right: 1px solid #CED4DA;
-    border-bottom: 1px solid #CED4DA;
-    &:first-child{
-      border-top: 1px solid #CED4DA;
+    border-left: 1px solid #ced4da;
+    border-right: 1px solid #ced4da;
+    border-bottom: 1px solid #ced4da;
+    &:first-child {
+      border-top: 1px solid #ced4da;
     }
-    &:nth-child(odd){
-      background: #E6E9EC;
+    &:nth-child(odd) {
+      background: #e6e9ec;
     }
   }
 }

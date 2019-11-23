@@ -14,7 +14,7 @@ export default {
   mounted() {}
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .back {
   margin-bottom: 4px;
   background: url("../../assets/icons/arrow_back.svg");
