@@ -6,3 +6,25 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "MetaPro-Bold";
+  src: local('Meta-Pro'), local('Meta-Pro-Bold'),
+  url("./assets/fonts/MetaPro-Bold.otf") format("opentype"),;
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MetaPro-Black";
+  src: local('Meta-Pro'), local('Meta-Pro-Black'),
+  url("./assets/fonts/MetaPro-Black.otf") format("opentype"),;
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MetaPro-Medium";
+  src: local('Meta-Pro'), local('Meta-Pro-Medium'),
+  url("./assets/fonts/MetaPro-Medium.otf") format("opentype"),;
+  font-weight: 600;
+  font-style: normal;
+}

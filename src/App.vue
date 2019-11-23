@@ -24,7 +24,7 @@ export default {
 <style lang="scss">
 @import "./assets/scss/main.scss";
 #app {
-  font-family: "MetaPro-Normal", sans-serif;
+  font-family: "MetaPro-Normal", sans-serif!important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -60,6 +60,16 @@ export default {
 
 .meta-pro-text {
   font-family: "MetaPro-Normal" !important;
+  /deep/ {
+    .bold{
+      font-family: "MetaPro-Bold"!important;
+      font-weight: 900;
+    }
+    .meta-pro-black{
+      font-family: "MetaPro-Black"!important;
+      font-weight: 900;
+    }
+  }
   &.primary--text {
     .v-icon {
       font-family: "MetaPro-Normal" !important;
