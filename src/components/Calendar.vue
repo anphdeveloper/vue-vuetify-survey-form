@@ -47,7 +47,6 @@ export default {
       menu: false
     };
   },
-
   watch: {
     date() {
       this.dateFormatted = this.formatDate(new Date(this.date));

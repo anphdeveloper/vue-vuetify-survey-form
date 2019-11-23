@@ -1,0 +1,180 @@
+<template>
+  <v-content>
+    <v-container>
+      <v-row align="center" justify="center">
+        <v-col cols="12" md="7" sm="10">
+          <main-panel :panelTitle="panelTitle">
+            <template v-slot>
+              <div :class="{ 'px-10': $vuetify.breakpoint.smAndUp }">
+                <v-form class="pa-0" ref="personalForm" lazy-validation>
+                  <v-row class="px-3 align-center">
+                      <h5 class="text-start inline-box width-100" full-width>Stationär - S1: </h5>
+                      <h2 class="text-start inline-box" full-width>17,96 € / Monat</h2>
+                  </v-row>
+                  <v-divider class="my-4" />
+                  <v-row class="px-3 align-center">
+                      <h5 class="text-start inline-box width-100" full-width>Zahn - Z Duo: </h5>
+                      <h2 class="text-start inline-box" full-width>17,76 € / Monat</h2>
+                  </v-row>
+                  <v-row justify="center">
+                    <v-col cols="12" class="iconContainer">
+                      <p class="pb-0 mb-0 mt-4 text-start caption">Zahlweise</p>
+                      <v-select
+                        class="mt-0 pt-0 meta-pro-text primary--text"
+                        :items="paymentOptions"
+                        v-model="paymentOption"
+                        append-icon="mdi-chevron-down"
+                        color="primary"
+                        :rules="[v => !!v || '']"
+                      ></v-select>
+                      <div
+                        v-if="paymentOption === 'jährlich (4% Nachlass)'"
+                        class="mr-1 white top-label-icon elevation-0 px-0 text-center d-flex align-center justify-center"
+                      >
+                        <span class="white--text">TOP</span>
+                      </div>
+                    </v-col>
+                  </v-row>
+                  <v-row justify="center">
+                    <v-col cols="12">
+                      <v-text-field v-model="surname" label="IBAN" hint :rules="[v => !!v || '']"></v-text-field>
+                    </v-col>
+                  </v-row>
+                  <div class="text-with-inputcontrol-icon mt-6">
+                    <v-checkbox large v-model="agreeCheckBox" class="mt-0 pt-0" :rules="[v => !!v || '']"/>
+                    <p class="text-start body-2 mb-1">
+                      Ich stimme dem SEPA Lastschriftverfahren der Banken zu.
+                      <span
+                        v-if="showReadMore"
+                        class="text-start body-2 mb-1 primary--text cursor-pointer"
+                        @click="onClickShowMore"
+                      >mehr…</span>
+                      <span v-if="!showReadMore">
+                        Ich ermächtige die Gothaer Allgemeine Versicherung AG die Zahlungen von meinem Konto mittels Lastschrift einzuziehen. Zugleich weise ich mein Kreditinstitut an, die von dem o.g. Zahlungsempfänger auf mein Konto gezogenen Lastschriften einzulösen. Ich kann binnen 8 Wochen ab dem Belastungsdatum die Erstattung der Zahlung verlangen. Es gelten die Bedingungen meines Kreditinstituts.
+                        <span
+                          class="text-start body-2 mb-1 primary--text cursor-pointer"
+                          @click="onClickHideMore"
+                        >…weniger</span>
+                      </span>
+                    </p>
+                  </div>
+                </v-form>
+                <v-btn
+                  :disabled="showInsureWarningForPrivate"
+                  depressed
+                  large
+                  color="danger"
+                  class="mt-7 white--text"
+                  @click="onClickNext"
+                >Weiter</v-btn>
+              </div>
+            </template>
+          </main-panel>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-content>
+</template>
+
+<script>
+// @ is an alias to /src
+
+import MainPanel from "@/components/MainPanel.vue";
+export default {
+  name: "MyPaymentMethod",
+  components: {
+    MainPanel
+  },
+  data() {
+    return {
+      panelTitle: "Meine Zahlweise",
+      paymentOption: "monatlich",
+      paymentOptions: [
+        "monatlich",
+        "1/4 jährlich",
+        "1/2 jährlich",
+        "jährlich (4% Nachlass)"
+      ],
+      showReadMore: true
+    };
+  },
+  watch: {
+    insuredOption: function(option) {
+      this.showInsureWarningForPrivate =
+        option === "1" && this.warningSelectionInDashboard;
+    }
+  },
+  methods: {
+    onClickNext() {
+      if (this.$refs.personalForm.validate()) {
+        this.$router.push({ name: "ExplanationAndInformation" });
+      } else {
+        console.log("validation failed");
+      }
+    },
+    onClickShowMore() {
+      this.showReadMore = false;
+    },
+    onClickHideMore() {
+      this.showReadMore = true;
+    }
+  },
+  mounted() {
+    this.$store.dispatch("setPagesProgress", 70);
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+.closeButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.text-with-inputcontrol-icon {
+  display: flex;
+  align-items: flex-start;
+  .v-input--checkbox {
+    display: inline-flex;
+  }
+  .v-icon {
+    display: inline-flex;
+  }
+  p {
+    display: inline-block;
+    margin-top: 2px;
+  }
+}
+.iconContainer {
+  position: relative;
+}
+.top-label-icon {
+  background: url("../assets/icons/gothaer_bubble.svg");
+  background-color: transparent !important;
+  width: 48px;
+  height: 48px;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 10px;
+  left: -45px;
+  @media only screen and (max-width: 1200px) {
+    width: 32px;
+    height: 34px;
+    margin-right: 10px !important;
+    background-size: cover;
+  }
+}
+.px-20 {
+  padding-left: 80px;
+  padding-right: 80px;
+}
+.inline-box {
+  display: inline-block;
+}
+.width-100 {
+  width: 100px;
+}
+</style>

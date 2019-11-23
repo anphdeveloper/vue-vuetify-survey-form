@@ -6,144 +6,214 @@
           <main-panel :panelTitle="panelTitle">
             <template v-slot>
               <div :class="{ 'px-10': $vuetify.breakpoint.smAndUp }">
-                <v-row justify="center">
-                  <v-col cols="12" sm="6" md="4">
-                    <p class="pb-0 mb-0 mt-4 text-start caption">Anrede</p>
-                    <v-select
-                      class="mt-0 pt-0 meta-pro-text primary--text"
-                      :items="salutationOptions"
-                      v-model="salutation"
-                      append-icon="mdi-chevron-down"
-                      color="primary"
-                      :rules="[v => !!v || '']"
-                    ></v-select>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="8">
-                    <p class="pb-0 mb-0 mt-4 text-start caption">Titel (optional)</p>
-                    <v-select
-                      class="mt-0 pt-0 meta-pro-text primary--text"
-                      :items="titleOptions"
-                      v-model="title"
-                      append-icon="mdi-chevron-down"
-                      color="primary"
-                      :rules="[v => !!v || '']"
-                    ></v-select>
-                  </v-col>
-                </v-row>
-                <v-row justify="center">
-                  <v-col cols="12" sm="6">
-                    <v-text-field v-model="firstGivenName" label="Vorname" hint></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6">
-                    <v-text-field v-model="surname" label="Nachname" hint></v-text-field>
-                  </v-col>
-                </v-row>
-                <v-row justify="center">
-                  <v-col cols="12" sm="8">
-                    <v-text-field v-model="street" label="Straße" hint></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="4">
-                    <v-text-field v-model="streetNo" label="HausNr." hint></v-text-field>
-                  </v-col>
-                </v-row>
-                <v-row justify="center">
-                  <v-col cols="12" sm="12">
-                    <v-text-field
-                      v-model="country"
-                      label="Land"
-                      readonly
-                      persistent-hint
-                      hint="Wohnsitz in Deutschland ist Pflicht"
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-                <v-row justify="center">
-                  <v-col cols="12" sm="4">
-                    <v-text-field v-model="postCode" label="PLZ" hint></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="8">
-                    <v-text-field v-model="place" label="Ort" hint></v-text-field>
-                  </v-col>
-                </v-row>
-                <v-row justify="center">
-                  <v-col cols="12" sm="12">
-                    <v-text-field
-                      v-model="phoneNo"
-                      prefix="+49"
-                      label="Telefon- oder Mobilnummer"
-                      ref="telephone"
-                      hint
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-                <v-row justify="center">
-                  <v-col cols="12" sm="12">
-                    <v-text-field v-model="emailAddress" label="E-Mail-Adresse" hint></v-text-field>
-                  </v-col>
-                </v-row>
-                <v-row justify="center">
-                  <v-col cols="12" sm="12">
-                    <v-text-field
-                      v-model="professionalActivities"
-                      label="Berufliche Tätigkeit"
-                      hint
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-                <v-row justify="center">
-                  <v-col cols="12" sm="12">
-                    <calendar></calendar>
-                  </v-col>
-                </v-row>
-                <v-radio-group v-model="insuredOption" row class="mt-1">
-                  <v-radio label="gesetzlich versichert" value="0"></v-radio>
-                  <v-radio label="privat versichert" value="1"></v-radio>
-                </v-radio-group>
-                <div v-if="showInsureWarningForPrivate">
-                  <v-container class="px-0 pb-2 text-with-inputcontrol-icon pt-0">
-                    <v-icon color="red" class="mr-2">mdi-information-outline</v-icon>
-                    <p
-                      :class="
+                <v-form class="pa-0" ref="personalForm" lazy-validation>
+                  <v-row justify="center">
+                    <v-col cols="12" sm="6" md="4">
+                      <p class="pb-0 mb-0 mt-4 text-start caption">Anrede</p>
+                      <v-select
+                        class="mt-0 pt-0 meta-pro-text primary--text"
+                        :items="salutationOptions"
+                        v-model="salutation"
+                        append-icon="mdi-chevron-down"
+                        color="primary"
+                        :rules="[v => !!v || '']"
+                      ></v-select>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="8">
+                      <p class="pb-0 mb-0 mt-4 text-start caption">Titel (optional)</p>
+                      <v-select
+                        class="mt-0 pt-0 meta-pro-text primary--text"
+                        :items="titleOptions"
+                        v-model="title"
+                        append-icon="mdi-chevron-down"
+                        color="primary"
+                        :rules="[v => !!v || '']"
+                      ></v-select>
+                    </v-col>
+                  </v-row>
+                  <v-row justify="center">
+                    <v-col cols="12" sm="6">
+                      <v-text-field
+                        v-model="firstGivenName"
+                        label="Vorname"
+                        hint
+                        :rules="[v => !!v || '']"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6">
+                      <v-text-field
+                        v-model="surname"
+                        label="Nachname"
+                        hint
+                        :rules="[v => !!v || '']"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                  <v-row justify="center">
+                    <v-col cols="12" sm="8">
+                      <v-text-field v-model="street" label="Straße" hint :rules="[v => !!v || '']"></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="4">
+                      <v-text-field
+                        v-model="streetNo"
+                        label="HausNr."
+                        hint
+                        :rules="[v => !!v || '']"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                  <v-row justify="center">
+                    <v-col cols="12" sm="12">
+                      <v-text-field
+                        v-model="country"
+                        label="Land"
+                        readonly
+                        persistent-hint
+                        hint="Wohnsitz in Deutschland ist Pflicht"
+                        :rules="[v => !!v || '']"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                  <v-row justify="center">
+                    <v-col cols="12" sm="4">
+                      <v-text-field v-model="postCode" label="PLZ" hint :rules="[v => !!v || '']"></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="8">
+                      <v-text-field v-model="place" label="Ort" hint :rules="[v => !!v || '']"></v-text-field>
+                    </v-col>
+                  </v-row>
+                  <v-row justify="center">
+                    <v-col cols="12" sm="12">
+                      <v-text-field
+                        v-model="phoneNo"
+                        prefix="+49"
+                        label="Telefon- oder Mobilnummer"
+                        ref="telephone"
+                        hint
+                        :rules="[v => !!v || '']"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                  <v-row justify="center">
+                    <v-col cols="12" sm="12">
+                      <v-text-field
+                        v-model="emailAddress"
+                        label="E-Mail-Adresse"
+                        hint
+                        :rules="[v => !!v || '']"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                  <v-row justify="center">
+                    <v-col cols="12" sm="12">
+                      <v-text-field
+                        v-model="professionalActivities"
+                        label="Berufliche Tätigkeit"
+                        hint
+                        :rules="[v => !!v || '']"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                  <v-row justify="center">
+                    <v-col cols="12" sm="12">
+                      <v-menu
+                        ref="menu"
+                        v-model="menu"
+                        :close-on-content-click="false"
+                        :return-value.sync="date"
+                        transition="scale-transition"
+                        offset-y
+                        min-width="290px"
+                        class="calendar-menu"
+                      >
+                        <template v-slot:activator="{ on }">
+                          <v-text-field
+                            v-model="dateFormatted"
+                            label="Einstellungsdatum"
+                            placeholder="TT.MM.JJJJ"
+                            readonly
+                            v-on="on"
+                            @blur="date = parseDate(dateFormatted)"
+                            class="meta-pro-text primary--text"
+                            :rules="[v => !!v || '']"
+                          >
+                            <template v-slot:append>
+                              <calendar-icon></calendar-icon>
+                            </template>
+                          </v-text-field>
+                        </template>
+                        <v-date-picker v-model="date" no-title scrollable locale="de-DE">
+                          <v-spacer></v-spacer>
+                          <v-btn text color="primary" @click="menu = false">abbrechen</v-btn>
+                          <v-btn text color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+                        </v-date-picker>
+                      </v-menu>
+                    </v-col>
+                  </v-row>
+                  <v-radio-group v-model="insuredOption" row class="mt-1">
+                    <v-radio label="gesetzlich versichert" value="0"></v-radio>
+                    <v-radio label="privat versichert" value="1"></v-radio>
+                  </v-radio-group>
+                  <div v-if="showWarning && !checkbox">
+                    <v-container class="px-0 pb-2 text-with-inputcontrol-icon">
+                      <v-icon color="red" class="mr-2">mdi-information-outline</v-icon>
+                      <p
+                        :class="
                     [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
                       ' text-start font-weight-bold mb-0'
                   "
-                    >Abschluss des Tarifs „Stationär - Clinic Plus“ nicht möglich</p>
-                  </v-container>
-                </div>
-                <p
-                  :class="
+                      >Mehr als 20 Tage arbeitsunfähig</p>
+                    </v-container>
+                    <p class="text-start body-2 mb-1">
+                      Falls Sie die Angaben zum Gesundheitszustand nicht
+                      bestätigen können, nutzen Sie bitte den
+                      <span
+                        class="font-weight-black primary--text"
+                      >Antrag mit Gesundheitsfragen</span>.
+                    </p>
+                  </div>
+                  <div v-if="showInsureWarningForPrivate">
+                    <v-container class="px-0 pb-2 text-with-inputcontrol-icon pt-0">
+                      <v-icon color="red" class="mr-2">mdi-information-outline</v-icon>
+                      <p
+                        :class="
+                    [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
+                      ' text-start font-weight-bold mb-0'
+                  "
+                      >Abschluss des Tarifs „Stationär - Clinic Plus“ nicht möglich</p>
+                    </v-container>
+                  </div>
+                  <p
+                    :class="
                     [$vuetify.breakpoint.smAndUp ? 'title' : 'title'] +
                       ' text-start font-weight-bold mb-0 mt-6'
                   "
-                >Kontaktaufnahme, Produktinformationen und Datenschutz</p>
-                <p class="body1 text-start grey--text">(optional)</p>
-                <v-form class="text-with-inputcontrol-icon" ref="form" lazy-validation>
-                  <v-checkbox
-                    large
-                    v-model="agreeCheckBox"
-                    :rules="[v => !!v || '']"
-                    class="mt-0 pt-0"
-                  />
-                  <p class="text-start body-2 mb-1">
-                    Ich bin damit einverstanden, dass mich die Gesellschaften des Gothaer Konzerns sowie ggf. ein mich betreuender Vermittler zwecks Information über Versicherungs- und
-                    <span
-                      v-if="showReadMore"
-                      class="text-start body-2 mb-1 primary--text cursor-pointer"
-                      @click="onClickShowMore"
-                    >mehr…</span>
-                    <span v-if="!showReadMore">
-                      Finanzdienstleistungsprodukte sowie zur Vereinbarung persönlicher Beratungstermine per Telefon und E-Mail kontaktieren können. Ich kann meine Einwilligung jederzeit formfrei widerrufen. Dies z.B. per E-Mail an
+                  >Kontaktaufnahme, Produktinformationen und Datenschutz</p>
+                  <p class="body1 text-start grey--text">(optional)</p>
+                  <div class="text-with-inputcontrol-icon">
+                    <v-checkbox large v-model="agreeCheckBox" class="mt-0 pt-0" />
+                    <p class="text-start body-2 mb-1">
+                      Ich bin damit einverstanden, dass mich die Gesellschaften des Gothaer Konzerns sowie ggf. ein mich betreuender Vermittler zwecks Information über Versicherungs- und
                       <span
-                        class="primary--text"
-                      >servicevereinbarung@gothaer.de</span> oder per Telefon unter 0221 - 308 91730.
-                      <span
+                        v-if="showReadMore"
                         class="text-start body-2 mb-1 primary--text cursor-pointer"
-                        @click="onClickHideMore"
-                      >…weniger</span>
-                    </span>
-                  </p>
+                        @click="onClickShowMore"
+                      >mehr…</span>
+                      <span v-if="!showReadMore">
+                        Finanzdienstleistungsprodukte sowie zur Vereinbarung persönlicher Beratungstermine per Telefon und E-Mail kontaktieren können. Ich kann meine Einwilligung jederzeit formfrei widerrufen. Dies z.B. per E-Mail an
+                        <span
+                          class="primary--text"
+                        >servicevereinbarung@gothaer.de</span> oder per Telefon unter 0221 - 308 91730.
+                        <span
+                          class="text-start body-2 mb-1 primary--text cursor-pointer"
+                          @click="onClickHideMore"
+                        >…weniger</span>
+                      </span>
+                    </p>
+                  </div>
                 </v-form>
                 <v-btn
+                  :disabled="showInsureWarningForPrivate"
                   depressed
                   large
                   color="danger"
@@ -163,12 +233,12 @@
 // @ is an alias to /src
 
 import MainPanel from "@/components/MainPanel.vue";
-import Calendar from "@/components/Calendar";
+import CalendarIcon from "@/components/Icons/CalendarIcon";
 export default {
-  name: "MyDentalHealth",
+  name: "MyPersonalData",
   components: {
     MainPanel,
-    Calendar
+    CalendarIcon
   },
   data() {
     return {
@@ -192,29 +262,73 @@ export default {
       agreeCheckBox: false,
       dentalInsuranceAvailable: "1",
       showReadMore: true,
-      showInsureWarningForPrivate: false
+      showInsureWarningForPrivate: false,
+      warningSelectionInDashboard: false,
+      // calendar variables
+      date: null,
+      dateFormatted: null,
+      menu: false
     };
   },
   watch: {
-    insuredOption: function(option){
-      this.showInsureWarningForPrivate = option === "1" ? true : false;
+    insuredOption: function(option) {
+      this.showInsureWarningForPrivate =
+        option === "1" && this.warningSelectionInDashboard;
+    },
+    // calendar
+    date() {
+      this.dateFormatted = this.formatDate(new Date(this.date));
     }
   },
   methods: {
     onClickNext() {
-      // Proceed to next page
-      // this.$router.push({ name: "Dashboard" });
+      if (this.$refs.personalForm.validate()) {
+        this.$store.dispatch("profile/setPersonalData", {
+          salutation: this.salutation,
+          title: this.title,
+          firstGivenName: this.firstGivenName,
+          surname: this.surname,
+          street: this.street,
+          streetNo: this.streetNo,
+          country: this.country,
+          postCode: this.postCode,
+          place: this.place,
+          phoneNo: this.phoneNo,
+          emailAddress: this.emailAddress,
+          professionalActivities: this.professionalActivities,
+          settingDate: this.settingDate,
+          paymentOption: "",
+          ibanNumber: ""
+        });
+
+        this.$router.push({ name: "MyPaymentMethod" });
+      } else {
+        console.log("validation failed");
+      }
     },
     onClickShowMore() {
       this.showReadMore = false;
     },
     onClickHideMore() {
       this.showReadMore = true;
+    },
+    // calendar
+    formatDate(date) {
+      if (!date) return null;
+      return this.$helper.commonHelper.getGermanFormatDate(date);
+    },
+    parseDate(date) {
+      if (!date) return null;
+      const [day, month, year] = date.split(".");
+      return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     }
   },
   mounted() {
-    this.$store.dispatch("setPagesProgress", 40);
+    this.$store.dispatch("setPagesProgress", 57);
     this.$refs.telephone.focus();
+    this.warningSelectionInDashboard =
+      this.$store.state.products.categories[0].checked &&
+      this.$store.state.products.categories[0].selectedId === 2;
   }
 };
 </script>

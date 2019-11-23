@@ -45,6 +45,34 @@ const routes = [
     component: function() {
       return import("../views/MyPersonalData.vue");
     }
+  },
+  {
+    path: "/myPaymentMethod",
+    name: "MyPaymentMethod",
+    component: function() {
+      return import("../views/MyPaymentMethod.vue");
+    }
+  },
+  {
+    path: "/explanationAndInformation",
+    name: "ExplanationAndInformation",
+    component: function() {
+      return import("../views/ExplanationAndInformation.vue");
+    }
+  },
+  {
+    path: "/myInputsOverview",
+    name: "MyInputsOverview",
+    component: function() {
+      return import("../views/MyInputsOverview.vue");
+    }
+  },
+  {
+    path: "/manyThanks",
+    name: "ManyThanks",
+    component: function() {
+      return import("../views/ManyThanks.vue");
+    }
   }
 ];
 
