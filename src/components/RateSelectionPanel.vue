@@ -87,11 +87,11 @@ export default {
 }
 
 .rd-rate {
-  & /deep/ i {
+  & i {
     font-size: 32px !important;
   }
 
-  & /deep/ [class*="__ripple"] {
+  & [class*="__ripple"] {
     left: -7.5px;
     width: 32px;
     height: 32px;

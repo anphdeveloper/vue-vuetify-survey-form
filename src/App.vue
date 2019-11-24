@@ -30,7 +30,9 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
+.v-application{
+  font-family: "MetaPro-Normal", sans-serif!important;
+}
 .tooltip-with-top-arrow {
   border-radius: unset;
   opacity: 1 !important;
@@ -60,7 +62,7 @@ export default {
 
 .meta-pro-text {
   font-family: "MetaPro-Normal" !important;
-  /deep/ {
+
     .bold{
       font-family: "MetaPro-Bold"!important;
       font-weight: 900;
@@ -68,7 +70,7 @@ export default {
     .meta-pro-black{
       font-family: "MetaPro-Black"!important;
       font-weight: 900;
-    }
+
   }
   &.primary--text {
     .v-icon {

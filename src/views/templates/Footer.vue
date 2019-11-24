@@ -1,20 +1,16 @@
 <template>
-  <v-footer
-    height="auto"
-    class="footer justify-start pb-4 caption content"
-  >
-    <span :class="{'pl-0 pr-12':$vuetify.breakpoint.xs, 'px-3 primary--text': true}"
-      >© Gothaer AG, Köln. Alle Rechte vorbehalten.</span
-    >
+  <v-footer height="auto" class="footer justify-start pb-4 caption content">
+    <span
+      :class="{'pl-0 pr-12':$vuetify.breakpoint.xs, 'px-3 primary--text': true}"
+    >© Gothaer AG, Köln. Alle Rechte vorbehalten.</span>
     <router-link to="/inputBrithDay" tag="span">
-      <v-btn text :class="{'pl-0': $vuetify.breakpoint.xs, 'px-3 primary--text caption text-capitalize': true}"
-        >Impressum</v-btn
-      >
+      <v-btn
+        text
+        :class="{'pl-0': $vuetify.breakpoint.xs, 'px-3 primary--text caption text-capitalize': true}"
+      >Impressum</v-btn>
     </router-link>
     <router-link to="/inputBrithDay" tag="span">
-      <v-btn text class="px-3 primary--text caption text-capitalize"
-        >Datenschutz</v-btn
-      >
+      <v-btn text class="px-3 primary--text caption text-capitalize">Datenschutz</v-btn>
     </router-link>
   </v-footer>
 </template>

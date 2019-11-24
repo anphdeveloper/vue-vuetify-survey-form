@@ -560,11 +560,11 @@ export default {
       }
     }
   }
-  /deep/ .v-slide-group__prev {
+  .v-slide-group__prev {
     display: none!important;
   }
 
-  /deep/ .v-slide-group__next {
+  .v-slide-group__next {
     display: none !important;
   }
 }
@@ -633,7 +633,7 @@ export default {
 }
 
 .comp-mobile-table {
-  /deep/ .row {
+  .row {
     border-left: 1px solid #ced4da;
     border-right: 1px solid #ced4da;
     border-bottom: 1px solid #ced4da;
