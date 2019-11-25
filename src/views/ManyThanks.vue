@@ -4,6 +4,13 @@
       <v-row align="center" justify="center">
         <v-col cols="12" md="7" sm="10">
           <main-panel :panelTitle="panelTitle">
+            <template v-slot>
+              <v-row justify="center" class="mb-2">
+                <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+              </v-row>
+              <p class="font-weight-bold title">Ihre private Zusatzversicherung wurde versendet</p>
+              <p>Wir bestätigen den Eingang Ihres Antrags an die von Ihnen angegebene E-Mail Adresse. Ihre Versicherungsunterlagen erhalten Sie nach Prüfung per Post.</p>
+            </template>
           </main-panel>
         </v-col>
       </v-row>

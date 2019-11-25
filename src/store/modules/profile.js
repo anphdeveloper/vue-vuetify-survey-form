@@ -3,7 +3,10 @@ const state = {
   targetDay: null,
   age: 0,
   missedTeeth: 0,
-  previousInsuranceCompany: "",
+  prevInsCompany: {
+    haveCompany: false,
+    comapnyName: ""
+  },
   personalData: {
     salutation: "Frau",
     title: "Dr.",
@@ -45,7 +48,7 @@ const actions = {
     commit("setMissedTeeth", misssedTeeth);
   },
 
-  setPreviousInsuranceCompany({ commit }, company) {
+  setPrevInsCompany({ commit }, company) {
     commit("setPrevInsComp", company);
   },
 
@@ -67,8 +70,11 @@ const mutations = {
   setMissedTeeth(state, numberOfMissedTeeth) {
     state.missedTeeth = numberOfMissedTeeth;
   },
+
   setPrevInsComp(state, prevInsCompany) {
-    state.previousInsuranceCompany = prevInsCompany;
+    Object.keys(prevInsCompany).forEach(
+      key => state.prevInsCompany[key] = prevInsCompany[key]
+    );
   },
   setPersonalData(state, personalData) {
     Object.keys(personalData).forEach(

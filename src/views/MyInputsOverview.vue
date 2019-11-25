@@ -14,15 +14,15 @@
                   </v-btn>
                 </div>
                 <div class="my-4 detailed-info" v-if="!showReadMore1">
-                  <p class="caption text-start mb-1">Frau</p>
-                  <p class="caption text-start mb-1">-</p>
-                  <p class="caption text-start mb-1">Martina Gesund</p>
-                  <p class="caption text-start mb-1">Gesundheitsstr. 23</p>
-                  <p class="caption text-start mb-1">50678 Köln</p>
-                  <p class="caption text-start mb-1">0179 555 555 69</p>
-                  <p class="caption text-start mb-1">martina.gesund@outlook.de</p>
-                  <p class="caption text-start mb-1">Service Manager</p>
-                  <p class="caption text-start mb-1">01.01.2019</p>
+                  <p class="caption text-start mb-1">{{ profile.salutation }}</p>
+                  <p class="caption text-start mb-1">{{ profile.title }}</p>
+                  <p class="caption text-start mb-1">{{profile.firstGivenName}} {{profile.surname}}</p>
+                  <p class="caption text-start mb-1">{{ profile.street }} {{profile.streetNo}}</p>
+                  <p class="caption text-start mb-1">{{ profile.postCode}} {{profile.place}}</p>
+                  <p class="caption text-start mb-1">{{ profile.phoneNo }}</p>
+                  <p class="caption text-start mb-1">{{ profile.emailAddress }}</p>
+                  <p class="caption text-start mb-1">{{ profile.professionalActivities }}</p>
+                  <p class="caption text-start mb-1">{{ targetDay }}</p>
                   <v-btn text icon color="primary" class="edit-button" @click="gotoMyPersonalData">
                     <v-icon small>mdi-pencil-outline</v-icon>
                   </v-btn>
@@ -36,10 +36,9 @@
                   </v-btn>
                 </div>
                 <div class="my-4 detailed-info" v-if="!showReadMore2">
-                  <p class="caption text-start mb-1">Jährlich</p>
+                  <p class="caption text-start mb-1">{{ profile.paymentOption }}</p>
                   <p class="caption text-start mb-1">SEPA Lastschrift</p>
-                  <p class="caption text-start mb-1">Commerzbank</p>
-                  <p class="caption text-start mb-1">DE12500105170648489890</p>
+                  <p class="caption text-start mb-1">{{ profile.ibanNumber }}</p>
                   <v-btn text icon color="primary" class="edit-button" @click="gotoMyPaymentMethod">
                     <v-icon small>mdi-pencil-outline</v-icon>
                   </v-btn>
@@ -78,41 +77,30 @@
                     <template v-slot:default>
                       <tbody>
                         <!-- <tr v-for="item in desserts" :key="item.name"> -->
-                        <tr>
+                        <tr v-for="(product, index) in products.filter(product => product.checked)" :key="index">
                           <td class="text-left">
-                            <p class="subtitle-1 white--text text-start mb-4 mt-5 pb-2">Stationär</p>
+                            <p class="subtitle-1 white--text text-start mb-4 mt-5 pb-2">{{product.panelTitle}}</p>
                           </td>
                           <td class="text-left">
-                            <p class="caption white--text text-start mb-3 mt-5 font-weight-light">S1</p>
+                            <p class="caption white--text text-start mb-3 mt-5 font-weight-light">{{product.selectedProductName}}</p>
                           </td>
                           <td class="text-right">
-                            <p class="subtitle-1 white--text mb-4 mt-5 font-weight-light">17,96 €</p>
+                            <p class="subtitle-1 white--text mb-4 mt-5 font-weight-light">{{product.selectedRate}} €</p>
                           </td>
                         </tr>
-                        <tr>
-                          <td class="text-left">
-                            <p class="subtitle-1 white--text text-start mb-4 mt-5">Stationär</p>
-                          </td>
-                          <td class="text-left">
-                            <p class="caption white--text text-start mb-3 mt-5 font-weight-light">S1</p>
-                          </td>
-                          <td class="text-right">
-                            <p class="subtitle-1 white--text mb-4 mt-5 font-weight-light">17,96 €</p>
-                          </td>
-                        </tr>
+                        
                       </tbody>
                     </template>
                   </v-simple-table>
                   <p class="caption white--text text-right mb-3 mt-5 font-weight-light">
                     mtl. Beitrag:
-                    <span class="ml-5 subtitle-1">35,72 €</span>
+                    <span class="ml-5 subtitle-1">{{ totalRate }} €</span>
                   </p>
                   <p
                     class="caption white--text text-right mb-3 mt-2 font-weight-light"
-                  >Beginn 01.12.2019, Vertragslaufzeit 24 Monate</p>
+                  >Beginn {{ targetDay }}, Vertragslaufzeit 24 Monate</p>
                 </v-card>
                 <v-btn
-                  :disabled="showInsureWarningForPrivate"
                   depressed
                   large
                   color="danger"
@@ -144,7 +132,11 @@ export default {
     return {
       panelTitle: "Meine Eingaben in der Übersicht",
       showReadMore1: true,
-      showReadMore2: true
+      showReadMore2: true,
+      profile: null,
+      targetDay: null,
+      products: null,
+      totalRate: null
     };
   },
   watch: {},
@@ -159,8 +151,18 @@ export default {
         this.$router.push({ name: "MyPaymentMethod" });
     }
   },
+  created(){
+    this.profile = this.$store.state.profile.personalData;
+    this.products = this.$store.state.products.categories;
+    this.totalRate = this.$store.state.products.categories.reduce(
+      ( totalRate, category ) => 
+      totalRate + (category.checked? category.selectedRate : 0), 0
+    );
+    this.targetDay = this.$helper.commonHelper.getGermanFormatDate(new Date(this.$store.state.profile.targetDay));
+  },
   mounted() {
     this.$store.dispatch("setPagesProgress", 85);
+
   }
 };
 </script>

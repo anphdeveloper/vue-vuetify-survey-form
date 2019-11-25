@@ -195,17 +195,13 @@
           </v-col>
         </v-row>
         <v-row :class="{'mt-4': $vuetify.breakpoint.xs, 'px-3 justify-start': true}" wrap>
-            <router-link to="/inputDOB" tag="span">
-              <v-btn
-                text
-                class="px-3 primary--text body-1 btn-link"
-                :ripple="false"
-              >
-                <v-icon color="primary" v-if="$vuetify.breakpoint.mdAndUp">mdi-arrow-left</v-icon>
-                <go-back-circle-icon v-if="$vuetify.breakpoint.smAndDown"></go-back-circle-icon>
-                <span v-if="$vuetify.breakpoint.mdAndUp">ZURÜCK</span>
-              </v-btn>
-            </router-link>
+          
+            <v-btn text class="px-3 primary--text body-1 btn-link" :ripple="false" @click="onClickGoBack">
+              <v-icon color="primary" v-if="$vuetify.breakpoint.mdAndUp">mdi-arrow-left</v-icon>
+              <go-back-circle-icon v-if="$vuetify.breakpoint.smAndDown"></go-back-circle-icon>
+              <span v-if="$vuetify.breakpoint.mdAndUp">ZURÜCK</span>
+            </v-btn>
+          
         </v-row>
       </v-layout>
     </v-col>
@@ -217,7 +213,7 @@ import CategoryPanel from "@/components/CategoryPanel.vue";
 import RateSelectionPanel from "@/components/RateSelectionPanel.vue";
 import MiddleTitlePanel from "@/components/MiddleTitlePanel";
 import ComparisonTableModal from "@/components/Modals/ComparisonTableModal";
-import GoBackCircleIcon from "@/components/Icons/GoBackCircleIcon"
+import GoBackCircleIcon from "@/components/Icons/GoBackCircleIcon";
 import { mapState } from "vuex";
 export default {
   name: "Dashboard",
@@ -533,36 +529,25 @@ export default {
             category.id === id ? expanded : category.expanded)
       );
     },
-
+    /*eslint-disable*/
     onClickContinueWithSelection() {
       if (!this.categoryPanelData.find(data => data.checked)) {
         return;
       } else {
         this.$store.dispatch("products/setCategories", this.categoryPanelData);
         if (
-          this.categoryPanelData.find(
-            data =>
-              data.checked &&
-              (data.panelTitle === "Stationär" ||
-                data.panelTitle === "Ambulant")
-          )
+          this.$store.state.products.categories[0].checked ||
+          this.$store.state.products.categories[2].checked
         ) {
           this.$router.push({ name: "MyHealth" });
-        } else if (
-          this.categoryPanelData.find(
-            data => data.checked && data.panelTitle === "Zahn"
-          )
-        ) {
+        } else if (this.$store.state.products.categories[1].checked) {
           this.$router.push({ name: "MyDentalHealth" });
-        } else if (
-          this.categoryPanelData.find(
-            data => data.checked && data.panelTitle === "Vorsorge"
-          )
-        ) {
+        } else if (this.$store.state.products.categories[3].checked) {
           this.$router.push({ name: "MyPersonalData" });
         }
       }
     },
+    /*eslint-enable*/
 
     setRateForPanels(age) {
       this.stationaryPanelData = this.stationaryPanelData.map(panel => {
@@ -621,6 +606,9 @@ export default {
             totalRate + panel.checked ? panel.panelRate : 0,
           0
         );
+    },
+    onClickGoBack() {
+      this.$router.go(-1);
     }
   },
 

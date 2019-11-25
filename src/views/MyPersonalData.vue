@@ -89,7 +89,9 @@
                         prefix="+49"
                         label="Telefon- oder Mobilnummer"
                         ref="telephone"
+
                         hint
+                        persistent-hint
                         :rules="[v => !!v || '']"
                       ></v-text-field>
                     </v-col>
@@ -325,7 +327,6 @@ export default {
   },
   mounted() {
     this.$store.dispatch("setPagesProgress", 57);
-    this.$refs.telephone.focus();
     this.warningSelectionInDashboard =
       this.$store.state.products.categories[0].checked &&
       this.$store.state.products.categories[0].selectedId === 2;

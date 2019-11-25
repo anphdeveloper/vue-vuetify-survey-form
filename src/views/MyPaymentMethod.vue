@@ -6,16 +6,16 @@
           <main-panel :panelTitle="panelTitle">
             <template v-slot>
               <div :class="{ 'px-10': $vuetify.breakpoint.smAndUp }">
-                <v-form class="pa-0" ref="personalForm" lazy-validation>
-                  <v-row class="px-3 align-center">
-                      <h5 class="text-start inline-box width-100" full-width>Stationär - S1: </h5>
-                      <h2 class="text-start inline-box" full-width>17,96 € / Monat</h2>
-                  </v-row>
-                  <v-divider class="my-4" />
-                  <v-row class="px-3 align-center">
-                      <h5 class="text-start inline-box width-100" full-width>Zahn - Z Duo: </h5>
-                      <h2 class="text-start inline-box" full-width>17,76 € / Monat</h2>
-                  </v-row>
+                <v-form class="pa-0 payment-form" ref="personalForm" lazy-validation>
+                  <div v-for="(product, index) in products.filter(product => product.checked)" :key="index" class="category-list">
+                    <v-divider class="my-4" v-if="index != 0"/>
+                    <v-row class="px-3 align-center">
+                        <h5 class="text-start inline-box width-200" full-width>{{product.panelTitle}} - {{product.selectedProductName}}: </h5>
+                        <h2 class="text-start inline-box" full-width>{{product.selectedRate}} € / Monat</h2>
+                    </v-row>
+                    
+                  </div>
+                  
                   <v-row justify="center">
                     <v-col cols="12" class="iconContainer">
                       <p class="pb-0 mb-0 mt-4 text-start caption">Zahlweise</p>
@@ -37,7 +37,12 @@
                   </v-row>
                   <v-row justify="center">
                     <v-col cols="12">
-                      <v-text-field v-model="surname" label="IBAN" hint :rules="[v => !!v || '']"></v-text-field>
+                      <v-text-field 
+                      v-model="ibanNumber" 
+                      label="IBAN" 
+                      hint :rules="[v => !!v && validateIBAN(v) || '']"
+                      @keyup.native="validateSpaceFormatter"
+                    ></v-text-field>
                     </v-col>
                   </v-row>
                   <div class="text-with-inputcontrol-icon mt-6">
@@ -60,7 +65,6 @@
                   </div>
                 </v-form>
                 <v-btn
-                  :disabled="showInsureWarningForPrivate"
                   depressed
                   large
                   color="danger"
@@ -80,6 +84,7 @@
 // @ is an alias to /src
 
 import MainPanel from "@/components/MainPanel.vue";
+
 export default {
   name: "MyPaymentMethod",
   components: {
@@ -87,6 +92,7 @@ export default {
   },
   data() {
     return {
+
       panelTitle: "Meine Zahlweise",
       paymentOption: "monatlich",
       paymentOptions: [
@@ -95,18 +101,20 @@ export default {
         "1/2 jährlich",
         "jährlich (4% Nachlass)"
       ],
-      showReadMore: true
+      ibanNumber: "",
+      agreeCheckBox: false,
+      showReadMore: true,
+      products : null,
     };
   },
-  watch: {
-    insuredOption: function(option) {
-      this.showInsureWarningForPrivate =
-        option === "1" && this.warningSelectionInDashboard;
-    }
-  },
+
   methods: {
     onClickNext() {
-      if (this.$refs.personalForm.validate()) {
+      if (this.$refs.personalForm.validate() && this.agreeCheckBox) {
+        this.$store.dispatch("profile/setPersonalData", {
+          paymentOption: this.paymentOption,
+          ibanNumber: this.ibanNumber
+        })
         this.$router.push({ name: "ExplanationAndInformation" });
       } else {
         console.log("validation failed");
@@ -117,10 +125,22 @@ export default {
     },
     onClickHideMore() {
       this.showReadMore = true;
+    },
+    validateIBAN(iban) {
+      let IBAN = require('iban');
+      return IBAN.isValid(iban);
+    },
+    validateSpaceFormatter(){
+      this.ibanNumber =  this.ibanNumber.replace(/\s/g, '');
+      this.ibanNumber = this.ibanNumber.replace(/(.{4})/g,"$1 ");
     }
+  },
+  created(){
+    this.products = this.$store.state.products.categories;
   },
   mounted() {
     this.$store.dispatch("setPagesProgress", 70);
+    
   }
 };
 </script>
@@ -177,4 +197,15 @@ export default {
 .width-100 {
   width: 100px;
 }
+.width-200 {
+  width: 200px;
+}
+.payment-form{
+  .category-list{
+      &:last-child{
+      display: none;
+    }
+  }
+}
+
 </style>

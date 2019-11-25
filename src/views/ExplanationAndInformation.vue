@@ -16,7 +16,6 @@
                   <div class="text-with-inputcontrol-icon">
                     <v-checkbox
                       large
-                      v-model="agreeToApply"
                       class="mt-0 pt-0"
                       :rules="[v => !!v || '']"
                     />
@@ -59,7 +58,6 @@
                   <div class="text-with-inputcontrol-icon">
                     <v-checkbox
                       large
-                      v-model="confirmDownloaded"
                       class="mt-0 pt-0"
                       :rules="[v => !!v || '']"
                     />
@@ -85,7 +83,6 @@
                   </div>
                 </v-form>
                 <v-btn
-                  :disabled="showInsureWarningForPrivate"
                   depressed
                   large
                   color="danger"

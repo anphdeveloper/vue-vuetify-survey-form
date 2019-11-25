@@ -71,7 +71,7 @@
                 </v-radio-group>
                 <div v-if="dentalInsuranceAvailable !== '1'">
                   <v-container class="px-0 pb-2 text-with-inputcontrol-icon">
-                    <v-icon color="red" v-on="on" class="mr-2">mdi-information-outline</v-icon>
+                    <v-icon color="danger" class="mr-2">mdi-information-outline</v-icon>
                     <p
                       :class="
                     [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
@@ -119,14 +119,30 @@ export default {
     return {
       panelTitle: "Meine Zahngesundheit",
       dentalInsuranceAvailable: "1",
-      number: "0",
-      numbers: ["0", "1", "2", "3", "4", "mehr"],
-      showReadMore: true
+      number: 0,
+      numbers: [0, 1, 2, 3, 4, "mehr"],
+      showReadMore: true,
+      companies: ""
     };
   },
   methods: {
     onClickNext() {
       // Proceed to next page
+
+      this.$store.dispatch("profile/setMissedTeeth", this.number == "mehr" ? -1 : this.number);
+      
+      if(this.dentalInsuranceAvailable == "1"){
+        this.$store.dispatch("profile/setPrevInsCompany", {
+          haveCompany: false,
+          comapnyName: ""
+        });
+      }
+      else
+        this.$store.dispatch("profile/setPrevInsCompany", {
+          haveCompany: true,
+          comapnyName: this.companies
+        });
+      
       this.$router.push({ name: "MyPersonalData" });
     },
     onClickShowMore() {

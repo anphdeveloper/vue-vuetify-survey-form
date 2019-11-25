@@ -88,8 +88,11 @@ export default {
   },
   methods: {
     onClickNext() {
-      if (this.$refs.form.validate()) {
-        this.$router.push({ name: "MyPersonalData" });
+      if ( this.$refs.form.validate()) {
+        if( this.$store.state.products.categories[1].checked)
+          this.$router.push({ name: "MyDentalHealth" });
+        else
+          this.$router.push({ name: "MyPersonalData" });
       } else {
         this.showWarning = true;
       }
