@@ -16,7 +16,7 @@ export default new Vuetify({
         content: "#E5F0F3",
         tertiary: "#035370",
         quaternary: "#CAE9F0",
-        quinary: "#4C9BB0 ",
+        quinary: "#4C9BB0",
         senary: "#3C8085",
         white: "#fff"
       }

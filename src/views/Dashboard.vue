@@ -309,7 +309,8 @@ export default {
           panelBackground: "white",
           panelRate: "17,96",
           checked: false,
-          isTop: true
+          isTop: true,
+          categoryColor: "#035370"
         },
         {
           id: 1,
@@ -318,7 +319,8 @@ export default {
           panelBackground: "white",
           panelRate: "14,96",
           checked: false,
-          isTop: false
+          isTop: false,
+          categoryColor: "#035370"
         },
         {
           id: 2,
@@ -327,7 +329,8 @@ export default {
           panelBackground: "white",
           panelRate: "21,96",
           checked: false,
-          isTop: false
+          isTop: false,
+          categoryColor: "#035370"
         }
       ],
       toothPanelData: [
@@ -338,7 +341,8 @@ export default {
           panelBackground: "white",
           panelRate: "0",
           checked: false,
-          isTop: false
+          isTop: false,
+          categoryColor:  "#4C9BB0"
         }
       ],
       outpatientPanelData: [
@@ -349,7 +353,8 @@ export default {
           panelBackground: "white",
           panelRate: "0",
           checked: false,
-          isTop: false
+          isTop: false,
+          categoryColor: "#00718F"
         }
       ],
       preventionPanelData: [
@@ -360,7 +365,8 @@ export default {
           panelBackground: "white",
           panelRate: "0",
           checked: false,
-          isTop: false
+          isTop: false,
+          categoryColor: "#3C8085"
         },
         {
           id: 1,
@@ -369,7 +375,8 @@ export default {
           panelBackground: "white",
           panelRate: "0",
           checked: false,
-          isTop: false
+          isTop: false,
+          categoryColor: "#3C8085"
         }
       ]
     };

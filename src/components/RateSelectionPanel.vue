@@ -1,7 +1,10 @@
 <template>
-  <div :class="ratePanelData.panelBackground" @click="clickContainer($event)">
+  <div 
+  :class="ratePanelData.panelBackground" 
+  @click="clickContainer($event)" 
+  :style="{border:`1px solid ${ratePanelData.checked? ratePanelData.categoryColor :'transparent'}!important`}">
     <v-container class="pa-0">
-      <v-row class="px-1 title-row">
+      <v-row class="px-1 title-row" >
         <p
           :class="{
             subtitle: $vuetify.breakpoint.lgAndUp,
@@ -69,6 +72,7 @@ export default {
     }
   },
   created() {
+    console.log('vuetify color', this.$vuetify.theme.currentTheme);
     this.panelSelected = this.$props.ratePanelData.checked ? "radio-1" : null;
   }
 };
