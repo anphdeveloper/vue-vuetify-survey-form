@@ -61,7 +61,39 @@
                   <p class="pb-2 text-left pl-4 ml-1 mb-0">
                     <v-icon color="primary">mdi-check</v-icon>
                     <span class="grey--text">stabile Beiträge</span>
-                    <v-tooltip
+                    <v-menu
+                    offset-y
+                    max-width="300"
+                    nudge-bottom="1"
+                    nudge-left="135"
+                    open-delay="0"
+                    close-delay="0"
+                    content-class="tooltip-with-top-arrow"
+                  >
+                    <template v-slot:activator="{ on }">
+                      <v-icon color="primary" v-on="on">mdi-information-outline</v-icon>
+                    </template>
+                    <div class="tooltip-container">
+                      <v-card class="elevation-0 primary">
+                        <v-layout d-flex row wrap>
+                          <v-col cols="2" sm="2">
+                            <v-icon color="white">mdi-information-outline</v-icon>
+                          </v-col>
+                          <v-col cols="10" sm="10" class="ml-0 pl-0 text-left" >
+                            <p class="text-left white--text mb-0">
+                              <b>Tarif mit Alterungsrückstellung:</b>
+                              <br />Sie zahlen zu Beginn höhere Beiträge und
+                              sparen so Guthaben fürs Alter an.
+                            </p>
+                            <v-btn class="text-left white--text mb-1 btn-link" :ripple="false" text @click="clickReadMore">
+                              <b>MEHR ></b>
+                            </v-btn>
+                          </v-col>
+                        </v-layout>
+                      </v-card>
+                    </div>
+                  </v-menu>
+                    <!-- <v-tooltip
                       bottom
                       max-width="300"
                       nudge-top="-5"
@@ -87,7 +119,7 @@
                           </v-col>
                         </v-layout>
                       </v-card>
-                    </v-tooltip>
+                    </v-tooltip> -->
                   </p>
                 </template>
               </rate-selection-panel>

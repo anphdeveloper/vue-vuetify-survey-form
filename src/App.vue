@@ -38,7 +38,7 @@ export default {
   opacity: 1 !important;
   box-shadow: unset!important;
   padding-top: 5px;
-  background-color: white!important;
+  background-color: transparent!important;
   &::before {
     content: "";
     position: relative;
