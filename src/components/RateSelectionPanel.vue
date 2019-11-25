@@ -2,7 +2,7 @@
   <div 
   :class="ratePanelData.panelBackground" 
   @click="clickContainer($event)" 
-  :style="{border:`1px solid ${ratePanelData.checked? ratePanelData.categoryColor :'transparent'}!important`}">
+  :style="{border:`1.5px solid ${ratePanelData.checked? ratePanelData.categoryColor :'transparent'}!important`}">
     <v-container class="pa-0">
       <v-row class="px-1 title-row" >
         <p
