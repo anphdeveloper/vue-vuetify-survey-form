@@ -34,11 +34,14 @@ export default {
   font-family: "MetaPro-Normal", sans-serif!important;
 }
 .tooltip-with-top-arrow {
-  border-radius: unset;
+  border-radius: unset!important;
   opacity: 1 !important;
+  box-shadow: unset!important;
+  padding-top: 5px;
+  background-color: white!important;
   &::before {
     content: "";
-    position: absolute;
+    position: relative;
     display: block;
     width: 0px;
     left: 50%;
@@ -46,8 +49,9 @@ export default {
     border: 15px solid transparent;
     border-top: 0;
     border-bottom: 15px solid #00718f;
-    transform: translate(-50%, calc(-100% + 5px));
-  }
+    transform: translate(-50%, calc(-100% + 15px));
+    z-index: 1000;
+  } 
 }
 
 .btn-link {
