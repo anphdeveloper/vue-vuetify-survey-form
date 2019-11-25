@@ -39,6 +39,7 @@
               :categoryPanelData="categoryPanelData[0]"
               :checkPanel="selectPanels"
               :expandPanel="expandCategoryPanel"
+              
               v-if="$vuetify.breakpoint.smAndDown"
               class="mb-12"
             ></category-panel>
@@ -332,7 +333,7 @@ export default {
       toothPanelData: [
         {
           id: 0,
-          panelTitle: "Z Duo",
+          panelTitle: "MediGroup Z Duo",
           haveRadioOption: false,
           panelBackground: "white",
           panelRate: "0",
@@ -343,7 +344,7 @@ export default {
       outpatientPanelData: [
         {
           id: 0,
-          panelTitle: "A",
+          panelTitle: "MediGroup A",
           haveRadioOption: false,
           panelBackground: "white",
           panelRate: "0",
@@ -417,6 +418,7 @@ export default {
 
   methods: {
     selectPanels(id) {
+      console.log('id', id);
       this.categoryPanelData[id].checked = !this.categoryPanelData[id].checked;
       if (!this.categoryPanelData[id].checked)
         switch (id) {
@@ -624,9 +626,11 @@ export default {
     }
     //set rate
     this.setRateForPanels(this.age);
-    this.$store.dispatch("callBackendService", {
-      hello: "test"
-    });
+
+    //test calling side-effect api
+    // this.$store.dispatch("callBackendService", {
+    //   hello: "test"
+    // });
   }
 };
 </script>

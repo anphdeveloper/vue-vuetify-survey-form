@@ -1,5 +1,5 @@
 <template>
-  <div :class="categoryPanelData.panelBackground + ' pa-4'">
+  <div :class="categoryPanelData.panelBackground + ' pa-4'" @click="clickContainer($event)">
     <v-layout>
       <v-row class="px-2">
         <p class="mb-1 title text-left pl-2 pt-1 white--text">
@@ -9,11 +9,13 @@
         <v-btn
           class="mr-1 white close-icon elevation-0 px-0"
           @click="onClickCheckPanel"
+          id="panelCheckBoxButton"
         >
           <v-icon
             large
             :color="categoryPanelData.panelBackground"
             v-if="categoryPanelData.checked"
+            id="panelCheckBoxIcon"
             >mdi-close</v-icon
           >
         </v-btn>
@@ -50,6 +52,7 @@
     <v-btn icon class="plus-icon" @click="onClickExpandPanel">
       <v-icon
         large
+        id="plusIcon"
         :class="`${categoryPanelData.panelBackground}` + '--text'"
         v-if="!categoryPanelData.expanded"
       >
@@ -57,6 +60,7 @@
       </v-icon>
       <v-icon
         large
+        id="minusIcon"
         :class="`${categoryPanelData.panelBackground}` + '--text'"
         v-if="categoryPanelData.expanded"
       >
@@ -88,6 +92,7 @@ export default {
   },
   methods: {
     onClickCheckPanel() {
+      console.log('checkbox clicked');
       this.checkPanel(this.$props.categoryPanelData.id);
     },
     onClickExpandPanel() {
@@ -95,6 +100,15 @@ export default {
         this.$props.categoryPanelData.id,
         !this.$props.categoryPanelData.expanded
       );
+    },
+    clickContainer(event){
+      //prevent panel click event for checkbox and expand
+      if(event.target.id != "panelCheckBoxButton" 
+      && event.target.id != "panelCheckBoxIcon" 
+      && event.target.id != "plusIcon"
+      && event.target.id != "minusIcon"){
+        this.checkPanel(this.$props.categoryPanelData.id);
+      }
     }
   },
   watch: {},

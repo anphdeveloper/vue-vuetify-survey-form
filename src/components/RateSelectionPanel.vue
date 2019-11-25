@@ -1,5 +1,5 @@
 <template>
-  <div :class="ratePanelData.panelBackground">
+  <div :class="ratePanelData.panelBackground" @click="clickContainer($event)">
     <v-container class="pa-0">
       <v-row class="px-1 title-row">
         <p
@@ -30,7 +30,7 @@
             hide-details
             v-if="ratePanelData.haveRadioOption"
           >
-            <v-radio value="radio-1" class="rd-rate" hide-details></v-radio>
+            <v-radio value="radio-1" class="rd-rate" hide-details id="radioButton"></v-radio>
           </v-radio-group>
         </v-col>
         <v-col cols="8" class="pt-4">
@@ -54,7 +54,12 @@ export default {
       panelSelected: null
     };
   },
-  methods: {},
+  methods: {
+    clickContainer(event){
+      console.log(!event.target.parentNode.firstChild.id == "radioButton");
+        this.checkRate(this.$props.ratePanelData.id)
+    }
+  },
   watch: {
     panelSelected: function(newVal) {
       if (newVal == "radio-1") this.checkRate(this.$props.ratePanelData.id);
