@@ -12,6 +12,13 @@ const routes = [
     }
   },
   {
+    path: "/activateJS",
+    name: "ActivateJS",
+    component: function() {
+      return import("../views/ActivateJS.vue");
+    }
+  },
+  {
     path: "/inputDOB",
     name: "InputDayOfBirthday",
     component: function() {
