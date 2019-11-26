@@ -52,6 +52,7 @@
                   depressed
                   large
                   color="danger"
+                  :block="$vuetify.breakpoint.xs"
                   class="mt-6 white--text"
                   @click="onClickNext"
                 >Weiter</v-btn>
