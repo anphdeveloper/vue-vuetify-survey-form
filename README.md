@@ -1,4 +1,4 @@
-# bkv-bmw
+# bKV-Antragsstrecke
 
 ## Project setup
 ```
