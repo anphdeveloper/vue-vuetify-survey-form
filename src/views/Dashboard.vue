@@ -39,7 +39,6 @@
               :categoryPanelData="categoryPanelData[0]"
               :checkPanel="selectPanels"
               :expandPanel="expandCategoryPanel"
-              
               v-if="$vuetify.breakpoint.smAndDown"
               class="mb-12"
             ></category-panel>
@@ -62,37 +61,42 @@
                     <v-icon color="primary">mdi-check</v-icon>
                     <span class="grey--text">stabile Beiträge</span>
                     <v-menu
-                    offset-y
-                    max-width="300"
-                    nudge-bottom="1"
-                    nudge-left="135"
-                    open-delay="0"
-                    close-delay="0"
-                    content-class="tooltip-with-top-arrow"
-                  >
-                    <template v-slot:activator="{ on }">
-                      <v-icon color="primary" v-on="on">mdi-information-outline</v-icon>
-                    </template>
-                    <div class="tooltip-container">
-                      <v-card class="elevation-0 primary">
-                        <v-layout d-flex row wrap>
-                          <v-col cols="2" sm="2">
-                            <v-icon color="white">mdi-information-outline</v-icon>
-                          </v-col>
-                          <v-col cols="10" sm="10" class="ml-0 pl-0 text-left" >
-                            <p class="text-left white--text mb-0">
-                              <b>Tarif mit Alterungsrückstellung:</b>
-                              <br />Sie zahlen zu Beginn höhere Beiträge und
-                              sparen so Guthaben fürs Alter an.
-                            </p>
-                            <v-btn class="text-left white--text mb-1 btn-link" :ripple="false" text @click="clickReadMore">
-                              <b>MEHR ></b>
-                            </v-btn>
-                          </v-col>
-                        </v-layout>
-                      </v-card>
-                    </div>
-                  </v-menu>
+                      offset-y
+                      max-width="300"
+                      nudge-bottom="1"
+                      nudge-left="135"
+                      open-delay="0"
+                      close-delay="0"
+                      content-class="tooltip-with-top-arrow"
+                    >
+                      <template v-slot:activator="{ on }">
+                        <v-icon color="primary" v-on="on">mdi-information-outline</v-icon>
+                      </template>
+                      <div class="tooltip-container">
+                        <v-card class="elevation-0 primary px-2">
+                          <v-layout d-flex row wrap>
+                            <v-col cols="2" sm="2">
+                              <v-icon color="white">mdi-information-outline</v-icon>
+                            </v-col>
+                            <v-col cols="10" sm="10" class="ml-0 pl-0 text-left">
+                              <p class="text-left white--text mb-0 body-2">
+                                <b>Tarif mit Alterungsrückstellung:</b>
+                                <br />Sie zahlen zu Beginn höhere Beiträge und
+                                sparen so Guthaben fürs Alter an.
+                              </p>
+                              <v-btn
+                                class="text-left white--text mb-1 btn-link"
+                                :ripple="false"
+                                text
+                                @click="clickReadMore"
+                              >
+                                <b>MEHR ></b>
+                              </v-btn>
+                            </v-col>
+                          </v-layout>
+                        </v-card>
+                      </div>
+                    </v-menu>
                     <!-- <v-tooltip
                       bottom
                       max-width="300"
@@ -119,7 +123,7 @@
                           </v-col>
                         </v-layout>
                       </v-card>
-                    </v-tooltip> -->
+                    </v-tooltip>-->
                   </p>
                 </template>
               </rate-selection-panel>
@@ -228,13 +232,16 @@
           </v-col>
         </v-row>
         <v-row :class="{'mt-4': $vuetify.breakpoint.xs, 'px-3 justify-start': true}" wrap>
-          
-            <v-btn text class="px-3 primary--text body-1 btn-link" :ripple="false" @click="onClickGoBack">
-              <v-icon color="primary" v-if="$vuetify.breakpoint.mdAndUp">mdi-arrow-left</v-icon>
-              <go-back-circle-icon v-if="$vuetify.breakpoint.smAndDown"></go-back-circle-icon>
-              <span v-if="$vuetify.breakpoint.mdAndUp">ZURÜCK</span>
-            </v-btn>
-          
+          <v-btn
+            text
+            class="px-3 primary--text body-1 btn-link"
+            :ripple="false"
+            @click="onClickGoBack"
+          >
+            <v-icon color="primary" v-if="$vuetify.breakpoint.mdAndUp">mdi-arrow-left</v-icon>
+            <go-back-circle-icon v-if="$vuetify.breakpoint.smAndDown"></go-back-circle-icon>
+            <span v-if="$vuetify.breakpoint.mdAndUp">ZURÜCK</span>
+          </v-btn>
         </v-row>
       </v-layout>
     </v-col>
@@ -374,7 +381,7 @@ export default {
           panelRate: "0",
           checked: false,
           isTop: false,
-          categoryColor:  "#4C9BB0"
+          categoryColor: "#4C9BB0"
         }
       ],
       outpatientPanelData: [
@@ -457,9 +464,12 @@ export default {
 
   methods: {
     selectPanels(id) {
-      console.log('id', id);
       this.categoryPanelData[id].checked = !this.categoryPanelData[id].checked;
       if (!this.categoryPanelData[id].checked)
+      {
+        this.categoryPanelData[id].selectedId = null;
+        this.categoryPanelData[id].selectedProductName = "";
+        this.categoryPanelData[id].selectedRate = 0;
         switch (id) {
           case 0: {
             this.stationaryPanelData = this.stationaryPanelData.map(panel => {
@@ -486,7 +496,9 @@ export default {
             break;
           }
         }
-      if (this.categoryPanelData[id].checked)
+      }
+        
+      else{
         switch (id) {
           case 0: {
             this.stationaryPanelData[0].checked = true;
@@ -505,6 +517,8 @@ export default {
             break;
           }
         }
+      }
+        
     },
 
     selectStationaryRatePanel(id) {
@@ -651,23 +665,46 @@ export default {
     onClickGoBack() {
       this.$router.go(-1);
     },
-    clickReadMore(){
+    clickReadMore() {},
+    fillData() {
+      //set first days of next months
+      this.days = this.$helper.commonHelper
+        .getFirstDayOfMonth()
+        .map(date => this.$helper.commonHelper.getGermanFormatDate(date));
+      if (this.days && this.days.length != 0) {
+        this.targetDay = this.days[0];
+      }
 
+      //setCategories
+      this.categoryPanelData = this.$store.state.products.categories;
+      console.log(this.categoryPanelData);
+      this.categoryPanelData.forEach(category => {
+        switch (category.id){
+          case 0:
+            this.stationaryPanelData[category.selectedId].checked = true;
+            break;
+          case 1:
+            this.toothPanelData[category.selectedId].checked = true;
+            break;
+          case 2:
+            this.outpatientPanelData[category.selectedId].checked = true;
+            break;
+          case 3:
+            this.preventionPanelData[category.selectedId].checked = true;
+            break;
+        }
+      });
+
+      //set rate
+      this.setRateForPanels(this.age);
     }
   },
 
   mounted() {
+    this.fillData();
     //set progress
     this.$store.dispatch("setPagesProgress", 25);
-    //set first days of next months
-    this.days = this.$helper.commonHelper
-      .getFirstDayOfMonth()
-      .map(date => this.$helper.commonHelper.getGermanFormatDate(date));
-    if (this.days && this.days.length != 0) {
-      this.targetDay = this.days[0];
-    }
-    //set rate
-    this.setRateForPanels(this.age);
+
     //test calling side-effect api
     // this.$store.dispatch("callBackendService", {
     //   hello: "test"

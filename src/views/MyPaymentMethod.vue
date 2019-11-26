@@ -39,7 +39,9 @@
                     <v-col cols="12">
                       <v-text-field 
                       v-model="ibanNumber" 
-                      label="IBAN" 
+                      label="IBAN"
+                      type="number" 
+                      prefix="DE"
                       hint :rules="[v => !!v && validateIBAN(v) || '']"
                       @keyup.native="validateSpaceFormatter($event)"
                       @keypress="limitIban($event, ibanNumber)"

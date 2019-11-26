@@ -27,18 +27,23 @@
                       <v-icon color="primary" v-on="on">mdi-information-outline</v-icon>
                     </template>
                     <div class="tooltip-container">
-                      <v-card class="elevation-0 primary">
+                      <v-card class="elevation-0 primary px-2">
                         <v-layout d-flex row wrap>
                           <v-col cols="2" sm="2">
                             <v-icon color="white">mdi-information-outline</v-icon>
                           </v-col>
-                          <v-col cols="10" sm="10" class="ml-0 pl-0 text-left" >
-                            <p class="text-left white--text mb-0">
+                          <v-col cols="10" sm="10" class="ml-0 pl-0 text-left">
+                            <p class="text-left white--text mb-0 body-2">
                               <b>Tarife ohne Alterungsrückstellung:</b> Sie zahlen
                               zu Beginn niedrige Beiträge, die mit dem Alter
                               steigen.
                             </p>
-                            <v-btn class="text-left white--text mb-1 btn-link" :ripple="false" text @click="clickReadMore">
+                            <v-btn
+                              class="text-left white--text mb-1 btn-link"
+                              :ripple="false"
+                              text
+                              @click="clickReadMore"
+                            >
                               <b>MEHR ></b>
                             </v-btn>
                           </v-col>
@@ -56,6 +61,7 @@
                           v-model="day"
                           label="TT"
                           ref="day"
+                          :type="$vuetify.breakpoint.xs?'number':''"
                           @keypress="validateDay($event, day, 2)"
                           :rules="[
                             v =>
@@ -74,6 +80,7 @@
                           v-model="month"
                           label="MM"
                           ref="month"
+                          :type="$vuetify.breakpoint.xs?'number':''"
                           @keypress="validateDay($event, month, 2)"
                           :rules="[
                             v =>
@@ -92,6 +99,7 @@
                           v-model="year"
                           label="JJJJ"
                           ref="year"
+                          
                           @keyup.enter="handleEnterClick"
                           @keypress="validateDay($event, year, 4)"
                           :rules="[
@@ -172,10 +180,21 @@ export default {
     handleEnterClick() {
       this.onClickStartCalc();
     },
-    clickReadMore() {}
+    clickReadMore() {},
+    fillData() {
+      if (this.$store.state.profile.dayOfBirth) {
+        let dob = new Date(this.$store.state.profile.dayOfBirth)
+          .toISOString()
+          .slice(0, 10);
+        this.day = dob.split("-")[2];
+        this.month = dob.split("-")[1];
+        this.year = dob.split("-")[0];
+      }
+    }
   },
   mounted() {
     this.$store.dispatch("setPagesProgress", 20);
+    this.fillData();
   }
 };
 </script>
