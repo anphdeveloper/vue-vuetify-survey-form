@@ -71,7 +71,7 @@
                 </v-radio-group>
                 <div v-if="dentalInsuranceAvailable !== '1'">
                   <v-container class="px-0 pb-2 text-with-inputcontrol-icon">
-                    <v-icon color="danger" class="mr-2">mdi-information-outline</v-icon>
+                    <v-icon color="error" class="mr-2">mdi-information-outline</v-icon>
                     <p
                       :class="
                     [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
@@ -82,11 +82,12 @@
                   <p
                     class="text-start body-2 mb-2"
                   >Es besteht bis zum Versicherungsbeginn eine private Zusatzversicherung für Zahnersatz mit einer vorgesehenen Erstattung von mindestens 80% bei dem folgenden Unternehmen:</p>
-                  <v-form ref="dobForm">
+                  <v-form ref="form">
                     <v-text-field
                       v-model="companies"
                       label="Unternehmen"
                       hint="Name Ihres bisherigen Versicherungsunternehmens"
+                      :rules="[v => !!v || '']"
                     ></v-text-field>
                   </v-form>
                 </div>
@@ -127,8 +128,9 @@ export default {
   },
   methods: {
     onClickNext() {
-      // Proceed to next page
+      if (this.dentalInsuranceAvailable === "0" && !this.$refs.form.validate()) return;
 
+      // Proceed to next page
       this.$store.dispatch("profile/setMissedTeeth", this.number == "mehr" ? -1 : this.number);
       
       if(this.dentalInsuranceAvailable == "1"){
