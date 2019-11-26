@@ -10,7 +10,7 @@
     <v-row
       v-if="showBackButton"
       justify="start"
-      :class="{'mt-4': $vuetify.breakpoint.xs, 'px-3': true}"
+      :class="{'mt-4': $vuetify.breakpoint.smAndDown, 'px-3': true}"
     >
       <v-btn
         text
