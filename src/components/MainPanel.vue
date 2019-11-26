@@ -6,7 +6,7 @@
     <v-card :class="{'pa-10':$vuetify.breakpoint.mdAndUp, 'pa-6':$vuetify.breakpoint.smAndDown, 'mx-auto':true}" outlined>
       <slot>No slot content defined</slot>
     </v-card>
-    <v-row justify="start" :class="{'mt-4': $vuetify.breakpoint.xs, 'px-3': true}" v-if="showGoBackButton">
+    <v-row v-if="showBackButton" justify="start" :class="{'mt-4': $vuetify.breakpoint.xs, 'px-3': true}">
       <v-btn
         text
         class="px-3 primary--text body-1 btn-link"
@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex"
 import  GoBackCircleIcon  from "@/components/Icons/GoBackCircleIcon.vue"
 export default {
   name: "MainPanel",
@@ -33,32 +32,21 @@ export default {
   },
   props: {
     panelTitle: String,
-
+    showBackButton: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {
       showGoBackButton: true
     };
   },
-  computed: {
-    ...mapState({
-      pageProgress: state => state.pagesProgress
-    })
-  },
-  watch: {
-    pageProgress: function(newVal){
-      this.showGoBackButton = newVal == 10 ? false : true;
-    }
-  },
   methods: {
     onClickGoBack() {
       this.$router.go(-1);
     }
-  },
-  mounted(){
-    this.showGoBackButton = this.$store.state.pagesProgress == 10 ? false : true;
   }
-
 };
 </script>
 <style scoped>
