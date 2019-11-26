@@ -110,7 +110,13 @@
                     <v-col cols="9" align="start" align-self="center" class="px-0 py-1">
                       <span>Einbettzimmer</span>
                     </v-col>
-                    <v-col cols="3" align="end" align-self="center" justify-self="center" class="py-1">
+                    <v-col
+                      cols="3"
+                      align="end"
+                      align-self="center"
+                      justify-self="center"
+                      class="py-1"
+                    >
                       <sick-bed-icon class="mr-1"></sick-bed-icon>
                     </v-col>
                   </v-row>
@@ -119,7 +125,7 @@
                       <span>Alterungsrückstellung</span>
                     </v-col>
                     <v-col cols="3" align-self="center" align="end" class="py-1">
-                      <v-icon color="#E1100A" large class="font-weight-thin">mdi-close</v-icon>
+                      <red-cross-icon></red-cross-icon>
                     </v-col>
                   </v-row>
                   <v-row class="px-2">
@@ -172,7 +178,13 @@
                     <v-col cols="7" align="start" align-self="center" class="px-0 py-1">
                       <span>Zweibettzimmer</span>
                     </v-col>
-                    <v-col cols="5" align="end" align-self="center" justify-self="center" class="py-1">
+                    <v-col
+                      cols="5"
+                      align="end"
+                      align-self="center"
+                      justify-self="center"
+                      class="py-1"
+                    >
                       <sick-bed-icon class="mr-1"></sick-bed-icon>
                       <sick-bed-icon class="mr-1"></sick-bed-icon>
                     </v-col>
@@ -235,7 +247,13 @@
                     <v-col cols="9" align="start" align-self="center" class="px-0 py-1">
                       <span>Zweibettzimmer</span>
                     </v-col>
-                    <v-col cols="3" align="end" class="py-1" align-self="center" justify-self="center">
+                    <v-col
+                      cols="3"
+                      align="end"
+                      class="py-1"
+                      align-self="center"
+                      justify-self="center"
+                    >
                       <sick-bed-icon class="mr-1"></sick-bed-icon>
                     </v-col>
                   </v-row>
@@ -382,7 +400,7 @@
                   <v-row class="px-2">
                     <v-col cols="10" align-self="center" align="start" class="px-0">
                       <span>Arzneimittel</span>
-                      <p class="mb-0 body-2"> (nicht verschreibungspflichtig)</p>
+                      <p class="mb-0 body-2">(nicht verschreibungspflichtig)</p>
                     </v-col>
                     <v-col cols="2" align-self="center" align="end" class="py-1">
                       <red-cross-icon></red-cross-icon>
@@ -412,17 +430,19 @@
                   <v-row class="px-2">
                     <v-col cols="11" align-self="center" align="start" class="px-0">
                       <span>Prävention</span>
-                      <p class="mb-0">bis zu insgesamt 100 €/Jahr für eine Mitgliedschaft im Fitness- studio (max. 50€/Jahr) und/oder die regelmäßige Teilnahme an Präventionskursen</p>
+                      <p
+                        class="mb-0"
+                      >bis zu insgesamt 100 €/Jahr für eine Mitgliedschaft im Fitness- studio (max. 50€/Jahr) und/oder die regelmäßige Teilnahme an Präventionskursen</p>
                     </v-col>
                   </v-row>
                   <v-row class="px-2">
-                    <v-col cols="10" align-self="center" align="start" class="px-0">
+                    <v-col cols="11" align-self="center" align="start" class="px-0">
                       <span>Arzneimittel bis zu 50 €/Jahr</span>
-                      <p class="mb-0 body-2"> (nicht verschreibungspflichtig)</p>
+                      <p class="mb-0 body-2">(nicht verschreibungspflichtig)</p>
                     </v-col>
-                    <v-col cols="2" align-self="center" align="end" class="py-1">
+                    <!-- <v-col cols="2" align-self="center" align="end" class="py-1">
                       <red-cross-icon></red-cross-icon>
-                    </v-col>
+                    </v-col>-->
                   </v-row>
                   <v-row class="px-2">
                     <v-col cols="9" align-self="center" align="start" class="px-0">
@@ -456,9 +476,12 @@ export default {
     return {
       show: false,
       tab: null,
-      groupItems: ["MediGroup<br />S1", "MediGroup<br />S2", "Medi<br/>Clinic Plus"],
-      membershipItems: ["MediGroup<br />Basis", "MediGroup<br />Premium",],
-
+      groupItems: [
+        "MediGroup<br />S1",
+        "MediGroup<br />S2",
+        "Medi<br/>Clinic Plus"
+      ],
+      membershipItems: ["MediGroup<br />Basis", "MediGroup<br />Premium"]
     };
   },
   computed: {},
@@ -492,28 +515,28 @@ export default {
     td {
       border: 0.5px solid #ced4da;
       &:first-child {
-        background: #CED4DA;
+        background: #ced4da;
       }
     }
   }
-  &.membership{
+  &.membership {
     th {
-    background: #3C8085;
-    opacity: 1;
-    border: 0.5px solid #ced4da;
-    color: white !important;
-    font-size: 1em;
-    &:first-child {
-      background: white;
-      border: unset;
+      background: #3c8085;
+      opacity: 1;
+      border: 0.5px solid #ced4da;
+      color: white !important;
+      font-size: 1em;
+      &:first-child {
+        background: white;
+        border: unset;
+      }
+      &:nth-child(3) {
+        opacity: 0.7;
+      }
+      &:not(first-child) {
+        width: 15%;
+      }
     }
-    &:nth-child(3) {
-      opacity: 0.7;
-    }
-    &:not(first-child) {
-      width: 15%;
-    }
-  }
   }
 }
 
@@ -591,7 +614,7 @@ export default {
     }
   }
   .v-slide-group__prev {
-    display: none!important;
+    display: none !important;
   }
 
   .v-slide-group__next {
@@ -606,7 +629,7 @@ export default {
     padding-left: 0;
     padding-right: 0;
     color: #fff !important;
-    background: #3C8085 ;
+    background: #3c8085;
     opacity: 1;
     margin-bottom: 25px;
     text-transform: capitalize;
@@ -628,7 +651,7 @@ export default {
         bottom: 0;
         border: 15px solid transparent;
         border-bottom: 0;
-        border-top: 15px solid #3C8085;
+        border-top: 15px solid #3c8085;
         transform: translate(-50%, calc(100% - 1px));
       }
     }
@@ -646,7 +669,7 @@ export default {
         bottom: 0;
         border: 15px solid transparent;
         border-bottom: 0;
-        border-top: 15px solid #3C8085;
+        border-top: 15px solid #3c8085;
         opacity: 1;
         transform: translate(-50%, calc(100% - 1px));
       }
