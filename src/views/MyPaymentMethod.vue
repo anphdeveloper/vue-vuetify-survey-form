@@ -11,7 +11,7 @@
                     <v-divider class="my-4" v-if="index != 0"/>
                     <v-row class="px-3 align-center">
                         <h5 class="text-start inline-box width-200" full-width>{{product.panelTitle}} - {{product.selectedProductName}}: </h5>
-                        <h2 class="text-start inline-box" full-width>{{product.selectedRate}} € / Monat</h2>
+                        <h2 class="text-start inline-box" full-width>{{ getRateForPeriod(product.selectedRate) }} {{typePeriod}}</h2>
                     </v-row>
                     
                   </div>
@@ -41,7 +41,8 @@
                       v-model="ibanNumber" 
                       label="IBAN" 
                       hint :rules="[v => !!v && validateIBAN(v) || '']"
-                      @keyup.native="validateSpaceFormatter"
+                      @keyup.native="validateSpaceFormatter($event)"
+                      @keypress="limitIban($event, ibanNumber)"
                     ></v-text-field>
                     </v-col>
                   </v-row>
@@ -105,9 +106,28 @@ export default {
       agreeCheckBox: false,
       showReadMore: true,
       products : null,
+      typePeriod: "€ / Monat"
     };
   },
-
+  watch: {
+    paymentOption: function(newVal){
+      switch (newVal){
+        case "monatlich":
+          this.typePeriod = "€ / Monat";
+          break;
+        case "1/4 jährlich":
+          this.typePeriod = "€ / Vierteljahr";
+          break;
+        case "1/2 jährlich":
+          this.typePeriod = "€ / Halbjahr";
+          break;
+        case "jährlich (4% Nachlass)":
+          this.typePeriod = "€ / Jahr";
+          break;
+        
+      }
+    }
+  },
   methods: {
     onClickNext() {
       if (this.$refs.personalForm.validate() && this.agreeCheckBox) {
@@ -130,9 +150,44 @@ export default {
       let IBAN = require('iban');
       return IBAN.isValid(iban);
     },
-    validateSpaceFormatter(){
-      this.ibanNumber =  this.ibanNumber.replace(/\s/g, '');
-      this.ibanNumber = this.ibanNumber.replace(/(.{4})/g,"$1 ");
+    validateSpaceFormatter(event){
+      if(event.key !== "Backspace"){
+        this.ibanNumber =  this.ibanNumber.replace(/\s/g, '');
+        this.ibanNumber = this.ibanNumber.replace(/(.{4})/g,"$1 ");
+      }
+    },
+    limitIban(event, iban) {
+      if(iban.replace(/\s/g, '').length > 21)
+        event.preventDefault();
+      else if( iban == "" && ['d', 'D'].findIndex(code => code == event.key) > -1)
+        return true;
+      else if((iban == 'D' || iban == 'd') && (event.key == 'E' || event.key == 'e'))
+        return true;
+      else if(["DE", "dE", "De", "de"].findIndex(code => code == iban.slice(0,2)) > -1 && /^\d+$/.test(event.key))
+        return true;
+      else
+        event.preventDefault();
+    },
+    getRateForPeriod(rate){
+      let rateForType = 0;
+      switch (this.paymentOption){
+        case "monatlich":
+          rateForType = rate;
+          break;
+        case "1/4 jährlich":
+          rateForType =rate*3;
+          break;
+        case "1/2 jährlich":
+          rateForType = rate*6;
+          break;
+        case "jährlich (4% Nachlass)":
+          rateForType = rate*12*0.96;
+          break;
+        default:
+          rateForType = rate;
+          break;
+      }
+      return rateForType.toFixed(2);
     }
   },
   created(){

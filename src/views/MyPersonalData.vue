@@ -245,7 +245,8 @@ export default {
       date: "",
       dateFormatted: null,
       menu: false,
-      showWarning: false
+      showWarning: false,
+      
     };
   },
   watch: {
