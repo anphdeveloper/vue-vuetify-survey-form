@@ -3,7 +3,7 @@
     <v-container>
       <v-row align="center" justify="center">
         <v-col cols="12" md="7" sm="10">
-          <main-panel panelTitle>
+          <main-panel panelTitle :showBackButton="false">
             <template v-slot>
               <p
                 :class="[
