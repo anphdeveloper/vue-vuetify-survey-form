@@ -3,10 +3,10 @@
     <v-container>
       <v-row align="center" justify="center">
         <v-col cols="12" md="7" sm="10">
-          <main-panel :panelTitle="panelTitle">
+          <main-panel :panelTitle="panelTitle" :showBackButton="false">
             <template v-slot>
-              <v-row justify="center" class="mb-2">
-                <v-icon color="#8AB304" large>mdi-checkbox-marked-circle-outline</v-icon>
+              <v-row justify="center" class="mb-5">
+                <checked-icon></checked-icon>
               </v-row>
               <p class="font-weight-bold title">Ihre private Zusatzversicherung wurde versendet</p>
               <p>Wir bestätigen den Eingang Ihres Antrags an die von Ihnen angegebene E-Mail Adresse. Ihre Versicherungsunterlagen erhalten Sie nach Prüfung per Post.</p>
@@ -20,16 +20,17 @@
 
 <script>
 // @ is an alias to /src
-
+import CheckedIcon from "@/components/Icons/CheckedIcon";
 import MainPanel from "@/components/MainPanel.vue";
 export default {
   name: "ManyThanks",
   components: {
-    MainPanel
+    MainPanel,
+    CheckedIcon
   },
   data() {
     return {
-      panelTitle: "Vielen Dank",
+      panelTitle: "Vielen Dank"
     };
   },
   watch: {},
@@ -43,4 +44,8 @@ export default {
 <style lang="scss">
 </style>
 <style lang="scss" scoped>
+.checked {
+  width: 56px;
+  height: 55px;
+}
 </style>
