@@ -465,8 +465,7 @@ export default {
   methods: {
     selectPanels(id) {
       this.categoryPanelData[id].checked = !this.categoryPanelData[id].checked;
-      if (!this.categoryPanelData[id].checked)
-      {
+      if (!this.categoryPanelData[id].checked) {
         this.categoryPanelData[id].selectedId = null;
         this.categoryPanelData[id].selectedProductName = "";
         this.categoryPanelData[id].selectedRate = 0;
@@ -496,9 +495,7 @@ export default {
             break;
           }
         }
-      }
-        
-      else{
+      } else {
         switch (id) {
           case 0: {
             this.stationaryPanelData[0].checked = true;
@@ -518,7 +515,6 @@ export default {
           }
         }
       }
-        
     },
 
     selectStationaryRatePanel(id) {
@@ -676,24 +672,29 @@ export default {
       }
 
       //setCategories
-      this.categoryPanelData = this.$store.state.products.categories;
-      console.log(this.categoryPanelData);
-      this.categoryPanelData.forEach(category => {
-        switch (category.id){
-          case 0:
-            this.stationaryPanelData[category.selectedId].checked = true;
-            break;
-          case 1:
-            this.toothPanelData[category.selectedId].checked = true;
-            break;
-          case 2:
-            this.outpatientPanelData[category.selectedId].checked = true;
-            break;
-          case 3:
-            this.preventionPanelData[category.selectedId].checked = true;
-            break;
-        }
-      });
+      if (this.$store.state.products.categories) {
+        this.categoryPanelData = this.$store.state.products.categories;
+
+        this.categoryPanelData.forEach(category => {
+          if( category.checked){
+            switch (category.id) {
+            case 0:
+              this.stationaryPanelData[category.selectedId].checked = true;
+              break;
+            case 1:
+              this.toothPanelData[category.selectedId].checked = true;
+              break;
+            case 2:
+              this.outpatientPanelData[category.selectedId].checked = true;
+              break;
+            case 3:
+              this.preventionPanelData[category.selectedId].checked = true;
+              break;
+          }
+          }
+          
+        });
+      }
 
       //set rate
       this.setRateForPanels(this.age);

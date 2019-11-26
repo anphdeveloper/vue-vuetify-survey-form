@@ -153,10 +153,23 @@ export default {
     },
     onClickHideMore() {
       this.showReadMore = true;
+    },
+    fillData(){
+      if (this.$store.state.profile.missedTeeth)
+      {
+        this.number = this.$store.state.profile.missedTeeth
+      }
+      if(this.$store.state.profile.prevInsCompany.haveCompany){
+        this.dentalInsuranceAvailable = "0";
+        this.companies = this.$store.state.profile.prevInsCompany.comapnyName;
+      }
+      else
+        this.dentalInsuranceAvailable = "1";
     }
   },
   mounted() {
     this.$store.dispatch("setPagesProgress", 40);
+    this.fillData();
   }
 };
 </script>
