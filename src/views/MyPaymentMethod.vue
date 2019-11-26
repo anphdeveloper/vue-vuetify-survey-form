@@ -5,7 +5,7 @@
         <v-col cols="12" md="7" sm="10">
           <main-panel :panelTitle="panelTitle">
             <template v-slot>
-              <div :class="{ 'px-10': $vuetify.breakpoint.smAndUp }">
+              <div :class="{ 'px-10': $vuetify.breakpoint.smAndUp, 'px-5': $vuetify.breakpoint.xs }">
                 <v-form class="pa-0 payment-form" ref="personalForm" lazy-validation>
                   <div v-for="(product, index) in products.filter(product => product.checked)" :key="index" class="category-list">
                     <v-divider class="my-4" v-if="index != 0"/>
@@ -238,11 +238,14 @@ export default {
   position: absolute;
   bottom: 10px;
   left: -45px;
-  @media only screen and (max-width: 1200px) {
+  @media only screen and (max-width: 599px) {
     width: 32px;
     height: 34px;
     margin-right: 10px !important;
     background-size: cover;
+    bottom: 24px;
+    left: -26px;
+    font-size: 14px;
   }
 }
 .px-20 {
