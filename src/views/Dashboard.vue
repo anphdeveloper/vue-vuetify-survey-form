@@ -210,7 +210,7 @@
           <middle-title-panel
             panelBackground="white"
             leftTitle="mtl. Gesamt-Beitrag"
-            :middleTitle="totalRate + '€'"
+            :middleTitle=" $helper.commonHelper.germanFormat(totalRate) + '€'"
             leftTitleClass="subtitle-1 font-weight-bold grey--text text--darken-3 pl-4"
             middleTitleClass="subtitle-1 font-weight-bold grey--text text--darken-3"
           ></middle-title-panel>
@@ -650,6 +650,9 @@ export default {
     },
     onClickGoBack() {
       this.$router.go(-1);
+    },
+    clickReadMore(){
+
     }
   },
 
@@ -665,7 +668,6 @@ export default {
     }
     //set rate
     this.setRateForPanels(this.age);
-
     //test calling side-effect api
     // this.$store.dispatch("callBackendService", {
     //   hello: "test"

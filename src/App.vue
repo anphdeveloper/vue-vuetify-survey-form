@@ -37,7 +37,7 @@ export default {
   border-radius: unset!important;
   opacity: 1 !important;
   box-shadow: unset!important;
-  padding-top: 5px;
+  padding-top: 0px;
   background-color: transparent!important;
   &::before {
     content: "";

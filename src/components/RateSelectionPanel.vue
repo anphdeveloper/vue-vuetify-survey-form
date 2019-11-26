@@ -38,7 +38,7 @@
         </v-col>
         <v-col cols="8" class="pt-4">
           <span class="subtitle-1 grey--text text--darken-3"
-            >{{ ratePanelData.panelRate }}€ mtl.</span
+            >{{ $helper.commonHelper.germanFormat(ratePanelData.panelRate) }}€ mtl.</span
           >
         </v-col>
       </v-row>
@@ -72,7 +72,6 @@ export default {
     }
   },
   created() {
-    console.log('vuetify color', this.$vuetify.theme.currentTheme);
     this.panelSelected = this.$props.ratePanelData.checked ? "radio-1" : null;
   }
 };
