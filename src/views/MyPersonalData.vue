@@ -63,6 +63,14 @@
                     </v-col>
                   </v-row>
                   <v-row justify="center">
+                    <v-col cols="12" sm="4">
+                      <v-text-field v-model="postCode" label="PLZ" hint :rules="[v => !!v || '']"></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="8">
+                      <v-text-field v-model="place" label="Ort" hint :rules="[v => !!v || '']"></v-text-field>
+                    </v-col>
+                  </v-row>
+                  <v-row justify="center">
                     <v-col cols="12" sm="12">
                       <v-text-field
                         v-model="country"
@@ -75,24 +83,14 @@
                     </v-col>
                   </v-row>
                   <v-row justify="center">
-                    <v-col cols="12" sm="4">
-                      <v-text-field v-model="postCode" label="PLZ" hint :rules="[v => !!v || '']"></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="8">
-                      <v-text-field v-model="place" label="Ort" hint :rules="[v => !!v || '']"></v-text-field>
-                    </v-col>
-                  </v-row>
-                  <v-row justify="center">
                     <v-col cols="12" sm="12">
                       <v-text-field
                         v-model="phoneNo"
                         prefix="+49"
                         label="Telefon- oder Mobilnummer"
                         ref="telephone"
-
                         hint
                         persistent-hint
-                        :rules="[v => !!v || '']"
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -131,24 +129,29 @@
                         <template v-slot:activator="{ on }">
                           <v-text-field
                             v-model="dateFormatted"
+                            
                             label="Einstellungsdatum"
-                            placeholder="TT.MM.JJJJ"
-                            readonly
-                            v-on="on"
-                            @blur="date = parseDate(dateFormatted)"
+                            placeholder="TT.MM.JJJJ"                                                     
                             class="meta-pro-text primary--text"
                             :rules="[v => !!v || '']"
                           >
                             <template v-slot:append>
+                              <v-btn icon v-on="on" :ripple="false">
                               <calendar-icon></calendar-icon>
+                              </v-btn>
                             </template>
                           </v-text-field>
+                          <!-- <v-btn v-on="on">
+                              <calendar-icon ></calendar-icon>
+                          </v-btn>-->
                         </template>
-                        <v-date-picker v-model="date" no-title scrollable locale="de-DE">
-                          <v-spacer></v-spacer>
-                          <v-btn text color="primary" @click="menu = false">abbrechen</v-btn>
-                          <v-btn text color="primary" @click="$refs.menu.save(date)">OK</v-btn>
-                        </v-date-picker>
+                        <v-date-picker
+                          v-model="date"
+                          no-title
+                          scrollable
+                          locale="de-DE"
+                          @input="menu = false"
+                        ></v-date-picker>
                       </v-menu>
                     </v-col>
                   </v-row>
@@ -184,35 +187,7 @@
                   "
                       >Abschluss des Tarifs „Stationär - Clinic Plus“ nicht möglich</p>
                     </v-container>
-                  </div>
-                  <p
-                    :class="
-                    [$vuetify.breakpoint.smAndUp ? 'title' : 'title'] +
-                      ' text-start font-weight-bold mb-0 mt-6'
-                  "
-                  >Kontaktaufnahme, Produktinformationen und Datenschutz</p>
-                  <p class="body1 text-start grey--text">(optional)</p>
-                  <div class="text-with-inputcontrol-icon">
-                    <v-checkbox large v-model="agreeCheckBox" class="mt-0 pt-0" />
-                    <p class="text-start body-2 mb-1">
-                      Ich bin damit einverstanden, dass mich die Gesellschaften des Gothaer Konzerns sowie ggf. ein mich betreuender Vermittler zwecks Information über Versicherungs- und
-                      <span
-                        v-if="showReadMore"
-                        class="text-start body-2 mb-1 primary--text cursor-pointer"
-                        @click="onClickShowMore"
-                      >mehr…</span>
-                      <span v-if="!showReadMore">
-                        Finanzdienstleistungsprodukte sowie zur Vereinbarung persönlicher Beratungstermine per Telefon und E-Mail kontaktieren können. Ich kann meine Einwilligung jederzeit formfrei widerrufen. Dies z.B. per E-Mail an
-                        <span
-                          class="primary--text"
-                        >servicevereinbarung@gothaer.de</span> oder per Telefon unter 0221 - 308 91730.
-                        <span
-                          class="text-start body-2 mb-1 primary--text cursor-pointer"
-                          @click="onClickHideMore"
-                        >…weniger</span>
-                      </span>
-                    </p>
-                  </div>
+                  </div>            
                 </v-form>
                 <v-btn
                   :disabled="showInsureWarningForPrivate"
@@ -233,7 +208,7 @@
 
 <script>
 // @ is an alias to /src
-
+/*eslint-disable*/
 import MainPanel from "@/components/MainPanel.vue";
 import CalendarIcon from "@/components/Icons/CalendarIcon";
 export default {
@@ -247,8 +222,8 @@ export default {
       panelTitle: "Meine persönlichen Daten",
       salutationOptions: ["Frau", "Herr", "Divers"],
       salutation: "Frau",
-      titleOptions: ["Dr.", "Prof."],
-      title: "Dr.",
+      titleOptions: ["Kein Titel", "Dr.", "Prof."],
+      title: "Kein Titel",
       firstGivenName: "",
       surname: "",
       street: "",
@@ -267,9 +242,10 @@ export default {
       showInsureWarningForPrivate: false,
       warningSelectionInDashboard: false,
       // calendar variables
-      date: null,
+      date: "",
       dateFormatted: null,
-      menu: false
+      menu: false,
+      showWarning: false
     };
   },
   watch: {
@@ -277,33 +253,39 @@ export default {
       this.showInsureWarningForPrivate =
         option === "1" && this.warningSelectionInDashboard;
     },
-    // calendar
-    date() {
-      this.dateFormatted = this.formatDate(new Date(this.date));
+    //alendar
+    date(newVal) {
+      if (newVal)
+      this.dateFormatted = this.formatDate(new Date(newVal));
     }
   },
   methods: {
     onClickNext() {
-      if (this.$refs.personalForm.validate()) {
-        this.$store.dispatch("profile/setPersonalData", {
-          salutation: this.salutation,
-          title: this.title,
-          firstGivenName: this.firstGivenName,
-          surname: this.surname,
-          street: this.street,
-          streetNo: this.streetNo,
-          country: this.country,
-          postCode: this.postCode,
-          place: this.place,
-          phoneNo: this.phoneNo,
-          emailAddress: this.emailAddress,
-          professionalActivities: this.professionalActivities,
-          settingDate: this.settingDate,
-          paymentOption: "",
-          ibanNumber: ""
-        });
-
-        this.$router.push({ name: "MyPaymentMethod" });
+      if ( this.$refs.personalForm.validate()) {
+        if( this.showInsureWarningForPrivate && this.insuredOption == "1")
+          return;
+        else
+        {
+          this.$store.dispatch("profile/setPersonalData", {
+            salutation: this.salutation,
+            title: this.title,
+            firstGivenName: this.firstGivenName,
+            surname: this.surname,
+            street: this.street,
+            streetNo: this.streetNo,
+            country: this.country,
+            postCode: this.postCode,
+            place: this.place,
+            phoneNo: this.phoneNo,
+            emailAddress: this.emailAddress,
+            professionalActivities: this.professionalActivities,
+            settingDate: this.settingDate,
+            paymentOption: "",
+            ibanNumber: ""
+          });
+          this.$router.push({ name: "MyPaymentMethod" });
+        }
+       
       } else {
         console.log("validation failed");
       }
@@ -320,6 +302,7 @@ export default {
       return this.$helper.commonHelper.getGermanFormatDate(date);
     },
     parseDate(date) {
+      console.log('date', date);
       if (!date) return null;
       const [day, month, year] = date.split(".");
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
@@ -328,8 +311,10 @@ export default {
   mounted() {
     this.$store.dispatch("setPagesProgress", 57);
     this.warningSelectionInDashboard =
-      this.$store.state.products.categories[0].checked &&
-      this.$store.state.products.categories[0].selectedId === 2;
+      ((this.$store.state.products.categories[0].checked 
+      && this.$store.state.products.categories.filter(category => category.checked).length == 1)
+      &&
+      this.$store.state.products.categories[0].selectedId === 2);
   }
 };
 </script>
