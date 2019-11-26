@@ -32,11 +32,14 @@ export function getFirstDayOfMonth() {
 
 
 export function germanFormat(number) {
-  let postComma, preComma, stringReverse, _ref;
-  stringReverse = function(str) {
-    return str.split('').reverse().join('');
-  };
-  _ref = number.toFixed(2).split('.'), preComma = _ref[0], postComma = _ref[1];
-  preComma = stringReverse(stringReverse(preComma).match(/.{1,3}/g).join('.'));
-  return "" + preComma + "," + postComma;
+    number = parseFloat(number);
+    let postComma, preComma, stringReverse, _ref;
+    stringReverse = function (str) {
+      return str.split('').reverse().join('');
+    };
+    _ref = number.toFixed(2).split('.'), preComma = _ref[0], postComma = _ref[1];
+    preComma = stringReverse(stringReverse(preComma).match(/.{1,3}/g).join('.'));
+    return "" + preComma + "," + postComma;
+  
+
 };
