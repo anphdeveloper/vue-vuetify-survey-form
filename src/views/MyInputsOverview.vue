@@ -108,9 +108,16 @@
                     class="caption white--text text-right mb-3 mt-2 font-weight-light"
                   >Beginn {{ targetDay }}, Vertragslaufzeit 24 Monate</p>
                 </v-card>
-                <v-btn depressed large color="danger" class="mt-7 white--text" @click="onClickNext">
+                <v-btn
+                  depressed
+                  large
+                  block
+                  color="danger"
+                  class="mt-7 white--text"
+                  @click="onClickNext"
+                >
                   Versicherung abschließen
-                  <v-icon color="primary" class="mr-2"></v-icon>
+                  <send-icon></send-icon>
                 </v-btn>
               </div>
             </template>
@@ -125,6 +132,7 @@
 // @ is an alias to /src
 
 import MainPanel from "@/components/MainPanel.vue";
+import SendIcon from "@/components/Icons/SendIcon";
 
 const shortNames = [
   { title: "S1 - 1-Bett-Zimmer", shortName: "S1" },
@@ -139,7 +147,8 @@ const shortNames = [
 export default {
   name: "MyInputsOverview",
   components: {
-    MainPanel
+    MainPanel,
+    SendIcon
   },
   data() {
     return {
@@ -230,5 +239,13 @@ export default {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.send {
+    width: 24px;
+    height: 18px;
+    margin: 0;
+    margin-left: 8px;
+    margin-bottom: 2px;
 }
 </style>
