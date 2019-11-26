@@ -15,29 +15,20 @@
                   Bitte beantworten Sie die Frage wahrheitsgemäß, da ansonsten
                   Ihr Versicherungsschutz gefährdet sein kann.
                 </p>
-                <v-form
-                  class="text-with-inputcontrol-icon"
-                  ref="form"
-                  lazy-validation
-                >
-                  <v-checkbox
-                    large
-                    v-model="checkbox"
-                    :rules="[v => !!v || '']"
-                    class="mt-0 pt-0"
-                  />
+                <v-form class="text-with-inputcontrol-icon" ref="form" lazy-validation>
+                  <v-checkbox large v-model="checkbox" :rules="[v => !!v || '']" class="mt-0 pt-0" />
                   <p class="text-start body-2 mb-1">
                     Ich bestätige, dass ich in den letzten 12 Monaten vor
                     Anmeldung
-                    <span class="font-weight-black"
-                      >nicht länger als 20 Tage arbeitsunfähig</span
-                    >
+                    <span
+                      class="font-weight-black"
+                    >nicht länger als 20 Tage arbeitsunfähig</span>
                     krank war.
                   </p>
                 </v-form>
                 <div v-if="showWarning && !checkbox">
                   <v-container class="px-0 pb-2 text-with-inputcontrol-icon">
-                    <v-icon color="red" class="mr-2">mdi-information-outline</v-icon>
+                    <v-icon color="error" class="mr-2">mdi-information-outline</v-icon>
                     <p
                       :class="
                     [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
@@ -45,12 +36,16 @@
                   "
                     >Mehr als 20 Tage arbeitsunfähig</p>
                   </v-container>
-                  <p class="text-start body-2 mb-1">
+                  <p class="text-start body-2">
                     Falls Sie die Angaben zum Gesundheitszustand nicht
-                    bestätigen können, nutzen Sie bitte den
-                    <span class="font-weight-black primary--text"
-                      >Antrag mit Gesundheitsfragen</span
-                    >.
+                    bestätigen können, nutzen Sie bitte den&nbsp;
+                    <v-btn
+                      text
+                      :ripple="false"
+                      target="_blank"
+                      href="http://www.medigroup.gothaer.de/media/pgk_media/dokumente/antragsunterlagen_der_vertriebspartner/bmw/212460_20190911_FDF_BMW.pdf?IM=30414133323135433230"
+                      class="mx-0 px-0 primary--text text-none font-weight-black btn-link adjust-button-margin"
+                    >&nbsp;Antrag mit Gesundheitsfragen</v-btn>.
                   </p>
                 </div>
                 <v-btn
@@ -59,8 +54,7 @@
                   color="danger"
                   class="mt-6 white--text"
                   @click="onClickNext"
-                  >Weiter</v-btn
-                >
+                >Weiter</v-btn>
               </div>
             </template>
           </main-panel>
@@ -88,11 +82,10 @@ export default {
   },
   methods: {
     onClickNext() {
-      if ( this.$refs.form.validate()) {
-        if( this.$store.state.products.categories[1].checked)
+      if (this.$refs.form.validate()) {
+        if (this.$store.state.products.categories[1].checked)
           this.$router.push({ name: "MyDentalHealth" });
-        else
-          this.$router.push({ name: "MyPersonalData" });
+        else this.$router.push({ name: "MyPersonalData" });
       } else {
         this.showWarning = true;
       }
@@ -117,5 +110,8 @@ export default {
   p {
     display: inline-block;
   }
+}
+.adjust-button-margin {
+  margin-bottom: 1px;
 }
 </style>

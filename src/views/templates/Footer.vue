@@ -9,12 +9,14 @@
     <div>
       <v-btn
         text
+        :ripple="false"
         target="_blank"
         href="http://www.medigroup.gothaer.de/de/navigationslisten/fusszeile/impressum/Impressum_1.jsp?IM=30414133323135433230"
         class="px-3 primary--text caption text-capitalize btn-link"
       >Impressum</v-btn>
       <v-btn
         text
+        :ripple="false"
         target="_blank"
         href="http://www.medigroup.gothaer.de/de/navigationslisten/fusszeile/datenschutz/PGK_Datenschutz.jsp?IM=30414133323135433230"
         class="px-3 primary--text caption text-capitalize btn-link"
