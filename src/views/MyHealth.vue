@@ -44,7 +44,7 @@
                       :ripple="false"
                       target="_blank"
                       href="http://www.medigroup.gothaer.de/media/pgk_media/dokumente/antragsunterlagen_der_vertriebspartner/bmw/212460_20190911_FDF_BMW.pdf?IM=30414133323135433230"
-                      class="mx-0 px-0 primary--text text-none font-weight-black btn-link adjust-button-margin"
+                      class="mx-0 px-0 primary--text text-none font-weight-black btn-link adjust-button-for-text"
                     >&nbsp;Antrag mit Gesundheitsfragen</v-btn>.
                   </p>
                 </div>
@@ -111,7 +111,8 @@ export default {
     display: inline-block;
   }
 }
-.adjust-button-margin {
+.adjust-button-for-text {
   margin-bottom: 1px;
+  letter-spacing: .0178571429em!important;
 }
 </style>
