@@ -77,18 +77,26 @@
                     <template v-slot:default>
                       <tbody>
                         <!-- <tr v-for="item in desserts" :key="item.name"> -->
-                        <tr v-for="(product, index) in products.filter(product => product.checked)" :key="index">
+                        <tr
+                          v-for="(product, index) in products.filter(product => product.checked)"
+                          :key="index"
+                        >
                           <td class="text-left">
-                            <p class="subtitle-1 white--text text-start mb-4 mt-5 pb-2">{{product.panelTitle}}</p>
+                            <p
+                              class="subtitle-1 pa-0 ma-0 white--text text-start"
+                            >{{product.panelTitle}}</p>
                           </td>
                           <td class="text-left">
-                            <p class="caption white--text text-start mb-3 mt-5 font-weight-light">{{product.selectedProductName}}</p>
+                            <p
+                              class="caption pa-0 ma-0 white--text text-start font-weight-light"
+                            >{{getShortName(product.selectedProductName)}}</p>
                           </td>
                           <td class="text-right">
-                            <p class="subtitle-1 white--text mb-4 mt-5 font-weight-light">{{product.selectedRate}} €</p>
+                            <p
+                              class="subtitle-1 pa-0 ma-0 white--text font-weight-light"
+                            >{{product.selectedRate}} €</p>
                           </td>
                         </tr>
-                        
                       </tbody>
                     </template>
                   </v-simple-table>
@@ -100,13 +108,7 @@
                     class="caption white--text text-right mb-3 mt-2 font-weight-light"
                   >Beginn {{ targetDay }}, Vertragslaufzeit 24 Monate</p>
                 </v-card>
-                <v-btn
-                  depressed
-                  large
-                  color="danger"
-                  class="mt-7 white--text"
-                  @click="onClickNext"
-                >
+                <v-btn depressed large color="danger" class="mt-7 white--text" @click="onClickNext">
                   Versicherung abschließen
                   <v-icon color="primary" class="mr-2"></v-icon>
                 </v-btn>
@@ -123,6 +125,17 @@
 // @ is an alias to /src
 
 import MainPanel from "@/components/MainPanel.vue";
+
+const shortNames = [
+  { title: "S1 - 1-Bett-Zimmer", shortName: "S1" },
+  { title: "S2 - 2-Bett-Zimmer", shortName: "S2" },
+  { title: "Clinic Plus - 2-Bett-Zimmer", shortName: "Clinic Plus" },
+  { title: "MediGroup Z Duo", shortName: "Z Duo" },
+  { title: "MediGroup A", shortName: "A" },
+  { title: "Basis", shortName: "Basis" },
+  { title: "Premium", shortName: "Premium" }
+];
+
 export default {
   name: "MyInputsOverview",
   components: {
@@ -145,24 +158,29 @@ export default {
       this.$router.push({ name: "ManyThanks" });
     },
     gotoMyPersonalData() {
-        this.$router.push({ name: "MyPersonalData" });
+      this.$router.push({ name: "MyPersonalData" });
     },
     gotoMyPaymentMethod() {
-        this.$router.push({ name: "MyPaymentMethod" });
+      this.$router.push({ name: "MyPaymentMethod" });
+    },
+    getShortName(title) {
+      return shortNames.find(item => item.title === title).shortName;
     }
   },
-  created(){
+  created() {
     this.profile = this.$store.state.profile.personalData;
     this.products = this.$store.state.products.categories;
     this.totalRate = this.$store.state.products.categories.reduce(
-      ( totalRate, category ) => 
-      totalRate + (category.checked? category.selectedRate : 0), 0
+      (totalRate, category) =>
+        totalRate + (category.checked ? category.selectedRate : 0),
+      0
     );
-    this.targetDay = this.$helper.commonHelper.getGermanFormatDate(new Date(this.$store.state.profile.targetDay));
+    this.targetDay = this.$helper.commonHelper.getGermanFormatDate(
+      new Date(this.$store.state.profile.targetDay)
+    );
   },
   mounted() {
     this.$store.dispatch("setPagesProgress", 85);
-
   }
 };
 </script>
@@ -193,10 +211,16 @@ export default {
   }
 }
 .overview {
+  background: transparent;
+  tr {
+    vertical-align: baseline;
+  }
   td {
     background-color: #00718f;
     border-bottom: 1px solid white !important;
-    padding: 0;
+    padding: 0px;
+    padding-top: 24px;
+    height: 65px;
   }
 }
 .detailed-info {
