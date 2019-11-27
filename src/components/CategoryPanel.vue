@@ -115,7 +115,6 @@ export default {
       }
     },
     onClickInfo(){
-      console.log(this.$props.categoryPanelData.panelDocsLink);
       window.open("pdfs/" + this.$props.categoryPanelData.panelDocsLink, "_blank");
     }
   },

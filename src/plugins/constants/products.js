@@ -166,3 +166,5 @@ export const PREVENTION_PANEL_DATA = [
     pdfLink: "Tarif_MediGroup_V_Premium.pdf",
   }
 ]
+
+export const INFORMATION_LINK = "Allgemeine_Rechtliche_Belehrungen.pdf";
