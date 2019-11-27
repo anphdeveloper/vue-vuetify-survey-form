@@ -116,7 +116,7 @@
                   class="mt-7 white--text"
                   @click="onClickNext"
                 >
-                  Versicherung abschließen
+                  Versicherung abschlie<span class="not-uppercase">ß</span>en
                   <send-icon></send-icon>
                 </v-btn>
               </div>
@@ -247,5 +247,9 @@ export default {
     margin: 0;
     margin-left: 8px;
     margin-bottom: 2px;
+}
+
+.not-uppercase {
+  text-transform: none;
 }
 </style>

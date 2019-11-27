@@ -12,7 +12,7 @@
                       ' text-start mb-8'
                   "
                 >
-                  Zur Berechnung Ihres persönlichen Beitrags, benötigen wir ihr
+                  Zur Berechnung Ihres persönlichen Beitrags benötigen wir Ihr
                   Geburtsdatum.
                   <v-menu
                     offset-y

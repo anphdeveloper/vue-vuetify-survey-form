@@ -25,9 +25,9 @@
               <thead>
                 <tr>
                   <th class="text-left"></th>
-                  <th class="text-center">Medigroup S1</th>
-                  <th class="text-center">Medigroup S1</th>
-                  <th class="text-center">Medi Clinic Plus</th>
+                  <th class="text-center">MediGroup S1</th>
+                  <th class="text-center">MediGroup S1</th>
+                  <th class="text-center">MediClinic Plus</th>
                 </tr>
               </thead>
               <tbody>
@@ -354,12 +354,12 @@
                     class="py-0"
                     justify="center"
                     align="center"
-                  >Arzneimittel (nicht verschreibungspflichtig)</td>
+                  >bis zu 50 €/Jahr</td>
                 </tr>
                 <tr>
-                  <td class="py-0">Maximal</td>
-                  <td class="py-0" justify="center" align="center">200 €/Jahr</td>
-                  <td class="py-0" justify="center" align="center">500 €/Jahr</td>
+                  <td class="py-0">Maximale Erstattungen pro Jahr</td>
+                  <td class="py-0" justify="center" align="center">200 €</td>
+                  <td class="py-0" justify="center" align="center">500 €</td>
                 </tr>
               </tbody>
             </template>
