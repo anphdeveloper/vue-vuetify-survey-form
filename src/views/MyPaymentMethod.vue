@@ -11,7 +11,7 @@
                     <v-divider class="my-4" v-if="index != 0"/>
                     <v-row class="px-3 align-center">
                         <h5 class="text-start inline-box width-200" full-width>{{product.panelTitle}} - {{product.selectedProductName}}: </h5>
-                        <h2 class="text-start inline-box" full-width>{{ getRateForPeriod(product.selectedRate) }} {{typePeriod}}</h2>
+                        <h2 class="text-start inline-box" full-width>{{ $helper.commonHelper.germanFormat(getRateForPeriod(product.selectedRate)) }} {{typePeriod}}</h2>
                     </v-row>
                     
                   </div>
@@ -174,6 +174,7 @@ export default {
     },
     getRateForPeriod(rate){
       let rateForType = 0;
+      console.log("rate:::", rate);
       switch (this.paymentOption){
         case "monatlich":
           rateForType = rate;
