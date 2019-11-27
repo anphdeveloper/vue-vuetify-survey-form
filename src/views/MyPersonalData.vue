@@ -281,7 +281,7 @@ export default {
             phoneNo: this.phoneNo,
             emailAddress: this.emailAddress,
             professionalActivities: this.professionalActivities,
-            settingDate: this.settingDate,
+            settingDate: this.dateFormatted,
             paymentOption: "",
             ibanNumber: ""
           });
@@ -308,15 +308,34 @@ export default {
       if (!date) return null;
       const [day, month, year] = date.split(".");
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
-    }
-  },
-  mounted() {
-    this.$store.dispatch("setPagesProgress", 57);
-    this.warningSelectionInDashboard =
+    },
+    fillData(){
+      this.salutation = this.$store.state.profile.personalData.salutation;
+      this.title = this.$store.state.profile.personalData.title;
+      this.firstGivenName = this.$store.state.profile.personalData.firstGivenName;
+      this.surname = this.$store.state.profile.personalData.surname;
+      this.street = this.$store.state.profile.personalData.street;
+      this.streetNo = this.$store.state.profile.personalData.streetNo;
+      this.country = this.$store.state.profile.personalData.country;
+      this.postCode = this.$store.state.profile.personalData.postCode;
+      this.place = this.$store.state.profile.personalData.place;
+      this.phoneNo = this.$store.state.profile.personalData.phoneNo;
+      this.emailAddress = this.$store.state.profile.personalData.emailAddress;
+      this.professionalActivities = this.$store.state.profile.personalData.professionalActivities;
+      this.dateFormatted = this.$store.state.profile.personalData.settingDate;
+
+
+      this.warningSelectionInDashboard =
       ((this.$store.state.products.categories[0].checked 
       && this.$store.state.products.categories.filter(category => category.checked).length == 1)
       &&
       this.$store.state.products.categories[0].selectedId === 2);
+    }
+  },
+  mounted() {
+    this.$store.dispatch("setPagesProgress", 57);
+    this.fillData();
+    
   }
 };
 </script>

@@ -99,7 +99,7 @@
                           v-model="year"
                           label="JJJJ"
                           ref="year"
-                          
+                          :type="$vuetify.breakpoint.xs?'number':''"
                           @keyup.enter="handleEnterClick"
                           @keypress="validateDay($event, year, 4)"
                           :rules="[
