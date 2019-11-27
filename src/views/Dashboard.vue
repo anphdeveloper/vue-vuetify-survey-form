@@ -1,6 +1,6 @@
 <template>
   <v-layout row wrap justify-center>
-    <v-col cols="12" sm="9" xs="12" class="mt-10">
+    <v-col cols="12" sm="12" xs="12" class="mt-10">
       <v-layout column wrap>
         <v-row justify="center">
           <v-col cols="12" sm="6">
