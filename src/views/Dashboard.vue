@@ -286,7 +286,8 @@ export default {
           expanded: false,
           selectedId: 0,
           selectedProductName: "",
-          selectedRate: 0
+          selectedRate: 0,
+          panelDocsLink: "MediGroup_Stationaer.pdf"
         },
         {
           id: 1,
@@ -303,7 +304,8 @@ export default {
           expanded: false,
           selectedId: 0,
           selectedProductName: "",
-          selectedRate: 0
+          selectedRate: 0,
+          panelDocsLink: "MediGroup_Z_Duo.pdf"
         },
         {
           id: 2,
@@ -320,7 +322,8 @@ export default {
           expanded: false,
           selectedId: 0,
           selectedProductName: "",
-          selectedRate: 0
+          selectedRate: 0,
+          panelDocsLink: "MediGroup_A.pdf"
         },
         {
           id: 3,
@@ -337,7 +340,9 @@ export default {
           expanded: false,
           selectedId: 0,
           selectedProductName: "",
-          selectedRate: 0
+          selectedRate: 0,
+          panelDocsLink: "MediGroup_Vorsorge.pdf"
+        
         }
       ],
       stationaryPanelData: [
