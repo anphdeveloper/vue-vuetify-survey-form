@@ -77,19 +77,26 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+.pa-0 {
+  position: relative;
+}
 .title-row {
   height: 50px;
 }
 .top-label-icon {
   background: url("../assets/icons/gothaer_bubble.svg");
   background-color: transparent !important;
-  width: 48px;
+  margin-right: 0px !important;
+  width: 44px;
   height: 48px;
   background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  right: 0;
   @media only screen and (max-width: 1200px) {
     width: 40px;
     height: 44px;
-    margin-right: 10px !important;
+    margin-right: 0px !important;
     background-size: cover;
   }
 }
