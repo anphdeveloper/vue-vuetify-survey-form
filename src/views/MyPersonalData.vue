@@ -20,7 +20,9 @@
                       ></v-select>
                     </v-col>
                     <v-col cols="12" sm="6" md="8">
-                      <p class="pb-0 mb-0 mt-4 text-start caption">Titel (optional)</p>
+                      <p class="pb-0 mb-0 mt-4 text-start caption">
+                        Titel (optional)
+                      </p>
                       <v-select
                         class="mt-0 pt-0 meta-pro-text primary--text"
                         :items="titleOptions"
@@ -51,7 +53,12 @@
                   </v-row>
                   <v-row justify="center">
                     <v-col cols="12" sm="8">
-                      <v-text-field v-model="street" label="Straße" hint :rules="[v => !!v || '']"></v-text-field>
+                      <v-text-field
+                        v-model="street"
+                        label="Straße"
+                        hint
+                        :rules="[v => !!v || '']"
+                      ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="4">
                       <v-text-field
@@ -64,10 +71,21 @@
                   </v-row>
                   <v-row justify="center">
                     <v-col cols="12" sm="4">
-                      <v-text-field v-model="postCode" label="PLZ" hint :rules="[v => !!v || '']"></v-text-field>
+                      <v-text-field
+                        v-model="postCode"
+                        label="PLZ"
+                        hint
+                        :rules="[v => (!!v && v.length == 5) || '']"
+                        @keypress="validatePlz($event, postCode, 5)"
+                      ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="8">
-                      <v-text-field v-model="place" label="Ort" hint :rules="[v => !!v || '']"></v-text-field>
+                      <v-text-field
+                        v-model="place"
+                        label="Ort"
+                        hint
+                        :rules="[v => !!v || '']"
+                      ></v-text-field>
                     </v-col>
                   </v-row>
                   <v-row justify="center">
@@ -91,6 +109,7 @@
                         ref="telephone"
                         hint
                         persistent-hint
+                        @keypress="validatePhoneNo($event)"
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -100,7 +119,10 @@
                         v-model="emailAddress"
                         label="E-Mail-Adresse"
                         hint
-                        :rules="[v => !!v || '']"
+                        :rules="[
+                          v => !!v || 'E-mail is required',
+                          v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+                        ]"
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -160,31 +182,48 @@
                   </v-radio-group>
                   <div v-if="showWarning && !checkbox">
                     <v-container class="px-0 pb-2 text-with-inputcontrol-icon">
-                      <v-icon color="red" class="mr-2">mdi-information-outline</v-icon>
+                      <v-icon color="red" class="mr-2"
+                        >mdi-information-outline</v-icon
+                      >
                       <p
                         :class="
-                    [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
-                      ' text-start font-weight-bold mb-0'
-                  "
-                      >Mehr als 20 Tage arbeitsunfähig</p>
+                          [
+                            $vuetify.breakpoint.smAndUp
+                              ? 'subtitle-1'
+                              : 'title',
+                          ] + ' text-start font-weight-bold mb-0'
+                        "
+                      >
+                        Mehr als 20 Tage arbeitsunfähig
+                      </p>
                     </v-container>
                     <p class="text-start body-2 mb-1">
                       Falls Sie die Angaben zum Gesundheitszustand nicht
                       bestätigen können, nutzen Sie bitte den
-                      <span
-                        class="font-weight-black primary--text"
-                      >Antrag mit Gesundheitsfragen</span>.
+                      <span class="font-weight-black primary--text"
+                        >Antrag mit Gesundheitsfragen</span
+                      >.
                     </p>
                   </div>
                   <div v-if="showInsureWarningForPrivate">
-                    <v-container class="px-0 pb-2 text-with-inputcontrol-icon pt-0">
-                      <v-icon color="red" class="mr-2">mdi-information-outline</v-icon>
+                    <v-container
+                      class="px-0 pb-2 text-with-inputcontrol-icon pt-0"
+                    >
+                      <v-icon color="red" class="mr-2"
+                        >mdi-information-outline</v-icon
+                      >
                       <p
                         :class="
-                    [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
-                      ' text-start font-weight-bold mb-0'
-                  "
-                      >Abschluss des Tarifs „Stationär - Clinic Plus“ nicht möglich</p>
+                          [
+                            $vuetify.breakpoint.smAndUp
+                              ? 'subtitle-1'
+                              : 'title',
+                          ] + ' text-start font-weight-bold mb-0'
+                        "
+                      >
+                        Abschluss des Tarifs „Stationär - Clinic Plus“ nicht
+                        möglich
+                      </p>
                     </v-container>
                   </div>
                 </v-form>
@@ -196,7 +235,8 @@
                   :block="$vuetify.breakpoint.xs"
                   class="mt-7 white--text"
                   @click="onClickNext"
-                >Weiter</v-btn>
+                  >Weiter</v-btn
+                >
               </div>
             </template>
           </main-panel>
@@ -209,62 +249,62 @@
 <script>
 // @ is an alias to /src
 /*eslint-disable*/
-import MainPanel from "@/components/MainPanel.vue";
-import CalendarIcon from "@/components/Icons/CalendarIcon";
+import MainPanel from '@/components/MainPanel.vue';
+import CalendarIcon from '@/components/Icons/CalendarIcon';
 export default {
-  name: "MyPersonalData",
+  name: 'MyPersonalData',
   components: {
     MainPanel,
-    CalendarIcon
+    CalendarIcon,
   },
   data() {
     return {
-      panelTitle: "Meine persönlichen Daten",
-      salutationOptions: ["Frau", "Herr", "Divers"],
-      salutation: "Frau",
-      titleOptions: ["Kein Titel", "Dr.", "Prof."],
-      title: "Kein Titel",
-      firstGivenName: "",
-      surname: "",
-      street: "",
-      streetNo: "",
-      country: "Deutschland",
-      postCode: "",
-      place: "",
-      phoneNo: "",
-      emailAddress: "",
-      professionalActivities: "",
-      settingDate: "",
-      insuredOption: "0",
+      panelTitle: 'Meine persönlichen Daten',
+      salutationOptions: ['Frau', 'Herr', 'Divers'],
+      salutation: 'Frau',
+      titleOptions: ['Kein Titel', 'Dr.', 'Prof.'],
+      title: 'Kein Titel',
+      firstGivenName: '',
+      surname: '',
+      street: '',
+      streetNo: '',
+      country: 'Deutschland',
+      postCode: '',
+      place: '',
+      phoneNo: '',
+      emailAddress: '',
+      professionalActivities: '',
+      settingDate: '',
+      insuredOption: '0',
       agreeCheckBox: false,
-      dentalInsuranceAvailable: "1",
+      dentalInsuranceAvailable: '1',
       showReadMore: true,
       showInsureWarningForPrivate: false,
       warningSelectionInDashboard: false,
       // calendar variables
-      date: "",
+      date: '',
       dateFormatted: null,
       menu: false,
-      showWarning: false
+      showWarning: false,
     };
   },
   watch: {
     insuredOption: function(option) {
       this.showInsureWarningForPrivate =
-        option === "1" && this.warningSelectionInDashboard;
+        option === '1' && this.warningSelectionInDashboard;
     },
     //alendar
     date(newVal) {
       if (newVal) this.dateFormatted = this.formatDate(new Date(newVal));
-    }
+    },
   },
   methods: {
     onClickNext() {
       if (this.$refs.personalForm.validate()) {
-        if (this.showInsureWarningForPrivate && this.insuredOption == "1")
+        if (this.showInsureWarningForPrivate && this.insuredOption == '1')
           return;
         else {
-          this.$store.dispatch("profile/setPersonalData", {
+          this.$store.dispatch('profile/setPersonalData', {
             salutation: this.salutation,
             title: this.title,
             firstGivenName: this.firstGivenName,
@@ -279,12 +319,23 @@ export default {
             professionalActivities: this.professionalActivities,
             settingDate: this.dateFormatted,
           });
-          this.$router.push({ name: "MyPaymentMethod" });
+          this.$router.push({ name: 'MyPaymentMethod' });
         }
       } else {
-        console.log("validation failed");
+        console.log('validation failed');
       }
     },
+    validatePlz(event, data, length) {
+      if (/^\d+$/.test(event.key) && data.toString().length < length)
+        return true;
+      else event.preventDefault();
+    },
+
+    validatePhoneNo(event, data) {
+      if (/^\d+$/.test(event.key)) return true;
+      else event.preventDefault();
+    },
+
     onClickShowMore() {
       this.showReadMore = false;
     },
@@ -297,12 +348,12 @@ export default {
       return this.$helper.commonHelper.getGermanFormatDate(date);
     },
     parseDate(date) {
-      console.log("date", date);
+      console.log('date', date);
       if (!date) return null;
-      const [day, month, year] = date.split(".");
-      return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+      const [day, month, year] = date.split('.');
+      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
     },
-    fillData(){
+    fillData() {
       this.salutation = this.$store.state.profile.personalData.salutation;
       this.title = this.$store.state.profile.personalData.title;
       this.firstGivenName = this.$store.state.profile.personalData.firstGivenName;
@@ -317,19 +368,18 @@ export default {
       this.professionalActivities = this.$store.state.profile.personalData.professionalActivities;
       this.dateFormatted = this.$store.state.profile.personalData.settingDate;
 
-
       this.warningSelectionInDashboard =
-      ((this.$store.state.products.categories[0].checked 
-      && this.$store.state.products.categories.filter(category => category.checked).length == 1)
-      &&
-      this.$store.state.products.categories[0].selectedId === 2);
-    }
+        this.$store.state.products.categories[0].checked &&
+        this.$store.state.products.categories.filter(
+          category => category.checked,
+        ).length == 1 &&
+        this.$store.state.products.categories[0].selectedId === 2;
+    },
   },
   mounted() {
-    this.$store.dispatch("setPagesProgress", 57);
+    this.$store.dispatch('setPagesProgress', 57);
     this.fillData();
-    
-  }
+  },
 };
 </script>
 
@@ -351,13 +401,13 @@ export default {
   }
 }
 </style>
-<style lang="scss"> 
-  .date-picker .v-input__append-inner {
-    position: absolute;
-    right: 0;
-    bottom: 6px;
-    @media only screen and (max-width: 599px) {
-      position: unset;
-    }
+<style lang="scss">
+.date-picker .v-input__append-inner {
+  position: absolute;
+  right: 0;
+  bottom: 6px;
+  @media only screen and (max-width: 599px) {
+    position: unset;
   }
+}
 </style>
