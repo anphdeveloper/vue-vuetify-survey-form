@@ -40,7 +40,7 @@
                       <v-text-field 
                       v-model="ibanNumber" 
                       label="IBAN"
-                      type="number" 
+                      :type="$vuetify.breakpoint.xs?'number':''" 
                       prefix="DE"
                       hint :rules="[v => !!v && validateIBAN(v) || '']"
                       @keyup.native="validateSpaceFormatter($event)"
@@ -96,7 +96,6 @@ export default {
   },
   data() {
     return {
-
       panelTitle: "Meine Zahlweise",
       paymentOption: "monatlich",
       paymentOptions: [
@@ -129,14 +128,23 @@ export default {
           break;
         
       }
+    },
+    ibanNumber: function(newVal){
+      if( !newVal.match(/\s/g)){
+        newVal =  newVal.replace(/\s/g, '');
+        this.ibanNumber = newVal.replace(/(.{4})/g,"$1 ");
+      }
+        
     }
   },
   methods: {
     onClickNext() {
       if (this.$refs.personalForm.validate() && this.agreeCheckBox) {
+        console.log(this.paymentOption);
+        console.log(this.ibanNumber);
         this.$store.dispatch("profile/setPersonalData", {
           paymentOption: this.paymentOption,
-          ibanNumber: this.ibanNumber
+          ibanNumber: 'DE' + this.ibanNumber.replace(/\s/g, '')
         })
         this.$router.push({ name: "ExplanationAndInformation" });
       } else {
@@ -151,7 +159,7 @@ export default {
     },
     validateIBAN(iban) {
       let IBAN = require('iban');
-      return IBAN.isValid(iban);
+      return IBAN.isValid("DE" + iban);
     },
     validateSpaceFormatter(event){
       if(event.key !== "Backspace"){
@@ -160,13 +168,10 @@ export default {
       }
     },
     limitIban(event, iban) {
-      if(iban.replace(/\s/g, '').length > 21)
+      if(iban.replace(/\s/g, '').length > 19)
         event.preventDefault();
-      else if( iban == "" && ['d', 'D'].findIndex(code => code == event.key) > -1)
-        return true;
-      else if((iban == 'D' || iban == 'd') && (event.key == 'E' || event.key == 'e'))
-        return true;
-      else if(["DE", "dE", "De", "de"].findIndex(code => code == iban.slice(0,2)) > -1 && /^\d+$/.test(event.key))
+      console.log(iban);
+      if( /^\d+$/.test(event.key))
         return true;
       else
         event.preventDefault();
@@ -191,10 +196,17 @@ export default {
           break;
       }
       return rateForType.toFixed(2);
+    },
+    fillData(){
+      this.products = this.$store.state.products.categories;
+      this.ibanNumber = this.$store.state.profile.personalData.ibanNumber.startsWith("DE")? 
+      this.$store.state.profile.personalData.ibanNumber.slice(2)
+      : this.$store.state.profile.personalData.ibanNumber;
+      this.paymentOption = this.$store.state.profile.personalData.paymentOption;
     }
   },
   created(){
-    this.products = this.$store.state.products.categories;
+    this.fillData();
   },
   mounted() {
     this.$store.dispatch("setPagesProgress", 70);
