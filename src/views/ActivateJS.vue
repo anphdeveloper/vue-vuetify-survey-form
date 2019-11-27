@@ -9,12 +9,18 @@
                 :class="[
                   $vuetify.breakpoint.smAndUp ? 'headline px-10' : 'title'
                 ]"
-              >Bitte aktivieren Sie JavaScript!</p>
+              >
+                Bitte aktivieren Sie JavaScript!
+              </p>
               <p
                 :class="[
                   $vuetify.breakpoint.smAndUp ? 'body-2 px-10' : 'caption'
                 ]"
-              >JavaScript ist in Ihrem Browser deaktiviert. Die Verwendung der App ist ohne JavaScript nicht möglich. Aktivieren Sie JavaScript in Ihrem Browser.</p>
+              >
+                JavaScript ist in Ihrem Browser deaktiviert. Die Verwendung der
+                App ist ohne JavaScript nicht möglich. Aktivieren Sie JavaScript
+                in Ihrem Browser.
+              </p>
               <v-btn
                 depressed
                 large
@@ -22,7 +28,8 @@
                 class="mt-4"
                 :block="$vuetify.breakpoint.xs"
                 @click="onClickStart"
-              >Seite NEU LADEN</v-btn>
+                >Seite NEU LADEN</v-btn
+              >
             </template>
           </main-panel>
         </v-col>

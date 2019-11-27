@@ -15,26 +15,39 @@
                   Bitte beantworten Sie die Frage wahrheitsgemäß, da ansonsten
                   Ihr Versicherungsschutz gefährdet sein kann.
                 </p>
-                <v-form class="text-with-inputcontrol-icon" ref="form" lazy-validation>
-                  <v-checkbox large v-model="checkbox" :rules="[v => !!v || '']" class="mt-0 pt-0" />
+                <v-form
+                  class="text-with-inputcontrol-icon"
+                  ref="form"
+                  lazy-validation
+                >
+                  <v-checkbox
+                    large
+                    v-model="checkbox"
+                    :rules="[v => !!v || '']"
+                    class="mt-0 pt-0"
+                  />
                   <p class="text-start body-2 mb-1">
                     Ich bestätige, dass ich in den letzten 12 Monaten vor
                     Anmeldung
-                    <span
-                      class="font-weight-black"
-                    >nicht länger als 20 Tage arbeitsunfähig</span>
+                    <span class="font-weight-black"
+                      >nicht länger als 20 Tage arbeitsunfähig</span
+                    >
                     krank war.
                   </p>
                 </v-form>
                 <div v-if="showWarning && !checkbox">
                   <v-container class="px-0 pb-2 text-with-inputcontrol-icon">
-                    <v-icon color="error" class="mr-2">mdi-information-outline</v-icon>
+                    <v-icon color="error" class="mr-2"
+                      >mdi-information-outline</v-icon
+                    >
                     <p
                       :class="
-                    [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
-                      ' text-start font-weight-bold mb-0'
-                  "
-                    >Mehr als 20 Tage arbeitsunfähig</p>
+                        [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
+                          ' text-start font-weight-bold mb-0'
+                      "
+                    >
+                      Mehr als 20 Tage arbeitsunfähig
+                    </p>
                   </v-container>
                   <p class="text-start body-2">
                     Falls Sie die Angaben zum Gesundheitszustand nicht
@@ -45,7 +58,8 @@
                       target="_blank"
                       href="http://www.medigroup.gothaer.de/media/pgk_media/dokumente/antragsunterlagen_der_vertriebspartner/bmw/212460_20190911_FDF_BMW.pdf?IM=30414133323135433230"
                       class="mx-0 px-0 primary--text text-none font-weight-black btn-link adjust-button-for-text"
-                    >&nbsp;Antrag mit Gesundheitsfragen</v-btn>.
+                      >&nbsp;Antrag mit Gesundheitsfragen</v-btn
+                    >.
                   </p>
                 </div>
                 <v-btn
@@ -55,7 +69,8 @@
                   :block="$vuetify.breakpoint.xs"
                   class="mt-6 white--text"
                   @click="onClickNext"
-                >Weiter</v-btn>
+                  >Weiter</v-btn
+                >
               </div>
             </template>
           </main-panel>
@@ -114,6 +129,6 @@ export default {
 }
 .adjust-button-for-text {
   margin-bottom: 1px;
-  letter-spacing: .0178571429em!important;
+  letter-spacing: 0.0178571429em !important;
 }
 </style>

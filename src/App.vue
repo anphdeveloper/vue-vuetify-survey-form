@@ -30,21 +30,21 @@ export default {
 }
 
 #app {
-  font-family: "MetaPro-Normal", sans-serif!important;
+  font-family: "MetaPro-Normal", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
-.v-application{
-  font-family: "MetaPro-Normal", sans-serif!important;
+.v-application {
+  font-family: "MetaPro-Normal", sans-serif !important;
 }
 .tooltip-with-top-arrow {
-  border-radius: unset!important;
+  border-radius: unset !important;
   opacity: 1 !important;
-  box-shadow: unset!important;
+  box-shadow: unset !important;
   padding-top: 0px;
-  background-color: transparent!important;
+  background-color: transparent !important;
   &::before {
     content: "";
     position: relative;
@@ -57,7 +57,7 @@ export default {
     border-bottom: 15px solid #00718f;
     transform: translate(-50%, calc(-100% + 15px));
     z-index: 1000;
-  } 
+  }
 }
 
 .btn-link {
@@ -73,14 +73,13 @@ export default {
 .meta-pro-text {
   font-family: "MetaPro-Normal" !important;
 
-    .bold{
-      font-family: "MetaPro-Bold"!important;
-      font-weight: 900;
-    }
-    .meta-pro-black{
-      font-family: "MetaPro-Black"!important;
-      font-weight: 900;
-
+  .bold {
+    font-family: "MetaPro-Bold" !important;
+    font-weight: 900;
+  }
+  .meta-pro-black {
+    font-family: "MetaPro-Black" !important;
+    font-weight: 900;
   }
   &.primary--text {
     .v-icon {

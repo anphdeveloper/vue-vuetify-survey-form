@@ -1,10 +1,15 @@
 <template>
-  <div 
-  :class="ratePanelData.panelBackground" 
-  @click="clickContainer($event)" 
-  :style="{border:`1.5px solid ${ratePanelData.checked? ratePanelData.categoryColor :'transparent'}!important`}">
+  <div
+    :class="ratePanelData.panelBackground"
+    @click="clickContainer($event)"
+    :style="{
+      border: `1.5px solid ${
+        ratePanelData.checked ? ratePanelData.categoryColor : 'transparent'
+      }!important`
+    }"
+  >
     <v-container class="pa-0">
-      <v-row class="px-1 title-row" >
+      <v-row class="px-1 title-row">
         <p
           :class="{
             subtitle: $vuetify.breakpoint.lgAndUp,
@@ -33,12 +38,18 @@
             hide-details
             v-if="ratePanelData.haveRadioOption"
           >
-            <v-radio value="radio-1" class="rd-rate" hide-details id="radioButton"></v-radio>
+            <v-radio
+              value="radio-1"
+              class="rd-rate"
+              hide-details
+              id="radioButton"
+            ></v-radio>
           </v-radio-group>
         </v-col>
         <v-col cols="8" class="pt-4">
           <span class="subtitle-1 grey--text text--darken-3"
-            >{{ $helper.commonHelper.germanFormat(ratePanelData.panelRate) }}€ mtl.</span
+            >{{ $helper.commonHelper.germanFormat(ratePanelData.panelRate) }}€
+            mtl.</span
           >
         </v-col>
       </v-row>
@@ -58,9 +69,9 @@ export default {
     };
   },
   methods: {
-    clickContainer(event){
-      if(!event.target.className.includes('v-icon'))
-        this.checkRate(this.$props.ratePanelData.id)
+    clickContainer(event) {
+      if (!event.target.className.includes("v-icon"))
+        this.checkRate(this.$props.ratePanelData.id);
     }
   },
   watch: {

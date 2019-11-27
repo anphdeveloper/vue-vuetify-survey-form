@@ -5,14 +5,14 @@ const state = {
 const getters = {};
 
 const actions = {
-  setCategories( { commit }, categories){
+  setCategories({ commit }, categories) {
     commit("setCategories", categories);
   }
 };
 
 const mutations = {
-  setCategories( state, categories ){
-    state.categories = categories
+  setCategories(state, categories) {
+    state.categories = categories;
   }
 };
 

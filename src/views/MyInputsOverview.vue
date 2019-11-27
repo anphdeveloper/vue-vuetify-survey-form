@@ -8,38 +8,76 @@
               <div :class="{ 'px-10': $vuetify.breakpoint.smAndUp }">
                 <div class="d-flex justify-space-between">
                   <p class="subtitle-1 text-start mb-3">Persönliche Daten</p>
-                  <v-btn text icon color="primary" @click="showReadMore1=!showReadMore1">
+                  <v-btn
+                    text
+                    icon
+                    color="primary"
+                    @click="showReadMore1 = !showReadMore1"
+                  >
                     <v-icon v-if="showReadMore1">mdi-plus</v-icon>
                     <v-icon v-if="!showReadMore1">mdi-minus</v-icon>
                   </v-btn>
                 </div>
                 <div class="my-4 detailed-info" v-if="!showReadMore1">
-                  <p class="caption text-start mb-1">{{ profile.salutation }}</p>
+                  <p class="caption text-start mb-1">
+                    {{ profile.salutation }}
+                  </p>
                   <p class="caption text-start mb-1">{{ profile.title }}</p>
-                  <p class="caption text-start mb-1">{{profile.firstGivenName}} {{profile.surname}}</p>
-                  <p class="caption text-start mb-1">{{ profile.street }} {{profile.streetNo}}</p>
-                  <p class="caption text-start mb-1">{{ profile.postCode}} {{profile.place}}</p>
+                  <p class="caption text-start mb-1">
+                    {{ profile.firstGivenName }} {{ profile.surname }}
+                  </p>
+                  <p class="caption text-start mb-1">
+                    {{ profile.street }} {{ profile.streetNo }}
+                  </p>
+                  <p class="caption text-start mb-1">
+                    {{ profile.postCode }} {{ profile.place }}
+                  </p>
                   <p class="caption text-start mb-1">{{ profile.phoneNo }}</p>
-                  <p class="caption text-start mb-1">{{ profile.emailAddress }}</p>
-                  <p class="caption text-start mb-1">{{ profile.professionalActivities }}</p>
+                  <p class="caption text-start mb-1">
+                    {{ profile.emailAddress }}
+                  </p>
+                  <p class="caption text-start mb-1">
+                    {{ profile.professionalActivities }}
+                  </p>
                   <p class="caption text-start mb-1">{{ targetDay }}</p>
-                  <v-btn text icon color="primary" class="edit-button" @click="gotoMyPersonalData">
+                  <v-btn
+                    text
+                    icon
+                    color="primary"
+                    class="edit-button"
+                    @click="gotoMyPersonalData"
+                  >
                     <v-icon small>mdi-pencil-outline</v-icon>
                   </v-btn>
                 </div>
                 <v-divider class="mb-5" />
                 <div class="d-flex justify-space-between">
                   <p class="subtitle-1 text-start mb-3">Zahlweise</p>
-                  <v-btn text icon color="primary" @click="showReadMore2=!showReadMore2">
+                  <v-btn
+                    text
+                    icon
+                    color="primary"
+                    @click="showReadMore2 = !showReadMore2"
+                  >
                     <v-icon v-if="showReadMore2">mdi-plus</v-icon>
                     <v-icon v-if="!showReadMore2">mdi-minus</v-icon>
                   </v-btn>
                 </div>
                 <div class="my-4 detailed-info" v-if="!showReadMore2">
-                  <p class="caption text-start mb-1">{{ profile.paymentOption }}</p>
+                  <p class="caption text-start mb-1">
+                    {{ profile.paymentOption }}
+                  </p>
                   <p class="caption text-start mb-1">SEPA Lastschrift</p>
-                  <p class="caption text-start mb-1">{{ profile.ibanNumber }}</p>
-                  <v-btn text icon color="primary" class="edit-button" @click="gotoMyPaymentMethod">
+                  <p class="caption text-start mb-1">
+                    {{ profile.ibanNumber }}
+                  </p>
+                  <v-btn
+                    text
+                    icon
+                    color="primary"
+                    class="edit-button"
+                    @click="gotoMyPaymentMethod"
+                  >
                     <v-icon small>mdi-pencil-outline</v-icon>
                   </v-btn>
                 </div>
@@ -49,11 +87,15 @@
                     [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
                       ' text-start font-weight-bold mb-3'
                   "
-                >Vertragsrelevante Unterlagen für Sie:</p>
+                >
+                  Vertragsrelevante Unterlagen für Sie:
+                </p>
                 <v-row
                   justify="start"
                   class="px-3 mt-3 mb-2"
-                  v-for="(product, index) in products.filter(product => product.checked)"
+                  v-for="(product, index) in products.filter(
+                    product => product.checked
+                  )"
                   :key="index"
                 >
                   <v-btn
@@ -61,50 +103,82 @@
                     class="px-3 primary--text subtitle-1 btn-link btn-with-icon"
                     large
                     :ripple="false"
-                    @click="onClickProductPdfLink(product.selectedProductPdfLink)"
+                    @click="
+                      onClickProductPdfLink(product.selectedProductPdfLink)
+                    "
                   >
-                    <v-icon color="primary" class="mr-2">mdi-arrow-collapse-down</v-icon>
-                    MediGroup {{product.panelTitle}} {{getShortName(product.selectedProductName)}}
+                    <v-icon color="primary" class="mr-2"
+                      >mdi-arrow-collapse-down</v-icon
+                    >
+                    MediGroup {{ product.panelTitle }}
+                    {{ getShortName(product.selectedProductName) }}
                   </v-btn>
                 </v-row>
 
-                <v-card color="primary" class="elevation-0 white--text px-5 pb-2 mt-7" tile>
+                <v-card
+                  color="primary"
+                  class="elevation-0 white--text px-5 pb-2 mt-7"
+                  tile
+                >
                   <v-simple-table class="overview">
                     <template v-slot:default>
                       <tbody>
                         <!-- <tr v-for="item in desserts" :key="item.name"> -->
                         <tr
-                          v-for="(product, index) in products.filter(product => product.checked)"
+                          v-for="(product, index) in products.filter(
+                            product => product.checked
+                          )"
                           :key="index"
                         >
                           <td class="text-left">
                             <p
                               class="subtitle-1 pa-0 ma-0 white--text text-start"
-                            >{{product.panelTitle}}</p>
+                            >
+                              {{ product.panelTitle }}
+                            </p>
                           </td>
                           <td class="text-left">
                             <p
                               class="caption pa-0 ma-0 white--text text-start font-weight-light"
-                            >{{getShortName(product.selectedProductName)}}</p>
+                            >
+                              {{ getShortName(product.selectedProductName) }}
+                            </p>
                           </td>
                           <td class="text-right">
                             <p
                               class="subtitle-1 pa-0 ma-0 white--text font-weight-light"
-                            >{{$helper.commonHelper.germanFormat((product.selectedRate * getRateByOption(profile.paymentOption)).toFixed(2))}} €</p>
+                            >
+                              {{
+                                $helper.commonHelper.germanFormat(
+                                  (
+                                    product.selectedRate *
+                                    getRateByOption(profile.paymentOption)
+                                  ).toFixed(2)
+                                )
+                              }}
+                              €
+                            </p>
                           </td>
                         </tr>
                       </tbody>
                     </template>
                   </v-simple-table>
-                  <p class="caption white--text text-right mb-3 mt-5 font-weight-light">
-                    {{getOptionDesc(profile.paymentOption)}}
-                    <span
-                      class="ml-5 subtitle-1 font-weight-bold"
-                    >{{ $helper.commonHelper.germanFormat(totalRate.toFixed(2)) }} €</span>
+                  <p
+                    class="caption white--text text-right mb-3 mt-5 font-weight-light"
+                  >
+                    {{ getOptionDesc(profile.paymentOption) }}
+                    <span class="ml-5 subtitle-1 font-weight-bold"
+                      >{{
+                        $helper.commonHelper.germanFormat(totalRate.toFixed(2))
+                      }}
+                      €</span
+                    >
                   </p>
                   <p
                     class="caption white--text text-right mb-3 mt-2 font-weight-light"
-                  >Beginn {{ targetDay }}, Vertragslaufzeit 24 Monate</p>
+                  >
+                    Beginn {{ targetDay }}, Vertragslaufzeit 24 Monate
+                  </p>
                 </v-card>
                 <v-btn
                   depressed

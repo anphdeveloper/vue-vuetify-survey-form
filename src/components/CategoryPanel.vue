@@ -1,5 +1,8 @@
 <template>
-  <div :class="categoryPanelData.panelBackground + ' pa-4'" @click="clickContainer($event)">
+  <div
+    :class="categoryPanelData.panelBackground + ' pa-4'"
+    @click="clickContainer($event)"
+  >
     <v-layout>
       <v-row class="px-2">
         <p class="mb-1 title text-left pl-2 pt-1 white--text">
@@ -41,9 +44,11 @@
         <v-icon color="white">mdi-check</v-icon
         ><span class="ml-1 body-2">{{ feature }}</span>
       </p>
-      <v-btn block class="white mt-4 btn-info white--text elevation-0 py-2"
-      id="infoBtn"
-      @click="onClickInfo"
+      <v-btn
+        block
+        class="white mt-4 btn-info white--text elevation-0 py-2"
+        id="infoBtn"
+        @click="onClickInfo"
         >INFOBROSCHÜRE
         <v-icon class="white--text ml-4">
           mdi-arrow-collapse-down
@@ -94,7 +99,7 @@ export default {
   },
   methods: {
     onClickCheckPanel() {
-      console.log('checkbox clicked');
+      console.log("checkbox clicked");
       this.checkPanel(this.$props.categoryPanelData.id);
     },
     onClickExpandPanel() {
@@ -103,19 +108,23 @@ export default {
         !this.$props.categoryPanelData.expanded
       );
     },
-    clickContainer(event){
+    clickContainer(event) {
       //prevent panel click event for checkbox and expand
-      if(event.target.id != "panelCheckBoxButton" 
-      && event.target.id != "panelCheckBoxIcon" 
-      && event.target.id != "plusIcon"
-      && event.target.id != "minusIcon"
-      && event.target.parentElement.id != "infoBtn"
-      ){
+      if (
+        event.target.id != "panelCheckBoxButton" &&
+        event.target.id != "panelCheckBoxIcon" &&
+        event.target.id != "plusIcon" &&
+        event.target.id != "minusIcon" &&
+        event.target.parentElement.id != "infoBtn"
+      ) {
         this.checkPanel(this.$props.categoryPanelData.id);
       }
     },
-    onClickInfo(){
-      window.open("pdfs/" + this.$props.categoryPanelData.panelDocsLink, "_blank");
+    onClickInfo() {
+      window.open(
+        "pdfs/" + this.$props.categoryPanelData.panelDocsLink,
+        "_blank"
+      );
     }
   },
   watch: {},

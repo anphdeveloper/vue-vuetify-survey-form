@@ -2,7 +2,9 @@
   <div>
     <v-app-bar color="white" dark>
       <v-spacer v-if="$vuetify.breakpoint.smAndUp"></v-spacer>
-      <v-toolbar-title class="primary--text display-1">BMW Group</v-toolbar-title>
+      <v-toolbar-title class="primary--text display-1"
+        >BMW Group</v-toolbar-title
+      >
       <v-spacer></v-spacer>
       <v-btn icon class="pr-12 py-1">
         <div class="right-watermark"></div>

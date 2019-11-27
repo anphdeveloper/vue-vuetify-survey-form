@@ -5,7 +5,9 @@
         <v-row justify="center">
           <v-col cols="12" sm="6">
             <h2>Ihre betriebliche Gesundheitsförderung</h2>
-            <p class="pb-0 mb-0 mt-4 text-start body-1 font-meta-pro">Versicherungsbeginn</p>
+            <p class="pb-0 mb-0 mt-4 text-start body-1 font-meta-pro">
+              Versicherungsbeginn
+            </p>
             <v-select
               class="mt-0 pt-0 meta-pro-text primary--text title"
               :items="days"
@@ -70,15 +72,23 @@
                       content-class="tooltip-with-top-arrow"
                     >
                       <template v-slot:activator="{ on }">
-                        <v-icon color="primary" v-on="on">mdi-information-outline</v-icon>
+                        <v-icon color="primary" v-on="on"
+                          >mdi-information-outline</v-icon
+                        >
                       </template>
                       <div class="tooltip-container">
                         <v-card class="elevation-0 primary px-2">
                           <v-layout d-flex row wrap>
                             <v-col cols="2" sm="2">
-                              <v-icon color="white">mdi-information-outline</v-icon>
+                              <v-icon color="white"
+                                >mdi-information-outline</v-icon
+                              >
                             </v-col>
-                            <v-col cols="10" sm="10" class="ml-0 pl-0 text-left">
+                            <v-col
+                              cols="10"
+                              sm="10"
+                              class="ml-0 pl-0 text-left"
+                            >
                               <p class="text-left white--text mb-0 body-2">
                                 <b>Tarif mit Alterungsrückstellung:</b>
                                 <br />Sie zahlen zu Beginn höhere Beiträge und
@@ -128,7 +138,9 @@
                 </template>
               </rate-selection-panel>
               <v-layout justify-start class="pt-2">
-                <comparison-table-modal :isComparisonForStationary="true"></comparison-table-modal>
+                <comparison-table-modal
+                  :isComparisonForStationary="true"
+                ></comparison-table-modal>
               </v-layout>
             </div>
           </v-col>
@@ -203,7 +215,9 @@
                 :class="{ 'mt-4': ratePanel.id !== 0 }"
               ></rate-selection-panel>
               <v-layout justify-start class="pt-2">
-                <comparison-table-modal :isComparisonForStationary="false"></comparison-table-modal>
+                <comparison-table-modal
+                  :isComparisonForStationary="false"
+                ></comparison-table-modal>
               </v-layout>
             </div>
           </v-col>
@@ -214,7 +228,7 @@
           <middle-title-panel
             panelBackground="white"
             leftTitle="mtl. Gesamt-Beitrag"
-            :middleTitle=" $helper.commonHelper.germanFormat(totalRate) + '€'"
+            :middleTitle="$helper.commonHelper.germanFormat(totalRate) + '€'"
             leftTitleClass="subtitle-1 font-weight-bold grey--text text--darken-3 pl-4"
             middleTitleClass="subtitle-1 font-weight-bold grey--text text--darken-3"
           ></middle-title-panel>
@@ -228,18 +242,29 @@
               class="mt-4 white--text"
               :block="$vuetify.breakpoint.xs"
               @click="onClickContinueWithSelection"
-            >MIT AUSWAHL FORTFAHREN</v-btn>
+              >MIT AUSWAHL FORTFAHREN</v-btn
+            >
           </v-col>
         </v-row>
-        <v-row :class="{'mt-4': $vuetify.breakpoint.xs, 'px-3 justify-start': true}" wrap>
+        <v-row
+          :class="{
+            'mt-4': $vuetify.breakpoint.xs,
+            'px-3 justify-start': true
+          }"
+          wrap
+        >
           <v-btn
             text
             class="px-3 primary--text body-1 btn-link"
             :ripple="false"
             @click="onClickGoBack"
           >
-            <v-icon color="primary" v-if="$vuetify.breakpoint.mdAndUp">mdi-arrow-left</v-icon>
-            <go-back-circle-icon v-if="$vuetify.breakpoint.smAndDown"></go-back-circle-icon>
+            <v-icon color="primary" v-if="$vuetify.breakpoint.mdAndUp"
+              >mdi-arrow-left</v-icon
+            >
+            <go-back-circle-icon
+              v-if="$vuetify.breakpoint.smAndDown"
+            ></go-back-circle-icon>
             <span v-if="$vuetify.breakpoint.mdAndUp">ZURÜCK</span>
           </v-btn>
         </v-row>
@@ -261,7 +286,7 @@ import {
   TOOTH_PANEL_DATA,
   OUTPATIENT_PANEL_DATA,
   PREVENTION_PANEL_DATA
-} from "@/plugins/constants/products"
+} from "@/plugins/constants/products";
 export default {
   name: "Dashboard",
   components: {
@@ -376,7 +401,7 @@ export default {
           }
           case 3: {
             this.selectPreventionRatePanel(0);
- 
+
             break;
           }
         }
@@ -514,11 +539,13 @@ export default {
       });
     },
     setTotalRate() {
-      console.log(this.preventionPanelData.reduce(
+      console.log(
+        this.preventionPanelData.reduce(
           (totalRate, panel) =>
             totalRate + (panel.checked ? panel.panelRate : 0),
           0
-        ));
+        )
+      );
       this.totalRate =
         this.stationaryPanelData.reduce(
           (totalRate, panel) =>
@@ -545,7 +572,7 @@ export default {
       this.$router.go(-1);
     },
     clickReadMore() {
-      window.open('/pdfs/Altersrueckstellung_Information.pdf', '_blank');
+      window.open("/pdfs/Altersrueckstellung_Information.pdf", "_blank");
     },
     fillData() {
       //set first days of next months
@@ -561,23 +588,22 @@ export default {
         this.categoryPanelData = this.$store.state.products.categories;
 
         this.categoryPanelData.forEach(category => {
-          if( category.checked){
+          if (category.checked) {
             switch (category.id) {
-            case 0:
-              this.stationaryPanelData[category.selectedId].checked = true;
-              break;
-            case 1:
-              this.toothPanelData[category.selectedId].checked = true;
-              break;
-            case 2:
-              this.outpatientPanelData[category.selectedId].checked = true;
-              break;
-            case 3:
-              this.preventionPanelData[category.selectedId].checked = true;
-              break;
+              case 0:
+                this.stationaryPanelData[category.selectedId].checked = true;
+                break;
+              case 1:
+                this.toothPanelData[category.selectedId].checked = true;
+                break;
+              case 2:
+                this.outpatientPanelData[category.selectedId].checked = true;
+                break;
+              case 3:
+                this.preventionPanelData[category.selectedId].checked = true;
+                break;
+            }
           }
-          }
-          
         });
       }
 

@@ -53,10 +53,10 @@ export default {
     }
   },
   methods: {
-     formatDate (date) {
-        if (!date) return null
-        return this.$helper.commonHelper.getGermanFormatDate(date)
-      },
+    formatDate(date) {
+      if (!date) return null;
+      return this.$helper.commonHelper.getGermanFormatDate(date);
+    },
     parseDate(date) {
       if (!date) return null;
       const [day, month, year] = date.split(".");

@@ -1,7 +1,7 @@
-<template> </template>
+<template> <div></div> </template>
 
 <script>
-import MainPanel from "@/components/MainPanel.vue";
+//import MainPanel from "@/components/MainPanel.vue";
 export default {
   name: "Header",
   components: {},

@@ -24,19 +24,23 @@
                     content-class="tooltip-with-top-arrow"
                   >
                     <template v-slot:activator="{ on }">
-                      <v-icon color="primary" v-on="on">mdi-information-outline</v-icon>
+                      <v-icon color="primary" v-on="on"
+                        >mdi-information-outline</v-icon
+                      >
                     </template>
                     <div class="tooltip-container">
                       <v-card class="elevation-0 primary px-2">
                         <v-layout d-flex row wrap>
                           <v-col cols="2" sm="2">
-                            <v-icon color="white">mdi-information-outline</v-icon>
+                            <v-icon color="white"
+                              >mdi-information-outline</v-icon
+                            >
                           </v-col>
                           <v-col cols="10" sm="10" class="ml-0 pl-0 text-left">
                             <p class="text-left white--text mb-0 body-2">
-                              <b>Tarife ohne Alterungsrückstellung:</b> Sie zahlen
-                              zu Beginn niedrige Beiträge, die mit dem Alter
-                              steigen.
+                              <b>Tarife ohne Alterungsrückstellung:</b> Sie
+                              zahlen zu Beginn niedrige Beiträge, die mit dem
+                              Alter steigen.
                             </p>
                             <v-btn
                               class="text-left white--text mb-1 btn-link"
@@ -61,7 +65,7 @@
                           v-model="day"
                           label="TT"
                           ref="day"
-                          :type="$vuetify.breakpoint.xs?'number':''"
+                          :type="$vuetify.breakpoint.xs ? 'number' : ''"
                           @keypress="validateDay($event, day, 2)"
                           :rules="[
                             v =>
@@ -80,7 +84,7 @@
                           v-model="month"
                           label="MM"
                           ref="month"
-                          :type="$vuetify.breakpoint.xs?'number':''"
+                          :type="$vuetify.breakpoint.xs ? 'number' : ''"
                           @keypress="validateDay($event, month, 2)"
                           :rules="[
                             v =>
@@ -99,7 +103,7 @@
                           v-model="year"
                           label="JJJJ"
                           ref="year"
-                          :type="$vuetify.breakpoint.xs?'number':''"
+                          :type="$vuetify.breakpoint.xs ? 'number' : ''"
                           @keyup.enter="handleEnterClick"
                           @keypress="validateDay($event, year, 4)"
                           :rules="[
@@ -126,7 +130,8 @@
                   :block="$vuetify.breakpoint.xs"
                   class="mt-4 white--text"
                   @click="onClickStartCalc"
-                >Preise Berechnen</v-btn>
+                  >Preise Berechnen</v-btn
+                >
               </div>
             </template>
           </main-panel>
@@ -140,9 +145,7 @@
 // @ is an alias to /src
 
 import MainPanel from "@/components/MainPanel.vue";
-import {
-  MORE_LINK_FOR_AGE_RATE
-} from "@/plugins/constants/profile"
+import { MORE_LINK_FOR_AGE_RATE } from "@/plugins/constants/profile";
 export default {
   name: "InputDayOfBirthday",
   components: {

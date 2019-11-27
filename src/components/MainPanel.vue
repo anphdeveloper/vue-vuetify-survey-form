@@ -1,8 +1,14 @@
 <template>
-  <div :class="{ 'with-title': panelTitle, higher: $vuetify.breakpoint.mdAndUp }">
+  <div
+    :class="{ 'with-title': panelTitle, higher: $vuetify.breakpoint.mdAndUp }"
+  >
     <h2 class="mb-2">{{ panelTitle }}</h2>
     <v-card
-      :class="{'pa-10':$vuetify.breakpoint.mdAndUp, 'pa-6':$vuetify.breakpoint.smAndDown, 'mx-auto':true}"
+      :class="{
+        'pa-10': $vuetify.breakpoint.mdAndUp,
+        'pa-6': $vuetify.breakpoint.smAndDown,
+        'mx-auto': true
+      }"
       outlined
     >
       <slot>No slot content defined</slot>
@@ -10,7 +16,7 @@
     <v-row
       v-if="showBackButton"
       justify="start"
-      :class="{'mt-4': $vuetify.breakpoint.smAndDown, 'px-3': true}"
+      :class="{ 'mt-4': $vuetify.breakpoint.smAndDown, 'px-3': true }"
     >
       <v-btn
         text
@@ -19,8 +25,12 @@
         :ripple="false"
         @click="onClickGoBack"
       >
-        <v-icon color="primary" v-if="$vuetify.breakpoint.mdAndUp">mdi-arrow-left</v-icon>
-        <go-back-circle-icon v-if="$vuetify.breakpoint.smAndDown"></go-back-circle-icon>
+        <v-icon color="primary" v-if="$vuetify.breakpoint.mdAndUp"
+          >mdi-arrow-left</v-icon
+        >
+        <go-back-circle-icon
+          v-if="$vuetify.breakpoint.smAndDown"
+        ></go-back-circle-icon>
         <span v-if="$vuetify.breakpoint.mdAndUp">ZURÜCK</span>
       </v-btn>
     </v-row>

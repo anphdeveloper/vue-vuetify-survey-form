@@ -2,8 +2,7 @@ export const CATEGORY_PANEL_DATA = [
   {
     id: 0,
     panelTitle: "Stationär",
-    panelDescription:
-      "Maximales Wohlbefinden, <br />sowie beste Leistungen.",
+    panelDescription: "Maximales Wohlbefinden, <br />sowie beste Leistungen.",
     panelFeature: [
       "Behandlung durch den Chefarzt",
       "Ein- oder Zweibettzimmer",
@@ -74,10 +73,8 @@ export const CATEGORY_PANEL_DATA = [
     selectedRate: 0,
     selectedProductPdfLink: "",
     panelDocsLink: "MediGroup_Vorsorge.pdf"
-  
   }
-]
-
+];
 
 export const STATIONARY_PANEL_DATA = [
   {
@@ -89,7 +86,7 @@ export const STATIONARY_PANEL_DATA = [
     checked: false,
     isTop: true,
     categoryColor: "#035370",
-    pdfLink: "Tarif_MediGroup_S1.pdf",
+    pdfLink: "Tarif_MediGroup_S1.pdf"
   },
   {
     id: 1,
@@ -100,7 +97,7 @@ export const STATIONARY_PANEL_DATA = [
     checked: false,
     isTop: false,
     categoryColor: "#035370",
-    pdfLink: "Tarif_MediGroup_S2.pdf",
+    pdfLink: "Tarif_MediGroup_S2.pdf"
   },
   {
     id: 2,
@@ -111,9 +108,9 @@ export const STATIONARY_PANEL_DATA = [
     checked: false,
     isTop: false,
     categoryColor: "#035370",
-    pdfLink: "Tarif_MediClinic_Plus.pdf",
+    pdfLink: "Tarif_MediClinic_Plus.pdf"
   }
-]
+];
 
 export const TOOTH_PANEL_DATA = [
   {
@@ -125,9 +122,9 @@ export const TOOTH_PANEL_DATA = [
     checked: false,
     isTop: false,
     categoryColor: "#4C9BB0",
-    pdfLink: "Tarif_MediGroup_Z_Duo.pdf",
+    pdfLink: "Tarif_MediGroup_Z_Duo.pdf"
   }
-]
+];
 
 export const OUTPATIENT_PANEL_DATA = [
   {
@@ -139,9 +136,9 @@ export const OUTPATIENT_PANEL_DATA = [
     checked: false,
     isTop: false,
     categoryColor: "#00718F",
-    pdfLink: "Tarif_MediGroup_A.pdf",
+    pdfLink: "Tarif_MediGroup_A.pdf"
   }
-]
+];
 export const PREVENTION_PANEL_DATA = [
   {
     id: 0,
@@ -152,7 +149,7 @@ export const PREVENTION_PANEL_DATA = [
     checked: false,
     isTop: false,
     categoryColor: "#3C8085",
-    pdfLink: "Tarif_MediGroup_V_Basis.pdf",
+    pdfLink: "Tarif_MediGroup_V_Basis.pdf"
   },
   {
     id: 1,
@@ -163,8 +160,8 @@ export const PREVENTION_PANEL_DATA = [
     checked: false,
     isTop: false,
     categoryColor: "#3C8085",
-    pdfLink: "Tarif_MediGroup_V_Premium.pdf",
+    pdfLink: "Tarif_MediGroup_V_Premium.pdf"
   }
-]
+];
 
 export const INFORMATION_LINK = "Allgemeine_Rechtliche_Belehrungen.pdf";

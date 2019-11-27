@@ -9,10 +9,12 @@
                 <v-form class="pa-0" ref="personalForm" lazy-validation>
                   <p
                     :class="
-                    [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
-                      ' text-start font-weight-bold mb-3'
-                  "
-                  >Meine Produktauswahl ohne Beratung online beantragen</p>
+                      [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
+                        ' text-start font-weight-bold mb-3'
+                    "
+                  >
+                    Meine Produktauswahl ohne Beratung online beantragen
+                  </p>
                   <div class="text-with-inputcontrol-icon">
                     <v-checkbox
                       large
@@ -20,30 +22,47 @@
                       :rules="[v => !!v || '']"
                     />
                     <p class="text-start body-2 mb-1">
-                      Ja, ich möchte meine Produktauswahl direkt online beantragen und verzichte auf eine Beratung vor der Antragstellung.
+                      Ja, ich möchte meine Produktauswahl direkt online
+                      beantragen und verzichte auf eine Beratung vor der
+                      Antragstellung.
                       <span
                         v-if="showReadMore1"
                         class="text-start body-2 mb-1 primary--text cursor-pointer"
                         @click="onClickShowMore1"
-                      >mehr…</span>
+                        >mehr…</span
+                      >
                       <span v-if="!showReadMore1">
-                        <br />Mir ist klar, dass die Gothaer Allgemeine Versicherung AG und der Vermittler keine Gewähr und Haftung dafür übernehmen, dass das von mir ausgewählte Produkt meinen Wünschen und individuellen Bedürfnissen entspricht. Dies kann sich nachteilig auf die Möglichkeiten auswirken, einen Schadenersatzanspruch wegen einer Verletzung der Beratungspflicht geltend zu machen.
+                        <br />Mir ist klar, dass die Gothaer Allgemeine
+                        Versicherung AG und der Vermittler keine Gewähr und
+                        Haftung dafür übernehmen, dass das von mir ausgewählte
+                        Produkt meinen Wünschen und individuellen Bedürfnissen
+                        entspricht. Dies kann sich nachteilig auf die
+                        Möglichkeiten auswirken, einen Schadenersatzanspruch
+                        wegen einer Verletzung der Beratungspflicht geltend zu
+                        machen.
                         <span
                           class="text-start body-2 mb-1 primary--text cursor-pointer"
                           @click="onClickHideMore1"
-                        >…weniger</span>
+                          >…weniger</span
+                        >
                       </span>
                     </p>
                   </div>
                   <p
                     :class="
-                    [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
-                      ' text-start font-weight-bold mb-1 mt-6'
-                  "
-                  >Kundeninformationen herunterladen und den Einwilligungen zustimmen</p>
-                  <p
-                    class="text-start body-2 mb-1"
-                  >Die Informationen in folgendem PDF Dokument sind für Ihre Unterlagen bestimmt. Bitte laden Sie diese herunter und stimmen darunter dem Erhalt zu. Erst dann erhalten Sie eine Kopie des von Ihnen gestellten Antrages zum Herunterladen.</p>
+                      [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
+                        ' text-start font-weight-bold mb-1 mt-6'
+                    "
+                  >
+                    Kundeninformationen herunterladen und den Einwilligungen
+                    zustimmen
+                  </p>
+                  <p class="text-start body-2 mb-1">
+                    Die Informationen in folgendem PDF Dokument sind für Ihre
+                    Unterlagen bestimmt. Bitte laden Sie diese herunter und
+                    stimmen darunter dem Erhalt zu. Erst dann erhalten Sie eine
+                    Kopie des von Ihnen gestellten Antrages zum Herunterladen.
+                  </p>
                   <v-row justify="start" class="px-3 mt-3 mb-2">
                     <v-btn
                       text
@@ -52,7 +71,9 @@
                       :ripple="false"
                       @click="onClickDownloadInformation"
                     >
-                      <v-icon color="primary" class="mr-2">mdi-arrow-collapse-down</v-icon>INFORMATIONEN HERUNTERLADEN
+                      <v-icon color="primary" class="mr-2"
+                        >mdi-arrow-collapse-down</v-icon
+                      >INFORMATIONEN HERUNTERLADEN
                     </v-btn>
                   </v-row>
                   <div class="text-with-inputcontrol-icon">
@@ -63,21 +84,33 @@
                     />
                     <p class="text-start body-2 mb-1">
                       <span v-if="!showReadMore2">
-                        Kundeninformationen und Hinweise zur Anzeigepflicht und Beratungsverzicht.
+                        Kundeninformationen und Hinweise zur Anzeigepflicht und
+                        Beratungsverzicht.
                         <br />
                       </span>
-                      Ich habe das vorstehend genannte PDF-Dokument „Erklärungen und wichtige Hinweise“ heruntergeladen.
+                      Ich habe das vorstehend genannte PDF-Dokument „Erklärungen
+                      und wichtige Hinweise“ heruntergeladen.
                       <span
                         v-if="showReadMore2"
                         class="text-start body-2 mb-1 primary--text cursor-pointer"
                         @click="onClickShowMore2"
-                      >mehr…</span>
+                        >mehr…</span
+                      >
                       <span v-if="!showReadMore2">
-                        Diese enthalten u.a. die Belehrung zur vorvertraglichen Anzeigepflicht, zum Widerrufsrecht und zum Beratungsverzicht. Die Belehrung zur vorvertraglichen Anzeigepflicht und zum Widerrufsrecht sind wichtiger Bestandteil des Vertrages. Ich mache diese Belehrungen zum Inhalt meines Antrages. Ich halte mich an meinen Antrag einen Monat ( 6 Wochen in der Krankenversicherung) gebunden. Mein Widerrufsrecht bleibt hiervon unberührt.
+                        Diese enthalten u.a. die Belehrung zur vorvertraglichen
+                        Anzeigepflicht, zum Widerrufsrecht und zum
+                        Beratungsverzicht. Die Belehrung zur vorvertraglichen
+                        Anzeigepflicht und zum Widerrufsrecht sind wichtiger
+                        Bestandteil des Vertrages. Ich mache diese Belehrungen
+                        zum Inhalt meines Antrages. Ich halte mich an meinen
+                        Antrag einen Monat ( 6 Wochen in der
+                        Krankenversicherung) gebunden. Mein Widerrufsrecht
+                        bleibt hiervon unberührt.
                         <span
                           class="text-start body-2 mb-1 primary--text cursor-pointer"
                           @click="onClickHideMore2"
-                        >…weniger</span>
+                          >…weniger</span
+                        >
                       </span>
                     </p>
                   </div>
@@ -89,7 +122,8 @@
                   :block="$vuetify.breakpoint.xs"
                   class="mt-7 white--text"
                   @click="onClickNext"
-                >Weiter</v-btn>
+                  >Weiter</v-btn
+                >
               </div>
             </template>
           </main-panel>
@@ -103,9 +137,7 @@
 // @ is an alias to /src
 
 import MainPanel from "@/components/MainPanel.vue";
-import {
-  INFORMATION_LINK
-} from "@/plugins/constants/products"
+import { INFORMATION_LINK } from "@/plugins/constants/products";
 export default {
   name: "ExplanationAndInformation",
   components: {
@@ -142,7 +174,7 @@ export default {
     onClickHideMore2() {
       this.showReadMore2 = true;
     },
-    onClickDownloadInformation(){
+    onClickDownloadInformation() {
       window.open("pdfs/" + INFORMATION_LINK, "_blank");
     }
   },

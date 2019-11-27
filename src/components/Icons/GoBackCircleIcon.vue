@@ -26,8 +26,7 @@ export default {
   background-position-x: 3px;
   background-repeat: no-repeat;
   border-radius: 50%;
-  border: 1.5px solid #00718F;
+  border: 1.5px solid #00718f;
   display: inline-block;
-
 }
 </style>

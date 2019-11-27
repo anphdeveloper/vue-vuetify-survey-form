@@ -5,9 +5,7 @@ export default {
     baseURL: envBaseServerApiUrl
   }),
 
-  config: {
-
-  },
+  config: {},
   post(endPoint, payload = {}) {
     return this.axios.post(endPoint, payload, this.config).then(res => {
       return res.data;
@@ -22,5 +20,5 @@ export default {
     return this.axios.get(endPoint, this.config).then(res => {
       return res.data;
     });
-  },
+  }
 };
