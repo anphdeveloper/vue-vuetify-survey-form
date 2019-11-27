@@ -371,20 +371,10 @@ export default {
       }
     },
     onInputDate($event){
-      if($event.length === 1){
-        this.datePreviousValue = 1;
-      }
-      if($event.length === 2 && this.datePreviousValue === 1){
+      if(this.datePreviousValue !== null && $event.length > this.datePreviousValue && ($event.length === 2 || $event.length === 5)){
         this.dateFormatted = `${this.dateFormatted}.`;
-        this.datePreviousValue = 3;
       }
-      if($event.length === 5){
-        this.datePreviousValue = 5;
-      }
-      if($event.length === 5 && this.datePreviousValue === 5){
-        this.dateFormatted = `${this.dateFormatted}.`;
-        this.datePreviousValue = 6;
-      }
+      this.datePreviousValue = $event.length;
     }
   },
   mounted() {
