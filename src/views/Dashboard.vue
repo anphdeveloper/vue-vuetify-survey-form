@@ -662,7 +662,9 @@ export default {
     onClickGoBack() {
       this.$router.go(-1);
     },
-    clickReadMore() {},
+    clickReadMore() {
+      window.open('/pdf/Altersrueckstellung_Information.pdf', '_blank');
+    },
     fillData() {
       //set first days of next months
       this.days = this.$helper.commonHelper

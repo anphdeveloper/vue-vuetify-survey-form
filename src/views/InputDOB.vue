@@ -44,7 +44,7 @@
                               text
                               @click="clickReadMore"
                             >
-                              <b>MEHR > asdasds</b>
+                              <b>MEHR ></b>
                             </v-btn>
                           </v-col>
                         </v-layout>
