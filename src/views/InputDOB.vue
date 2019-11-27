@@ -140,6 +140,9 @@
 // @ is an alias to /src
 
 import MainPanel from "@/components/MainPanel.vue";
+import {
+  MORE_LINK_FOR_AGE_RATE
+} from "@/plugins/constants/profile"
 export default {
   name: "InputDayOfBirthday",
   components: {
@@ -180,7 +183,9 @@ export default {
     handleEnterClick() {
       this.onClickStartCalc();
     },
-    clickReadMore() {},
+    clickReadMore() {
+      window.open("pdfs/" + MORE_LINK_FOR_AGE_RATE, "_blank");
+    },
     fillData() {
       if (this.$store.state.profile.dayOfBirth) {
         let dob = new Date(this.$store.state.profile.dayOfBirth)
