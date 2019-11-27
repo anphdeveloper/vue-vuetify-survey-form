@@ -9,7 +9,7 @@ const state = {
   },
   personalData: {
     salutation: "Frau",
-    title: "Dr.",
+    title: "Kein Titel",
     firstGivenName: "",
     surname: "",
     street: "",
@@ -22,8 +22,8 @@ const state = {
     professionalActivities: "",
     settingDate: "",
     paymentOption: "",
-    ibanNumber: "",
-  },
+    ibanNumber: ""
+  }
 };
 
 const getters = {
@@ -54,7 +54,7 @@ const actions = {
 
   setPersonalData({ commit }, personalData) {
     commit("setPersonalData", personalData);
-  },
+  }
 };
 
 const mutations = {
@@ -73,12 +73,12 @@ const mutations = {
 
   setPrevInsComp(state, prevInsCompany) {
     Object.keys(prevInsCompany).forEach(
-      key => state.prevInsCompany[key] = prevInsCompany[key]
+      key => (state.prevInsCompany[key] = prevInsCompany[key])
     );
   },
   setPersonalData(state, personalData) {
     Object.keys(personalData).forEach(
-      key => state.personalData[key] = personalData[key]
+      key => (state.personalData[key] = personalData[key])
     );
   }
 };

@@ -317,18 +317,18 @@ export default {
       this.professionalActivities = this.$store.state.profile.personalData.professionalActivities;
       this.dateFormatted = this.$store.state.profile.personalData.settingDate;
 
-
-      this.warningSelectionInDashboard =
-      ((this.$store.state.products.categories[0].checked 
-      && this.$store.state.products.categories.filter(category => category.checked).length == 1)
-      &&
-      this.$store.state.products.categories[0].selectedId === 2);
+      if(this.$store.state.products.categories){
+        this.warningSelectionInDashboard =
+        ((this.$store.state.products.categories[0].checked 
+        && this.$store.state.products.categories.filter(category => category.checked).length == 1)
+        &&
+        this.$store.state.products.categories[0].selectedId === 2);
+      }
     }
   },
   mounted() {
     this.$store.dispatch("setPagesProgress", 57);
     this.fillData();
-    
   }
 };
 </script>
