@@ -50,9 +50,12 @@
                       ' text-start font-weight-bold mb-3'
                   "
                 >Vertragsrelevante Unterlagen für Sie:</p>
-                <v-row justify="start" class="px-3 mt-3 mb-2"  
-                v-for="(product, index) in products.filter(product => product.checked)"
-                :key="index">
+                <v-row
+                  justify="start"
+                  class="px-3 mt-3 mb-2"
+                  v-for="(product, index) in products.filter(product => product.checked)"
+                  :key="index"
+                >
                   <v-btn
                     text
                     class="px-3 primary--text subtitle-1 btn-link btn-with-icon"
@@ -60,10 +63,11 @@
                     :ripple="false"
                     @click="onClickProductPdfLink(product.selectedProductPdfLink)"
                   >
-                    <v-icon color="primary" class="mr-2">mdi-arrow-collapse-down</v-icon>MediGroup {{product.panelTitle}} {{getShortName(product.selectedProductName)}}
+                    <v-icon color="primary" class="mr-2">mdi-arrow-collapse-down</v-icon>
+                    MediGroup {{product.panelTitle}} {{getShortName(product.selectedProductName)}}
                   </v-btn>
                 </v-row>
-                
+
                 <v-card color="primary" class="elevation-0 white--text px-5 pb-2 mt-7" tile>
                   <v-simple-table class="overview">
                     <template v-slot:default>
@@ -86,7 +90,7 @@
                           <td class="text-right">
                             <p
                               class="subtitle-1 pa-0 ma-0 white--text font-weight-light"
-                            >{{(product.selectedRate * getRateByOption(profile.paymentOption)).toFixed(2)}} €</p>
+                            >{{$helper.commonHelper.germanFormat((product.selectedRate * getRateByOption(profile.paymentOption)).toFixed(2))}} €</p>
                           </td>
                         </tr>
                       </tbody>
@@ -94,7 +98,9 @@
                   </v-simple-table>
                   <p class="caption white--text text-right mb-3 mt-5 font-weight-light">
                     {{getOptionDesc(profile.paymentOption)}}
-                    <span class="ml-5 subtitle-1 font-weight-bold">{{ totalRate.toFixed(2) }} €</span>
+                    <span
+                      class="ml-5 subtitle-1 font-weight-bold"
+                    >{{ $helper.commonHelper.germanFormat(totalRate.toFixed(2)) }} €</span>
                   </p>
                   <p
                     class="caption white--text text-right mb-3 mt-2 font-weight-light"
@@ -108,7 +114,8 @@
                   class="mt-7 white--text"
                   @click="onClickNext"
                 >
-                  Versicherung abschlie<span class="not-uppercase">ß</span>en
+                  Versicherung abschlie
+                  <span class="not-uppercase">ß</span>en
                   <send-icon></send-icon>
                 </v-btn>
               </div>
@@ -137,10 +144,25 @@ const shortNames = [
 ];
 
 const paymentOptionsInfo = [
-  { option: 'monatlich', meaning: "Monat", desc: "mtl. Beitrag", rate: 1 },
-  { option: '1/4 jährlich', meaning: "Vierteljahr", desc: "vierteljährl. Beitrag", rate: 3 },
-  { option: '1/2 jährlich', meaning: "Halbjahr", desc: "halbjährl. Beitrag", rate: 6 },
-  { option: 'jährlich (4% Nachlass)', meaning: "Jahr", desc: "jährl. Beitrag", rate: 12 * 0.96 }
+  { option: "monatlich", meaning: "Monat", desc: "mtl. Beitrag", rate: 1 },
+  {
+    option: "1/4 jährlich",
+    meaning: "Vierteljahr",
+    desc: "vierteljährl. Beitrag",
+    rate: 3
+  },
+  {
+    option: "1/2 jährlich",
+    meaning: "Halbjahr",
+    desc: "halbjährl. Beitrag",
+    rate: 6
+  },
+  {
+    option: "jährlich (4% Nachlass)",
+    meaning: "Jahr",
+    desc: "jährl. Beitrag",
+    rate: 12 * 0.96
+  }
 ];
 
 export default {
@@ -174,7 +196,7 @@ export default {
     getShortName(title) {
       return shortNames.find(item => item.title === title).shortName;
     },
-    onClickProductPdfLink(link){
+    onClickProductPdfLink(link) {
       console.log(link);
       window.open("pdfs/" + link, "_blank");
     },
@@ -188,11 +210,13 @@ export default {
   created() {
     this.profile = this.$store.state.profile.personalData;
     this.products = this.$store.state.products.categories;
-    this.totalRate = this.getRateByOption(this.profile.paymentOption) * this.$store.state.products.categories.reduce(
-      (totalRate, category) =>
-        totalRate + (category.checked ? category.selectedRate : 0),
-      0
-    );
+    this.totalRate =
+      this.getRateByOption(this.profile.paymentOption) *
+      this.$store.state.products.categories.reduce(
+        (totalRate, category) =>
+          totalRate + (category.checked ? category.selectedRate : 0),
+        0
+      );
     this.targetDay = this.$helper.commonHelper.getGermanFormatDate(
       new Date(this.$store.state.profile.targetDay)
     );
