@@ -282,8 +282,6 @@ export default {
             emailAddress: this.emailAddress,
             professionalActivities: this.professionalActivities,
             settingDate: this.dateFormatted,
-            paymentOption: "",
-            ibanNumber: ""
           });
           this.$router.push({ name: "MyPaymentMethod" });
         }

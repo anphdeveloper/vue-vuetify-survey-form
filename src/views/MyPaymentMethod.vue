@@ -130,18 +130,15 @@ export default {
       }
     },
     ibanNumber: function(newVal){
-      if( !newVal.match(/\s/g)){
+      if( !newVal.match(/\s/g) && !this.$vuetify.breakpoint.xs){
         newVal =  newVal.replace(/\s/g, '');
         this.ibanNumber = newVal.replace(/(.{4})/g,"$1 ");
       }
-        
     }
   },
   methods: {
     onClickNext() {
       if (this.$refs.personalForm.validate() && this.agreeCheckBox) {
-        console.log(this.paymentOption);
-        console.log(this.ibanNumber);
         this.$store.dispatch("profile/setPersonalData", {
           paymentOption: this.paymentOption,
           ibanNumber: 'DE' + this.ibanNumber.replace(/\s/g, '')
@@ -162,7 +159,7 @@ export default {
       return IBAN.isValid("DE" + iban);
     },
     validateSpaceFormatter(event){
-      if(event.key !== "Backspace"){
+      if(event.key !== "Backspace" && !this.$vuetify.breakpoint.xs){
         this.ibanNumber =  this.ibanNumber.replace(/\s/g, '');
         this.ibanNumber = this.ibanNumber.replace(/(.{4})/g,"$1 ");
       }
@@ -170,7 +167,6 @@ export default {
     limitIban(event, iban) {
       if(iban.replace(/\s/g, '').length > 19)
         event.preventDefault();
-      console.log(iban);
       if( /^\d+$/.test(event.key))
         return true;
       else
@@ -198,11 +194,14 @@ export default {
       return rateForType.toFixed(2);
     },
     fillData(){
-      this.products = this.$store.state.products.categories;
-      this.ibanNumber = this.$store.state.profile.personalData.ibanNumber.startsWith("DE")? 
-      this.$store.state.profile.personalData.ibanNumber.slice(2)
-      : this.$store.state.profile.personalData.ibanNumber;
-      this.paymentOption = this.$store.state.profile.personalData.paymentOption;
+      this.products = this.$store.state.products.categories? this.$store.state.products.categories : [];
+      let storeIbanNumber = this.$store.state.profile.personalData.ibanNumber;
+      this.ibanNumber = storeIbanNumber? 
+      (storeIbanNumber.startsWith("DE")? storeIbanNumber.slice(2): storeIbanNumber)
+      :'';
+      
+      this.paymentOption = this.$store.state.profile.personalData.paymentOption != ""?
+      this.$store.state.profile.personalData.paymentOption: "monatlich";
     }
   },
   created(){

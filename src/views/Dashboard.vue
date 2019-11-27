@@ -285,7 +285,7 @@ export default {
           checked: false,
           expanded: false,
           selectedId: 0,
-          selectedProductName: 0,
+          selectedProductName: "",
           selectedRate: 0
         },
         {
@@ -302,7 +302,7 @@ export default {
           checked: false,
           expanded: false,
           selectedId: 0,
-          selectedProductName: 0,
+          selectedProductName: "",
           selectedRate: 0
         },
         {
@@ -319,7 +319,7 @@ export default {
           checked: false,
           expanded: false,
           selectedId: 0,
-          selectedProductName: 0,
+          selectedProductName: "",
           selectedRate: 0
         },
         {
@@ -336,7 +336,7 @@ export default {
           checked: false,
           expanded: false,
           selectedId: 0,
-          selectedProductName: 0,
+          selectedProductName: "",
           selectedRate: 0
         }
       ],
@@ -498,19 +498,20 @@ export default {
       } else {
         switch (id) {
           case 0: {
-            this.stationaryPanelData[0].checked = true;
+            this.selectStationaryRatePanel(0);
             break;
           }
           case 1: {
-            this.toothPanelData[0].checked = true;
+            this.selectToothRatePanel(0);
             break;
           }
           case 2: {
-            this.outpatientPanelData[0].checked = true;
+            this.selectOutpatientRatePanel(0);
             break;
           }
           case 3: {
-            this.preventionPanelData[0].checked = true;
+            this.selectPreventionRatePanel(0);
+ 
             break;
           }
         }
