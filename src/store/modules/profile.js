@@ -9,7 +9,7 @@ const state = {
   },
   personalData: {
     salutation: "Frau",
-    title: "Dr.",
+    title: "Kein Titel",
     firstGivenName: "",
     surname: "",
     street: "",

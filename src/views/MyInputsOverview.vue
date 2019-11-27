@@ -50,28 +50,20 @@
                       ' text-start font-weight-bold mb-3'
                   "
                 >Vertragsrelevante Unterlagen für Sie:</p>
-                <v-row justify="start" class="px-3 mt-3 mb-2">
+                <v-row justify="start" class="px-3 mt-3 mb-2"  
+                v-for="(product, index) in products.filter(product => product.checked)"
+                :key="index">
                   <v-btn
                     text
                     class="px-3 primary--text subtitle-1 btn-link btn-with-icon"
                     large
                     :ripple="false"
-                    @click="showDialog = true"
+                    @click="onClickProductPdfLink(product.selectedProductPdfLink)"
                   >
-                    <v-icon color="primary" class="mr-2">mdi-arrow-collapse-down</v-icon>MediGroup Stationär S1
+                    <v-icon color="primary" class="mr-2">mdi-arrow-collapse-down</v-icon>MediGroup {{product.panelTitle}} {{getShortName(product.selectedProductName)}}
                   </v-btn>
                 </v-row>
-                <v-row justify="start" class="px-3 mt-3 mb-2">
-                  <v-btn
-                    text
-                    class="px-3 primary--text subtitle-1 btn-link btn-with-icon"
-                    large
-                    :ripple="false"
-                    @click="showDialog = true"
-                  >
-                    <v-icon color="primary" class="mr-2">mdi-arrow-collapse-down</v-icon>MediGroup Zahn Z Duo
-                  </v-btn>
-                </v-row>
+                
                 <v-card color="primary" class="elevation-0 white--text px-5 pb-2 mt-7" tile>
                   <v-simple-table class="overview">
                     <template v-slot:default>
@@ -174,6 +166,10 @@ export default {
     },
     getShortName(title) {
       return shortNames.find(item => item.title === title).shortName;
+    },
+    onClickProductPdfLink(link){
+      console.log(link);
+      window.open("pdfs/" + link, "_blank");
     }
   },
   created() {

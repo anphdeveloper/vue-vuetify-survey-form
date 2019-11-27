@@ -255,6 +255,13 @@ import MiddleTitlePanel from "@/components/MiddleTitlePanel";
 import ComparisonTableModal from "@/components/Modals/ComparisonTableModal";
 import GoBackCircleIcon from "@/components/Icons/GoBackCircleIcon";
 import { mapState } from "vuex";
+import {
+  CATEGORY_PANEL_DATA,
+  STATIONARY_PANEL_DATA,
+  TOOTH_PANEL_DATA,
+  OUTPATIENT_PANEL_DATA,
+  PREVENTION_PANEL_DATA
+} from "@/plugins/constants/products"
 export default {
   name: "Dashboard",
   components: {
@@ -270,159 +277,11 @@ export default {
       days: null,
       targetDay: null,
       totalRate: 0,
-      categoryPanelData: [
-        {
-          id: 0,
-          panelTitle: "Stationär",
-          panelDescription:
-            "Maximales Wohlbefinden, <br />sowie beste Leistungen.",
-          panelFeature: [
-            "Behandlung durch den Chefarzt",
-            "Ein- oder Zweibettzimmer",
-            "Freie Krankenhausauswahl"
-          ],
-          panelBackground: "tertiary",
-          checked: false,
-          expanded: false,
-          selectedId: 0,
-          selectedProductName: "",
-          selectedRate: 0,
-          panelDocsLink: "MediGroup_Stationaer.pdf"
-        },
-        {
-          id: 1,
-          panelTitle: "Zahn",
-          panelDescription:
-            "Optimaler Schutz vor hohen<br/> Selbstkosten beim Zahnarzt.",
-          panelFeature: [
-            "Zahnbehandlung 100%",
-            "Zahnersatz, Inlays & Implantate",
-            "Prof. Zahnreinigung 150€/Jahr"
-          ],
-          panelBackground: "quinary",
-          checked: false,
-          expanded: false,
-          selectedId: 0,
-          selectedProductName: "",
-          selectedRate: 0,
-          panelDocsLink: "MediGroup_Z_Duo.pdf"
-        },
-        {
-          id: 2,
-          panelTitle: "Ambulant",
-          panelDescription:
-            "Keine Extrakosten bei ärztlichen<br/> Leistungen für bessere Gesundheit.",
-          panelFeature: [
-            "Erstattung für Arzneimittel 100%",
-            "Heilpraktiker 80%",
-            "Sehhilfen 120€/Jahr"
-          ],
-          panelBackground: "primary",
-          checked: false,
-          expanded: false,
-          selectedId: 0,
-          selectedProductName: "",
-          selectedRate: 0,
-          panelDocsLink: "MediGroup_A.pdf"
-        },
-        {
-          id: 3,
-          panelTitle: "Vorsorge",
-          panelDescription:
-            "Mit dem Vorsorgepaket sind<br /> Sie bestens geschützt & versorgt.",
-          panelFeature: [
-            "Vorsorge 100%",
-            "Schutzimpfungen 100%",
-            "Erstattung für Präventionen"
-          ],
-          panelBackground: "senary",
-          checked: false,
-          expanded: false,
-          selectedId: 0,
-          selectedProductName: "",
-          selectedRate: 0,
-          panelDocsLink: "MediGroup_Vorsorge.pdf"
-        
-        }
-      ],
-      stationaryPanelData: [
-        {
-          id: 0,
-          panelTitle: "S1 - 1-Bett-Zimmer",
-          haveRadioOption: true,
-          panelBackground: "white",
-          panelRate: "17,96",
-          checked: false,
-          isTop: true,
-          categoryColor: "#035370"
-        },
-        {
-          id: 1,
-          panelTitle: "S2 - 2-Bett-Zimmer",
-          haveRadioOption: true,
-          panelBackground: "white",
-          panelRate: "14,96",
-          checked: false,
-          isTop: false,
-          categoryColor: "#035370"
-        },
-        {
-          id: 2,
-          panelTitle: "Clinic Plus - 2-Bett-Zimmer",
-          haveRadioOption: true,
-          panelBackground: "white",
-          panelRate: "21,96",
-          checked: false,
-          isTop: false,
-          categoryColor: "#035370"
-        }
-      ],
-      toothPanelData: [
-        {
-          id: 0,
-          panelTitle: "MediGroup Z Duo",
-          haveRadioOption: false,
-          panelBackground: "white",
-          panelRate: "0",
-          checked: false,
-          isTop: false,
-          categoryColor: "#4C9BB0"
-        }
-      ],
-      outpatientPanelData: [
-        {
-          id: 0,
-          panelTitle: "MediGroup A",
-          haveRadioOption: false,
-          panelBackground: "white",
-          panelRate: "0",
-          checked: false,
-          isTop: false,
-          categoryColor: "#00718F"
-        }
-      ],
-      preventionPanelData: [
-        {
-          id: 0,
-          panelTitle: "Basis",
-          haveRadioOption: true,
-          panelBackground: "white",
-          panelRate: "0",
-          checked: false,
-          isTop: false,
-          categoryColor: "#3C8085"
-        },
-        {
-          id: 1,
-          panelTitle: "Premium",
-          haveRadioOption: true,
-          panelBackground: "white",
-          panelRate: "0",
-          checked: false,
-          isTop: false,
-          categoryColor: "#3C8085"
-        }
-      ]
+      categoryPanelData: CATEGORY_PANEL_DATA,
+      stationaryPanelData: STATIONARY_PANEL_DATA,
+      toothPanelData: TOOTH_PANEL_DATA,
+      outpatientPanelData: OUTPATIENT_PANEL_DATA,
+      preventionPanelData: PREVENTION_PANEL_DATA
     };
   },
   computed: {
@@ -473,6 +332,7 @@ export default {
       if (!this.categoryPanelData[id].checked) {
         this.categoryPanelData[id].selectedId = null;
         this.categoryPanelData[id].selectedProductName = "";
+        this.categoryPanelData[id].selectedProductPdfLink = "";
         this.categoryPanelData[id].selectedRate = 0;
         switch (id) {
           case 0: {
@@ -535,6 +395,9 @@ export default {
       this.categoryPanelData[0].selectedRate = this.stationaryPanelData[
         id
       ].panelRate;
+      this.categoryPanelData[0].selectedProductPdfLink = this.stationaryPanelData[
+        id
+      ].pdfLink;
     },
 
     selectToothRatePanel(id) {
@@ -549,6 +412,9 @@ export default {
       this.categoryPanelData[1].selectedRate = this.toothPanelData[
         id
       ].panelRate;
+      this.categoryPanelData[1].selectedProductPdfLink = this.toothPanelData[
+        id
+      ].pdfLink;
     },
 
     selectOutpatientRatePanel(id) {
@@ -563,6 +429,9 @@ export default {
       this.categoryPanelData[2].selectedRate = this.outpatientPanelData[
         id
       ].panelRate;
+      this.categoryPanelData[2].selectedProductPdfLink = this.outpatientPanelData[
+        id
+      ].pdfLink;
     },
 
     selectPreventionRatePanel(id) {
@@ -577,6 +446,9 @@ export default {
       this.categoryPanelData[3].selectedRate = this.preventionPanelData[
         id
       ].panelRate;
+      this.categoryPanelData[3].selectedProductPdfLink = this.preventionPanelData[
+        id
+      ].pdfLink;
     },
 
     expandCategoryPanel(id, expanded) {
