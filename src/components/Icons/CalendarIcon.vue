@@ -24,7 +24,8 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;
-  @media only screen and (max-width: 1200px) {
+  // @media only screen and (max-width: 1200px) {
+    @media only screen and (max-width: 599px) {
     width: 24px;
     height: 24px;
     margin-right: 10px !important;
