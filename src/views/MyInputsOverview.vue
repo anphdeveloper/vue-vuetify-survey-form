@@ -102,7 +102,7 @@
                   </v-simple-table>
                   <p class="caption white--text text-right mb-3 mt-5 font-weight-light">
                     mtl. Beitrag:
-                    <span class="ml-5 subtitle-1">{{ totalRate }} €</span>
+                    <span class="ml-5 subtitle-1 font-weight-bold">{{ totalRate }} €</span>
                   </p>
                   <p
                     class="caption white--text text-right mb-3 mt-2 font-weight-light"
