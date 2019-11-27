@@ -129,15 +129,14 @@
                         <template v-slot:activator="{ on }">
                           <v-text-field
                             v-model="dateFormatted"
-                            
                             label="Einstellungsdatum"
-                            placeholder="TT.MM.JJJJ"                                                     
-                            class="meta-pro-text primary--text"
+                            placeholder="TT.MM.JJJJ"
+                            class="meta-pro-text primary--text date-picker"
                             :rules="[v => !!v || '']"
                           >
                             <template v-slot:append>
                               <v-btn icon v-on="on" :ripple="false">
-                              <calendar-icon></calendar-icon>
+                                <calendar-icon></calendar-icon>
                               </v-btn>
                             </template>
                           </v-text-field>
@@ -187,7 +186,7 @@
                   "
                       >Abschluss des Tarifs „Stationär - Clinic Plus“ nicht möglich</p>
                     </v-container>
-                  </div>            
+                  </div>
                 </v-form>
                 <v-btn
                   :disabled="showInsureWarningForPrivate"
@@ -246,8 +245,7 @@ export default {
       date: "",
       dateFormatted: null,
       menu: false,
-      showWarning: false,
-      
+      showWarning: false
     };
   },
   watch: {
@@ -257,17 +255,15 @@ export default {
     },
     //alendar
     date(newVal) {
-      if (newVal)
-      this.dateFormatted = this.formatDate(new Date(newVal));
+      if (newVal) this.dateFormatted = this.formatDate(new Date(newVal));
     }
   },
   methods: {
     onClickNext() {
-      if ( this.$refs.personalForm.validate()) {
-        if( this.showInsureWarningForPrivate && this.insuredOption == "1")
+      if (this.$refs.personalForm.validate()) {
+        if (this.showInsureWarningForPrivate && this.insuredOption == "1")
           return;
-        else
-        {
+        else {
           this.$store.dispatch("profile/setPersonalData", {
             salutation: this.salutation,
             title: this.title,
@@ -285,7 +281,6 @@ export default {
           });
           this.$router.push({ name: "MyPaymentMethod" });
         }
-       
       } else {
         console.log("validation failed");
       }
@@ -302,7 +297,7 @@ export default {
       return this.$helper.commonHelper.getGermanFormatDate(date);
     },
     parseDate(date) {
-      console.log('date', date);
+      console.log("date", date);
       if (!date) return null;
       const [day, month, year] = date.split(".");
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
@@ -355,4 +350,14 @@ export default {
     display: inline-block;
   }
 }
+</style>
+<style lang="scss"> 
+  .date-picker .v-input__append-inner {
+    position: absolute;
+    right: 0;
+    bottom: 6px;
+    @media only screen and (max-width: 599px) {
+      position: unset;
+    }
+  }
 </style>
