@@ -86,15 +86,15 @@
                           <td class="text-right">
                             <p
                               class="subtitle-1 pa-0 ma-0 white--text font-weight-light"
-                            >{{product.selectedRate}} €</p>
+                            >{{(product.selectedRate * getRateByOption(profile.paymentOption)).toFixed(2)}} €</p>
                           </td>
                         </tr>
                       </tbody>
                     </template>
                   </v-simple-table>
                   <p class="caption white--text text-right mb-3 mt-5 font-weight-light">
-                    mtl. Beitrag:
-                    <span class="ml-5 subtitle-1 font-weight-bold">{{ totalRate }} €</span>
+                    {{getOptionDesc(profile.paymentOption)}}
+                    <span class="ml-5 subtitle-1 font-weight-bold">{{ totalRate.toFixed(2) }} €</span>
                   </p>
                   <p
                     class="caption white--text text-right mb-3 mt-2 font-weight-light"
@@ -136,6 +136,13 @@ const shortNames = [
   { title: "Premium", shortName: "Premium" }
 ];
 
+const paymentOptionsInfo = [
+  { option: 'monatlich', meaning: "Monat", desc: "mtl. Beitrag", rate: 1 },
+  { option: '1/4 jährlich', meaning: "Vierteljahr", desc: "vierteljährl. Beitrag", rate: 3 },
+  { option: '1/2 jährlich', meaning: "Halbjahr", desc: "halbjährl. Beitrag", rate: 6 },
+  { option: 'jährlich (4% Nachlass)', meaning: "Jahr", desc: "jährl. Beitrag", rate: 12 * 0.96 }
+];
+
 export default {
   name: "MyInputsOverview",
   components: {
@@ -170,12 +177,18 @@ export default {
     onClickProductPdfLink(link){
       console.log(link);
       window.open("pdfs/" + link, "_blank");
+    },
+    getOptionDesc(option) {
+      return paymentOptionsInfo.find(item => item.option === option).desc;
+    },
+    getRateByOption(option) {
+      return paymentOptionsInfo.find(item => item.option === option).rate;
     }
   },
   created() {
     this.profile = this.$store.state.profile.personalData;
     this.products = this.$store.state.products.categories;
-    this.totalRate = this.$store.state.products.categories.reduce(
+    this.totalRate = this.getRateByOption(this.profile.paymentOption) * this.$store.state.products.categories.reduce(
       (totalRate, category) =>
         totalRate + (category.checked ? category.selectedRate : 0),
       0
@@ -238,11 +251,11 @@ export default {
 }
 
 .send {
-    width: 24px;
-    height: 18px;
-    margin: 0;
-    margin-left: 8px;
-    margin-bottom: 2px;
+  width: 24px;
+  height: 18px;
+  margin: 0;
+  margin-left: 8px;
+  margin-bottom: 2px;
 }
 
 .not-uppercase {
