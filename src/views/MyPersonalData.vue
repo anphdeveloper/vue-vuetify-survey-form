@@ -131,11 +131,12 @@
                         <template v-slot:activator="{ on }">
                           <v-text-field
                             v-model="dateFormatted"
+                            @input="onInputDate"
                             label="Einstellungsdatum"
                             placeholder="TT.MM.JJJJ"
                             class="meta-pro-text primary--text date-picker"
                             :type="$vuetify.breakpoint.xs?'number':''"
-                            :rules="[v => !!v || '']"
+                            :rules="dateInputRules"
                           >
                             <template v-slot:append>
                               <v-btn icon v-on="on" :ripple="false">
@@ -248,7 +249,16 @@ export default {
       date: "",
       dateFormatted: null,
       menu: false,
-      showWarning: false
+      showWarning: false,
+      datePreviousValue: null,
+      dateInputRules: [
+        value => !!value || 'Required.',
+        value => (value || '').length <= 10 || 'Bitte korrektes Datum eingeben: TT.MM.JJJJ',
+        value => {
+          const pattern = /^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/
+          return pattern.test(value) || 'Bitte korrektes Datum eingeben: TT.MM.JJJJ'
+        },
+      ]
     };
   },
   watch: {
@@ -326,6 +336,22 @@ export default {
         && this.$store.state.products.categories.filter(category => category.checked).length == 1)
         &&
         this.$store.state.products.categories[0].selectedId === 2);
+      }
+    },
+    onInputDate($event){
+      if($event.length === 1){
+        this.datePreviousValue = 1;
+      }
+      if($event.length === 2 && this.datePreviousValue === 1){
+        this.dateFormatted = `${this.dateFormatted}.`;
+        this.datePreviousValue = 3;
+      }
+      if($event.length === 5){
+        this.datePreviousValue = 5;
+      }
+      if($event.length === 5 && this.datePreviousValue === 5){
+        this.dateFormatted = `${this.dateFormatted}.`;
+        this.datePreviousValue = 6;
       }
     }
   },
