@@ -62,9 +62,9 @@
                     <span class="grey--text">stabile Beiträge</span>
                     <v-menu
                       offset-y
+                      allow-overflow
                       max-width="300"
-                      nudge-bottom="1"
-                      nudge-left="135"
+                      nudge-left="138"
                       open-delay="0"
                       close-delay="0"
                       content-class="tooltip-with-top-arrow"
