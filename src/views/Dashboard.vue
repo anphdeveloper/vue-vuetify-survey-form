@@ -277,167 +277,11 @@ export default {
       days: null,
       targetDay: null,
       totalRate: 0,
-<<<<<<< HEAD
       categoryPanelData: CATEGORY_PANEL_DATA,
       stationaryPanelData: STATIONARY_PANEL_DATA,
       toothPanelData: TOOTH_PANEL_DATA,
       outpatientPanelData: OUTPATIENT_PANEL_DATA,
       preventionPanelData: PREVENTION_PANEL_DATA
-=======
-      categoryPanelData: [
-        {
-          id: 0,
-          panelTitle: "Stationär",
-          panelDescription:
-            "Maximales Wohlbefinden, <br />sowie beste Leistungen",
-          panelFeature: [
-            "Behandlung durch den Chefarzt",
-            "Ein- oder Zweibettzimmer",
-            "Freie Krankenhausauswahl"
-          ],
-          panelBackground: "tertiary",
-          checked: false,
-          expanded: false,
-          selectedId: 0,
-          selectedProductName: "",
-          selectedRate: 0,
-          panelDocsLink: "MediGroup_Stationaer.pdf"
-        },
-        {
-          id: 1,
-          panelTitle: "Zahn",
-          panelDescription:
-            "Optimaler Schutz vor hohen<br/> Selbstkosten beim Zahnarzt",
-          panelFeature: [
-            "Zahnbehandlung 100%",
-            "Zahnersatz, Inlays & Implantate",
-            "Prof. Zahnreinigung 150€/Jahr"
-          ],
-          panelBackground: "quinary",
-          checked: false,
-          expanded: false,
-          selectedId: 0,
-          selectedProductName: "",
-          selectedRate: 0,
-          panelDocsLink: "MediGroup_Z_Duo.pdf"
-        },
-        {
-          id: 2,
-          panelTitle: "Ambulant",
-          panelDescription:
-            "Keine Extrakosten bei ärztlichen<br/> Leistungen für bessere Gesundheit",
-          panelFeature: [
-            "Erstattung für Arzneimittel 100%",
-            "Heilpraktiker 80%",
-            "Sehhilfen 120€/Jahr"
-          ],
-          panelBackground: "primary",
-          checked: false,
-          expanded: false,
-          selectedId: 0,
-          selectedProductName: "",
-          selectedRate: 0,
-          panelDocsLink: "MediGroup_A.pdf"
-        },
-        {
-          id: 3,
-          panelTitle: "Vorsorge",
-          panelDescription:
-            "Mit dem Vorsorgepaket sind<br /> Sie bestens geschützt & versorgt",
-          panelFeature: [
-            "Vorsorge 100%",
-            "Schutzimpfungen 100%",
-            "Erstattung für Präventionen"
-          ],
-          panelBackground: "senary",
-          checked: false,
-          expanded: false,
-          selectedId: 0,
-          selectedProductName: "",
-          selectedRate: 0,
-          panelDocsLink: "MediGroup_Vorsorge.pdf"
-        
-        }
-      ],
-      stationaryPanelData: [
-        {
-          id: 0,
-          panelTitle: "S1 - 1-Bett-Zimmer",
-          haveRadioOption: true,
-          panelBackground: "white",
-          panelRate: "17,96",
-          checked: false,
-          isTop: true,
-          categoryColor: "#035370"
-        },
-        {
-          id: 1,
-          panelTitle: "S2 - 2-Bett-Zimmer",
-          haveRadioOption: true,
-          panelBackground: "white",
-          panelRate: "14,96",
-          checked: false,
-          isTop: false,
-          categoryColor: "#035370"
-        },
-        {
-          id: 2,
-          panelTitle: "Clinic Plus - 2-Bett-Zimmer",
-          haveRadioOption: true,
-          panelBackground: "white",
-          panelRate: "21,96",
-          checked: false,
-          isTop: false,
-          categoryColor: "#035370"
-        }
-      ],
-      toothPanelData: [
-        {
-          id: 0,
-          panelTitle: "MediGroup Z Duo",
-          haveRadioOption: false,
-          panelBackground: "white",
-          panelRate: "0",
-          checked: false,
-          isTop: false,
-          categoryColor: "#4C9BB0"
-        }
-      ],
-      outpatientPanelData: [
-        {
-          id: 0,
-          panelTitle: "MediGroup A",
-          haveRadioOption: false,
-          panelBackground: "white",
-          panelRate: "0",
-          checked: false,
-          isTop: false,
-          categoryColor: "#00718F"
-        }
-      ],
-      preventionPanelData: [
-        {
-          id: 0,
-          panelTitle: "Basis",
-          haveRadioOption: true,
-          panelBackground: "white",
-          panelRate: "0",
-          checked: false,
-          isTop: false,
-          categoryColor: "#3C8085"
-        },
-        {
-          id: 1,
-          panelTitle: "Premium",
-          haveRadioOption: true,
-          panelBackground: "white",
-          panelRate: "0",
-          checked: false,
-          isTop: false,
-          categoryColor: "#3C8085"
-        }
-      ]
->>>>>>> 1d1c164f36cd7a1bddb7c5c0bca24527d3044156
     };
   },
   computed: {
@@ -670,6 +514,11 @@ export default {
       });
     },
     setTotalRate() {
+      console.log(this.preventionPanelData.reduce(
+          (totalRate, panel) =>
+            totalRate + (panel.checked ? panel.panelRate : 0),
+          0
+        ));
       this.totalRate =
         this.stationaryPanelData.reduce(
           (totalRate, panel) =>
@@ -678,17 +527,17 @@ export default {
         ) +
         this.toothPanelData.reduce(
           (totalRate, panel) =>
-            totalRate + panel.checked ? panel.panelRate : 0,
+            totalRate + (panel.checked ? panel.panelRate : 0),
           0
         ) +
         this.outpatientPanelData.reduce(
           (totalRate, panel) =>
-            totalRate + panel.checked ? panel.panelRate : 0,
+            totalRate + (panel.checked ? panel.panelRate : 0),
           0
         ) +
         this.preventionPanelData.reduce(
           (totalRate, panel) =>
-            totalRate + panel.checked ? panel.panelRate : 0,
+            totalRate + (panel.checked ? panel.panelRate : 0),
           0
         );
     },

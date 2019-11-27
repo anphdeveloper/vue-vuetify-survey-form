@@ -58,8 +58,7 @@ export default {
     };
   },
   methods: {
-    clickContainer(event){
-      console.log(!event.target.parentNode.firstChild.id == "radioButton");
+    clickContainer(){
         this.checkRate(this.$props.ratePanelData.id)
     }
   },
