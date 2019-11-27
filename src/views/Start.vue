@@ -10,7 +10,7 @@
                   $vuetify.breakpoint.smAndUp ? 'headline px-10' : 'title'
                 ]"
               >
-                Exklusiver Versicherungsschutz für die Mitarbeiter der Group
+                Exklusiver Versicherungsschutz für die Mitarbeiter der BMW Group
               </p>
               <p
                 :class="[

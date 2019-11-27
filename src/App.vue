@@ -23,6 +23,12 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
+
+.danger {
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+}
+
 #app {
   font-family: "MetaPro-Normal", sans-serif!important;
   -webkit-font-smoothing: antialiased;

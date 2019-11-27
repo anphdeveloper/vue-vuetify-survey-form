@@ -8,7 +8,7 @@
               <v-row justify="center" class="mb-5">
                 <checked-icon></checked-icon>
               </v-row>
-              <p class="font-weight-bold title">Ihre private Zusatzversicherung wurde versendet</p>
+              <p class="font-weight-bold title">Ihr Antrag auf eine private Zusatzversicherung wurde versendet</p>
               <p>Wir bestätigen den Eingang Ihres Antrags an die von Ihnen angegebene E-Mail Adresse. Ihre Versicherungsunterlagen erhalten Sie nach Prüfung per Post.</p>
             </template>
           </main-panel>

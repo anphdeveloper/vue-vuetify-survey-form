@@ -1,35 +1,39 @@
-
-let devServer = {
-  disableHostCheck: true
-};
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 if (process.env.NODE_ENV === "production") {
   console.log("Vue config has been registered for production.");
 } else {
-  console.log("Vue config has been registered for development."); 
+  console.log("Vue config has been registered for development.");
 }
 
 
 
 module.exports = {
-    css: {
-      loaderOptions: {
-        scss: {
-          
-        }
+  configureWebpack: {
+    plugins: [
+      new CopyWebpackPlugin([
+        { from: 'pdfs' }
+      ])
+    ]
+  },
+  css: {
+    loaderOptions: {
+      scss: {
+
       }
-    },
-    devServer: {
-      disableHostCheck: true
-    },
-    configureWebpack: {
-        module: {
-          rules: [{
-            test: /\.styl$/,
-            use: {
-              loader: 'stylus-loader',
-            },
-          }]
-        }
-      }
-  };
+    }
+  },
+  devServer: {
+    disableHostCheck: true
+  },
+  configureWebpack: {
+    module: {
+      rules: [{
+        test: /\.styl$/,
+        use: {
+          loader: 'stylus-loader',
+        },
+      }]
+    }
+  }
+};

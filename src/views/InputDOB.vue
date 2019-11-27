@@ -12,7 +12,7 @@
                       ' text-start mb-8'
                   "
                 >
-                  Zur Berechnung Ihres persönlichen Beitrags, benötigen wir ihr
+                  Zur Berechnung Ihres persönlichen Beitrags benötigen wir Ihr
                   Geburtsdatum.
                   <v-menu
                     offset-y
@@ -140,6 +140,9 @@
 // @ is an alias to /src
 
 import MainPanel from "@/components/MainPanel.vue";
+import {
+  MORE_LINK_FOR_AGE_RATE
+} from "@/plugins/constants/profile"
 export default {
   name: "InputDayOfBirthday",
   components: {
@@ -181,7 +184,7 @@ export default {
       this.onClickStartCalc();
     },
     clickReadMore() {
-      window.open('/pdf/Allgemeine_Rechtliche_Belehrungen.pdf', '_blank');
+      window.open("pdfs/" + MORE_LINK_FOR_AGE_RATE, "_blank");
     },
     fillData() {
       if (this.$store.state.profile.dayOfBirth) {

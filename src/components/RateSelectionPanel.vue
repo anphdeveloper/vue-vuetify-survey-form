@@ -59,7 +59,6 @@ export default {
   },
   methods: {
     clickContainer(event){
-      console.log(!event.target.parentNode.firstChild.id == "radioButton");
       if(!event.target.className.includes('v-icon'))
         this.checkRate(this.$props.ratePanelData.id)
     }

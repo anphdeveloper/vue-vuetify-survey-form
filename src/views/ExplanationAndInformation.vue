@@ -50,7 +50,7 @@
                       class="px-3 primary--text body-1 btn-link btn-with-icon"
                       large
                       :ripple="false"
-                      @click="downloadFile"
+                      @click="onClickDownloadInformation"
                     >
                       <v-icon color="primary" class="mr-2">mdi-arrow-collapse-down</v-icon>INFORMATIONEN HERUNTERLADEN
                     </v-btn>
@@ -103,8 +103,9 @@
 // @ is an alias to /src
 
 import MainPanel from "@/components/MainPanel.vue";
-import axios from "axios";
-
+import {
+  INFORMATION_LINK
+} from "@/plugins/constants/products"
 export default {
   name: "ExplanationAndInformation",
   components: {
@@ -141,21 +142,8 @@ export default {
     onClickHideMore2() {
       this.showReadMore2 = true;
     },
-    downloadFile() {
-      axios({
-        methods: 'get',
-        url: './pdf/Allgemeine_Rechtliche_Belehrungen.pdf',
-        responseType: 'blob',
-      }).then((response) => {
-          var fileURL = window.URL.createObjectURL(new Blob([response.data]));
-          var fileLink = document.createElement('a');
-
-          fileLink.href = fileURL;
-          fileLink.setAttribute('download', 'Allgemeine_Rechtliche_Belehrungen.pdf');
-          document.body.appendChild(fileLink);
-
-          fileLink.click();
-      });
+    onClickDownloadInformation(){
+      window.open("pdfs/" + INFORMATION_LINK, "_blank");
     }
   },
   mounted() {
