@@ -34,14 +34,16 @@
       v-if="categoryPanelData.expanded"
     >
       <p
-        class="mb-1"
+        class="mb-1 body-2"
         v-for="(feature, index) in categoryPanelData.panelFeature"
         :key="index"
       >
         <v-icon color="white">mdi-check</v-icon
-        ><span class="ml-1 body-1">{{ feature }}</span>
+        ><span class="ml-1 body-2">{{ feature }}</span>
       </p>
       <v-btn block class="white mt-4 btn-info white--text elevation-0 py-2"
+      id="infoBtn"
+      @click="onClickInfo"
         >INFOBROSCHÜRE
         <v-icon class="white--text ml-4">
           mdi-arrow-collapse-down
@@ -106,9 +108,15 @@ export default {
       if(event.target.id != "panelCheckBoxButton" 
       && event.target.id != "panelCheckBoxIcon" 
       && event.target.id != "plusIcon"
-      && event.target.id != "minusIcon"){
+      && event.target.id != "minusIcon"
+      && event.target.parentElement.id != "infoBtn"
+      ){
         this.checkPanel(this.$props.categoryPanelData.id);
       }
+    },
+    onClickInfo(){
+      console.log(this.$props.categoryPanelData.panelDocsLink);
+      window.open("pdfs/" + this.$props.categoryPanelData.panelDocsLink, "_blank");
     }
   },
   watch: {},
