@@ -56,15 +56,16 @@
                     <v-col cols="12" sm="4">
                       <v-text-field
                         v-model="streetNo"
-                        label="HausNr."
+                        label="Haus Nr."
                         hint
                         :rules="[v => !!v || '']"
+                        :type="$vuetify.breakpoint.xs?'number':''"
                       ></v-text-field>
                     </v-col>
                   </v-row>
                   <v-row justify="center">
                     <v-col cols="12" sm="4">
-                      <v-text-field v-model="postCode" label="PLZ" hint :rules="[v => !!v || '']"></v-text-field>
+                      <v-text-field v-model="postCode" :type="$vuetify.breakpoint.xs?'number':''" label="PLZ" hint :rules="[v => !!v || '']"></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="8">
                       <v-text-field v-model="place" label="Ort" hint :rules="[v => !!v || '']"></v-text-field>
@@ -91,6 +92,7 @@
                         ref="telephone"
                         hint
                         persistent-hint
+                        :type="$vuetify.breakpoint.xs?'number':''"
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -132,6 +134,7 @@
                             label="Einstellungsdatum"
                             placeholder="TT.MM.JJJJ"
                             class="meta-pro-text primary--text date-picker"
+                            :type="$vuetify.breakpoint.xs?'number':''"
                             :rules="[v => !!v || '']"
                           >
                             <template v-slot:append>
