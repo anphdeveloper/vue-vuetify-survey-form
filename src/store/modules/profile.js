@@ -21,8 +21,13 @@ const state = {
     emailAddress: "",
     professionalActivities: "",
     settingDate: "",
+    insuredOption: "0",
     paymentOption: "",
-    ibanNumber: ""
+    agreeSEPA: false,
+    ibanNumber: "",
+    agreeAdvice: false,
+    agreeTerms: false,
+    agreeForLastYear: false
   }
 };
 

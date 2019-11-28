@@ -6,7 +6,7 @@ import {
   OUTPATIENT_A_PRODUCT_RATE,
   PRENENTION_BASIS_PRODUCT_RATE,
   PRENENTION_PREMIUM_PRODUCT_RATE
-} from "../../constants/ProductConstant";
+} from "@/plugins/constants/products";
 
 export function getRateForStationary(age, productNumber) {
   switch (productNumber) {

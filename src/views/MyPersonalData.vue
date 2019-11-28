@@ -323,6 +323,7 @@ export default {
             emailAddress: this.emailAddress,
             professionalActivities: this.professionalActivities,
             settingDate: this.dateFormatted,
+            insuredOption: this.insuredOption
           });
           this.$router.push({ name: "MyPaymentMethod" });
         }
@@ -348,20 +349,21 @@ export default {
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     },
     fillData(){
-      this.salutation = this.$store.state.profile.personalData.salutation;
-      this.title = this.$store.state.profile.personalData.title;
-      this.firstGivenName = this.$store.state.profile.personalData.firstGivenName;
-      this.surname = this.$store.state.profile.personalData.surname;
-      this.street = this.$store.state.profile.personalData.street;
-      this.streetNo = this.$store.state.profile.personalData.streetNo;
-      this.country = this.$store.state.profile.personalData.country;
-      this.postCode = this.$store.state.profile.personalData.postCode;
-      this.place = this.$store.state.profile.personalData.place;
-      this.phoneNo = this.$store.state.profile.personalData.phoneNo;
-      this.emailAddress = this.$store.state.profile.personalData.emailAddress;
-      this.professionalActivities = this.$store.state.profile.personalData.professionalActivities;
-      this.dateFormatted = this.$store.state.profile.personalData.settingDate;
-
+      let profile = this.$store.state.profile.personalData;
+      this.salutation = profile.salutation;
+      this.title = profile.title;
+      this.firstGivenName = profile.firstGivenName;
+      this.surname = profile.surname;
+      this.street = profile.street;
+      this.streetNo = profile.streetNo;
+      this.country = profile.country;
+      this.postCode = profile.postCode;
+      this.place = profile.place;
+      this.phoneNo = profile.phoneNo;
+      this.emailAddress = profile.emailAddress;
+      this.professionalActivities = profile.professionalActivities;
+      this.dateFormatted = profile.settingDate;
+      this.insuredOption = profile.insuredOption;
       if(this.$store.state.products.categories){
         this.warningSelectionInDashboard =
         ((this.$store.state.products.categories[0].checked 

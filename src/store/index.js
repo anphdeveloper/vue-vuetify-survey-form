@@ -4,6 +4,7 @@ import VuexPersistence from "vuex-persist";
 import Product from "./modules/products";
 import Profile from "./modules/profile";
 import AjaxApiService from "../services/AjaxApiService";
+import axios from "axios";
 Vue.use(Vuex);
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage,
@@ -32,9 +33,26 @@ export default new Vuex.Store({
     callBackendService({ commit }, payload){
       return AjaxApiService.post("/backendCall", 
          payload 
-      ).then(res => {
-        return res;
-      });
+      ).then(
+        res => {
+          return res;
+        },
+        error => {
+          return false;
+        }
+      
+      );
+    },
+
+    getIpAddress(){
+      return axios.get('https://api.ipify.org?format=json').then(
+        response => {
+          return response.data.ip
+        },
+        error => {
+          return false;
+        }
+      )
     }
   },
   getters: {

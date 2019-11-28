@@ -99,13 +99,23 @@ export default {
   methods: {
     onClickNext() {
       if (this.$refs.form.validate()) {
+        this.$store.dispatch("profile/setPersonalData", {
+          agreeForLastYear: this.checkbox,
+        });
         if (this.$store.state.products.categories[1].checked)
           this.$router.push({ name: "MyDentalHealth" });
         else this.$router.push({ name: "MyPersonalData" });
       } else {
         this.showWarning = true;
       }
+    },
+    fillData(){
+      this.checkbox = this.$store.state.profile.personalData.agreeForLastYear
     }
+
+  },
+  created(){
+    this.fillData();
   },
   mounted() {
     this.$store.dispatch("setPagesProgress", 40);

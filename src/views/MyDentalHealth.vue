@@ -144,8 +144,8 @@ export default {
     return {
       panelTitle: "Meine Zahngesundheit",
       dentalInsuranceAvailable: "1",
-      number: 0,
-      numbers: [0, 1, 2, 3, 4, "mehr"],
+      number: "0",
+      numbers: ["0", "1", "2", "3", "4", "mehr"],
       showReadMore: true,
       companies: ""
     };
@@ -158,7 +158,7 @@ export default {
       // Proceed to next page
       this.$store.dispatch(
         "profile/setMissedTeeth",
-        this.number == "mehr" ? -1 : this.number
+        this.number
       );
 
       if (this.dentalInsuranceAvailable == "1") {
@@ -169,7 +169,7 @@ export default {
       } else
         this.$store.dispatch("profile/setPrevInsCompany", {
           haveCompany: true,
-          comapnyName: this.companies
+          comapnyName: this.companies,
         });
 
       this.$router.push({ name: "MyPersonalData" });

@@ -616,11 +616,6 @@ export default {
     this.fillData();
     //set progress
     this.$store.dispatch("setPagesProgress", 25);
-
-    //test calling side-effect api
-    // this.$store.dispatch("callBackendService", {
-    //   hello: "test"
-    // });
   }
 };
 </script>

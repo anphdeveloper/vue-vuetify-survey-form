@@ -19,6 +19,7 @@
                     <v-checkbox
                       large
                       class="mt-0 pt-0"
+                      v-model="agreeAdvice"
                       :rules="[v => !!v || '']"
                     />
                     <p class="text-start body-2 mb-1">
@@ -78,6 +79,7 @@
                   </v-row>
                   <div class="text-with-inputcontrol-icon">
                     <v-checkbox
+                      v-model="agreeTerms"
                       large
                       class="mt-0 pt-0"
                       :rules="[v => !!v || '']"
@@ -146,6 +148,8 @@ export default {
   data() {
     return {
       panelTitle: "Erklärungen und wichtige Hinweise",
+      agreeAdvice: false,
+      agreeTerms: false,
       showReadMore1: true,
       showReadMore2: true
     };
@@ -154,8 +158,10 @@ export default {
   methods: {
     onClickNext() {
       if (this.$refs.personalForm.validate()) {
-        // this.$store.dispatch("profile/setPersonalData", {
-        // });
+        this.$store.dispatch("profile/setPersonalData", {
+          agreeAdvice: this.agreeAdvice,
+          agreeTerms: this.agreeTerms
+        });
 
         this.$router.push({ name: "MyInputsOverview" });
       } else {
@@ -176,7 +182,14 @@ export default {
     },
     onClickDownloadInformation() {
       window.open("pdfs/" + INFORMATION_LINK, "_blank");
+    },
+    fillData(){
+      this.agreeAdvice = this.$store.state.profile.personalData.agreeAdvice;
+      this.agreeTerms = this.$store.state.profile.personalData.agreeTerms;
     }
+  },
+  created(){
+    this.fillData()
   },
   mounted() {
     this.$store.dispatch("setPagesProgress", 92);

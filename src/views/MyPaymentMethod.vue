@@ -180,7 +180,8 @@ export default {
       if (this.$refs.personalForm.validate() && this.agreeCheckBox) {
         this.$store.dispatch("profile/setPersonalData", {
           paymentOption: this.paymentOption,
-          ibanNumber: "DE" + this.ibanNumber.replace(/\s/g, "")
+          ibanNumber: "DE" + this.ibanNumber.replace(/\s/g, ""),
+          agreeSEPA: this.agreeCheckBox
         });
         this.$router.push({ name: "ExplanationAndInformation" });
       } else {
@@ -210,7 +211,6 @@ export default {
     },
     getRateForPeriod(rate) {
       let rateForType = 0;
-      console.log("rate:::", rate);
       switch (this.paymentOption) {
         case "monatlich":
           rateForType = rate;
@@ -245,6 +245,11 @@ export default {
         this.$store.state.profile.personalData.paymentOption != ""
           ? this.$store.state.profile.personalData.paymentOption
           : "monatlich";
+      console.log(this.$store.state.profile.personalData.agreeSEPA);
+      this.agreeCheckBox = (this.$store.state.profile.personalData.agreeSEPA == undefined
+      || this.$store.state.profile.personalData.agreeSEPA == null) 
+      ? false : this.$store.state.profile.personalData.agreeSEPA;
+
     }
   },
   created() {
