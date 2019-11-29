@@ -25,17 +25,13 @@
         :ripple="false"
         @click="onClickGoBack"
       >
-<<<<<<< HEAD
-        <v-icon color="primary" v-if="$vuetify.breakpoint.mdAndUp"
-          >mdi-arrow-left</v-icon
-        >
+        <go-back-icon
+          color="primary"
+          v-if="$vuetify.breakpoint.mdAndUp"
+        ></go-back-icon>
         <go-back-circle-icon
           v-if="$vuetify.breakpoint.smAndDown"
         ></go-back-circle-icon>
-=======
-        <go-back-icon color="primary" v-if="$vuetify.breakpoint.mdAndUp"></go-back-icon>
-        <go-back-circle-icon v-if="$vuetify.breakpoint.smAndDown"></go-back-circle-icon>
->>>>>>> 6a08126de04e93ae560f35514bf62439363d3a89
         <span v-if="$vuetify.breakpoint.mdAndUp">ZURÜCK</span>
       </v-btn>
     </v-row>

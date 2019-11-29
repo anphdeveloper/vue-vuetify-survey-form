@@ -166,7 +166,6 @@ export const PREVENTION_PANEL_DATA = [
 
 export const INFORMATION_LINK = "Allgemeine_Rechtliche_Belehrungen.pdf";
 
-
 export const S1_PRODUCT_RATE = [
   { min: 0, max: 15, rate: 7.82 },
   { min: 16, max: 20, rate: 15.04 },

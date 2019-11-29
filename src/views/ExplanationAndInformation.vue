@@ -183,13 +183,13 @@ export default {
     onClickDownloadInformation() {
       window.open("pdfs/" + INFORMATION_LINK, "_blank");
     },
-    fillData(){
+    fillData() {
       this.agreeAdvice = this.$store.state.profile.personalData.agreeAdvice;
       this.agreeTerms = this.$store.state.profile.personalData.agreeTerms;
     }
   },
-  created(){
-    this.fillData()
+  created() {
+    this.fillData();
   },
   mounted() {
     this.$store.dispatch("setPagesProgress", 92);

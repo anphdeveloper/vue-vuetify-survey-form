@@ -156,10 +156,7 @@ export default {
         return;
 
       // Proceed to next page
-      this.$store.dispatch(
-        "profile/setMissedTeeth",
-        this.number
-      );
+      this.$store.dispatch("profile/setMissedTeeth", this.number);
 
       if (this.dentalInsuranceAvailable == "1") {
         this.$store.dispatch("profile/setPrevInsCompany", {
@@ -169,7 +166,7 @@ export default {
       } else
         this.$store.dispatch("profile/setPrevInsCompany", {
           haveCompany: true,
-          companyName: this.companies,
+          companyName: this.companies
         });
 
       this.$router.push({ name: "MyPersonalData" });

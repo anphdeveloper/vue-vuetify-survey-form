@@ -100,7 +100,7 @@ export default {
     onClickNext() {
       if (this.$refs.form.validate()) {
         this.$store.dispatch("profile/setPersonalData", {
-          agreeForLastYear: this.checkbox,
+          agreeForLastYear: this.checkbox
         });
         if (this.$store.state.products.categories[1].checked)
           this.$router.push({ name: "MyDentalHealth" });
@@ -109,12 +109,11 @@ export default {
         this.showWarning = true;
       }
     },
-    fillData(){
-      this.checkbox = this.$store.state.profile.personalData.agreeForLastYear
+    fillData() {
+      this.checkbox = this.$store.state.profile.personalData.agreeForLastYear;
     }
-
   },
-  created(){
+  created() {
     this.fillData();
   },
   mounted() {

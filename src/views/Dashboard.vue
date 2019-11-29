@@ -249,7 +249,7 @@
         <v-row
           :class="{
             'mt-4': $vuetify.breakpoint.xs,
-            'px-3 justify-start': true,
+            'px-3 justify-start': true
           }"
           wrap
         >
@@ -259,7 +259,10 @@
             :ripple="false"
             @click="onClickGoBack"
           >
-            <go-back-icon color="primary" v-if="$vuetify.breakpoint.mdAndUp"></go-back-icon>
+            <go-back-icon
+              color="primary"
+              v-if="$vuetify.breakpoint.mdAndUp"
+            ></go-back-icon>
             <go-back-circle-icon
               v-if="$vuetify.breakpoint.smAndDown"
             ></go-back-circle-icon>
@@ -272,12 +275,12 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import CategoryPanel from "@/components/CategoryPanel.vue";
 import RateSelectionPanel from "@/components/RateSelectionPanel.vue";
 import MiddleTitlePanel from "@/components/MiddleTitlePanel";
 import ComparisonTableModal from "@/components/Modals/ComparisonTableModal";
 import GoBackCircleIcon from "@/components/Icons/GoBackCircleIcon";
+import GoBackIcon from "@/components/Icons/GoBackIcon";
 import { mapState } from "vuex";
 import {
   CATEGORY_PANEL_DATA,
@@ -286,24 +289,15 @@ import {
   OUTPATIENT_PANEL_DATA,
   PREVENTION_PANEL_DATA
 } from "@/plugins/constants/products";
-=======
-import CategoryPanel from '@/components/CategoryPanel.vue';
-import RateSelectionPanel from '@/components/RateSelectionPanel.vue';
-import MiddleTitlePanel from '@/components/MiddleTitlePanel';
-import ComparisonTableModal from '@/components/Modals/ComparisonTableModal';
-import GoBackCircleIcon from '@/components/Icons/GoBackCircleIcon';
-import GoBackIcon from '@/components/Icons/GoBackIcon';
-import { mapState } from 'vuex';
->>>>>>> 6a08126de04e93ae560f35514bf62439363d3a89
 export default {
-  name: 'Dashboard',
+  name: "Dashboard",
   components: {
     CategoryPanel,
     RateSelectionPanel,
     MiddleTitlePanel,
     ComparisonTableModal,
     GoBackCircleIcon,
-    GoBackIcon,
+    GoBackIcon
   },
   props: {},
   data() {
@@ -320,14 +314,14 @@ export default {
   },
   computed: {
     ...mapState({
-      age: state => state.profile.age,
-    }),
+      age: state => state.profile.age
+    })
   },
   watch: {
     targetDay: function(newVal) {
       this.$store.dispatch(
-        'profile/setTargetDay',
-        this.$helper.commonHelper.getDateFromGermanDate(newVal),
+        "profile/setTargetDay",
+        this.$helper.commonHelper.getDateFromGermanDate(newVal)
       );
     },
     age: function(newVal) {
@@ -338,26 +332,26 @@ export default {
       handler() {
         this.setTotalRate();
       },
-      deep: true,
+      deep: true
     },
     toothPanelData: {
       handler() {
         this.setTotalRate();
       },
-      deep: true,
+      deep: true
     },
     outpatientPanelData: {
       handler() {
         this.setTotalRate();
       },
-      deep: true,
+      deep: true
     },
     preventionPanelData: {
       handler() {
         this.setTotalRate();
       },
-      deep: true,
-    },
+      deep: true
+    }
   },
 
   methods: {
@@ -419,7 +413,7 @@ export default {
 
     selectStationaryRatePanel(id) {
       this.stationaryPanelData.map(
-        item => (item.checked = item.id === id ? true : false),
+        item => (item.checked = item.id === id ? true : false)
       );
       this.categoryPanelData[0].checked = true;
       this.categoryPanelData[0].selectedId = id;
@@ -436,7 +430,7 @@ export default {
 
     selectToothRatePanel(id) {
       this.toothPanelData.map(
-        item => (item.checked = item.id === id ? true : false),
+        item => (item.checked = item.id === id ? true : false)
       );
       this.categoryPanelData[1].checked = true;
       this.categoryPanelData[1].selectedId = id;
@@ -453,7 +447,7 @@ export default {
 
     selectOutpatientRatePanel(id) {
       this.outpatientPanelData.map(
-        item => (item.checked = item.id === id ? true : false),
+        item => (item.checked = item.id === id ? true : false)
       );
       this.categoryPanelData[2].checked = true;
       this.categoryPanelData[2].selectedId = id;
@@ -470,7 +464,7 @@ export default {
 
     selectPreventionRatePanel(id) {
       this.preventionPanelData.map(
-        item => (item.checked = item.id === id ? true : false),
+        item => (item.checked = item.id === id ? true : false)
       );
       this.categoryPanelData[3].checked = true;
       this.categoryPanelData[3].selectedId = id;
@@ -489,7 +483,7 @@ export default {
       this.categoryPanelData.map(
         category =>
           (category.expanded =
-            category.id === id ? expanded : category.expanded),
+            category.id === id ? expanded : category.expanded)
       );
     },
     /*eslint-disable*/
@@ -518,14 +512,14 @@ export default {
           ...panel,
           panelRate: this.$helper.productHelper.getRateForStationary(
             age,
-            panel.id,
-          ),
+            panel.id
+          )
         };
       });
       this.toothPanelData = this.toothPanelData.map(panel => {
         return {
           ...panel,
-          panelRate: this.$helper.productHelper.getRateForTooth(age, panel.id),
+          panelRate: this.$helper.productHelper.getRateForTooth(age, panel.id)
         };
       });
       this.outpatientPanelData = this.outpatientPanelData.map(panel => {
@@ -533,8 +527,8 @@ export default {
           ...panel,
           panelRate: this.$helper.productHelper.getRateForOutpatient(
             age,
-            panel.id,
-          ),
+            panel.id
+          )
         };
       });
       this.preventionPanelData = this.preventionPanelData.map(panel => {
@@ -542,8 +536,8 @@ export default {
           ...panel,
           panelRate: this.$helper.productHelper.getRateForPrevention(
             age,
-            panel.id,
-          ),
+            panel.id
+          )
         };
       });
     },
@@ -559,7 +553,7 @@ export default {
         this.stationaryPanelData.reduce(
           (totalRate, panel) =>
             totalRate + (panel.checked ? panel.panelRate : 0),
-          0,
+          0
         ) +
         this.toothPanelData.reduce(
           (totalRate, panel) =>
@@ -618,7 +612,7 @@ export default {
 
       //set rate
       this.setRateForPanels(this.age);
-    },
+    }
   },
 
   mounted() {

@@ -8,7 +8,7 @@
               <div
                 :class="{
                   'px-10': $vuetify.breakpoint.smAndUp,
-                  'px-5': $vuetify.breakpoint.xs,
+                  'px-5': $vuetify.breakpoint.xs
                 }"
               >
                 <v-form
@@ -18,7 +18,7 @@
                 >
                   <div
                     v-for="(product, index) in products.filter(
-                      product => product.checked,
+                      product => product.checked
                     )"
                     :key="index"
                     class="category-list"
@@ -129,64 +129,64 @@
 <script>
 // @ is an alias to /src
 
-import MainPanel from '@/components/MainPanel.vue';
+import MainPanel from "@/components/MainPanel.vue";
 
 export default {
-  name: 'MyPaymentMethod',
+  name: "MyPaymentMethod",
   components: {
-    MainPanel,
+    MainPanel
   },
   data() {
     return {
-      panelTitle: 'Meine Zahlweise',
-      paymentOption: 'monatlich',
+      panelTitle: "Meine Zahlweise",
+      paymentOption: "monatlich",
       paymentOptions: [
-        'monatlich',
-        '1/4 jährlich',
-        '1/2 jährlich',
-        'jährlich (4% Nachlass)',
+        "monatlich",
+        "1/4 jährlich",
+        "1/2 jährlich",
+        "jährlich (4% Nachlass)"
       ],
-      ibanNumber: '',
+      ibanNumber: "",
       agreeCheckBox: false,
       showReadMore: true,
       products: null,
-      typePeriod: '€ / Monat',
+      typePeriod: "€ / Monat"
     };
   },
   watch: {
     paymentOption: function(newVal) {
       switch (newVal) {
-        case 'monatlich':
-          this.typePeriod = '€ / Monat';
+        case "monatlich":
+          this.typePeriod = "€ / Monat";
           break;
-        case '1/4 jährlich':
-          this.typePeriod = '€ / Vierteljahr';
+        case "1/4 jährlich":
+          this.typePeriod = "€ / Vierteljahr";
           break;
-        case '1/2 jährlich':
-          this.typePeriod = '€ / Halbjahr';
+        case "1/2 jährlich":
+          this.typePeriod = "€ / Halbjahr";
           break;
-        case 'jährlich (4% Nachlass)':
-          this.typePeriod = '€ / Jahr';
+        case "jährlich (4% Nachlass)":
+          this.typePeriod = "€ / Jahr";
           break;
       }
     },
     ibanNumber: function(newVal) {
       if (!newVal.match(/\s/g) && !this.$vuetify.breakpoint.xs) {
-        newVal = newVal.replace(/\s/g, '');
-        this.ibanNumber = newVal.replace(/(.{4})/g, '$1 ');
+        newVal = newVal.replace(/\s/g, "");
+        this.ibanNumber = newVal.replace(/(.{4})/g, "$1 ");
       }
-    },
+    }
   },
   methods: {
     onClickNext() {
       if (this.$refs.personalForm.validate() && this.agreeCheckBox) {
-        this.$store.dispatch('profile/setPersonalData', {
+        this.$store.dispatch("profile/setPersonalData", {
           paymentOption: this.paymentOption,
-          ibanNumber: 'DE' + this.ibanNumber.replace(/\s/g, ''),
+          ibanNumber: "DE" + this.ibanNumber.replace(/\s/g, "")
         });
-        this.$router.push({ name: 'ExplanationAndInformation' });
+        this.$router.push({ name: "ExplanationAndInformation" });
       } else {
-        console.log('validation failed');
+        console.log("validation failed");
       }
     },
     onClickShowMore() {
@@ -196,33 +196,33 @@ export default {
       this.showReadMore = true;
     },
     validateIBAN(iban) {
-      let IBAN = require('iban');
-      return IBAN.isValid('DE' + iban);
+      let IBAN = require("iban");
+      return IBAN.isValid("DE" + iban);
     },
     validateSpaceFormatter(event) {
-      if (event.key !== 'Backspace' && !this.$vuetify.breakpoint.xs) {
-        this.ibanNumber = this.ibanNumber.replace(/\s/g, '');
-        this.ibanNumber = this.ibanNumber.replace(/(.{4})/g, '$1 ');
+      if (event.key !== "Backspace" && !this.$vuetify.breakpoint.xs) {
+        this.ibanNumber = this.ibanNumber.replace(/\s/g, "");
+        this.ibanNumber = this.ibanNumber.replace(/(.{4})/g, "$1 ");
       }
     },
     limitIban(event, iban) {
-      if (iban.replace(/\s/g, '').length > 19) event.preventDefault();
+      if (iban.replace(/\s/g, "").length > 19) event.preventDefault();
       if (/^\d+$/.test(event.key)) return true;
       else event.preventDefault();
     },
     getRateForPeriod(rate) {
       let rateForType = 0;
       switch (this.paymentOption) {
-        case 'monatlich':
+        case "monatlich":
           rateForType = rate;
           break;
-        case '1/4 jährlich':
+        case "1/4 jährlich":
           rateForType = rate * 3;
           break;
-        case '1/2 jährlich':
+        case "1/2 jährlich":
           rateForType = rate * 6;
           break;
-        case 'jährlich (4% Nachlass)':
+        case "jährlich (4% Nachlass)":
           rateForType = rate * 12 * 0.96;
           break;
         default:
@@ -247,18 +247,19 @@ export default {
           ? this.$store.state.profile.personalData.paymentOption
           : "monatlich";
       console.log(this.$store.state.profile.personalData.agreeSEPA);
-      this.agreeCheckBox = (this.$store.state.profile.personalData.agreeSEPA == undefined
-      || this.$store.state.profile.personalData.agreeSEPA == null) 
-      ? false : this.$store.state.profile.personalData.agreeSEPA;
-
+      this.agreeCheckBox =
+        this.$store.state.profile.personalData.agreeSEPA == undefined ||
+        this.$store.state.profile.personalData.agreeSEPA == null
+          ? false
+          : this.$store.state.profile.personalData.agreeSEPA;
     }
   },
   created() {
     this.fillData();
   },
   mounted() {
-    this.$store.dispatch('setPagesProgress', 70);
-  },
+    this.$store.dispatch("setPagesProgress", 70);
+  }
 };
 </script>
 
@@ -289,7 +290,7 @@ export default {
   position: relative;
 }
 .top-label-icon {
-  background: url('../assets/icons/gothaer_bubble.svg');
+  background: url("../assets/icons/gothaer_bubble.svg");
   background-color: transparent !important;
   width: 48px;
   height: 48px;

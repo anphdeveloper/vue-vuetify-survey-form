@@ -69,12 +69,13 @@
                           @keypress="validateDay($event, day, 2)"
                           :rules="[
                             v =>
-                              (validateDate() && !!v &&
+                              (validateDate() &&
+                                !!v &&
                                 v.length < 3 &&
                                 Number(v) != NaN &&
                                 Number(v) > 0 &&
                                 Number(v) < 32) ||
-                              '',
+                              ''
                           ]"
                         ></v-text-field>
                       </v-col>
@@ -88,12 +89,13 @@
                           @keypress="validateDay($event, month, 2)"
                           :rules="[
                             v =>
-                              (validateDate() && !!v &&
+                              (validateDate() &&
+                                !!v &&
                                 v.length < 3 &&
                                 Number(v) != NaN &&
                                 Number(v) > 0 &&
                                 Number(v) < 13) ||
-                              '',
+                              ''
                           ]"
                         ></v-text-field>
                       </v-col>
@@ -108,14 +110,15 @@
                           @keypress="validateDay($event, year, 4)"
                           :rules="[
                             v =>
-                              (validateDate() && !!v &&
+                              (validateDate() &&
+                                !!v &&
                                 v.length == 4 &&
                                 Number(v) != NaN &&
                                 Number(v) >
                                   Number(new Date().getFullYear()) - 100 &&
                                 Number(v) <
                                   Number(new Date().getFullYear()) + 1) ||
-                              '',
+                              ''
                           ]"
                         ></v-text-field>
                       </v-col>
@@ -147,18 +150,18 @@
 import MainPanel from "@/components/MainPanel.vue";
 import { MORE_LINK_FOR_AGE_RATE } from "@/plugins/constants/profile";
 export default {
-  name: 'InputDayOfBirthday',
+  name: "InputDayOfBirthday",
   components: {
-    MainPanel,
+    MainPanel
   },
   data() {
     return {
-      panelTitle: 'Mein Geburtsdatum',
-      day: '',
-      month: '',
-      year: '',
+      panelTitle: "Mein Geburtsdatum",
+      day: "",
+      month: "",
+      year: "",
       showReadMore: false,
-      getToday: new Date(),
+      getToday: new Date()
     };
   },
   watch: {
@@ -167,16 +170,16 @@ export default {
     },
     month: function(newVal) {
       if (newVal.length == 2) this.$refs.year.focus();
-    },
+    }
   },
   methods: {
     onClickStartCalc() {
       if (this.$refs.dobForm.validate() && this.validateBirthday()) {
         this.$store.dispatch(
-          'profile/setDayOfBirth',
-          new Date(this.year, Number(this.month) - 1, this.day),
+          "profile/setDayOfBirth",
+          new Date(this.year, Number(this.month) - 1, this.day)
         );
-        this.$router.push({ name: 'Dashboard' });
+        this.$router.push({ name: "Dashboard" });
       }
     },
     validateBirthday() {
@@ -199,16 +202,16 @@ export default {
         let dob = new Date(this.$store.state.profile.dayOfBirth)
           .toISOString()
           .slice(0, 10);
-        this.day = dob.split('-')[2];
-        this.month = dob.split('-')[1];
-        this.year = dob.split('-')[0];
+        this.day = dob.split("-")[2];
+        this.month = dob.split("-")[1];
+        this.year = dob.split("-")[0];
       }
-    },
+    }
   },
   mounted() {
-    this.$store.dispatch('setPagesProgress', 20);
+    this.$store.dispatch("setPagesProgress", 20);
     this.fillData();
-  },
+  }
 };
 </script>
 

@@ -124,7 +124,9 @@
                         hint
                         :rules="[
                           v => !!v || 'E-mail is required',
-                          v => ( !!v && $helper.commonHelper.validateEmail(v)) || 'E-mail must be valid'
+                          v =>
+                            (!!v && $helper.commonHelper.validateEmail(v)) ||
+                            'E-mail must be valid'
                         ]"
                       ></v-text-field>
                     </v-col>

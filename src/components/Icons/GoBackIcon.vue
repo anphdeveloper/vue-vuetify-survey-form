@@ -25,6 +25,5 @@ export default {
   background-position-x: 3px;
   background-repeat: no-repeat;
   display: inline-block;
-
 }
 </style>
