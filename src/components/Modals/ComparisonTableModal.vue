@@ -25,8 +25,8 @@
               <thead>
                 <tr>
                   <th class="text-left"></th>
-                  <th class="text-center">Medigroup S1</th>
-                  <th class="text-center">Medigroup S1</th>
+                  <th class="text-center">MediGroup S1</th>
+                  <th class="text-center">MediGroup S2</th>
                   <th class="text-center">Medi Clinic Plus</th>
                 </tr>
               </thead>
@@ -317,13 +317,13 @@
               <thead>
                 <tr>
                   <th class="text-left"></th>
-                  <th class="text-center">Medigroup Basis</th>
-                  <th class="text-center">Medigroup Premium</th>
+                  <th class="text-center">MediGroup Basis</th>
+                  <th class="text-center">MediGroup Premium</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="py-0">Medigroup Premium</td>
+                  <td class="py-0">MediGroup Premium</td>
                   <td class="py-0" justify="center" align="center">100%</td>
                   <td class="py-0" justify="center" align="center">100%</td>
                 </tr>

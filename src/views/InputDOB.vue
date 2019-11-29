@@ -24,19 +24,23 @@
                     content-class="tooltip-with-top-arrow"
                   >
                     <template v-slot:activator="{ on }">
-                      <v-icon color="primary" v-on="on">mdi-information-outline</v-icon>
+                      <v-icon color="primary" v-on="on"
+                        >mdi-information-outline</v-icon
+                      >
                     </template>
                     <div class="tooltip-container">
                       <v-card class="elevation-0 primary px-2">
                         <v-layout d-flex row wrap>
                           <v-col cols="2" sm="2">
-                            <v-icon color="white">mdi-information-outline</v-icon>
+                            <v-icon color="white"
+                              >mdi-information-outline</v-icon
+                            >
                           </v-col>
                           <v-col cols="10" sm="10" class="ml-0 pl-0 text-left">
                             <p class="text-left white--text mb-0 body-2">
-                              <b>Tarife ohne Alterungsrückstellung:</b> Sie zahlen
-                              zu Beginn niedrige Beiträge, die mit dem Alter
-                              steigen.
+                              <b>Tarife ohne Alterungsrückstellung:</b> Sie
+                              zahlen zu Beginn niedrige Beiträge, die mit dem
+                              Alter steigen.
                             </p>
                             <v-btn
                               class="text-left white--text mb-1 btn-link"
@@ -61,7 +65,7 @@
                           v-model="day"
                           label="TT"
                           ref="day"
-                          :type="$vuetify.breakpoint.xs?'number':''"
+                          :type="$vuetify.breakpoint.xs ? 'number' : ''"
                           @keypress="validateDay($event, day, 2)"
                           :rules="[
                             v =>
@@ -70,7 +74,7 @@
                                 Number(v) != NaN &&
                                 Number(v) > 0 &&
                                 Number(v) < 32) ||
-                              ''
+                              '',
                           ]"
                         ></v-text-field>
                       </v-col>
@@ -80,7 +84,7 @@
                           v-model="month"
                           label="MM"
                           ref="month"
-                          :type="$vuetify.breakpoint.xs?'number':''"
+                          :type="$vuetify.breakpoint.xs ? 'number' : ''"
                           @keypress="validateDay($event, month, 2)"
                           :rules="[
                             v =>
@@ -89,7 +93,7 @@
                                 Number(v) != NaN &&
                                 Number(v) > 0 &&
                                 Number(v) < 13) ||
-                              ''
+                              '',
                           ]"
                         ></v-text-field>
                       </v-col>
@@ -99,7 +103,7 @@
                           v-model="year"
                           label="JJJJ"
                           ref="year"
-                          :type="$vuetify.breakpoint.xs?'number':''"
+                          :type="$vuetify.breakpoint.xs ? 'number' : ''"
                           @keyup.enter="handleEnterClick"
                           @keypress="validateDay($event, year, 4)"
                           :rules="[
@@ -110,8 +114,8 @@
                                 Number(v) >
                                   Number(new Date().getFullYear()) - 100 &&
                                 Number(v) <
-                                  Number(new Date().getFullYear()) + 100) ||
-                              ''
+                                  Number(new Date().getFullYear()) + 1) ||
+                              '',
                           ]"
                         ></v-text-field>
                       </v-col>
@@ -126,7 +130,8 @@
                   :block="$vuetify.breakpoint.xs"
                   class="mt-4 white--text"
                   @click="onClickStartCalc"
-                >Preise Berechnen</v-btn>
+                  >Preise Berechnen</v-btn
+                >
               </div>
             </template>
           </main-panel>
@@ -139,19 +144,20 @@
 <script>
 // @ is an alias to /src
 
-import MainPanel from "@/components/MainPanel.vue";
+import MainPanel from '@/components/MainPanel.vue';
 export default {
-  name: "InputDayOfBirthday",
+  name: 'InputDayOfBirthday',
   components: {
-    MainPanel
+    MainPanel,
   },
   data() {
     return {
-      panelTitle: "Mein Geburtsdatum",
-      day: "",
-      month: "",
-      year: "",
-      showReadMore: false
+      panelTitle: 'Mein Geburtsdatum',
+      day: '',
+      month: '',
+      year: '',
+      showReadMore: false,
+      getToday: new Date(),
     };
   },
   watch: {
@@ -160,17 +166,21 @@ export default {
     },
     month: function(newVal) {
       if (newVal.length == 2) this.$refs.year.focus();
-    }
+    },
   },
   methods: {
     onClickStartCalc() {
-      if (this.$refs.dobForm.validate()) {
+      if (this.$refs.dobForm.validate() && this.validateBirthday()) {
         this.$store.dispatch(
-          "profile/setDayOfBirth",
-          new Date(this.year, Number(this.month) - 1, this.day)
+          'profile/setDayOfBirth',
+          new Date(this.year, Number(this.month) - 1, this.day),
         );
-        this.$router.push({ name: "Dashboard" });
+        this.$router.push({ name: 'Dashboard' });
       }
+    },
+    validateBirthday() {
+      const enteredDob = new Date(this.year, Number(this.month) - 1, this.day);
+      return enteredDob > new Date() ? false : true;
     },
     validateDay(event, data, length) {
       if (/^\d+$/.test(event.key) && data.toString().length < length)
@@ -188,16 +198,16 @@ export default {
         let dob = new Date(this.$store.state.profile.dayOfBirth)
           .toISOString()
           .slice(0, 10);
-        this.day = dob.split("-")[2];
-        this.month = dob.split("-")[1];
-        this.year = dob.split("-")[0];
+        this.day = dob.split('-')[2];
+        this.month = dob.split('-')[1];
+        this.year = dob.split('-')[0];
       }
-    }
+    },
   },
   mounted() {
-    this.$store.dispatch("setPagesProgress", 20);
+    this.$store.dispatch('setPagesProgress', 20);
     this.fillData();
-  }
+  },
 };
 </script>
 
