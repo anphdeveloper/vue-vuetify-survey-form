@@ -181,7 +181,7 @@ export default {
       this.showReadMore2 = true;
     },
     onClickDownloadInformation() {
-      window.open("pdfs/" + INFORMATION_LINK, "_blank");
+      window.open(INFORMATION_LINK);
     },
     fillData() {
       this.agreeAdvice = this.$store.state.profile.personalData.agreeAdvice;

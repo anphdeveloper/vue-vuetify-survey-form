@@ -86,7 +86,7 @@ export const STATIONARY_PANEL_DATA = [
     checked: false,
     isTop: true,
     categoryColor: "#035370",
-    pdfLink: "Tarif_MediGroup_S1.pdf"
+    pdfLink: "http://www.medigroup.gothaer.de/media/pgk_media/dokumente/antragsunterlagen_der_vertriebspartner/bmw/online_dokumente/Tarif__MediGroup_S_1_alle_.pdf"
   },
   {
     id: 1,
@@ -97,7 +97,7 @@ export const STATIONARY_PANEL_DATA = [
     checked: false,
     isTop: false,
     categoryColor: "#035370",
-    pdfLink: "Tarif_MediGroup_S2.pdf"
+    pdfLink: "http://www.medigroup.gothaer.de/media/pgk_media/dokumente/antragsunterlagen_der_vertriebspartner/bmw/online_dokumente/Tarif_MediGroup_S_2_alle.pdf"
   },
   {
     id: 2,
@@ -108,7 +108,7 @@ export const STATIONARY_PANEL_DATA = [
     checked: false,
     isTop: false,
     categoryColor: "#035370",
-    pdfLink: "Tarif_MediClinic_Plus.pdf"
+    pdfLink: "http://www.medigroup.gothaer.de/media/pgk_media/dokumente/antragsunterlagen_der_vertriebspartner/bmw/online_dokumente/Tarif_MediClinic_Plus_alle_.pdf"
   }
 ];
 
@@ -122,7 +122,7 @@ export const TOOTH_PANEL_DATA = [
     checked: false,
     isTop: false,
     categoryColor: "#4C9BB0",
-    pdfLink: "Tarif_MediGroup_Z_Duo.pdf"
+    pdfLink: "http://www.medigroup.gothaer.de/media/pgk_media/dokumente/antragsunterlagen_der_vertriebspartner/bmw/online_dokumente/Tarif_MediClinic_Plus_alle_.pdf"
   }
 ];
 
@@ -136,7 +136,7 @@ export const OUTPATIENT_PANEL_DATA = [
     checked: false,
     isTop: false,
     categoryColor: "#00718F",
-    pdfLink: "Tarif_MediGroup_A.pdf"
+    pdfLink: "http://www.medigroup.gothaer.de/media/pgk_media/dokumente/antragsunterlagen_der_vertriebspartner/bmw/online_dokumente/Tarif_MediGroup_A_alles_.pdf"
   }
 ];
 export const PREVENTION_PANEL_DATA = [
@@ -149,7 +149,7 @@ export const PREVENTION_PANEL_DATA = [
     checked: false,
     isTop: false,
     categoryColor: "#3C8085",
-    pdfLink: "Tarif_MediGroup_V_Basis.pdf"
+    pdfLink: "http://www.medigroup.gothaer.de/media/pgk_media/dokumente/antragsunterlagen_der_vertriebspartner/bmw/online_dokumente/Tarif_MediGroup_V_Basis_alle.pdf"
   },
   {
     id: 1,
@@ -160,11 +160,11 @@ export const PREVENTION_PANEL_DATA = [
     checked: false,
     isTop: false,
     categoryColor: "#3C8085",
-    pdfLink: "Tarif_MediGroup_V_Premium.pdf"
+    pdfLink: "http://www.medigroup.gothaer.de/media/pgk_media/dokumente/antragsunterlagen_der_vertriebspartner/bmw/online_dokumente/Tarif__MediGroup_V_Premium_alle.pdf"
   }
 ];
 
-export const INFORMATION_LINK = "Allgemeine_Rechtliche_Belehrungen.pdf";
+export const INFORMATION_LINK = "http://www.medigroup.gothaer.de/media/pgk_media/dokumente/antragsunterlagen_der_vertriebspartner/bmw/online_dokumente/allg._rechtliche_Belehrungen.pdf";
 
 export const S1_PRODUCT_RATE = [
   { min: 0, max: 15, rate: 7.82 },

@@ -367,7 +367,7 @@ export default {
     },
     onClickProductPdfLink(link) {
       console.log(link);
-      window.open("pdfs/" + link, "_blank");
+      window.open(link);
     },
     getOptionDesc(option) {
       return paymentOptionsInfo.find(item => item.option === option).desc;
