@@ -122,10 +122,10 @@
                         label="E-Mail-Adresse"
                         hint
                         :rules="[
-                          v => !!v || 'E-mail is required',
+                          v => !!v || 'E-Mail wird benötigt',
                           v =>
                             (!!v && $helper.commonHelper.validateEmail(v)) ||
-                            'E-mail must be valid'
+                            'Bitte korrekte E-Mail Adresse eingeben'
                         ]"
                       ></v-text-field>
                     </v-col>
@@ -333,7 +333,7 @@ export default {
             emailAddress: this.emailAddress,
             professionalActivities: this.professionalActivities,
             settingDate: this.dateFormatted,
-            insuredOption: this.insuredOption
+            insuredOption: this.insuredOption,
           });
           this.$router.push({ name: 'MyPaymentMethod' });
         }
@@ -369,7 +369,7 @@ export default {
       return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
     },
 
-    fillData(){
+    fillData() {
       let profile = this.$store.state.profile.personalData;
       this.salutation = profile.salutation;
       this.title = profile.title;
@@ -385,7 +385,7 @@ export default {
       this.professionalActivities = profile.professionalActivities;
       this.dateFormatted = profile.settingDate;
       this.insuredOption = profile.insuredOption;
-      if(this.$store.state.products.categories){
+      if (this.$store.state.products.categories) {
         this.warningSelectionInDashboard =
           this.$store.state.products.categories[0].checked &&
           this.$store.state.products.categories.filter(
@@ -394,12 +394,16 @@ export default {
           this.$store.state.products.categories[0].selectedId === 2;
       }
     },
-    onInputDate($event){
-      if(this.datePreviousValue !== null && $event.length > this.datePreviousValue && ($event.length === 2 || $event.length === 5)){
+    onInputDate($event) {
+      if (
+        this.datePreviousValue !== null &&
+        $event.length > this.datePreviousValue &&
+        ($event.length === 2 || $event.length === 5)
+      ) {
         this.dateFormatted = this.dateFormatted + '.';
       }
       this.datePreviousValue = $event.length;
-    }
+    },
   },
   mounted() {
     this.$store.dispatch('setPagesProgress', 57);
