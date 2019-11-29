@@ -388,9 +388,6 @@ export default {
       if (this.$store.state.products.categories) {
         this.warningSelectionInDashboard =
           this.$store.state.products.categories[0].checked &&
-          this.$store.state.products.categories.filter(
-            category => category.checked,
-          ).length == 1 &&
           this.$store.state.products.categories[0].selectedId === 2;
       }
     },

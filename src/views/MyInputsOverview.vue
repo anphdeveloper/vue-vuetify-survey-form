@@ -274,7 +274,7 @@ export default {
       // this.$store.dispatch("callBackendService", {
       //   hello: "test"
       // });
-      this.$store.dispatch("getIpAddress").then(ipAddress => {
+      this.$store.dispatch('getIpAddress').then(ipAddress => {
         if (ipAddress) {
           let payload = {
             //hidden form static data
@@ -288,20 +288,20 @@ export default {
             customer_SEPA_DATETIME: new Date(),
 
             //user form
-            customer_title: this.profile.title || "",
-            customer_name: this.profile.firstGivenName || "",
-            customer_lastname: this.profile.surname || "",
-            customer_street: this.profile.street || "",
+            customer_title: this.profile.title || '',
+            customer_name: this.profile.firstGivenName || '',
+            customer_lastname: this.profile.surname || '',
+            customer_street: this.profile.street || '',
             customer_housenumber: this.profile.streetNo,
-            customer_gender: this.profile.salutation || "",
-            customer_PLZ: this.profile.postCode || "",
-            customer_city: this.profile.place || "",
+            customer_gender: this.profile.salutation || '',
+            customer_PLZ: this.profile.postCode || '',
+            customer_city: this.profile.place || '',
             customer_birthdate: this.dateOfBirth,
-            customer_startdate: this.profile.settingDate || "",
-            customer_GKV: this.profile.insuredOption === "0",
-            customer_phone: this.profile.phoneNo || "",
-            customer_email: this.profile.emailAddress || "",
-            customer_iban: this.profile.ibanNumber || "",
+            customer_startdate: this.profile.settingDate || '',
+            customer_GKV: this.profile.insuredOption === '0',
+            customer_phone: this.profile.phoneNo || '',
+            customer_email: this.profile.emailAddress || '',
+            customer_iban: this.profile.ibanNumber || '',
             customer_SEPA: this.profile.agreeSEPA,
             customer_SEPA_period: this.profile.paymentOption,
             check_noadvice: this.profile.agreeAdvice,
@@ -310,57 +310,57 @@ export default {
             insurance_product_a:
               this.products[2].checked && this.products[2].selectedId == 0
                 ? this.products[2].selectedRate.toFixed(2).toString()
-                : "",
+                : '',
             insurance_product_z:
               this.products[1].checked && this.products[1].selectedId == 0
                 ? this.products[1].selectedRate.toFixed(2).toString()
-                : "",
+                : '',
             insurance_product_vb:
               this.products[3].checked && this.products[3].selectedId == 0
                 ? this.products[3].selectedRate.toFixed(2).toString()
-                : "",
+                : '',
             insurance_product_vp:
               this.products[3].checked && this.products[3].selectedId == 1
                 ? this.products[3].selectedRate.toFixed(2).toString()
-                : "",
+                : '',
             insurance_product_s1:
               this.products[0].checked && this.products[0].selectedId == 0
                 ? this.products[0].selectedRate.toFixed(2).toString()
-                : "",
+                : '',
             insurance_product_s2:
               this.products[0].checked && this.products[0].selectedId == 1
                 ? this.products[0].selectedRate.toFixed(2).toString()
-                : "",
+                : '',
             insurance_product_sc:
               this.products[0].checked && this.products[0].selectedId == 2
                 ? this.products[0].selectedRate.toFixed(2).toString()
-                : "",
+                : '',
             insurance_question_AU: this.profile.agreeForLastYear || false,
             insurance_question_Z: this.missedTeeth,
             insurance_prior: this.prevCompany.haveCompany,
             insurance_oldname: this.prevCompany.haveCompany
               ? this.prevCompany.companyName
-              : ""
+              : '',
           };
 
           this.$store
-            .dispatch("callBackendService", {
-              data: payload
+            .dispatch('callBackendService', {
+              data: payload,
             })
             .then(res => {
               if (res) {
-                this.$store.dispatch("initiateState");
-                this.$router.push({ name: "ManyThanks" });
+                this.$store.dispatch('initiateState');
+                this.$router.push({ name: 'ManyThanks' });
               }
             });
         }
       });
     },
     gotoMyPersonalData() {
-      this.$router.push({ name: "MyPersonalData" });
+      this.$router.push({ name: 'MyPersonalData' });
     },
     gotoMyPaymentMethod() {
-      this.$router.push({ name: "MyPaymentMethod" });
+      this.$router.push({ name: 'MyPaymentMethod' });
     },
     getShortName(title) {
       return shortNames.find(item => item.title === title).shortName;
@@ -385,24 +385,24 @@ export default {
         this.$store.state.products.categories.reduce(
           (totalRate, category) =>
             totalRate + (category.checked ? category.selectedRate : 0),
-          0
+          0,
         );
       this.targetDay = this.$helper.commonHelper.getGermanFormatDate(
-        new Date(this.$store.state.profile.targetDay)
+        new Date(this.$store.state.profile.targetDay),
       );
       this.dateOfBirth = this.$helper.commonHelper.getGermanFormatDate(
-        new Date(this.$store.state.profile.dayOfBirth)
+        new Date(this.$store.state.profile.dayOfBirth),
       );
       this.prevCompany = this.$store.state.profile.prevInsCompany;
       this.missedTeeth = this.$store.state.profile.missedTeeth;
-    }
+    },
   },
   created() {
     this.fillData();
   },
   mounted() {
-    this.$store.dispatch("setPagesProgress", 85);
-  }
+    this.$store.dispatch('setPagesProgress', 85);
+  },
 };
 </script>
 

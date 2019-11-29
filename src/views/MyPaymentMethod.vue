@@ -207,6 +207,7 @@ export default {
     },
     limitIban(event, iban) {
       if (iban.replace(/\s/g, "").length > 19) event.preventDefault();
+      console.log(event.key);
       if (/^\d+$/.test(event.key)) return true;
       else event.preventDefault();
     },
