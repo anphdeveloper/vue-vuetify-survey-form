@@ -69,7 +69,8 @@
                           @keypress="validateDay($event, day, 2)"
                           :rules="[
                             v =>
-                              (!!v &&
+                              (validateBirthday() &&
+                                !!v &&
                                 v.length < 3 &&
                                 Number(v) != NaN &&
                                 Number(v) > 0 &&
@@ -88,7 +89,8 @@
                           @keypress="validateDay($event, month, 2)"
                           :rules="[
                             v =>
-                              (!!v &&
+                              (validateBirthday() &&
+                                !!v &&
                                 v.length < 3 &&
                                 Number(v) != NaN &&
                                 Number(v) > 0 &&
@@ -108,7 +110,8 @@
                           @keypress="validateDay($event, year, 4)"
                           :rules="[
                             v =>
-                              (!!v &&
+                              (validateBirthday() &&
+                                !!v &&
                                 v.length == 4 &&
                                 Number(v) != NaN &&
                                 Number(v) >
