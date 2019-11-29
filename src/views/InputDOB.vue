@@ -195,7 +195,7 @@ export default {
       this.onClickStartCalc();
     },
     clickReadMore() {
-      window.open("pdfs/" + MORE_LINK_FOR_AGE_RATE, "_blank");
+      window.open("http://www.medigroup.gothaer.de/media/pgk_media/dokumente/antragsunterlagen_der_vertriebspartner/bmw/hb/" + MORE_LINK_FOR_AGE_RATE, "_blank");
     },
     fillData() {
       if (this.$store.state.profile.dayOfBirth) {
