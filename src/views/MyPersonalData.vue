@@ -20,7 +20,9 @@
                       ></v-select>
                     </v-col>
                     <v-col cols="12" sm="6" md="8">
-                      <p class="pb-0 mb-0 mt-4 text-start caption">Titel (optional)</p>
+                      <p class="pb-0 mb-0 mt-4 text-start caption">
+                        Titel (optional)
+                      </p>
                       <v-select
                         class="mt-0 pt-0 meta-pro-text primary--text"
                         :items="titleOptions"
@@ -51,7 +53,12 @@
                   </v-row>
                   <v-row justify="center">
                     <v-col cols="12" sm="8">
-                      <v-text-field v-model="street" label="Straße" hint :rules="[v => !!v || '']"></v-text-field>
+                      <v-text-field
+                        v-model="street"
+                        label="Straße"
+                        hint
+                        :rules="[v => !!v || '']"
+                      ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="4">
                       <v-text-field
@@ -59,7 +66,7 @@
                         label="Haus Nr."
                         hint
                         :rules="[v => !!v || '']"
-                        :type="$vuetify.breakpoint.xs?'number':''"
+                        :type="$vuetify.breakpoint.xs ? 'number' : ''"
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -74,7 +81,12 @@
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="8">
-                      <v-text-field v-model="place" label="Ort" hint :rules="[v => !!v || '']"></v-text-field>
+                      <v-text-field
+                        v-model="place"
+                        label="Ort"
+                        hint
+                        :rules="[v => !!v || '']"
+                      ></v-text-field>
                     </v-col>
                   </v-row>
                   <v-row justify="center">
@@ -99,7 +111,7 @@
                         hint
                         persistent-hint
                         @keypress="validatePhoneNo($event)"
-                        :type="$vuetify.breakpoint.xs?'number':''"
+                        :type="$vuetify.breakpoint.xs ? 'number' : ''"
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -145,7 +157,7 @@
                             label="Einstellungsdatum"
                             placeholder="TT.MM.JJJJ"
                             class="meta-pro-text primary--text date-picker"
-                            :type="$vuetify.breakpoint.xs?'number':''"
+                            :type="$vuetify.breakpoint.xs ? 'number' : ''"
                             :rules="dateInputRules"
                           >
                             <template v-slot:append>
@@ -174,7 +186,9 @@
                   </v-radio-group>
                   <div v-if="showWarning && !checkbox">
                     <v-container class="px-0 pb-2 text-with-inputcontrol-icon">
-                      <v-icon color="red" class="mr-2">mdi-information-outline</v-icon>
+                      <v-icon color="red" class="mr-2"
+                        >mdi-information-outline</v-icon
+                      >
                       <p
                         :class="
                           [
@@ -183,19 +197,25 @@
                               : 'title',
                           ] + ' text-start font-weight-bold mb-0'
                         "
-                      >Mehr als 20 Tage arbeitsunfähig</p>
+                      >
+                        Mehr als 20 Tage arbeitsunfähig
+                      </p>
                     </v-container>
                     <p class="text-start body-2 mb-1">
                       Falls Sie die Angaben zum Gesundheitszustand nicht
                       bestätigen können, nutzen Sie bitte den
-                      <span
-                        class="font-weight-black primary--text"
-                      >Antrag mit Gesundheitsfragen</span>.
+                      <span class="font-weight-black primary--text"
+                        >Antrag mit Gesundheitsfragen</span
+                      >.
                     </p>
                   </div>
                   <div v-if="showInsureWarningForPrivate">
-                    <v-container class="px-0 pb-2 text-with-inputcontrol-icon pt-0">
-                      <v-icon color="red" class="mr-2">mdi-information-outline</v-icon>
+                    <v-container
+                      class="px-0 pb-2 text-with-inputcontrol-icon pt-0"
+                    >
+                      <v-icon color="red" class="mr-2"
+                        >mdi-information-outline</v-icon
+                      >
                       <p
                         :class="
                           [
@@ -219,7 +239,8 @@
                   :block="$vuetify.breakpoint.xs"
                   class="mt-7 white--text"
                   @click="onClickNext"
-                >Weiter</v-btn>
+                  >Weiter</v-btn
+                >
               </div>
             </template>
           </main-panel>

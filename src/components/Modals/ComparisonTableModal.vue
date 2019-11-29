@@ -461,32 +461,32 @@
 </template>
 
 <script>
-import SickBedIcon from "@/components/Icons/SickBedIcon";
-import CheckedIcon from "@/components/Icons/CheckedIcon";
-import RedCrossIcon from "@/components/Icons/RedCrossIcon";
+import SickBedIcon from '@/components/Icons/SickBedIcon';
+import CheckedIcon from '@/components/Icons/CheckedIcon';
+import RedCrossIcon from '@/components/Icons/RedCrossIcon';
 export default {
-  name: "ComparisonTableModal",
+  name: 'ComparisonTableModal',
   components: {
     SickBedIcon,
     CheckedIcon,
-    RedCrossIcon
+    RedCrossIcon,
   },
-  props: ["isComparisonForStationary"],
+  props: ['isComparisonForStationary'],
   data() {
     return {
       show: false,
       tab: null,
       groupItems: [
-        "MediGroup<br />S1",
-        "MediGroup<br />S2",
-        "Medi<br/>Clinic Plus"
+        'MediGroup<br />S1',
+        'MediGroup<br />S2',
+        'Medi<br/>Clinic Plus',
       ],
-      membershipItems: ["MediGroup<br />Basis", "MediGroup<br />Premium"]
+      membershipItems: ['MediGroup<br />Basis', 'MediGroup<br />Premium'],
     };
   },
   computed: {},
   watch: {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style scoped lang="scss">
@@ -561,7 +561,7 @@ export default {
       }
       &::after {
         z-index: 10000;
-        content: "";
+        content: '';
         position: absolute;
         display: block;
         width: 0px;
@@ -579,7 +579,7 @@ export default {
     &.v-tab--active {
       margin-bottom: 15px;
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         display: block;
         width: 0px;
@@ -599,7 +599,7 @@ export default {
     &.v-tab--active {
       margin-bottom: 15px;
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         display: block;
         width: 0px;
@@ -643,7 +643,7 @@ export default {
       }
       &::after {
         z-index: 10000;
-        content: "";
+        content: '';
         position: absolute;
         display: block;
         width: 0px;
@@ -661,7 +661,7 @@ export default {
     &.v-tab--active {
       margin-bottom: 15px;
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         display: block;
         width: 0px;

@@ -5,7 +5,9 @@
         <v-row justify="center">
           <v-col cols="12" sm="6">
             <h2>Ihre betriebliche Gesundheitsförderung</h2>
-            <p class="pb-0 mb-0 mt-4 text-start body-1 font-meta-pro">Versicherungsbeginn</p>
+            <p class="pb-0 mb-0 mt-4 text-start body-1 font-meta-pro">
+              Versicherungsbeginn
+            </p>
             <v-select
               class="mt-0 pt-0 meta-pro-text primary--text title"
               :items="days"
@@ -70,15 +72,23 @@
                       content-class="tooltip-with-top-arrow"
                     >
                       <template v-slot:activator="{ on }">
-                        <v-icon color="primary" v-on="on">mdi-information-outline</v-icon>
+                        <v-icon color="primary" v-on="on"
+                          >mdi-information-outline</v-icon
+                        >
                       </template>
                       <div class="tooltip-container">
                         <v-card class="elevation-0 primary px-2">
                           <v-layout d-flex row wrap>
                             <v-col cols="2" sm="2">
-                              <v-icon color="white">mdi-information-outline</v-icon>
+                              <v-icon color="white"
+                                >mdi-information-outline</v-icon
+                              >
                             </v-col>
-                            <v-col cols="10" sm="10" class="ml-0 pl-0 text-left">
+                            <v-col
+                              cols="10"
+                              sm="10"
+                              class="ml-0 pl-0 text-left"
+                            >
                               <p class="text-left white--text mb-0 body-2">
                                 <b>Tarif mit Alterungsrückstellung:</b>
                                 <br />Sie zahlen zu Beginn höhere Beiträge und
@@ -128,7 +138,9 @@
                 </template>
               </rate-selection-panel>
               <v-layout justify-start class="pt-2">
-                <comparison-table-modal :isComparisonForStationary="true"></comparison-table-modal>
+                <comparison-table-modal
+                  :isComparisonForStationary="true"
+                ></comparison-table-modal>
               </v-layout>
             </div>
           </v-col>
@@ -203,7 +215,9 @@
                 :class="{ 'mt-4': ratePanel.id !== 0 }"
               ></rate-selection-panel>
               <v-layout justify-start class="pt-2">
-                <comparison-table-modal :isComparisonForStationary="false"></comparison-table-modal>
+                <comparison-table-modal
+                  :isComparisonForStationary="false"
+                ></comparison-table-modal>
               </v-layout>
             </div>
           </v-col>
@@ -214,7 +228,7 @@
           <middle-title-panel
             panelBackground="white"
             leftTitle="mtl. Gesamt-Beitrag"
-            :middleTitle=" $helper.commonHelper.germanFormat(totalRate) + '€'"
+            :middleTitle="$helper.commonHelper.germanFormat(totalRate) + '€'"
             leftTitleClass="subtitle-1 font-weight-bold grey--text text--darken-3 pl-4"
             middleTitleClass="subtitle-1 font-weight-bold grey--text text--darken-3"
           ></middle-title-panel>
@@ -228,18 +242,29 @@
               class="mt-4 white--text"
               :block="$vuetify.breakpoint.xs"
               @click="onClickContinueWithSelection"
-            >MIT AUSWAHL FORTFAHREN</v-btn>
+              >MIT AUSWAHL FORTFAHREN</v-btn
+            >
           </v-col>
         </v-row>
-        <v-row :class="{'mt-4': $vuetify.breakpoint.xs, 'px-3 justify-start': true}" wrap>
+        <v-row
+          :class="{
+            'mt-4': $vuetify.breakpoint.xs,
+            'px-3 justify-start': true,
+          }"
+          wrap
+        >
           <v-btn
             text
             class="px-3 primary--text body-1 btn-link"
             :ripple="false"
             @click="onClickGoBack"
           >
-            <v-icon color="primary" v-if="$vuetify.breakpoint.mdAndUp">mdi-arrow-left</v-icon>
-            <go-back-circle-icon v-if="$vuetify.breakpoint.smAndDown"></go-back-circle-icon>
+            <v-icon color="primary" v-if="$vuetify.breakpoint.mdAndUp"
+              >mdi-arrow-left</v-icon
+            >
+            <go-back-circle-icon
+              v-if="$vuetify.breakpoint.smAndDown"
+            ></go-back-circle-icon>
             <span v-if="$vuetify.breakpoint.mdAndUp">ZURÜCK</span>
           </v-btn>
         </v-row>
@@ -249,20 +274,20 @@
 </template>
 
 <script>
-import CategoryPanel from "@/components/CategoryPanel.vue";
-import RateSelectionPanel from "@/components/RateSelectionPanel.vue";
-import MiddleTitlePanel from "@/components/MiddleTitlePanel";
-import ComparisonTableModal from "@/components/Modals/ComparisonTableModal";
-import GoBackCircleIcon from "@/components/Icons/GoBackCircleIcon";
-import { mapState } from "vuex";
+import CategoryPanel from '@/components/CategoryPanel.vue';
+import RateSelectionPanel from '@/components/RateSelectionPanel.vue';
+import MiddleTitlePanel from '@/components/MiddleTitlePanel';
+import ComparisonTableModal from '@/components/Modals/ComparisonTableModal';
+import GoBackCircleIcon from '@/components/Icons/GoBackCircleIcon';
+import { mapState } from 'vuex';
 export default {
-  name: "Dashboard",
+  name: 'Dashboard',
   components: {
     CategoryPanel,
     RateSelectionPanel,
     MiddleTitlePanel,
     ComparisonTableModal,
-    GoBackCircleIcon
+    GoBackCircleIcon,
   },
   props: {},
   data() {
@@ -273,163 +298,163 @@ export default {
       categoryPanelData: [
         {
           id: 0,
-          panelTitle: "Stationär",
+          panelTitle: 'Stationär',
           panelDescription:
-            "Maximales Wohlbefinden, <br />sowie beste Leistungen.",
+            'Maximales Wohlbefinden, <br />sowie beste Leistungen.',
           panelFeature: [
-            "Behandlung durch den Chefarzt",
-            "Ein- oder Zweibettzimmer",
-            "Freie Krankenhausauswahl"
+            'Behandlung durch den Chefarzt',
+            'Ein- oder Zweibettzimmer',
+            'Freie Krankenhausauswahl',
           ],
-          panelBackground: "tertiary",
+          panelBackground: 'tertiary',
           checked: false,
           expanded: false,
           selectedId: 0,
-          selectedProductName: "",
-          selectedRate: 0
+          selectedProductName: '',
+          selectedRate: 0,
         },
         {
           id: 1,
-          panelTitle: "Zahn",
+          panelTitle: 'Zahn',
           panelDescription:
-            "Optimaler Schutz vor hohen<br/> Selbstkosten beim Zahnarzt.",
+            'Optimaler Schutz vor hohen<br/> Selbstkosten beim Zahnarzt.',
           panelFeature: [
-            "Zahnbehandlung 100%",
-            "Zahnersatz, Inlays & Implantate",
-            "Prof. Zahnreinigung 150€/Jahr"
+            'Zahnbehandlung 100%',
+            'Zahnersatz, Inlays & Implantate',
+            'Prof. Zahnreinigung 150€/Jahr',
           ],
-          panelBackground: "quinary",
+          panelBackground: 'quinary',
           checked: false,
           expanded: false,
           selectedId: 0,
-          selectedProductName: "",
-          selectedRate: 0
+          selectedProductName: '',
+          selectedRate: 0,
         },
         {
           id: 2,
-          panelTitle: "Ambulant",
+          panelTitle: 'Ambulant',
           panelDescription:
-            "Keine Extrakosten bei ärztlichen<br/> Leistungen für bessere Gesundheit.",
+            'Keine Extrakosten bei ärztlichen<br/> Leistungen für bessere Gesundheit.',
           panelFeature: [
-            "Erstattung für Arzneimittel 100%",
-            "Heilpraktiker 80%",
-            "Sehhilfen 120€/Jahr"
+            'Erstattung für Arzneimittel 100%',
+            'Heilpraktiker 80%',
+            'Sehhilfen 120€/Jahr',
           ],
-          panelBackground: "primary",
+          panelBackground: 'primary',
           checked: false,
           expanded: false,
           selectedId: 0,
-          selectedProductName: "",
-          selectedRate: 0
+          selectedProductName: '',
+          selectedRate: 0,
         },
         {
           id: 3,
-          panelTitle: "Vorsorge",
+          panelTitle: 'Vorsorge',
           panelDescription:
-            "Mit dem Vorsorgepaket sind<br /> Sie bestens geschützt & versorgt.",
+            'Mit dem Vorsorgepaket sind<br /> Sie bestens geschützt & versorgt.',
           panelFeature: [
-            "Vorsorge 100%",
-            "Schutzimpfungen 100%",
-            "Erstattung für Präventionen"
+            'Vorsorge 100%',
+            'Schutzimpfungen 100%',
+            'Erstattung für Präventionen',
           ],
-          panelBackground: "senary",
+          panelBackground: 'senary',
           checked: false,
           expanded: false,
           selectedId: 0,
-          selectedProductName: "",
-          selectedRate: 0
-        }
+          selectedProductName: '',
+          selectedRate: 0,
+        },
       ],
       stationaryPanelData: [
         {
           id: 0,
-          panelTitle: "S1 - 1-Bett-Zimmer",
+          panelTitle: 'S1 - 1-Bett-Zimmer',
           haveRadioOption: true,
-          panelBackground: "white",
-          panelRate: "17,96",
+          panelBackground: 'white',
+          panelRate: '17,96',
           checked: false,
           isTop: true,
-          categoryColor: "#035370"
+          categoryColor: '#035370',
         },
         {
           id: 1,
-          panelTitle: "S2 - 2-Bett-Zimmer",
+          panelTitle: 'S2 - 2-Bett-Zimmer',
           haveRadioOption: true,
-          panelBackground: "white",
-          panelRate: "14,96",
+          panelBackground: 'white',
+          panelRate: '14,96',
           checked: false,
           isTop: false,
-          categoryColor: "#035370"
+          categoryColor: '#035370',
         },
         {
           id: 2,
-          panelTitle: "Clinic Plus - 2-Bett-Zimmer",
+          panelTitle: 'Clinic Plus - 2-Bett-Zimmer',
           haveRadioOption: true,
-          panelBackground: "white",
-          panelRate: "21,96",
+          panelBackground: 'white',
+          panelRate: '21,96',
           checked: false,
           isTop: false,
-          categoryColor: "#035370"
-        }
+          categoryColor: '#035370',
+        },
       ],
       toothPanelData: [
         {
           id: 0,
-          panelTitle: "MediGroup Z Duo",
+          panelTitle: 'MediGroup Z Duo',
           haveRadioOption: false,
-          panelBackground: "white",
-          panelRate: "0",
+          panelBackground: 'white',
+          panelRate: '0',
           checked: false,
           isTop: false,
-          categoryColor: "#4C9BB0"
-        }
+          categoryColor: '#4C9BB0',
+        },
       ],
       outpatientPanelData: [
         {
           id: 0,
-          panelTitle: "MediGroup A",
+          panelTitle: 'MediGroup A',
           haveRadioOption: false,
-          panelBackground: "white",
-          panelRate: "0",
+          panelBackground: 'white',
+          panelRate: '0',
           checked: false,
           isTop: false,
-          categoryColor: "#00718F"
-        }
+          categoryColor: '#00718F',
+        },
       ],
       preventionPanelData: [
         {
           id: 0,
-          panelTitle: "Basis",
+          panelTitle: 'Basis',
           haveRadioOption: true,
-          panelBackground: "white",
-          panelRate: "0",
+          panelBackground: 'white',
+          panelRate: '0',
           checked: false,
           isTop: false,
-          categoryColor: "#3C8085"
+          categoryColor: '#3C8085',
         },
         {
           id: 1,
-          panelTitle: "Premium",
+          panelTitle: 'Premium',
           haveRadioOption: true,
-          panelBackground: "white",
-          panelRate: "0",
+          panelBackground: 'white',
+          panelRate: '0',
           checked: false,
           isTop: false,
-          categoryColor: "#3C8085"
-        }
-      ]
+          categoryColor: '#3C8085',
+        },
+      ],
     };
   },
   computed: {
     ...mapState({
-      age: state => state.profile.age
-    })
+      age: state => state.profile.age,
+    }),
   },
   watch: {
     targetDay: function(newVal) {
       this.$store.dispatch(
-        "profile/setTargetDay",
-        this.$helper.commonHelper.getDateFromGermanDate(newVal)
+        'profile/setTargetDay',
+        this.$helper.commonHelper.getDateFromGermanDate(newVal),
       );
     },
     age: function(newVal) {
@@ -440,26 +465,26 @@ export default {
       handler() {
         this.setTotalRate();
       },
-      deep: true
+      deep: true,
     },
     toothPanelData: {
       handler() {
         this.setTotalRate();
       },
-      deep: true
+      deep: true,
     },
     outpatientPanelData: {
       handler() {
         this.setTotalRate();
       },
-      deep: true
+      deep: true,
     },
     preventionPanelData: {
       handler() {
         this.setTotalRate();
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
 
   methods: {
@@ -467,7 +492,7 @@ export default {
       this.categoryPanelData[id].checked = !this.categoryPanelData[id].checked;
       if (!this.categoryPanelData[id].checked) {
         this.categoryPanelData[id].selectedId = null;
-        this.categoryPanelData[id].selectedProductName = "";
+        this.categoryPanelData[id].selectedProductName = '';
         this.categoryPanelData[id].selectedRate = 0;
         switch (id) {
           case 0: {
@@ -511,7 +536,7 @@ export default {
           }
           case 3: {
             this.selectPreventionRatePanel(0);
- 
+
             break;
           }
         }
@@ -520,7 +545,7 @@ export default {
 
     selectStationaryRatePanel(id) {
       this.stationaryPanelData.map(
-        item => (item.checked = item.id === id ? true : false)
+        item => (item.checked = item.id === id ? true : false),
       );
       this.categoryPanelData[0].checked = true;
       this.categoryPanelData[0].selectedId = id;
@@ -534,7 +559,7 @@ export default {
 
     selectToothRatePanel(id) {
       this.toothPanelData.map(
-        item => (item.checked = item.id === id ? true : false)
+        item => (item.checked = item.id === id ? true : false),
       );
       this.categoryPanelData[1].checked = true;
       this.categoryPanelData[1].selectedId = id;
@@ -548,7 +573,7 @@ export default {
 
     selectOutpatientRatePanel(id) {
       this.outpatientPanelData.map(
-        item => (item.checked = item.id === id ? true : false)
+        item => (item.checked = item.id === id ? true : false),
       );
       this.categoryPanelData[2].checked = true;
       this.categoryPanelData[2].selectedId = id;
@@ -562,7 +587,7 @@ export default {
 
     selectPreventionRatePanel(id) {
       this.preventionPanelData.map(
-        item => (item.checked = item.id === id ? true : false)
+        item => (item.checked = item.id === id ? true : false),
       );
       this.categoryPanelData[3].checked = true;
       this.categoryPanelData[3].selectedId = id;
@@ -578,7 +603,7 @@ export default {
       this.categoryPanelData.map(
         category =>
           (category.expanded =
-            category.id === id ? expanded : category.expanded)
+            category.id === id ? expanded : category.expanded),
       );
     },
     /*eslint-disable*/
@@ -586,16 +611,16 @@ export default {
       if (!this.categoryPanelData.find(data => data.checked)) {
         return;
       } else {
-        this.$store.dispatch("products/setCategories", this.categoryPanelData);
+        this.$store.dispatch('products/setCategories', this.categoryPanelData);
         if (
           this.$store.state.products.categories[0].checked ||
           this.$store.state.products.categories[2].checked
         ) {
-          this.$router.push({ name: "MyHealth" });
+          this.$router.push({ name: 'MyHealth' });
         } else if (this.$store.state.products.categories[1].checked) {
-          this.$router.push({ name: "MyDentalHealth" });
+          this.$router.push({ name: 'MyDentalHealth' });
         } else if (this.$store.state.products.categories[3].checked) {
-          this.$router.push({ name: "MyPersonalData" });
+          this.$router.push({ name: 'MyPersonalData' });
         }
       }
     },
@@ -607,14 +632,14 @@ export default {
           ...panel,
           panelRate: this.$helper.productHelper.getRateForStationary(
             age,
-            panel.id
-          )
+            panel.id,
+          ),
         };
       });
       this.toothPanelData = this.toothPanelData.map(panel => {
         return {
           ...panel,
-          panelRate: this.$helper.productHelper.getRateForTooth(age, panel.id)
+          panelRate: this.$helper.productHelper.getRateForTooth(age, panel.id),
         };
       });
       this.outpatientPanelData = this.outpatientPanelData.map(panel => {
@@ -622,8 +647,8 @@ export default {
           ...panel,
           panelRate: this.$helper.productHelper.getRateForOutpatient(
             age,
-            panel.id
-          )
+            panel.id,
+          ),
         };
       });
       this.preventionPanelData = this.preventionPanelData.map(panel => {
@@ -631,8 +656,8 @@ export default {
           ...panel,
           panelRate: this.$helper.productHelper.getRateForPrevention(
             age,
-            panel.id
-          )
+            panel.id,
+          ),
         };
       });
     },
@@ -641,22 +666,22 @@ export default {
         this.stationaryPanelData.reduce(
           (totalRate, panel) =>
             totalRate + (panel.checked ? panel.panelRate : 0),
-          0
+          0,
         ) +
         this.toothPanelData.reduce(
           (totalRate, panel) =>
             totalRate + panel.checked ? panel.panelRate : 0,
-          0
+          0,
         ) +
         this.outpatientPanelData.reduce(
           (totalRate, panel) =>
             totalRate + panel.checked ? panel.panelRate : 0,
-          0
+          0,
         ) +
         this.preventionPanelData.reduce(
           (totalRate, panel) =>
             totalRate + panel.checked ? panel.panelRate : 0,
-          0
+          0,
         );
     },
     onClickGoBack() {
@@ -679,41 +704,40 @@ export default {
         this.categoryPanelData = this.$store.state.products.categories;
 
         this.categoryPanelData.forEach(category => {
-          if( category.checked){
+          if (category.checked) {
             switch (category.id) {
-            case 0:
-              this.stationaryPanelData[category.selectedId].checked = true;
-              break;
-            case 1:
-              this.toothPanelData[category.selectedId].checked = true;
-              break;
-            case 2:
-              this.outpatientPanelData[category.selectedId].checked = true;
-              break;
-            case 3:
-              this.preventionPanelData[category.selectedId].checked = true;
-              break;
+              case 0:
+                this.stationaryPanelData[category.selectedId].checked = true;
+                break;
+              case 1:
+                this.toothPanelData[category.selectedId].checked = true;
+                break;
+              case 2:
+                this.outpatientPanelData[category.selectedId].checked = true;
+                break;
+              case 3:
+                this.preventionPanelData[category.selectedId].checked = true;
+                break;
+            }
           }
-          }
-          
         });
       }
 
       //set rate
       this.setRateForPanels(this.age);
-    }
+    },
   },
 
   mounted() {
     this.fillData();
     //set progress
-    this.$store.dispatch("setPagesProgress", 25);
+    this.$store.dispatch('setPagesProgress', 25);
 
     //test calling side-effect api
     // this.$store.dispatch("callBackendService", {
     //   hello: "test"
     // });
-  }
+  },
 };
 </script>
 <style scoped lang="scss">

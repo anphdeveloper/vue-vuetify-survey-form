@@ -24,13 +24,17 @@
                     content-class="tooltip-with-top-arrow"
                   >
                     <template v-slot:activator="{ on }">
-                      <v-icon color="primary" v-on="on">mdi-information-outline</v-icon>
+                      <v-icon color="primary" v-on="on"
+                        >mdi-information-outline</v-icon
+                      >
                     </template>
                     <div class="tooltip-container">
                       <v-card class="elevation-0 primary px-2">
                         <v-layout d-flex row wrap>
                           <v-col cols="2" sm="2">
-                            <v-icon color="white">mdi-information-outline</v-icon>
+                            <v-icon color="white"
+                              >mdi-information-outline</v-icon
+                            >
                           </v-col>
                           <v-col cols="10" sm="10" class="ml-0 pl-0 text-left">
                             <p class="text-left white--text mb-0 body-2">
@@ -126,7 +130,8 @@
                   :block="$vuetify.breakpoint.xs"
                   class="mt-4 white--text"
                   @click="onClickStartCalc"
-                >Preise Berechnen</v-btn>
+                  >Preise Berechnen</v-btn
+                >
               </div>
             </template>
           </main-panel>
