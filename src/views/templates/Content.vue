@@ -1,6 +1,6 @@
 <template>
   <v-content class="content">
-    <v-container fluid fill-height>
+    <v-container fill-height>
       <router-view />
     </v-container>
   </v-content>

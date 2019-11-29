@@ -190,7 +190,9 @@ export default {
     handleEnterClick() {
       this.onClickStartCalc();
     },
-    clickReadMore() {},
+    clickReadMore() {
+      window.open('/pdf/Allgemeine_Rechtliche_Belehrungen.pdf', '_blank');
+    },
     fillData() {
       if (this.$store.state.profile.dayOfBirth) {
         let dob = new Date(this.$store.state.profile.dayOfBirth)
