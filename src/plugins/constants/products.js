@@ -2,7 +2,7 @@ export const CATEGORY_PANEL_DATA = [
   {
     id: 0,
     panelTitle: "Stationär",
-    panelDescription: "Maximales Wohlbefinden, <br />sowie beste Leistungen.",
+    panelDescription: "Maximales Wohlbefinden, <br />sowie beste Leistungen",
     panelFeature: [
       "Behandlung durch den Chefarzt",
       "Ein- oder Zweibettzimmer",
@@ -21,7 +21,7 @@ export const CATEGORY_PANEL_DATA = [
     id: 1,
     panelTitle: "Zahn",
     panelDescription:
-      "Optimaler Schutz vor hohen<br/> Selbstkosten beim Zahnarzt.",
+      "Optimaler Schutz vor hohen<br/> Selbstkosten beim Zahnarzt",
     panelFeature: [
       "Zahnbehandlung 100%",
       "Zahnersatz, Inlays & Implantate",
@@ -40,7 +40,7 @@ export const CATEGORY_PANEL_DATA = [
     id: 2,
     panelTitle: "Ambulant",
     panelDescription:
-      "Keine Extrakosten bei ärztlichen<br/> Leistungen für bessere Gesundheit.",
+      "Keine Extrakosten bei ärztlichen<br/> Leistungen für bessere Gesundheit",
     panelFeature: [
       "Erstattung für Arzneimittel 100%",
       "Heilpraktiker 80%",
@@ -59,7 +59,7 @@ export const CATEGORY_PANEL_DATA = [
     id: 3,
     panelTitle: "Vorsorge",
     panelDescription:
-      "Mit dem Vorsorgepaket sind<br /> Sie bestens geschützt & versorgt.",
+      "Mit dem Vorsorgepaket sind<br /> Sie bestens geschützt & versorgt",
     panelFeature: [
       "Vorsorge 100%",
       "Schutzimpfungen 100%",
