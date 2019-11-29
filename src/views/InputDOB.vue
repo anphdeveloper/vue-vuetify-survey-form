@@ -24,17 +24,13 @@
                     content-class="tooltip-with-top-arrow"
                   >
                     <template v-slot:activator="{ on }">
-                      <v-icon color="primary" v-on="on"
-                        >mdi-information-outline</v-icon
-                      >
+                      <v-icon color="primary" v-on="on">mdi-information-outline</v-icon>
                     </template>
                     <div class="tooltip-container">
                       <v-card class="elevation-0 primary px-2">
                         <v-layout d-flex row wrap>
                           <v-col cols="2" sm="2">
-                            <v-icon color="white"
-                              >mdi-information-outline</v-icon
-                            >
+                            <v-icon color="white">mdi-information-outline</v-icon>
                           </v-col>
                           <v-col cols="10" sm="10" class="ml-0 pl-0 text-left">
                             <p class="text-left white--text mb-0 body-2">
@@ -69,7 +65,7 @@
                           @keypress="validateDay($event, day, 2)"
                           :rules="[
                             v =>
-                              (!!v &&
+                              (validateDate() && !!v &&
                                 v.length < 3 &&
                                 Number(v) != NaN &&
                                 Number(v) > 0 &&
@@ -88,7 +84,7 @@
                           @keypress="validateDay($event, month, 2)"
                           :rules="[
                             v =>
-                              (!!v &&
+                              (validateDate() && !!v &&
                                 v.length < 3 &&
                                 Number(v) != NaN &&
                                 Number(v) > 0 &&
@@ -108,7 +104,7 @@
                           @keypress="validateDay($event, year, 4)"
                           :rules="[
                             v =>
-                              (!!v &&
+                              (validateDate() && !!v &&
                                 v.length == 4 &&
                                 Number(v) != NaN &&
                                 Number(v) >
@@ -130,8 +126,7 @@
                   :block="$vuetify.breakpoint.xs"
                   class="mt-4 white--text"
                   @click="onClickStartCalc"
-                  >Preise Berechnen</v-btn
-                >
+                >Preise Berechnen</v-btn>
               </div>
             </template>
           </main-panel>
@@ -177,6 +172,35 @@ export default {
         );
         this.$router.push({ name: "Dashboard" });
       }
+    },
+    validateDate() {
+      const currentDate = new Date();
+      const inputDate = new Date(this.year, Number(this.month) - 1, this.day);
+      if (currentDate < inputDate) return false;
+
+      let ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+      const month = Number(this.month);
+      const year = Number(this.year);
+      const day = Number(this.day);
+
+      if (month === 1 || month > 2) {
+        if (day > ListofDays[month - 1]) {
+          ///This check is for Confirming that the date is not out of its range
+          return false;
+        }
+      } else if (month === 2) {
+        let leapYear = false;
+        if ((!(year % 4) && year % 100) || !(year % 400)) {
+          leapYear = true;
+        }
+        if (leapYear === false && day > 28) {
+          return false;
+        } else if (leapYear == true && day > 29) {
+          return false;
+        }
+      }
+
+      return true;
     },
     validateDay(event, data, length) {
       if (/^\d+$/.test(event.key) && data.toString().length < length)
