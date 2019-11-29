@@ -1,4 +1,4 @@
-export const BKV_AGENT = "xxxx";
-export const BKV_KOLLEKTIV = "xxxx";
-export const BKV_COMPANYNAME = "xxxx";
-export const BKV_REASON = "xxxx";
+export const BKV_AGENT = "0.45926*";
+export const BKV_KOLLEKTIV = "11452";
+export const BKV_COMPANYNAME = "BMW Group";
+export const BKV_REASON = "registration";

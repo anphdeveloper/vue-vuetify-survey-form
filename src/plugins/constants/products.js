@@ -207,7 +207,7 @@ export const TOOTH_PRODUCT_RATE = [
   { min: 61, max: 65, rate: 48.25 },
   { min: 66, max: 67, rate: 50.66 }
 ];
-export const PRENENTION_PREMIUM_PRODUCT_RATE = [
+export const PRENENTION_BASIS_PRODUCT_RATE = [
   { min: 0, max: 15, rate: 6.48 },
   { min: 16, max: 20, rate: 6.48 },
   { min: 21, max: 30, rate: 6.48 },
@@ -217,7 +217,7 @@ export const PRENENTION_PREMIUM_PRODUCT_RATE = [
   { min: 61, max: 65, rate: 6.48 },
   { min: 66, max: 67, rate: 6.48 }
 ];
-export const PRENENTION_BASIS_PRODUCT_RATE = [
+export const PRENENTION_PREMIUM_PRODUCT_RATE = [
   { min: 0, max: 15, rate: 14.27 },
   { min: 16, max: 20, rate: 14.27 },
   { min: 21, max: 30, rate: 14.27 },

@@ -216,6 +216,7 @@ export default {
   },
   watch: {},
   methods: {
+    /*eslint-disable*/
     onClickNext() {
       //test calling side-effect api
       // this.$store.dispatch("callBackendService", {
@@ -273,7 +274,7 @@ export default {
             insurance_prior: this.prevCompany.haveCompany,
             insurance_oldname: this.prevCompany.haveCompany ? this.prevCompany.companyName : ""
           };
-          //test calling side-effect api
+
           this.$store
             .dispatch("callBackendService", {
               data: payload

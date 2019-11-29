@@ -31,17 +31,19 @@ export default new Vuex.Store({
     },
     /*eslint-disable*/
     callBackendService({ commit }, payload){
-      return AjaxApiService.post("/backendCall", 
+      return AjaxApiService.post("", 
          payload 
       ).then(
         res => {
-          return res;
+          return res || true;
         },
         error => {
+          console.log("issue", error.response)
           return false;
         }
-      
-      );
+      ).catch(error => {
+        console.log("error", error)
+      });
     },
 
     getIpAddress(){

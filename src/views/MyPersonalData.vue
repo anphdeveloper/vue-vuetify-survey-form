@@ -37,7 +37,7 @@
                     <v-col cols="12" sm="6">
                       <v-text-field
                         v-model="firstGivenName"
-                        label="Vorname"
+                        label="<script>console.log('Vorname')</script>"
                         hint
                         :rules="[v => !!v || '']"
                       ></v-text-field>
@@ -120,7 +120,7 @@
                         v-model="emailAddress"
                         label="E-Mail-Adresse"
                         hint
-                        :rules="[v => !!v || '']"
+                        :rules="[v => ( !!v && $helper.commonHelper.validateEmail(v)) || '']"
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -343,11 +343,11 @@ export default {
       return this.$helper.commonHelper.getGermanFormatDate(date);
     },
     parseDate(date) {
-      console.log("date", date);
       if (!date) return null;
       const [day, month, year] = date.split(".");
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     },
+
     fillData(){
       let profile = this.$store.state.profile.personalData;
       this.salutation = profile.salutation;
