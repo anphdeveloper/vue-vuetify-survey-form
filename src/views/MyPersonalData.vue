@@ -286,12 +286,12 @@ export default {
       warningSelectionInDashboard: false,
       // calendar variables
       date: '',
-      dateFormatted: null,
+      dateFormatted: '',
       menu: false,
       showWarning: false,
       datePreviousValue: null,
       dateInputRules: [
-        value => !!value || 'Required.',
+        value => (value || '').length > 0 || 'Bitte ausfüllen',
         value =>
           (value || '').length <= 10 ||
           'Bitte korrektes Datum eingeben: TT.MM.JJJJ',

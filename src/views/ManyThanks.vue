@@ -12,8 +12,7 @@
                 Ihr Antrag auf eine private Zusatzversicherung wurde versendet
               </p>
               <p>
-                Ihre Versicherungsunterlagen erhalten
-                Sie nach Prüfung per Post.
+                Ihre Versicherungsunterlagen erhalten Sie nach Prüfung per Post.
               </p>
             </template>
           </main-panel>

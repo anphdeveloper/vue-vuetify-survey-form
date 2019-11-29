@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === "production") {
 
 module.exports = {
   configureWebpack: {
-    plugins: [new CopyWebpackPlugin([{ from: "pdfs" }])],
+    plugins: [new CopyWebpackPlugin([{ from: "src/assets/pdfs" }])],
     module: {
       rules: [
         {
