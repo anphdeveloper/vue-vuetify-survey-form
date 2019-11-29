@@ -169,7 +169,7 @@ export default {
       } else
         this.$store.dispatch("profile/setPrevInsCompany", {
           haveCompany: true,
-          comapnyName: this.companies,
+          companyName: this.companies,
         });
 
       this.$router.push({ name: "MyPersonalData" });

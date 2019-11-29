@@ -5,7 +5,7 @@ const state = {
   missedTeeth: 0,
   prevInsCompany: {
     haveCompany: false,
-    comapnyName: ""
+    companyName: ""
   },
   personalData: {
     salutation: "Frau",
@@ -85,6 +85,38 @@ const mutations = {
     Object.keys(personalData).forEach(
       key => (state.personalData[key] = personalData[key])
     );
+  },
+  setInitiateState(state){
+    state.dayOfBirth= null,
+    state.targetDay= null,
+    state.age= 0,
+    state.missedTeeth= 0,
+    state.prevInsCompany= {
+      haveCompany: false,
+      companyName: ""
+    },
+    state.personalData= {
+      salutation: "Frau",
+      title: "Kein Titel",
+      firstGivenName: "",
+      surname: "",
+      street: "",
+      streetNo: "",
+      country: "Deutschland",
+      postCode: "",
+      place: "",
+      phoneNo: "",
+      emailAddress: "",
+      professionalActivities: "",
+      settingDate: "",
+      insuredOption: "0",
+      paymentOption: "",
+      agreeSEPA: false,
+      ibanNumber: "",
+      agreeAdvice: false,
+      agreeTerms: false,
+      agreeForLastYear: false
+    }
   }
 };
 

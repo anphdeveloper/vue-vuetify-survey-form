@@ -11,8 +11,11 @@ const actions = {
 };
 
 const mutations = {
-  setCategories(state, categories) {
+  setCategories( state, categories ) {
     state.categories = categories;
+  },
+  setInitiateState( state ){
+    state.categories = null;
   }
 };
 

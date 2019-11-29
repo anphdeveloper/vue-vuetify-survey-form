@@ -211,7 +211,7 @@ export default {
       prevCompany: null,
       missedTeeth: null,
       products: null,
-      totalRate: null,
+      totalRate: null
     };
   },
   watch: {},
@@ -253,26 +253,42 @@ export default {
             customer_SEPA: this.profile.agreeSEPA,
             customer_SEPA_period: this.profile.paymentOption,
             check_noadvice: this.profile.agreeAdvice,
-            check_terms: this.profile.agreeTermss,
+            check_terms: this.profile.agreeTerms,
             insurance_startdate: this.targetDay,
-            insurance_product_a: this.products[2].checked && this.products[2].selectedId == 0 ? 
-              this.products[2].selectedRate.toFixed(2).toString() : "",
-            insurance_product_z: this.products[1].checked && this.products[1].selectedId == 0 ? 
-              this.products[1].selectedRate.toFixed(2).toString() : "",
-            insurance_product_vb: this.products[3].checked && this.products[3].selectedId == 0 ? 
-              this.products[3].selectedRate.toFixed(2).toString() : "",
-            insurance_product_vp: this.products[3].checked && this.products[3].selectedId == 1 ? 
-              this.products[3].selectedRate.toFixed(2).toString() : "",
-            insurance_product_s1: this.products[0].checked && this.products[0].selectedId == 0 ? 
-              this.products[0].selectedRate.toFixed(2).toString() : "",
-            insurance_product_s2: this.products[0].checked && this.products[0].selectedId == 1 ? 
-              this.products[0].selectedRate.toFixed(2).toString() : "",
-            insurance_product_sc: this.products[0].checked && this.products[0].selectedId == 2 ? 
-              this.products[0].selectedRate.toFixed(2).toString() : "",
+            insurance_product_a:
+              this.products[2].checked && this.products[2].selectedId == 0
+                ? this.products[2].selectedRate.toFixed(2).toString()
+                : "",
+            insurance_product_z:
+              this.products[1].checked && this.products[1].selectedId == 0
+                ? this.products[1].selectedRate.toFixed(2).toString()
+                : "",
+            insurance_product_vb:
+              this.products[3].checked && this.products[3].selectedId == 0
+                ? this.products[3].selectedRate.toFixed(2).toString()
+                : "",
+            insurance_product_vp:
+              this.products[3].checked && this.products[3].selectedId == 1
+                ? this.products[3].selectedRate.toFixed(2).toString()
+                : "",
+            insurance_product_s1:
+              this.products[0].checked && this.products[0].selectedId == 0
+                ? this.products[0].selectedRate.toFixed(2).toString()
+                : "",
+            insurance_product_s2:
+              this.products[0].checked && this.products[0].selectedId == 1
+                ? this.products[0].selectedRate.toFixed(2).toString()
+                : "",
+            insurance_product_sc:
+              this.products[0].checked && this.products[0].selectedId == 2
+                ? this.products[0].selectedRate.toFixed(2).toString()
+                : "",
             insurance_question_AU: this.profile.agreeForLastYear || false,
             insurance_question_Z: this.missedTeeth,
             insurance_prior: this.prevCompany.haveCompany,
-            insurance_oldname: this.prevCompany.haveCompany ? this.prevCompany.companyName : ""
+            insurance_oldname: this.prevCompany.haveCompany
+              ? this.prevCompany.companyName
+              : ""
           };
 
           this.$store
@@ -280,7 +296,10 @@ export default {
               data: payload
             })
             .then(res => {
-              if (res) this.$router.push({ name: "ManyThanks" });
+              if (res) {
+                this.$store.dispatch("initiateState");
+                this.$router.push({ name: "ManyThanks" });
+              }
             });
         }
       });
@@ -304,9 +323,9 @@ export default {
     getRateByOption(option) {
       return paymentOptionsInfo.find(item => item.option === option).rate;
     },
-    fillData(){
+    fillData() {
       this.profile = this.$store.state.profile.personalData;
-      
+
       this.products = this.$store.state.products.categories;
       console.log(this.products);
       this.totalRate =

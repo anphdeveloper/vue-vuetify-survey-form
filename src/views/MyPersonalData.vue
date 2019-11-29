@@ -37,7 +37,7 @@
                     <v-col cols="12" sm="6">
                       <v-text-field
                         v-model="firstGivenName"
-                        label="<script>console.log('Vorname')</script>"
+                        label="Vorname"
                         hint
                         :rules="[v => !!v || '']"
                       ></v-text-field>
@@ -66,7 +66,7 @@
                         label="Haus Nr."
                         hint
                         :rules="[v => !!v || '']"
-                        :type="$vuetify.breakpoint.xs ? 'number' : ''"
+                        type="number"
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -74,7 +74,7 @@
                     <v-col cols="12" sm="4">
                       <v-text-field
                         v-model="postCode"
-                        :type="$vuetify.breakpoint.xs ? 'number' : ''"
+                        type="number"
                         label="PLZ"
                         hint
                         :rules="[v => !!v || '']"
@@ -108,9 +108,9 @@
                         prefix="+49"
                         label="Telefon- oder Mobilnummer"
                         ref="telephone"
+                        type="number"
                         hint
                         persistent-hint
-                        :type="$vuetify.breakpoint.xs ? 'number' : ''"
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -373,10 +373,11 @@ export default {
       }
     },
     onInputDate($event){
-      if(this.datePreviousValue !== null && $event.length > this.datePreviousValue && ($event.length === 2 || $event.length === 5)){
-        this.dateFormatted = `${this.dateFormatted}.`;
-      }
-      this.datePreviousValue = $event.length;
+      this.dateFormatted = this.dateFormatted + '.';
+      // if(this.datePreviousValue !== null && $event.length > this.datePreviousValue && ($event.length === 2 || $event.length === 5)){
+      //   this.dateFormatted = this.dateFormatted + '.';
+      // }
+      // this.datePreviousValue = $event.length;
     }
   },
   mounted() {

@@ -23,6 +23,9 @@ export default new Vuex.Store({
   mutations: {
     setPagesProgress(state, percentage) {
       state.pagesProgress = percentage;
+    },
+    setInitiateState(state) {
+      state.pagesProgress = 0;
     }
   },
   actions: {
@@ -55,6 +58,11 @@ export default new Vuex.Store({
           return false;
         }
       )
+    },
+    initiateState({ commit }) {
+      commit("setInitiateState");
+      commit("profile/setInitiateState", null, {root: true});
+      commit("products/setInitiateState", null, {root: true});         
     }
   },
   getters: {
