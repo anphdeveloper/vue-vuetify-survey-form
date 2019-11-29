@@ -126,7 +126,8 @@ export default {
     },
     onClickInfo() {
       window.open(
-        "http://www.medigroup.gothaer.de/media/pgk_media/dokumente/antragsunterlagen_der_vertriebspartner/bmw/hb/" + this.$props.categoryPanelData.panelDocsLink,
+        "http://www.medigroup.gothaer.de/media/pgk_media/dokumente/antragsunterlagen_der_vertriebspartner/bmw/hb/" +
+          this.$props.categoryPanelData.panelDocsLink,
         "_blank"
       );
     }
