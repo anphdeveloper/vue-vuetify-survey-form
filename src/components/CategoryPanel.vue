@@ -11,7 +11,10 @@
         <v-spacer></v-spacer>
         <v-btn
           class="mr-1 white close-icon elevation-0 px-0"
-          @click.prevent="onClickCheckPanel, clickContainer($event)"
+          @click.prevent="
+            onClickCheckPanel;
+            clickContainer($event);
+          "
           id="panelCheckBoxButton"
         >
           <v-icon
@@ -28,7 +31,7 @@
     <p
       :class="{
         'mb-0 ': !categoryPanelData.expanded,
-        'body-2 text-left white--text': true
+        'body-2 text-left white--text': true,
       }"
       v-html="categoryPanelData.panelDescription"
     ></p>
@@ -79,7 +82,7 @@
 
 <script>
 export default {
-  name: "CategoryPanel",
+  name: 'CategoryPanel',
   props: {
     // id: Number,
     // panelTitle: String,
@@ -89,48 +92,55 @@ export default {
     // checked: Boolean,
     categoryPanelData: Object,
     checkPanel: Function,
-    expandPanel: Function
+    expandPanel: Function,
   },
   data() {
     return {
       descriptionCollapsed: false,
-      panelChecked: false
+      panelChecked: false,
     };
   },
   methods: {
     onClickCheckPanel() {
-      console.log("checkbox clicked");
+      console.log(this.panelChecked);
       this.checkPanel(this.$props.categoryPanelData.id);
+      // this.panelChecked = !this.panelChecked;
+      if (!this.$props.categoryPanelData.expanded) {
+        this.expandPanel(
+          this.$props.categoryPanelData.id,
+          !this.$props.categoryPanelData.expanded,
+        );
+      }
     },
     onClickExpandPanel() {
       this.expandPanel(
         this.$props.categoryPanelData.id,
-        !this.$props.categoryPanelData.expanded
+        !this.$props.categoryPanelData.expanded,
       );
     },
     clickContainer(event) {
-      //prevent panel click event for checkbox and expand
-      if (
-        event.target.id != "panelCheckBoxButton" &&
-        event.target.id != "panelCheckBoxIcon" &&
-        event.target.id != "plusIcon" &&
-        event.target.id != "minusIcon" &&
-        event.target.parentElement.id != "infoBtn"
-      ) {
+      if (event.target.id != 'plusIcon' && event.target.id != 'minusIcon') {
+        // this.panelChecked = !this.panelChecked;
         this.checkPanel(this.$props.categoryPanelData.id);
+        if (this.$props.categoryPanelData.checked) {
+          this.expandPanel(
+            this.$props.categoryPanelData.id,
+            !this.$props.categoryPanelData.expanded,
+          );
+        }
       }
     },
     onClickInfo() {
       window.open(
-        "pdfs/" + this.$props.categoryPanelData.panelDocsLink,
-        "_blank"
+        'pdfs/' + this.$props.categoryPanelData.panelDocsLink,
+        '_blank',
       );
-    }
+    },
   },
   watch: {},
   created() {
     this.panelChecked = this.$props.categoryPanelData.checked;
-  }
+  },
 };
 </script>
 <style scoped lang="scss">
