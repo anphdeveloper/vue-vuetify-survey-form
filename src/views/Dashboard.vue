@@ -1,6 +1,6 @@
 <template>
   <v-layout row wrap justify-center>
-    <v-col cols="12" sm="9" xs="12" class="mt-10">
+    <v-col cols="12" sm="12" xs="12" class="mt-10">
       <v-layout column wrap>
         <v-row justify="center">
           <v-col cols="12" sm="6">
@@ -62,9 +62,9 @@
                     <span class="grey--text">stabile Beiträge</span>
                     <v-menu
                       offset-y
+                      allow-overflow
                       max-width="300"
-                      nudge-bottom="1"
-                      nudge-left="135"
+                      nudge-left="138"
                       open-delay="0"
                       close-delay="0"
                       content-class="tooltip-with-top-arrow"
@@ -662,7 +662,9 @@ export default {
     onClickGoBack() {
       this.$router.go(-1);
     },
-    clickReadMore() {},
+    clickReadMore() {
+      window.open('/pdf/Altersrueckstellung_Information.pdf', '_blank');
+    },
     fillData() {
       //set first days of next months
       this.days = this.$helper.commonHelper

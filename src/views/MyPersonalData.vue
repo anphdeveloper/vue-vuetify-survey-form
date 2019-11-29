@@ -20,9 +20,7 @@
                       ></v-select>
                     </v-col>
                     <v-col cols="12" sm="6" md="8">
-                      <p class="pb-0 mb-0 mt-4 text-start caption">
-                        Titel (optional)
-                      </p>
+                      <p class="pb-0 mb-0 mt-4 text-start caption">Titel (optional)</p>
                       <v-select
                         class="mt-0 pt-0 meta-pro-text primary--text"
                         :items="titleOptions"
@@ -53,19 +51,15 @@
                   </v-row>
                   <v-row justify="center">
                     <v-col cols="12" sm="8">
-                      <v-text-field
-                        v-model="street"
-                        label="Straße"
-                        hint
-                        :rules="[v => !!v || '']"
-                      ></v-text-field>
+                      <v-text-field v-model="street" label="Straße" hint :rules="[v => !!v || '']"></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="4">
                       <v-text-field
                         v-model="streetNo"
-                        label="HausNr."
+                        label="Haus Nr."
                         hint
                         :rules="[v => !!v || '']"
+                        :type="$vuetify.breakpoint.xs?'number':''"
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -80,12 +74,7 @@
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="8">
-                      <v-text-field
-                        v-model="place"
-                        label="Ort"
-                        hint
-                        :rules="[v => !!v || '']"
-                      ></v-text-field>
+                      <v-text-field v-model="place" label="Ort" hint :rules="[v => !!v || '']"></v-text-field>
                     </v-col>
                   </v-row>
                   <v-row justify="center">
@@ -110,6 +99,7 @@
                         hint
                         persistent-hint
                         @keypress="validatePhoneNo($event)"
+                        :type="$vuetify.breakpoint.xs?'number':''"
                       ></v-text-field>
                     </v-col>
                   </v-row>
@@ -151,10 +141,12 @@
                         <template v-slot:activator="{ on }">
                           <v-text-field
                             v-model="dateFormatted"
+                            @input="onInputDate"
                             label="Einstellungsdatum"
                             placeholder="TT.MM.JJJJ"
                             class="meta-pro-text primary--text date-picker"
-                            :rules="[v => !!v || '']"
+                            :type="$vuetify.breakpoint.xs?'number':''"
+                            :rules="dateInputRules"
                           >
                             <template v-slot:append>
                               <v-btn icon v-on="on" :ripple="false">
@@ -182,9 +174,7 @@
                   </v-radio-group>
                   <div v-if="showWarning && !checkbox">
                     <v-container class="px-0 pb-2 text-with-inputcontrol-icon">
-                      <v-icon color="red" class="mr-2"
-                        >mdi-information-outline</v-icon
-                      >
+                      <v-icon color="red" class="mr-2">mdi-information-outline</v-icon>
                       <p
                         :class="
                           [
@@ -193,25 +183,19 @@
                               : 'title',
                           ] + ' text-start font-weight-bold mb-0'
                         "
-                      >
-                        Mehr als 20 Tage arbeitsunfähig
-                      </p>
+                      >Mehr als 20 Tage arbeitsunfähig</p>
                     </v-container>
                     <p class="text-start body-2 mb-1">
                       Falls Sie die Angaben zum Gesundheitszustand nicht
                       bestätigen können, nutzen Sie bitte den
-                      <span class="font-weight-black primary--text"
-                        >Antrag mit Gesundheitsfragen</span
-                      >.
+                      <span
+                        class="font-weight-black primary--text"
+                      >Antrag mit Gesundheitsfragen</span>.
                     </p>
                   </div>
                   <div v-if="showInsureWarningForPrivate">
-                    <v-container
-                      class="px-0 pb-2 text-with-inputcontrol-icon pt-0"
-                    >
-                      <v-icon color="red" class="mr-2"
-                        >mdi-information-outline</v-icon
-                      >
+                    <v-container class="px-0 pb-2 text-with-inputcontrol-icon pt-0">
+                      <v-icon color="red" class="mr-2">mdi-information-outline</v-icon>
                       <p
                         :class="
                           [
@@ -235,8 +219,7 @@
                   :block="$vuetify.breakpoint.xs"
                   class="mt-7 white--text"
                   @click="onClickNext"
-                  >Weiter</v-btn
-                >
+                >Weiter</v-btn>
               </div>
             </template>
           </main-panel>
@@ -286,6 +269,19 @@ export default {
       dateFormatted: null,
       menu: false,
       showWarning: false,
+      datePreviousValue: null,
+      dateInputRules: [
+        value => !!value || 'Required.',
+        value =>
+          (value || '').length <= 10 ||
+          'Bitte korrektes Datum eingeben: TT.MM.JJJJ',
+        value => {
+          const pattern = /^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/;
+          return (
+            pattern.test(value) || 'Bitte korrektes Datum eingeben: TT.MM.JJJJ'
+          );
+        },
+      ],
     };
   },
   watch: {
@@ -368,12 +364,30 @@ export default {
       this.professionalActivities = this.$store.state.profile.personalData.professionalActivities;
       this.dateFormatted = this.$store.state.profile.personalData.settingDate;
 
-      this.warningSelectionInDashboard =
-        this.$store.state.products.categories[0].checked &&
-        this.$store.state.products.categories.filter(
-          category => category.checked,
-        ).length == 1 &&
-        this.$store.state.products.categories[0].selectedId === 2;
+      if (this.$store.state.products.categories) {
+        this.warningSelectionInDashboard =
+          this.$store.state.products.categories[0].checked &&
+          this.$store.state.products.categories.filter(
+            category => category.checked,
+          ).length == 1 &&
+          this.$store.state.products.categories[0].selectedId === 2;
+      }
+    },
+    onInputDate($event) {
+      if ($event.length === 1) {
+        this.datePreviousValue = 1;
+      }
+      if ($event.length === 2 && this.datePreviousValue === 1) {
+        this.dateFormatted = `${this.dateFormatted}.`;
+        this.datePreviousValue = 3;
+      }
+      if ($event.length === 5) {
+        this.datePreviousValue = 5;
+      }
+      if ($event.length === 5 && this.datePreviousValue === 5) {
+        this.dateFormatted = `${this.dateFormatted}.`;
+        this.datePreviousValue = 6;
+      }
     },
   },
   mounted() {
