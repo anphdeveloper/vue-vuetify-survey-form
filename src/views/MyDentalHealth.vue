@@ -9,12 +9,12 @@
                 <p
                   :class="
                     [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
-                      ' text-start font-weight-bold mb-1'
+                      ' text-left font-weight-bold mb-1'
                   "
                 >
                   Wie viele fehlende, noch nicht ersetzte Zähne haben Sie?
                 </p>
-                <p class="text-start body-2 mb-1">
+                <p class="text-left body-2 mb-1">
                   Ausgenommen Weisheitszähne, Lückenschlüsse bzw. Milchzähne,
                   die aufgrund des natürlichen Zahnwechsels fehlen.
                 </p>
@@ -24,7 +24,7 @@
                     <v-row>
                       <v-col cols="12" class="pr-0">
                         <p
-                          class="pb-0 text-start body-1 font-weight-bold mb-0 mt-2"
+                          class="pb-0 text-left body-1 font-weight-bold mb-0 mt-2"
                         >
                           Anzahl?
                         </p>
@@ -41,21 +41,21 @@
                     </v-row>
                   </v-col>
                 </v-row>
-                <p class="text-start font-weight-bold body-2 mb-1">Hinweis</p>
-                <p class="text-start body-2 mb-1">
+                <p class="text-left font-weight-bold body-2 mb-1">Hinweis</p>
+                <p class="text-left body-2 mb-1">
                   Sofern mehr als ein fehlender, noch nicht ersetzter vorhanden
                   ist, sind die bei Vertragsbeginn fehlenden Zähne vom
                   Versicherungsschutz ausgenommen.
                 </p>
                 <p
                   v-if="showReadMore"
-                  class="text-start body-2 mb-1 primary--text cursor-pointer"
+                  class="text-left body-2 mb-1 primary--text cursor-pointer"
                   @click="onClickShowMore"
                 >
                   mehr…
                 </p>
                 <div v-if="!showReadMore">
-                  <p class="text-start body-2 mb-1">
+                  <p class="text-left body-2 mb-1">
                     <span class="font-weight-bold">Für bereits</span>
                     angeratene, geplante oder begonnene zahnärztliche Maßnahmen
                     besteht
@@ -63,7 +63,7 @@
                       >kein Versicherungsschutz</span
                     >.
                     <span
-                      class="text-start body-2 mb-1 primary--text cursor-pointer"
+                      class="text-left body-2 mb-1 primary--text cursor-pointer"
                       @click="onClickHideMore"
                       >…weniger</span
                     >
@@ -72,7 +72,7 @@
                 <p
                   :class="
                     [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
-                      ' text-start font-weight-bold mb-0 mt-6'
+                      ' text-left font-weight-bold mb-0 mt-6'
                   "
                 >
                   Private Zahnzusatzversicherung schon vorhanden?
@@ -93,13 +93,13 @@
                     <p
                       :class="
                         [$vuetify.breakpoint.smAndUp ? 'subtitle-1' : 'title'] +
-                          ' text-start font-weight-bold mb-0'
+                          ' text-left font-weight-bold mb-0'
                       "
                     >
                       Verkürzte Leistungsbegrenzung bei Vorversicherung
                     </p>
                   </v-container>
-                  <p class="text-start body-2 mb-2">
+                  <p class="text-left body-2 mb-2">
                     Es besteht bis zum Versicherungsbeginn eine private
                     Zusatzversicherung für Zahnersatz mit einer vorgesehenen
                     Erstattung von mindestens 80% bei dem folgenden Unternehmen:
