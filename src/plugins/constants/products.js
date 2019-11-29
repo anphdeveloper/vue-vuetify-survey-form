@@ -15,7 +15,7 @@ export const CATEGORY_PANEL_DATA = [
     selectedProductName: "",
     selectedRate: 0,
     selectedProductPdfLink: "",
-    panelDocsLink: "MediGroup_Stationaer.pdf"
+    panelDocsLink: "stationaer_alle_2019.pdf"
   },
   {
     id: 1,
@@ -34,7 +34,7 @@ export const CATEGORY_PANEL_DATA = [
     selectedProductName: "",
     selectedRate: 0,
     selectedProductPdfLink: "",
-    panelDocsLink: "MediGroup_Z_Duo.pdf"
+    panelDocsLink: "MediGroup_Z_Duo_2019.pdf"
   },
   {
     id: 2,
@@ -53,7 +53,7 @@ export const CATEGORY_PANEL_DATA = [
     selectedProductName: "",
     selectedRate: 0,
     selectedProductPdfLink: "",
-    panelDocsLink: "MediGroup_A.pdf"
+    panelDocsLink: "MediGroup_A_2019.pdf"
   },
   {
     id: 3,
@@ -72,7 +72,7 @@ export const CATEGORY_PANEL_DATA = [
     selectedProductName: "",
     selectedRate: 0,
     selectedProductPdfLink: "",
-    panelDocsLink: "MediGroup_Vorsorge.pdf"
+    panelDocsLink: "vorsorge_zusammen.pdf"
   }
 ];
 

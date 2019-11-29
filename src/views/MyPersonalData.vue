@@ -66,7 +66,6 @@
                         label="Haus Nr."
                         hint
                         :rules="[v => !!v || '']"
-                        type="number"
                       ></v-text-field>
                     </v-col>
                   </v-row>
