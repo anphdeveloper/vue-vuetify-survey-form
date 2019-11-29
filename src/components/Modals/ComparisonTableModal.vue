@@ -7,7 +7,7 @@
       :ripple="false"
       @click="show = true"
     >
-      <v-icon color="primary">mdi-arrow-right</v-icon>TARIFE VERGLEICHEN
+      <go-forward-icon color="primary"></go-forward-icon>TARIFE VERGLEICHEN
     </v-btn>
     <v-dialog v-model="show" width="900">
       <v-card>
@@ -733,12 +733,14 @@
 import SickBedIcon from '@/components/Icons/SickBedIcon';
 import CheckedIcon from '@/components/Icons/CheckedIcon';
 import RedCrossIcon from '@/components/Icons/RedCrossIcon';
+import GoForwardIcon from '@/components/Icons/GoForwardIcon';
 export default {
   name: 'ComparisonTableModal',
   components: {
     SickBedIcon,
     CheckedIcon,
     RedCrossIcon,
+    GoForwardIcon,
   },
   props: ['isComparisonForStationary'],
   data() {

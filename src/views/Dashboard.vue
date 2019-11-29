@@ -259,9 +259,7 @@
             :ripple="false"
             @click="onClickGoBack"
           >
-            <v-icon color="primary" v-if="$vuetify.breakpoint.mdAndUp"
-              >mdi-arrow-left</v-icon
-            >
+            <go-back-icon color="primary" v-if="$vuetify.breakpoint.mdAndUp"></go-back-icon>
             <go-back-circle-icon
               v-if="$vuetify.breakpoint.smAndDown"
             ></go-back-circle-icon>
@@ -274,6 +272,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import CategoryPanel from "@/components/CategoryPanel.vue";
 import RateSelectionPanel from "@/components/RateSelectionPanel.vue";
 import MiddleTitlePanel from "@/components/MiddleTitlePanel";
@@ -287,6 +286,15 @@ import {
   OUTPATIENT_PANEL_DATA,
   PREVENTION_PANEL_DATA
 } from "@/plugins/constants/products";
+=======
+import CategoryPanel from '@/components/CategoryPanel.vue';
+import RateSelectionPanel from '@/components/RateSelectionPanel.vue';
+import MiddleTitlePanel from '@/components/MiddleTitlePanel';
+import ComparisonTableModal from '@/components/Modals/ComparisonTableModal';
+import GoBackCircleIcon from '@/components/Icons/GoBackCircleIcon';
+import GoBackIcon from '@/components/Icons/GoBackIcon';
+import { mapState } from 'vuex';
+>>>>>>> 6a08126de04e93ae560f35514bf62439363d3a89
 export default {
   name: 'Dashboard',
   components: {
@@ -295,6 +303,7 @@ export default {
     MiddleTitlePanel,
     ComparisonTableModal,
     GoBackCircleIcon,
+    GoBackIcon,
   },
   props: {},
   data() {
