@@ -249,6 +249,7 @@ export default {
             customer_GKV: this.profile.insuredOption === "0",
             customer_phone: this.profile.phoneNo || "",
             customer_email: this.profile.emailAddress || "",
+            customer_role: this.profile.professionalActivities || "",
             customer_iban: this.profile.ibanNumber || "",
             customer_SEPA: this.profile.agreeSEPA,
             customer_SEPA_period: this.profile.paymentOption,
