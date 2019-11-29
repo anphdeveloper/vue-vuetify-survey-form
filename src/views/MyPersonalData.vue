@@ -159,7 +159,6 @@
                             label="Einstellungsdatum"
                             placeholder="TT.MM.JJJJ"
                             class="meta-pro-text primary--text date-picker"
-                            :type="$vuetify.breakpoint.xs ? 'number' : ''"
                             :rules="dateInputRules"
                           >
                             <template v-slot:append>
@@ -392,6 +391,7 @@ export default {
       }
     },
     onInputDate($event) {
+      console.log($event);
       if (
         this.datePreviousValue !== null &&
         $event.length > this.datePreviousValue &&
