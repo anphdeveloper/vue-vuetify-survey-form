@@ -542,12 +542,9 @@ export default {
       });
     },
     setTotalRate() {
-      console.log(
-        this.preventionPanelData.reduce(
-          (totalRate, panel) =>
-            totalRate + (panel.checked ? panel.panelRate : 0),
-          0
-        )
+      this.preventionPanelData.reduce(
+        (totalRate, panel) => totalRate + (panel.checked ? panel.panelRate : 0),
+        0
       );
       this.totalRate =
         this.stationaryPanelData.reduce(

@@ -1,8 +1,5 @@
 <template>
-  <div
-    :class="categoryPanelData.panelBackground + ' pa-4'"
-    @click="clickContainer($event)"
-  >
+  <div :class="categoryPanelData.panelBackground + ' pa-4'">
     <v-layout>
       <v-row class="px-2">
         <p class="mb-1 title text-left pl-2 pt-1 white--text">
@@ -12,7 +9,7 @@
         <v-btn
           class="mr-1 white close-icon elevation-0 px-0"
           @click.prevent="
-            onClickCheckPanel;
+            onClickCheckPanel();
             clickContainer($event);
           "
           id="panelCheckBoxButton"
@@ -102,9 +99,8 @@ export default {
   },
   methods: {
     onClickCheckPanel() {
-      console.log(this.panelChecked);
       this.checkPanel(this.$props.categoryPanelData.id);
-      // this.panelChecked = !this.panelChecked;
+
       if (!this.$props.categoryPanelData.expanded) {
         this.expandPanel(
           this.$props.categoryPanelData.id,
@@ -120,9 +116,7 @@ export default {
     },
     clickContainer(event) {
       if (event.target.id != "plusIcon" && event.target.id != "minusIcon") {
-        // this.panelChecked = !this.panelChecked;
-        this.checkPanel(this.$props.categoryPanelData.id);
-        if (this.$props.categoryPanelData.checked) {
+        if (!this.$props.categoryPanelData.checked) {
           this.expandPanel(
             this.$props.categoryPanelData.id,
             !this.$props.categoryPanelData.expanded
