@@ -245,7 +245,7 @@ export default {
       panelTitle: 'Meine persönlichen Daten',
       salutationOptions: ['Frau', 'Herr', 'Divers'],
       salutation: 'Frau',
-      titleOptions: ['Kein Titel', 'Dr.', 'Prof.'],
+      titleOptions: ['Kein Titel', 'Dr.', 'Prof.', 'Prof. Dr.'],
       title: 'Kein Titel',
       firstGivenName: '',
       surname: '',
