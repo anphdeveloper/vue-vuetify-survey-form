@@ -49,3 +49,8 @@ export function germanFormat(number) {
   );
   return "" + preComma + "," + postComma;
 }
+
+export function validateEmail(email){
+  let rule = /\S+@\S+.\S+/;
+  return rule.test(email)
+}
