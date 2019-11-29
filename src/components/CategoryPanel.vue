@@ -11,7 +11,7 @@
         <v-spacer></v-spacer>
         <v-btn
           class="mr-1 white close-icon elevation-0 px-0"
-          @click="onClickCheckPanel"
+          @click.prevent="onClickCheckPanel, clickContainer($event)"
           id="panelCheckBoxButton"
         >
           <v-icon
@@ -28,7 +28,7 @@
     <p
       :class="{
         'mb-0 ': !categoryPanelData.expanded,
-        'body-2 text-left white--text': true
+        'body-2 text-left white--text': true,
       }"
       v-html="categoryPanelData.panelDescription"
     ></p>
@@ -79,7 +79,7 @@
 
 <script>
 export default {
-  name: "CategoryPanel",
+  name: 'CategoryPanel',
   props: {
     // id: Number,
     // panelTitle: String,
@@ -89,12 +89,12 @@ export default {
     // checked: Boolean,
     categoryPanelData: Object,
     checkPanel: Function,
-    expandPanel: Function
+    expandPanel: Function,
   },
   data() {
     return {
       descriptionCollapsed: false,
-      panelChecked: false
+      panelChecked: false,
     };
   },
   methods: {
@@ -105,7 +105,7 @@ export default {
     onClickExpandPanel() {
       this.expandPanel(
         this.$props.categoryPanelData.id,
-        !this.$props.categoryPanelData.expanded
+        !this.$props.categoryPanelData.expanded,
       );
     },
     clickContainer(event) {
@@ -130,7 +130,7 @@ export default {
   watch: {},
   created() {
     this.panelChecked = this.$props.categoryPanelData.checked;
-  }
+  },
 };
 </script>
 <style scoped lang="scss">

@@ -26,8 +26,8 @@
                 <tr>
                   <th class="text-left"></th>
                   <th class="text-center">MediGroup S1</th>
-                  <th class="text-center">MediGroup S1</th>
-                  <th class="text-center">MediClinic Plus</th>
+                  <th class="text-center">MediGroup S2</th>
+                  <th class="text-center">Medi Clinic Plus</th>
                 </tr>
               </thead>
               <tbody>
@@ -519,13 +519,13 @@
               <thead>
                 <tr>
                   <th class="text-left"></th>
-                  <th class="text-center">Medigroup Basis</th>
-                  <th class="text-center">Medigroup Premium</th>
+                  <th class="text-center">MediGroup Basis</th>
+                  <th class="text-center">MediGroup Premium</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="py-0">Medigroup Premium</td>
+                  <td class="py-0">MediGroup Premium</td>
                   <td class="py-0" justify="center" align="center">100%</td>
                   <td class="py-0" justify="center" align="center">100%</td>
                 </tr>
@@ -730,32 +730,32 @@
 </template>
 
 <script>
-import SickBedIcon from "@/components/Icons/SickBedIcon";
-import CheckedIcon from "@/components/Icons/CheckedIcon";
-import RedCrossIcon from "@/components/Icons/RedCrossIcon";
+import SickBedIcon from '@/components/Icons/SickBedIcon';
+import CheckedIcon from '@/components/Icons/CheckedIcon';
+import RedCrossIcon from '@/components/Icons/RedCrossIcon';
 export default {
-  name: "ComparisonTableModal",
+  name: 'ComparisonTableModal',
   components: {
     SickBedIcon,
     CheckedIcon,
-    RedCrossIcon
+    RedCrossIcon,
   },
-  props: ["isComparisonForStationary"],
+  props: ['isComparisonForStationary'],
   data() {
     return {
       show: false,
       tab: null,
       groupItems: [
-        "MediGroup<br />S1",
-        "MediGroup<br />S2",
-        "Medi<br/>Clinic Plus"
+        'MediGroup<br />S1',
+        'MediGroup<br />S2',
+        'Medi<br/>Clinic Plus',
       ],
-      membershipItems: ["MediGroup<br />Basis", "MediGroup<br />Premium"]
+      membershipItems: ['MediGroup<br />Basis', 'MediGroup<br />Premium'],
     };
   },
   computed: {},
   watch: {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style scoped lang="scss">
@@ -830,7 +830,7 @@ export default {
       }
       &::after {
         z-index: 10000;
-        content: "";
+        content: '';
         position: absolute;
         display: block;
         width: 0px;
@@ -848,7 +848,7 @@ export default {
     &.v-tab--active {
       margin-bottom: 15px;
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         display: block;
         width: 0px;
@@ -868,7 +868,7 @@ export default {
     &.v-tab--active {
       margin-bottom: 15px;
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         display: block;
         width: 0px;
@@ -912,7 +912,7 @@ export default {
       }
       &::after {
         z-index: 10000;
-        content: "";
+        content: '';
         position: absolute;
         display: block;
         width: 0px;
@@ -930,7 +930,7 @@ export default {
     &.v-tab--active {
       margin-bottom: 15px;
       &::after {
-        content: "";
+        content: '';
         position: absolute;
         display: block;
         width: 0px;

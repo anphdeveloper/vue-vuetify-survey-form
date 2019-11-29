@@ -15,7 +15,7 @@
             subtitle: $vuetify.breakpoint.lgAndUp,
             caption: $vuetify.breakpoint.md,
             subtitle: $vuetify.breakpoint.smAndDown,
-            'mb-1 text-left pl-4 pt-2 ml-2 grey--text mr-4': true
+            'mb-1 text-left pl-4 pt-2 ml-2 grey--text mr-4': true,
           }"
         >
           {{ ratePanelData.panelTitle }}
@@ -60,12 +60,12 @@
 
 <script>
 export default {
-  name: "RateSelectionPanel",
+  name: 'RateSelectionPanel',
   components: {},
-  props: ["ratePanelData", "checkRate"],
+  props: ['ratePanelData', 'checkRate'],
   data() {
     return {
-      panelSelected: null
+      panelSelected: null,
     };
   },
   methods: {
@@ -76,15 +76,15 @@ export default {
   },
   watch: {
     panelSelected: function(newVal) {
-      if (newVal == "radio-1") this.checkRate(this.$props.ratePanelData.id);
+      if (newVal == 'radio-1') this.checkRate(this.$props.ratePanelData.id);
     },
-    "ratePanelData.checked": function(newVal) {
-      this.panelSelected = newVal ? "radio-1" : null;
-    }
+    'ratePanelData.checked': function(newVal) {
+      this.panelSelected = newVal ? 'radio-1' : null;
+    },
   },
   created() {
-    this.panelSelected = this.$props.ratePanelData.checked ? "radio-1" : null;
-  }
+    this.panelSelected = this.$props.ratePanelData.checked ? 'radio-1' : null;
+  },
 };
 </script>
 <style scoped lang="scss">
@@ -95,7 +95,7 @@ export default {
   height: 50px;
 }
 .top-label-icon {
-  background: url("../assets/icons/gothaer_bubble.svg");
+  background: url('../assets/icons/gothaer_bubble.svg');
   background-color: transparent !important;
   margin-right: 0px !important;
   width: 44px;
@@ -117,7 +117,7 @@ export default {
     font-size: 32px !important;
   }
 
-  & [class*="__ripple"] {
+  & [class*='__ripple'] {
     left: -7.5px;
     width: 32px;
     height: 32px;

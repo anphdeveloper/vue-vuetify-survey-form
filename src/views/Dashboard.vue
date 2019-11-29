@@ -249,7 +249,7 @@
         <v-row
           :class="{
             'mt-4': $vuetify.breakpoint.xs,
-            'px-3 justify-start': true
+            'px-3 justify-start': true,
           }"
           wrap
         >
@@ -288,13 +288,13 @@ import {
   PREVENTION_PANEL_DATA
 } from "@/plugins/constants/products";
 export default {
-  name: "Dashboard",
+  name: 'Dashboard',
   components: {
     CategoryPanel,
     RateSelectionPanel,
     MiddleTitlePanel,
     ComparisonTableModal,
-    GoBackCircleIcon
+    GoBackCircleIcon,
   },
   props: {},
   data() {
@@ -311,14 +311,14 @@ export default {
   },
   computed: {
     ...mapState({
-      age: state => state.profile.age
-    })
+      age: state => state.profile.age,
+    }),
   },
   watch: {
     targetDay: function(newVal) {
       this.$store.dispatch(
-        "profile/setTargetDay",
-        this.$helper.commonHelper.getDateFromGermanDate(newVal)
+        'profile/setTargetDay',
+        this.$helper.commonHelper.getDateFromGermanDate(newVal),
       );
     },
     age: function(newVal) {
@@ -329,26 +329,26 @@ export default {
       handler() {
         this.setTotalRate();
       },
-      deep: true
+      deep: true,
     },
     toothPanelData: {
       handler() {
         this.setTotalRate();
       },
-      deep: true
+      deep: true,
     },
     outpatientPanelData: {
       handler() {
         this.setTotalRate();
       },
-      deep: true
+      deep: true,
     },
     preventionPanelData: {
       handler() {
         this.setTotalRate();
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
 
   methods: {
@@ -410,7 +410,7 @@ export default {
 
     selectStationaryRatePanel(id) {
       this.stationaryPanelData.map(
-        item => (item.checked = item.id === id ? true : false)
+        item => (item.checked = item.id === id ? true : false),
       );
       this.categoryPanelData[0].checked = true;
       this.categoryPanelData[0].selectedId = id;
@@ -427,7 +427,7 @@ export default {
 
     selectToothRatePanel(id) {
       this.toothPanelData.map(
-        item => (item.checked = item.id === id ? true : false)
+        item => (item.checked = item.id === id ? true : false),
       );
       this.categoryPanelData[1].checked = true;
       this.categoryPanelData[1].selectedId = id;
@@ -444,7 +444,7 @@ export default {
 
     selectOutpatientRatePanel(id) {
       this.outpatientPanelData.map(
-        item => (item.checked = item.id === id ? true : false)
+        item => (item.checked = item.id === id ? true : false),
       );
       this.categoryPanelData[2].checked = true;
       this.categoryPanelData[2].selectedId = id;
@@ -461,7 +461,7 @@ export default {
 
     selectPreventionRatePanel(id) {
       this.preventionPanelData.map(
-        item => (item.checked = item.id === id ? true : false)
+        item => (item.checked = item.id === id ? true : false),
       );
       this.categoryPanelData[3].checked = true;
       this.categoryPanelData[3].selectedId = id;
@@ -480,7 +480,7 @@ export default {
       this.categoryPanelData.map(
         category =>
           (category.expanded =
-            category.id === id ? expanded : category.expanded)
+            category.id === id ? expanded : category.expanded),
       );
     },
     /*eslint-disable*/
@@ -488,16 +488,16 @@ export default {
       if (!this.categoryPanelData.find(data => data.checked)) {
         return;
       } else {
-        this.$store.dispatch("products/setCategories", this.categoryPanelData);
+        this.$store.dispatch('products/setCategories', this.categoryPanelData);
         if (
           this.$store.state.products.categories[0].checked ||
           this.$store.state.products.categories[2].checked
         ) {
-          this.$router.push({ name: "MyHealth" });
+          this.$router.push({ name: 'MyHealth' });
         } else if (this.$store.state.products.categories[1].checked) {
-          this.$router.push({ name: "MyDentalHealth" });
+          this.$router.push({ name: 'MyDentalHealth' });
         } else if (this.$store.state.products.categories[3].checked) {
-          this.$router.push({ name: "MyPersonalData" });
+          this.$router.push({ name: 'MyPersonalData' });
         }
       }
     },
@@ -509,14 +509,14 @@ export default {
           ...panel,
           panelRate: this.$helper.productHelper.getRateForStationary(
             age,
-            panel.id
-          )
+            panel.id,
+          ),
         };
       });
       this.toothPanelData = this.toothPanelData.map(panel => {
         return {
           ...panel,
-          panelRate: this.$helper.productHelper.getRateForTooth(age, panel.id)
+          panelRate: this.$helper.productHelper.getRateForTooth(age, panel.id),
         };
       });
       this.outpatientPanelData = this.outpatientPanelData.map(panel => {
@@ -524,8 +524,8 @@ export default {
           ...panel,
           panelRate: this.$helper.productHelper.getRateForOutpatient(
             age,
-            panel.id
-          )
+            panel.id,
+          ),
         };
       });
       this.preventionPanelData = this.preventionPanelData.map(panel => {
@@ -533,8 +533,8 @@ export default {
           ...panel,
           panelRate: this.$helper.productHelper.getRateForPrevention(
             age,
-            panel.id
-          )
+            panel.id,
+          ),
         };
       });
     },
@@ -550,7 +550,7 @@ export default {
         this.stationaryPanelData.reduce(
           (totalRate, panel) =>
             totalRate + (panel.checked ? panel.panelRate : 0),
-          0
+          0,
         ) +
         this.toothPanelData.reduce(
           (totalRate, panel) =>
@@ -609,7 +609,7 @@ export default {
 
       //set rate
       this.setRateForPanels(this.age);
-    }
+    },
   },
 
   mounted() {

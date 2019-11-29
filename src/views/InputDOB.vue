@@ -24,13 +24,17 @@
                     content-class="tooltip-with-top-arrow"
                   >
                     <template v-slot:activator="{ on }">
-                      <v-icon color="primary" v-on="on">mdi-information-outline</v-icon>
+                      <v-icon color="primary" v-on="on"
+                        >mdi-information-outline</v-icon
+                      >
                     </template>
                     <div class="tooltip-container">
                       <v-card class="elevation-0 primary px-2">
                         <v-layout d-flex row wrap>
                           <v-col cols="2" sm="2">
-                            <v-icon color="white">mdi-information-outline</v-icon>
+                            <v-icon color="white"
+                              >mdi-information-outline</v-icon
+                            >
                           </v-col>
                           <v-col cols="10" sm="10" class="ml-0 pl-0 text-left">
                             <p class="text-left white--text mb-0 body-2">
@@ -70,7 +74,7 @@
                                 Number(v) != NaN &&
                                 Number(v) > 0 &&
                                 Number(v) < 32) ||
-                              ''
+                              '',
                           ]"
                         ></v-text-field>
                       </v-col>
@@ -89,7 +93,7 @@
                                 Number(v) != NaN &&
                                 Number(v) > 0 &&
                                 Number(v) < 13) ||
-                              ''
+                              '',
                           ]"
                         ></v-text-field>
                       </v-col>
@@ -110,8 +114,8 @@
                                 Number(v) >
                                   Number(new Date().getFullYear()) - 100 &&
                                 Number(v) <
-                                  Number(new Date().getFullYear()) + 100) ||
-                              ''
+                                  Number(new Date().getFullYear()) + 1) ||
+                              '',
                           ]"
                         ></v-text-field>
                       </v-col>
@@ -126,7 +130,8 @@
                   :block="$vuetify.breakpoint.xs"
                   class="mt-4 white--text"
                   @click="onClickStartCalc"
-                >Preise Berechnen</v-btn>
+                  >Preise Berechnen</v-btn
+                >
               </div>
             </template>
           </main-panel>
@@ -142,17 +147,18 @@
 import MainPanel from "@/components/MainPanel.vue";
 import { MORE_LINK_FOR_AGE_RATE } from "@/plugins/constants/profile";
 export default {
-  name: "InputDayOfBirthday",
+  name: 'InputDayOfBirthday',
   components: {
-    MainPanel
+    MainPanel,
   },
   data() {
     return {
-      panelTitle: "Mein Geburtsdatum",
-      day: "",
-      month: "",
-      year: "",
-      showReadMore: false
+      panelTitle: 'Mein Geburtsdatum',
+      day: '',
+      month: '',
+      year: '',
+      showReadMore: false,
+      getToday: new Date(),
     };
   },
   watch: {
@@ -161,46 +167,21 @@ export default {
     },
     month: function(newVal) {
       if (newVal.length == 2) this.$refs.year.focus();
-    }
+    },
   },
   methods: {
     onClickStartCalc() {
-      if (this.$refs.dobForm.validate()) {
+      if (this.$refs.dobForm.validate() && this.validateBirthday()) {
         this.$store.dispatch(
-          "profile/setDayOfBirth",
-          new Date(this.year, Number(this.month) - 1, this.day)
+          'profile/setDayOfBirth',
+          new Date(this.year, Number(this.month) - 1, this.day),
         );
-        this.$router.push({ name: "Dashboard" });
+        this.$router.push({ name: 'Dashboard' });
       }
     },
-    validateDate() {
-      const currentDate = new Date();
-      const inputDate = new Date(this.year, Number(this.month) - 1, this.day);
-      if (currentDate < inputDate) return false;
-
-      let ListofDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-      const month = Number(this.month);
-      const year = Number(this.year);
-      const day = Number(this.day);
-
-      if (month === 1 || month > 2) {
-        if (day > ListofDays[month - 1]) {
-          ///This check is for Confirming that the date is not out of its range
-          return false;
-        }
-      } else if (month === 2) {
-        let leapYear = false;
-        if ((!(year % 4) && year % 100) || !(year % 400)) {
-          leapYear = true;
-        }
-        if (leapYear === false && day > 28) {
-          return false;
-        } else if (leapYear == true && day > 29) {
-          return false;
-        }
-      }
-
-      return true;
+    validateBirthday() {
+      const enteredDob = new Date(this.year, Number(this.month) - 1, this.day);
+      return enteredDob > new Date() ? false : true;
     },
     validateDay(event, data, length) {
       if (/^\d+$/.test(event.key) && data.toString().length < length)
@@ -218,16 +199,16 @@ export default {
         let dob = new Date(this.$store.state.profile.dayOfBirth)
           .toISOString()
           .slice(0, 10);
-        this.day = dob.split("-")[2];
-        this.month = dob.split("-")[1];
-        this.year = dob.split("-")[0];
+        this.day = dob.split('-')[2];
+        this.month = dob.split('-')[1];
+        this.year = dob.split('-')[0];
       }
-    }
+    },
   },
   mounted() {
-    this.$store.dispatch("setPagesProgress", 20);
+    this.$store.dispatch('setPagesProgress', 20);
     this.fillData();
-  }
+  },
 };
 </script>
 
