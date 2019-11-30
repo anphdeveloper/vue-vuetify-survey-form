@@ -353,9 +353,13 @@ export default {
             })
             .then(res => {
               if (res) {
+                this.isSendData = false;
                 this.$store.dispatch('initiateState');
                 this.$router.push({ name: 'ManyThanks' });
               }
+              else
+                this.isSendData = false;
+                console.log('backend error');
             });
         }
       });
