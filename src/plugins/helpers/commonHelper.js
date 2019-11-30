@@ -13,11 +13,17 @@ export function getGermanFormatDate(date) {
 
 export function getDateFromGermanDate(dateString) {
   let array_from_german_date = dateString.split(".");
-  return new Date(
+  let date = Number(
+    array_from_german_date[1].replace(/\u200E/g, "") - 1
+  ).toString();
+
+  let newDate = [
     array_from_german_date[2],
-    Number(array_from_german_date[1] - 1),
+    date,
     array_from_german_date[0]
-  );
+  ].join("-");
+
+  return new Date(newDate);
 }
 
 export function getFirstDayOfMonth() {
