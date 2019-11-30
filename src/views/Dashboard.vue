@@ -281,7 +281,7 @@ import MiddleTitlePanel from "@/components/MiddleTitlePanel";
 import ComparisonTableModal from "@/components/Modals/ComparisonTableModal";
 import GoBackCircleIcon from "@/components/Icons/GoBackCircleIcon";
 import GoBackIcon from "@/components/Icons/GoBackIcon";
-import { mapState, mapGetters } from "vuex";
+import { mapState } from "vuex";
 import {
   CATEGORY_PANEL_DATA,
   STATIONARY_PANEL_DATA,
