@@ -265,7 +265,7 @@ export default {
       missedTeeth: null,
       products: null,
       totalRate: null,
-      isSendData: true,
+      isSendData: false,
     };
   },
   watch: {},
