@@ -183,6 +183,7 @@
                 <v-btn
                   depressed
                   large
+                  :disabled="isSendData"
                   block
                   color="danger"
                   class="mt-7 white--text"
@@ -250,7 +251,7 @@ export default {
   name: "MyInputsOverview",
   components: {
     MainPanel,
-    SendIcon
+    SendIcon,
   },
   data() {
     return {
@@ -263,7 +264,8 @@ export default {
       prevCompany: null,
       missedTeeth: null,
       products: null,
-      totalRate: null
+      totalRate: null,
+      isSendData: false,
     };
   },
   watch: {},
@@ -274,6 +276,7 @@ export default {
       // this.$store.dispatch("callBackendService", {
       //   hello: "test"
       // });
+      this.isSendData = true;
       this.$store.dispatch('getIpAddress').then(ipAddress => {
         if (ipAddress) {
           let payload = {
@@ -350,9 +353,13 @@ export default {
             })
             .then(res => {
               if (res) {
+                this.isSendData = false;
                 this.$store.dispatch('initiateState');
                 this.$router.push({ name: 'ManyThanks' });
               }
+              else
+                this.isSendData = false;
+                console.log('backend error');
             });
         }
       });
