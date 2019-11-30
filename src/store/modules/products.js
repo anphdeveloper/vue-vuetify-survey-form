@@ -2,7 +2,8 @@ const state = {
   categories: null
 };
 
-const getters = {};
+const getters = {
+};
 
 const actions = {
   setCategories({ commit }, categories) {

@@ -281,7 +281,7 @@ import MiddleTitlePanel from "@/components/MiddleTitlePanel";
 import ComparisonTableModal from "@/components/Modals/ComparisonTableModal";
 import GoBackCircleIcon from "@/components/Icons/GoBackCircleIcon";
 import GoBackIcon from "@/components/Icons/GoBackIcon";
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import {
   CATEGORY_PANEL_DATA,
   STATIONARY_PANEL_DATA,
@@ -314,7 +314,7 @@ export default {
   },
   computed: {
     ...mapState({
-      age: state => state.profile.age
+      age: state => state.profile.age,
     })
   },
   watch: {
@@ -356,6 +356,7 @@ export default {
 
   methods: {
     selectPanels(id) {
+      console.log('selectedPannel is called');
       this.categoryPanelData[id].checked = !this.categoryPanelData[id].checked;
       if (!this.categoryPanelData[id].checked) {
         this.categoryPanelData[id].selectedId = null;
@@ -413,7 +414,7 @@ export default {
 
     selectStationaryRatePanel(id) {
       this.stationaryPanelData.map(
-        item => (item.checked = item.id === id ? true : false)
+        item => (item.checked = (item.id === id) ? true : false)
       );
       this.categoryPanelData[0].checked = true;
       this.categoryPanelData[0].selectedId = id;
@@ -585,22 +586,54 @@ export default {
 
       //setCategories
       if (this.$store.state.products.categories) {
-        this.categoryPanelData = this.$store.state.products.categories;
 
+        this.categoryPanelData = this.$store.state.products.categories;
         this.categoryPanelData.forEach(category => {
           if (category.checked) {
             switch (category.id) {
               case 0:
-                this.stationaryPanelData[category.selectedId].checked = true;
+                this.stationaryPanelData.forEach( productPanel => {
+                  productPanel.checked = (productPanel.id == category.selectedId) ? true : false;
+                });
                 break;
               case 1:
-                this.toothPanelData[category.selectedId].checked = true;
+                this.toothPanelData.forEach( productPanel => {
+                  productPanel.checked = (productPanel.id == category.selectedId) ? true : false;
+                });
                 break;
               case 2:
-                this.outpatientPanelData[category.selectedId].checked = true;
+                this.outpatientPanelData.forEach( productPanel => {
+                  productPanel.checked = (productPanel.id == category.selectedId) ? true : false;
+                });
                 break;
               case 3:
-                this.preventionPanelData[category.selectedId].checked = true;
+                this.preventionPanelData.forEach( productPanel => {
+                  productPanel.checked = (productPanel.id == category.selectedId) ? true : false;
+                });
+                break;
+            }
+          }
+          else{
+            switch (category.id) {
+              case 0:
+                this.stationaryPanelData.forEach( productPanel => {
+                  productPanel.checked = false;
+                });
+                break;
+              case 1:
+                this.toothPanelData.forEach( productPanel => {
+                  productPanel.checked = false;
+                });
+                break;
+              case 2:
+                this.outpatientPanelData.forEach( productPanel => {
+                  productPanel.checked = false;
+                });
+                break;
+              case 3:
+                this.preventionPanelData.forEach( productPanel => {
+                  productPanel.checked = false;
+                });
                 break;
             }
           }
@@ -611,19 +644,13 @@ export default {
       this.setRateForPanels(this.age);
     }
   },
+  created(){
+    this.fillData();
+  },
 
   mounted() {
-    this.fillData();
     //set progress
     this.$store.dispatch("setPagesProgress", 25);
-    this.categoryPanelData.map(panel => {
-      panel.expanded = false;
-      panel.checked = false;
-    });
-    //test calling side-effect api
-    // this.$store.dispatch("callBackendService", {
-    //   hello: "test"
-    // });
   }
 };
 </script>
